@@ -1,0 +1,297 @@
+/************************************************************************
+**
+** C O M M A N D S
+**
+**	NOTES:
+**		If you wish to use a variable in a command in DEdit you MUST
+**		declare the variable as either a global or level specific in
+**		this file first.
+**
+**		There is a max number of 255 variables per level.
+**				
+** GLOBALS
+**
+** 	This provides a place to declare global commands.  These commands are 
+** 	executed ONCE on a new game when the player enters the first level
+** 	of the first mission.  Currently only variable declarations are valid
+** 	global commands.  Global variables will be accessible in any level 
+**	and their value will get saved across all levels.
+**
+**	Cmd0-N (String)
+**
+**		The command you wish to process.
+**
+**		Valid global commands:
+**
+**			INT - declares an Integer variable and sets its value.
+**
+** LEVELS
+**
+**	This provides a place to declare level specific commands.  These commands are
+**	executed every time you enter the level.  Every command is valid as a level
+**	specific command.
+**
+**	Cmd0-N (String)
+**
+**		The command you wish to process on level load.
+**
+*************************************************************************/
+
+[globals]
+
+
+//
+// Levels...
+//
+
+[map0]
+name = "M01-01"
+cmd0 = "delay 3 (msg player (playsound jetcall))"
+cmd1 = "delay 3 (msg player (transmission 22601))"
+cmd2 = "delay 6 (msg player (playsound jetcall))"
+cmd3 = "delay 6 (msg player (transmission 22600))"
+cmd4 = "delay 6 (msg player (acquirepset all))"
+
+[map1]
+name = "M01-02"
+cmd0 = "delay 30 (msg player (playsound jetcall))"
+cmd1 = "delay 30 (msg player (transmission 22601))"
+cmd2 = "delay 33 (msg player (playsound jetcall))"
+cmd3 = "delay 33 (msg player (transmission 22600))"
+cmd4 = "delay 33 (msg player (acquirepset all))"
+
+[map2]
+name = "M02-01"
+cmd0 = "delay 87 (msg player (playsound jetcall))"
+cmd1 = "delay 87 (msg player (transmission 22601))"
+cmd2 = "delay 90 (msg player (playsound jetcall))"
+cmd3 = "delay 90 (msg player (transmission 22600))"
+cmd4 = "delay 90 (msg player (acquirepset all))"
+
+[map3]
+name = "M02-02"
+cmd0 = "delay 32 (msg player (playsound jetcall))"
+cmd1 = "delay 32 (msg player (transmission 22601))"
+cmd2 = "delay 35 (msg player (playsound jetcall))"
+cmd3 = "delay 35 (msg player (transmission 22600))"
+cmd4 = "delay 35 (msg player (acquirepset all))"
+
+[map4]
+name = "M02-03"
+cmd0 = "delay 82 (msg player (playsound jetcall))"
+cmd1 = "delay 82 (msg player (transmission 22601))"
+cmd2 = "delay 85 (msg player (playsound jetcall))"
+cmd3 = "delay 85 (msg player (transmission 22600))"
+cmd4 = "delay 85 (msg player (acquirepset all))"
+
+[map5]
+name = "M02-04"
+cmd0 = "delay 69 (msg player (playsound jetcall))"
+cmd1 = "delay 69 (msg player (transmission 22601))"
+cmd2 = "delay 72 (msg player (playsound jetcall))"
+cmd3 = "delay 72 (msg player (transmission 22600))"
+cmd4 = "delay 72 (msg player (acquirepset all))"
+
+[map6]
+name = "M03-01"
+cmd0 = "delay 45 (msg player (playsound jetcall))"
+cmd1 = "delay 45 (msg player (transmission 22601))"
+cmd2 = "delay 48 (msg player (playsound jetcall))"
+cmd3 = "delay 48 (msg player (transmission 22600))"
+cmd4 = "delay 48 (msg player (acquirepset all))"
+
+[map7]
+name = "M04-01"
+cmd0 = "delay 54 (msg player (playsound jetcall))"
+cmd1 = "delay 54 (msg player (transmission 22601))"
+cmd2 = "delay 57 (msg player (playsound jetcall))"
+cmd3 = "delay 57 (msg player (transmission 22600))"
+cmd4 = "delay 57 (msg player (acquirepset all))"
+
+[map8]
+name = "M04-02"
+cmd0 = "delay 49 (msg player (playsound jetcall))"
+cmd1 = "delay 49 (msg player (transmission 22601))"
+cmd2 = "delay 52 (msg player (playsound jetcall))"
+cmd3 = "delay 52 (msg player (transmission 22600))"
+cmd4 = "delay 52 (msg player (acquirepset all))"
+
+[map9]
+name = "M05-01"
+cmd0 = "delay 16 (msg player (playsound jetcall))"
+cmd1 = "delay 16 (msg player (transmission 22601))"
+cmd2 = "delay 19 (msg player (playsound jetcall))"
+cmd3 = "delay 19 (msg player (transmission 22600))"
+cmd4 = "delay 19 (msg player (acquirepset all))"
+
+[map10]
+name = "M05-02"
+cmd0 = "delay 83 (msg player (playsound jetcall))"
+cmd1 = "delay 83 (msg player (transmission 22601))"
+cmd2 = "delay 86 (msg player (playsound jetcall))"
+cmd3 = "delay 86 (msg player (transmission 22600))"
+cmd4 = "delay 86 (msg player (acquirepset all))"
+
+[map11]
+name = "M05-03"
+
+[map12]
+name = "M05-04"
+cmd0 = "delay 46 (msg player (playsound jetcall))"
+cmd1 = "delay 46 (msg player (transmission 22601))"
+cmd2 = "delay 49 (msg player (playsound jetcall))"
+cmd3 = "delay 49 (msg player (transmission 22600))"
+cmd4 = "delay 49 (msg player (acquirepset all))"
+
+[map13]
+name = "M06-01"
+cmd0 = "delay 34 (msg player (playsound jetcall))"
+cmd1 = "delay 34 (msg player (transmission 22601))"
+cmd2 = "delay 37 (msg player (playsound jetcall))"
+cmd3 = "delay 37 (msg player (transmission 22600))"
+cmd4 = "delay 37 (msg player (acquirepset all))"
+
+[map14]
+name = "M06-02"
+cmd0 = "delay 17 (msg player (playsound jetcall))"
+cmd1 = "delay 17 (msg player (transmission 22601))"
+cmd2 = "delay 20 (msg player (playsound jetcall))"
+cmd3 = "delay 20 (msg player (transmission 22600))"
+cmd4 = "delay 20 (msg player (acquirepset all))"
+
+[map15]
+name = "M06-03"
+
+[map16]
+name = "M06-04"
+cmd0 = "delay 53 (msg player (playsound jetcall))"
+cmd1 = "delay 53 (msg player (transmission 22601))"
+cmd2 = "delay 56 (msg player (playsound jetcall))"
+cmd3 = "delay 56 (msg player (transmission 22600))"
+cmd4 = "delay 56 (msg player (acquirepset all))"
+
+[map17]
+name = "M07-01"
+
+[map18]
+name = "M07-02"
+cmd0 = "delay 70 (msg player (playsound jetcall))"
+cmd1 = "delay 70 (msg player (transmission 22601))"
+cmd2 = "delay 73 (msg player (playsound jetcall))"
+cmd3 = "delay 73 (msg player (transmission 22600))"
+cmd4 = "delay 73 (msg player (acquirepset all))"
+
+[map19]
+name = "M07-03"
+cmd0 = "delay 64 (msg player (playsound jetcall))"
+cmd1 = "delay 64 (msg player (transmission 22601))"
+cmd2 = "delay 67 (msg player (playsound jetcall))"
+cmd3 = "delay 67 (msg player (transmission 22600))"
+cmd4 = "delay 67 (msg player (acquirepset all))"
+
+[map20]
+name = "M07-04"
+cmd0 = "delay 47 (msg player (playsound jetcall))"
+cmd1 = "delay 47 (msg player (transmission 22601))"
+
+[map21]
+name = "M08-01"
+cmd0 = "delay 38 (msg player (playsound jetcall))"
+cmd1 = "delay 38 (msg player (transmission 22601))"
+cmd2 = "delay 41 (msg player (playsound jetcall))"
+cmd3 = "delay 41 (msg player (transmission 22600))"
+cmd4 = "delay 41 (msg player (acquirepset all))"
+
+[map22]
+name = "M09-01"
+cmd0 = "delay 38 (msg player (playsound jetcall))"
+cmd1 = "delay 38 (msg player (transmission 22601))"
+cmd2 = "delay 41 (msg player (playsound jetcall))"
+cmd3 = "delay 41 (msg player (transmission 22600))"
+cmd4 = "delay 41 (msg player (acquirepset all))"
+
+[map23]
+name = "M09-02"
+cmd0 = "int inner 0"
+cmd1 = "int middle 0"
+cmd2 = "int outer 0"
+cmd3 = "WHEN (((inner == 1) AND (middle == 1)) AND (outer == 1)) THEN (msg triplelocktrig trigger)"
+cmd4 = "delay 45 (msg player (playsound jetcall))"
+cmd5 = "delay 45 (msg player (transmission 22601))"
+cmd6 = "delay 48 (msg player (playsound jetcall))"
+cmd7 = "delay 48 (msg player (transmission 22600))"
+cmd8 = "delay 48 (msg player (acquirepset all))"
+
+[map24]
+name = "M09-03"
+cmd0 = "delay 8 (msg player (playsound jetcall))"
+cmd1 = "delay 8 (msg player (transmission 22601))"
+cmd2 = "delay 11 (msg player (playsound jetcall))"
+cmd3 = "delay 11 (msg player (transmission 22600))"
+cmd4 = "delay 11 (msg player (acquirepset all))"
+
+[map25]
+name = "M10-01"
+cmd0 = "delay 12 (msg player (playsound jetcall))"
+cmd1 = "delay 12 (msg player (transmission 22601))"
+
+[map26]
+name = "M10-02"
+cmd0 = "delay 27 (msg player (playsound jetcall))"
+cmd1 = "delay 27 (msg player (transmission 22601))"
+cmd2 = "delay 30 (msg player (playsound jetcall))"
+cmd3 = "delay 30 (msg player (transmission 22600))"
+cmd4 = "delay 30 (msg player (acquirepset all))"
+
+[map27]
+name = "M10-03"
+
+[map28]
+name = "M10-04"
+cmd0 = "delay 60 (msg player (playsound jetcall))"
+cmd1 = "delay 60 (msg player (transmission 22601))"
+cmd2 = "delay 63 (msg player (playsound jetcall))"
+cmd3 = "delay 63 (msg player (transmission 22600))"
+cmd4 = "delay 63 (msg player (acquirepset all))"
+
+[map29]
+name = "M10-05"
+
+[map30]
+name = "Variable_Test_Map"
+cmd0 = "int counter 0"
+cmd1 = "WHEN (counter == 4) THEN (msg chud on)"
+
+
+[map31]
+name = "AITest"
+cmd0 = "int EventVar01 0"
+cmd1 = "int EventVar02 0"
+cmd2 = "WHEN (EventVar02 == 11) Then (msg player (fadeIn 2.5))" // player has survived wave #1
+
+[map32]
+name = "intro"
+cmd0 = "int goldcheat 0"
+cmd1 = "WHEN (goldcheat == 1) THEN ((msg player (acquireprim disc)) (msg player (acquireprim rod)) (msg player (acquireprim ball)) (msg player (acquireprim mesh)) (msg player (acquiresub Sequencer gold)) (msg player (acquiresub cluster gold)))"
+cmd2 = "WHEN (goldcheat == 1) THEN ((msg player (acquiresub Suffusion gold)) (msg player (acquiresub LOL gold)) (msg player (acquiresub Ball_Launcher gold)) (msg player (acquiresub Drunken_Dims gold)) (msg player (acquiresub Energy_Claw gold)))"
+cmd3 = "WHEN (goldcheat == 1) THEN ((msg player (acquiresub prankster_bit beta)) (msg player (acquiresub YAmp gold)) (msg player (acquiresub Profiler gold)) (msg player (acquiresub Fuzzy_Signature gold)) (msg player (acquiresub Primitive_charge gold)))"
+cmd4 = "WHEN (goldcheat == 1) THEN ((msg player (acquiresub Virus_scan gold)) (msg player (acquiresub Shield_prism gold)) (msg player (acquiresub viral_shield gold)) (msg player (acquiresub Triangulate gold)) (msg player (acquiresub Corrode gold)))"
+cmd5 = "WHEN (goldcheat == 1) THEN ((msg player (acquiresub MegaHurtz gold)) (msg player (acquiresub peripheral_seal gold)) (msg player (acquiresub submask gold)) (msg player (acquiresub support_safeguard gold)) (msg player (acquiresub base_damping gold)))"
+cmd6 = "WHEN (goldcheat == 1) THEN ((msg player (acquiresub Truncate_plate gold)) (msg player (rating health 20)) (msg player (rating energy 20)) (msg player (rating efficiency 20)) (msg player (rating transfer 20)) (msg player (rating processor 20)))"
+cmd7 = "WHEN (goldcheat == 1) THEN ((msg player (addbuildpoints 105)) (msg player (playsound jetcall)) (msg player (transmission 22598)) (delay .5 (msg 18019x_dialogue on)) (msg byteKF04 off) (msg byteKF05 on))"
+cmd8 = "WHEN (goldcheat == 1) THEN ((msg ff13 (visible 0)) (msg ff13 (solid 0)) (msg 12051_trigger lock) (msg 12069x_trigger unlock) (msg bb_01.bbit remove) (msg player (objective add 5001)) (msg player (option add 22504)) (msg hfu trigger))"
+cmd9 = "delay 251 (msg player (playsound jetcall))"
+cmd10 = "delay 251 (msg player (transmission 22601))"
+
+[map33]
+name = "M04-03"
+cmd0 = "delay 9 (msg player (playsound jetcall))"
+cmd1 = "delay 9 (msg player (transmission 22601))"
+cmd2 = "delay 12 (msg player (playsound jetcall))"
+cmd3 = "delay 12 (msg player (transmission 22600))"
+cmd4 = "delay 12 (msg player (acquirepset all))"
+
+[map34]
+name = "M11-01"
+cmd0 = "delay 30 (msg player (playsound jetcall))"
+cmd1 = "delay 30 (msg player (transmission 22601))"

@@ -1,0 +1,1022 @@
+/************************************************************************
+**
+** Path Sound Attributes
+**
+**  The following specifies paths to id based sounds
+**  
+*/
+
+[Paths]
+
+Dialogue                     = "Voice\"
+
+/*
+**
+** AI Sound Attributes
+**
+**  Each record below maps to a ModelButeMgr SoundTemplate
+** 
+** "Parent" is used to specify a parent sound attribute record to look in if the
+**  requested sound isn't found in the current record.  For example, the "Isako"
+**  sound attribute record may only specify a few key sounds and would specify
+**  "Ninja" as its parent (for death, pain, etc. sounds)
+**
+** Available sound types:
+**
+** Accident
+** Alarm                   
+** AlertAllyMajor		- when one AI tells another he is suspicious.
+** AlertAllyMinor       - when one AI tells another he is alarmed.
+** Apprehend               
+** AssistTrappedAlly       
+** Attack                  
+** BackupCryWolf        - when AIs have responded too many times without finding anything.
+** BackupFail           - when an AI gets to a BackupNode, and no one is there.
+** Bleeding                
+** Burning
+** CatchBreath                 
+** Charge                  
+** Chase                   
+** Choking                 
+** Cover                   
+** Crush                   
+** DamageBearTrap          
+** DamageGlue              
+** DamageLaughing          
+** DamageSleeping          
+** DamageSlippery          
+** DamageStun              
+** Death                   
+** DeathQuiet    
+** Disappear
+** Disarmed              - AI wakes up without a weapon          
+** DiscoveryBad            
+** DiscoveryGood           
+** DisposeBody             
+** Distress                
+** DisturbanceHeardAlarming
+** DisturbanceHeardMajor   
+** DisturbanceHeardMinor   
+** DisturbanceSeenAlarming 
+** DisturbanceSeenMajor    
+** DisturbanceSeenMinor
+** DisturbanceSeenUnsure  - AI sees a leaning enemy
+** Drowsy                  
+** Electrocute             
+** Explode                 
+** Fall                    
+** FallStairs
+** FindBackup             - "I need help!" 
+** FollowFootprint         
+** Grenade                 
+** Idle                    
+** InvestigateFail         
+** JunctionDilemma         
+** LightsOff               
+** LightsOn                
+** LightSwitch  
+** Lunge           
+** None                    	
+** OhNo                    - "Oh no!"	
+** OrderBackup             - "Come with me!"
+** OrderCrouch             - ally yells "Get down!"
+** Pain                    
+** Panic                   
+** PointOfInterest
+** Poisoning         
+** Prone         
+** Reappear
+** Retreat          
+** Search                  
+** SearchFail              
+** SeeBody   
+** Snore              
+** SplitUp                 
+** Tail                    	
+** Urinal                  	- "Aaahhh"
+*/
+
+
+
+[Byte]	
+	
+Parent                     	= ""
+	
+Death0                    	= "voice\20255.wav"     
+Death1                    	= "voice\20256.wav"
+Death2                    	= "voice\20257.wav"
+Distress0                    	= "voice\20251.wav"
+Idle0                    	= "voice\20248.wav"
+Idle1                    	= "voice\20248B.wav"
+Idle2                    	= "voice\20249.wav"
+Idle3                    	= "voice\20250.wav"
+Pain0                    	= "voice\20252.wav"
+Pain1                    	= "voice\20253.wav"
+Pain2                    	= "voice\20254.wav"
+PlayerDeathResponse0            = "voice\20258.wav"
+PlayerDeathResponse1            = "voice\20259.wav"
+PlayerDeathResponse2            = "voice\20260.wav"
+	
+	
+[DataWraith]	
+	
+Parent                     	= ""
+	
+Alarm0                    	= "voice\22836.wav"
+Alarm1                    	= "voice\22839.wav"
+Alarm2                    	= "voice\22840.wav"
+Alarm3                    	= "voice\22841.wav"
+AlertAllyMajor0                    	= "voice\22842.wav"
+Attack0                    	= "voice\22843.wav"
+Attack1                    	= "voice\22844.wav"
+Attack2                    	= "voice\22845.wav"
+Attack3                    	= "voice\22846.wav"
+Attack4                    	= "voice\22847.wav"
+Attack5                    	= "voice\22848.wav"
+Attack6                    	= "voice\22849.wav"
+Backup0                    	= "voice\22847.wav"
+Backup1                    	= "voice\22848.wav"
+Backup2                    	= "voice\22849.wav"
+BackupFail0                    	= "voice\22850.wav"
+Bleeding0                    	= "voice\22851.wav"
+Bleeding1                    	= "voice\22852.wav"
+Charge0                    	= "voice\22853.wav"
+Charge1                    	= "voice\22854.wav"
+Chase0                    	= "voice\22855.wav"
+Chase1                    	= "voice\22856.wav"
+Chase2                    	= "voice\22857.wav"
+Chase3                    	= "voice\22858.wav"
+Cover0                    	= "voice\22859.wav"
+Cover1                    	= "voice\22860.wav"
+Cover2                    	= "voice\22861.wav"
+Cover3                    	= "voice\22862.wav"
+Crush0                    	= "voice\22863.wav"
+Death0                    	= "voice\22915.wav"
+Death1                    	= "voice\22916.wav"
+Death2                    	= "voice\22917.wav"
+Death3                    	= "voice\22918.wav"
+DeathQuiet0                    	= "voice\22919.wav"
+DeathQuiet1                    	= "voice\22920.wav"
+DeathQuiet2                    	= "voice\22920.wav"
+DeathQuiet3                    	= "voice\22922.wav"
+DeathQuiet4                    	= "voice\22923.wav"
+DistrubanceHeardAlarming0                    	= "voice\22864.wav"
+DistrubanceHeardAlarming1                    	= "voice\22865.wav"
+DistrubanceHeardAlarming2                    	= "voice\22866.wav"
+DisturbanceHeardMajor0                    	= "voice\22867.wav"
+DisturbanceHeardMajor1                    	= "voice\22868.wav"
+DisturbanceHeardMajor2                    	= "voice\22869.wav"
+DisturbanceHeardMinor0                    	= "voice\22870.wav"
+DisturbanceHeardMinor1                    	= "voice\22871.wav"
+DisturbanceHeardMinor2                    	= "voice\22872.wav"
+DisturbanceSeenAlarming0                    	= "voice\22873.wav"
+DisturbanceSeenAlarming1                    	= "voice\22874.wav"
+DisturbanceSeenAlarming2                    	= "voice\22875.wav"
+DisturbanceSeenMajor0                    	= "voice\22876.wav"
+DisturbanceSeenMajor1                    	= "voice\22877.wav"
+DisturbanceSeenMajor2                    	= "voice\22878.wav"
+DisturbanceSeenMinor0                    	= "voice\22879.wav"
+DisturbanceSeenMinor1                    	= "voice\22880.wav"
+DisturbanceSeenMinor2                    	= "voice\22881.wav"
+Drowsy0                    	= "voice\22882.wav"
+Drowsy1                    	= "voice\22883.wav"
+Drowsy2                    	= "voice\22884.wav"
+Drowsy3                    	= "voice\22885.wav"
+Fall0                    	= "voice\22886.wav"
+FallingStairs0                    	= "voice\22887.wav"
+Grenade0                    	= "voice\22888.wav"
+Grenade1                    	= "voice\22889.wav"
+Idle0                    	= "voice\22890.wav"
+Idle1                    	= "voice\22891.wav"
+Idle2                    	= "voice\22892.wav"
+Idle3                    	= "voice\22893.wav"
+Idle4                    	= "voice\22894.wav"
+Idle5                    	= "voice\22895.wav"
+Idle6                    	= "voice\22896.wav"
+Idle7                    	= "voice\22897.wav"
+Idle8                    	= "voice\22898.wav"
+Idle9                    	= "voice\22899.wav"
+Idle10                    	= "voice\22890.wav"
+Idle11                    	= "voice\22891.wav"
+Idle12                    	= "voice\22892.wav"
+Idle13                    	= "voice\22893.wav"
+Idle14                    	= "voice\22894.wav"
+Idle15                    	= "voice\22895.wav"
+InvestigateFail0                    	= "voice\22909.wav"
+InvestigateFail1                    	= "voice\22910.wav"
+InvestigateFail2                    	= "voice\22911.wav"
+InvestigateFail3                    	= "voice\22841.wav"
+InvestigateFail4                    	= "voice\22842.wav"
+JunctionDilemma0                    	= "voice\22912.wav"
+JunctionDilemma1                    	= "voice\22913.wav"
+JunctionDilemma2                    	= "voice\22914.wav"
+Melee0                    	= "voice\22926.wav"
+Melee1                    	= "voice\22927.wav"
+Melee2                    	= "voice\22928.wav"
+Melee3                    	= "voice\22929.wav"
+Pain0                    	= "voice\22906.wav"
+Pain1                    	= "voice\22907.wav"
+Pain2                    	= "voice\22908.wav"
+Pain3                    	= "voice\22862.wav"
+Pain4                    	= "voice\22923.wav"
+PlayerDeathResponse0                    	= "voice\22950.wav"
+PlayerDeathResponse1                    	= "voice\22951.wav"
+PlayerDeathResponse2                    	= "voice\22952.wav"
+PlayerDeathResponse3                    	= "voice\22953.wav"
+PlayerDeathResponse4                    	= "voice\22954.wav"
+PlayerDeathResponse5                    	= "voice\22955.wav"
+DamagePRoded0                    	= "voice\22924.wav"
+DamagePRoded1                    	= "voice\22925.wav"
+Search0                    	= "voice\22930.wav"
+Search1                    	= "voice\22931.wav"
+Search2                    	= "voice\22932.wav"
+Search3                    	= "voice\22933.wav"
+Search4                    	= "voice\22934.wav"
+Search5                    	= "voice\22935.wav"
+Search6                    	= "voice\22936.wav"
+Search7                    	= "voice\22937.wav"
+Search8                    	= "voice\22938.wav"
+SearchFail0                    	= "voice\22939.wav"
+SearchFail1                    	= "voice\22940.wav"
+SearchFail2                    	= "voice\22941.wav"
+SeeCoreDump0                    	= "voice\22942.wav"
+SeeCoreDump1                    	= "voice\22943.wav"
+SeeCoreDump2                    	= "voice\22944.wav"
+
+	
+[FconMonster]
+Parent				= ""
+
+FconCrownPain0			= "voice\20304.wav" 
+FconCrownPain1			 = "voice\20305.wav"
+FconCrownPain2			 = "voice\20306.wav"
+
+FconBazaPain0			= "voice\20307.wav" 
+FconBazaPain1			= "voice\20308.wav" 
+FconBazaPain2			= "voice\20309.wav" 
+
+FconPopoffPain0			= "voice\20310.wav"
+FconPopoffPain1			= "voice\20311.wav"
+FconPopoffPain2			= "voice\20312.wav"
+
+Death0			 = "voice\20313.wav" 
+Death1			 = "voice\20314.wav" 
+Death2			 = "voice\20315.wav" 
+
+FconBazaDeath0			= "voice\20316.wav" 
+FconBazaDeath1			= "voice\20317.wav" 
+FconBazaDeath2			= "voice\20318.wav" 
+
+FconPopoffDeath0		= "voice\20319.wav" 
+FconPopoffDeath1		= "voice\20320.wav" 
+FconPopoffDeath2		= "voice\20321.wav" 
+
+PlayerDeathResponse0	= "voice\20322.wav"
+
+
+[Female_Program]	
+	
+Parent                     	= ""
+	
+BackupLoaded0                    	= "voice\20162.wav"
+BackupLoaded1                    	= "voice\20163.wav"
+BackupLoaded2                    	= "voice\20164.wav"
+BackupLoaded3                    	= "voice\20118.wav"
+BackupLoaded4                    	= "voice\20119.wav"
+BackupLoaded5                    	= "voice\20120.wav"
+Death0                    	= "voice\20193.wav"
+Death1                    	= "voice\20194.wav"
+Death2                    	= "voice\20195.wav"
+Death3                    	= "voice\20168.wav"
+Death4                    	= "voice\20169.wav"
+Death5                    	= "voice\20170.wav"
+Death6                    	= "voice\20124.wav"
+Death7                    	= "voice\20125.wav"
+Death8                    	= "voice\20126.wav"
+Distress0                    	= "voice\20177.wav"
+Distress1                    	= "voice\20178.wav"
+Distress2                    	= "voice\20165.wav"
+Distress3                    	= "voice\20166.wav"
+Distress4                    	= "voice\20167.wav"
+Distress5                    	= "voice\20121.wav"
+Distress6                    	= "voice\20122.wav"
+Distress7                    	= "voice\20123.wav"
+Greeting0                    	= "voice\20174.wav"
+Greeting1                    	= "voice\20175.wav"
+Greeting2                    	= "voice\20176.wav"
+Greeting3                    	= "voice\20133.wav"
+Greeting4                    	= "voice\20134.wav"
+Greeting5                    	= "voice\20135.wav"
+Greeting6                    	= "voice\20144.wav"
+Greeting7                    	= "voice\20145.wav"
+Greeting8                    	= "voice\20151.wav"
+Greeting9                    	= "voice\20091.wav"
+Idle0                    	= "voice\20179.wav"
+Idle1                    	= "voice\20180.wav"
+Idle2                    	= "voice\20181.wav"
+Idle3                    	= "voice\20182.wav"
+Idle4                    	= "voice\20183.wav"
+Idle5                    	= "voice\20184.wav"
+Idle6                    	= "voice\20185.wav"
+Idle7                    	= "voice\20186.wav"
+Idle8                    	= "voice\20196.wav"
+Idle9                    	= "voice\20197.wav"
+Idle10                    	= "voice\20198.wav"
+Idle11                    	= "voice\20199.wav"
+Idle12                    	= "voice\20153.wav"
+Idle13                    	= "voice\20154.wav"
+Idle14                    	= "voice\20155.wav"
+Idle15                    	= "voice\20156.wav"
+Idle16                    	= "voice\20157.wav"
+Idle17                    	= "voice\20110.wav"
+Idle18                    	= "voice\20111.wav"
+Idle19                    	= "voice\20112.wav"
+Idle20                    	= "voice\20113.wav"
+Idle21                    	= "voice\20114.wav"
+Pain0                    	= "voice\20187.wav"
+Pain1                    	= "voice\20188.wav"
+Pain2                    	= "voice\20189.wav"
+Pain3                    	= "voice\20115.wav"
+Pain4                    	= "voice\20116.wav"
+Pain5                    	= "voice\20117.wav"
+DamagePRoded0                    	= "voice\20200.wav"
+	
+	
+[GameBot]	
+	
+Parent                     	= ""
+	
+Attack0                    	= "voice\20716.wav"
+Attack1                    	= "voice\20717.wav"
+Attack2                    	= "voice\20718.wav"
+Attack3                    	= "voice\20719.wav"
+Attack4                    	= "voice\20741.wav"
+Attack5                    	= "voice\20742.wav"
+Attack6                    	= "voice\20745.wav"
+Cover0                    	= "voice\20720.wav"
+Cover1                    	= "voice\20720B.wav"
+Cover2                    	= "voice\20721.wav"
+Cover3                    	= "voice\20722.wav"
+Cover4                    	= "voice\20723.wav"
+Death0                    	= "voice\20738.wav"
+Death1                    	= "voice\20739.wav"
+Death2                    	= "voice\20740.wav"
+Fall0                    	= "voice\20724.wav"
+Idle0                    	= "voice\20725.wav"
+Idle1                    	= "voice\20726.wav"
+Idle2                    	= "voice\20727.wav"
+Idle3                    	= "voice\20728.wav"
+Idle4                    	= "voice\20729.wav"
+Idle5                    	= "voice\20730.wav"
+Idle6                    	= "voice\20731.wav"
+Idle7                    	= "voice\20732.wav"
+Idle8                    	= "voice\20733.wav"
+Pain0                    	= "voice\20734.wav"
+Pain1                    	= "voice\20735.wav"
+Pain2                    	= "voice\20736.wav"
+Pain3                    	= "voice\20737.wav"
+PlayerDeathResponse0                    	= "voice\20746.wav"
+PlayerDeathResponse1                    	= "voice\20747.wav"
+PlayerDeathResponse2                    	= "voice\20748.wav"
+PlayerDeathResponse3                    	= "voice\20749.wav"
+PlayerDeathResponse4                    	= "voice\20750.wav"
+	
+	
+[IC_Regular]	
+	
+Parent                     	= ""
+	
+Alarm0                    	= "voice\20442.wav"
+Alarm1                    	= "voice\20443.wav"
+Alarm2                    	= "voice\20444.wav"
+Alarm3                    	= "voice\20445.wav"
+AlertAllyMajor0                    	= "voice\20446.wav"
+Attack0                    	= "voice\20449.wav"
+Attack1                    	= "voice\20450.wav"
+Attack2                    	= "voice\20451.wav"
+Attack3                    	= "voice\20452.wav"
+Attack4                    	= "voice\20551.wav"
+Attack5                    	= "voice\20552.wav"
+Attack6                    	= "voice\20554.wav"
+Attack7                    	= "voice\20555.wav"
+Backup0                    	= "voice\20453.wav"
+Backup1                    	= "voice\20454.wav"
+Backup2                    	= "voice\20455.wav"
+BackupFail0                    	= "voice\20456.wav"
+Bleeding0                    	= "voice\20457.wav"
+Bleeding1                    	= "voice\20458.wav"
+Charge0                    	= "voice\20459.wav"
+Charge1                    	= "voice\20460.wav"
+Chase0                    	= "voice\20461.wav"
+Chase1                    	= "voice\20462.wav"
+Chase2                    	= "voice\20463.wav"
+Chase3                    	= "voice\20464.wav"
+Cover0                    	= "voice\20465.wav"
+Cover1                    	= "voice\20466.wav"
+Cover2                    	= "voice\20467.wav"
+Cover3                    	= "voice\20468.wav"
+Crush0                    	= "voice\20469.wav"
+Death0                    	= "voice\20521.wav"
+Death1                    	= "voice\20522.wav"
+Death2                    	= "voice\20523.wav"
+Death3                    	= "voice\20524.wav"
+DeathQuiet0                    	= "voice\20525.wav"
+DeathQuiet1                    	= "voice\20526.wav"
+DeathQuiet2                    	= "voice\20527.wav"
+DeathQuiet3                    	= "voice\20528.wav"
+DeathQuiet4                    	= "voice\20529.wav"
+DistrubanceHeardAlarming0                    	= "voice\20470.wav"
+DistrubanceHeardAlarming1                    	= "voice\20471.wav"
+DistrubanceHeardAlarming2                    	= "voice\20472.wav"
+DisturbanceHeardMajor0                    	= "voice\20473.wav"
+DisturbanceHeardMajor1                    	= "voice\20474.wav"
+DisturbanceHeardMajor2                    	= "voice\20475.wav"
+DisturbanceHeardMinor0                    	= "voice\20476.wav"
+DisturbanceHeardMinor1                    	= "voice\20477.wav"
+DisturbanceHeardMinor2                    	= "voice\20478.wav"
+DisturbanceSeenAlarming0                    	= "voice\20479.wav"
+DisturbanceSeenAlarming1                    	= "voice\20480.wav"
+DisturbanceSeenAlarming2                    	= "voice\20481.wav"
+DisturbanceSeenMajor0                    	= "voice\20482.wav"
+DisturbanceSeenMajor1                    	= "voice\20483.wav"
+DisturbanceSeenMajor2                    	= "voice\20484.wav"
+DisturbanceSeenMinor0                    	= "voice\20485.wav"
+DisturbanceSeenMinor1                    	= "voice\20486.wav"
+DisturbanceSeenMinor2                    	= "voice\20487.wav"
+Drowsy0                    	= "voice\20488.wav"
+Drowsy1                    	= "voice\20489.wav"
+Drowsy2                    	= "voice\20490.wav"
+Drowsy3                    	= "voice\20491.wav"
+Fall0                    	= "voice\20492.wav"
+FallingStairs0                    	= "voice\20493.wav"
+Grenade0                    	= "voice\20494.wav"
+Grenade1                    	= "voice\20495.wav"
+Idle0                    	= "voice\20496.wav"
+Idle1                    	= "voice\20497.wav"
+Idle2                    	= "voice\20498.wav"
+Idle3                    	= "voice\20499.wav"
+Idle4                    	= "voice\20500.wav"
+Idle5                    	= "voice\20501.wav"
+Idle6                    	= "voice\20502.wav"
+Idle7                    	= "voice\20503.wav"
+Idle8                    	= "voice\20504.wav"
+Idle9                    	= "voice\20505.wav"
+Idle10                    	= "voice\20506.wav"
+Idle11                    	= "voice\20507.wav"
+Idle12                    	= "voice\20508.wav"
+Idle13                    	= "voice\20509.wav"
+Idle14                    	= "voice\20510.wav"
+Idle15                    	= "voice\20511.wav"
+InvestigateFail0                    	= "voice\20515.wav"
+InvestigateFail1                    	= "voice\20516.wav"
+InvestigateFail2                    	= "voice\20517.wav"
+InvestigateFail3                    	= "voice\20447.wav"
+InvestigateFail4                    	= "voice\20448.wav"
+JunctionDilemma0                    	= "voice\20518.wav"
+JunctionDilemma1                    	= "voice\20519.wav"
+JunctionDilemma2                    	= "voice\20520.wav"
+Melee0                    	= "voice\20532.wav"
+Melee1                    	= "voice\20533.wav"
+Melee2                    	= "voice\20534.wav"
+Melee3                    	= "voice\20535.wav"
+Pain0                    	= "voice\20512.wav"
+Pain1                    	= "voice\20513.wav"
+Pain2                    	= "voice\20514.wav"
+Pain3                    	= "voice\20468.wav"
+Pain4                           = "voice\20529.wav"
+PlayerDeathResponse0                    	= "voice\20556.wav"
+PlayerDeathResponse1                    	= "voice\20557.wav"
+PlayerDeathResponse2                    	= "voice\20558.wav"
+PlayerDeathResponse3                    	= "voice\20559.wav"
+PlayerDeathResponse4                    	= "voice\20560.wav"
+PlayerDeathResponse5                    	= "voice\20561.wav"
+Poisoning0                           = "voice\10357.wav" //POISON LINES ADDED CUSTOM
+Poisoning1                           = "voice\20506.wav"
+Poisoning2                           = "voice\20525.wav"
+DamagePRoded0                    	= "voice\20530.wav"
+DamagePRoded1                    	= "voice\20531.wav"
+Search0                    	= "voice\20536.wav"
+Search1                    	= "voice\20537.wav"
+Search2                    	= "voice\20538.wav"
+Search3                    	= "voice\20539.wav"
+Search4                    	= "voice\20540.wav"
+Search5                    	= "voice\20541.wav"
+Search6                    	= "voice\20542.wav"
+Search7                    	= "voice\20543.wav"
+Search8                    	= "voice\20544.wav"
+SearchFail0                    	= "voice\20545.wav"
+SearchFail1                    	= "voice\20546.wav"
+SearchFail2                    	= "voice\20547.wav"
+SeeCoreDump0                    	= "voice\20548.wav"
+SeeCoreDump1                    	= "voice\20549.wav"
+SeeCoreDump2                    	= "voice\20550.wav"
+
+[IC_Shield]	
+	
+Parent                     	= "IC_Regular"
+
+	
+[IC_Launcher]	
+	
+Parent                     	= "IC_Regular"
+
+
+[IC_Regular_internet]	
+	
+Parent                     	= "IC_Regular"
+
+	
+[IC_Shield_internet]	
+	
+Parent                     	= "IC_Regular"
+
+
+[IC_Launcher_internet]	
+	
+Parent                     	= "IC_Regular"
+
+
+[IC_Regular_alanspc]	
+	
+Parent                     	= "IC_Regular"
+
+	
+[IC_Shield_alanspc]	
+	
+Parent                     	= "IC_Regular"
+
+
+[IC_Launcher_alanspc]	
+	
+Parent                     	= "IC_Regular"
+
+
+[IC_Regular_fcon]	
+	
+Parent                     	= "IC_Regular"
+
+	
+[IC_Shield_fcon]	
+	
+Parent                     	= "IC_Regular"
+
+
+[IC_Launcher_fcon]	
+	
+Parent                     	= "IC_Regular"
+
+
+[I_No]
+	
+Parent                     	= ""     
+	
+Death0                    	= "voice\20275.wav"
+Death1                    	= "voice\20276.wav"
+Death2                    	= "voice\20277.wav"
+Distress0                    	= "voice\20271.wav"
+Idle0                    	= "voice\20261.wav"
+Idle1                    	= "voice\20262.wav"
+Idle2                    	= "voice\20264.wav"
+Idle3                    	= "voice\20269.wav"
+Idle4                    	= "voice\20270.wav"
+Pain0                    	= "voice\20272.wav"
+Pain1                    	= "voice\20273.wav"
+Pain2                    	= "voice\20274.wav"
+PlayerDeathResponse0                    	= "voice\20278.wav"
+PlayerDeathResponse1                    	= "voice\20279.wav"
+PlayerDeathResponse2                    	= "voice\20280.wav"
+	
+	
+[IC_Kernel]	
+	
+Parent                     	= ""     
+	
+Attack0                    	= "voice\20281.wav"
+Attack1                    	= "voice\20282.wav"
+Attack2                    	= "voice\20283.wav"
+Death0                    	= "voice\20287.wav"
+Death1                    	= "voice\20288.wav"
+Death2                    	= "voice\20289.wav"
+Pain0                    	= "voice\20284.wav"
+Pain1                    	= "voice\20285.wav"
+Pain2                    	= "voice\20286.wav"
+PlayerDeathResponse0                    	= "voice\20290.wav"
+PlayerDeathResponse1                    	= "voice\20291.wav"
+Melee0                    	= "voice\20532.wav"
+Melee1                    	= "voice\20533.wav"
+Melee2                    	= "voice\20534.wav"
+Melee3                    	= "voice\20535.wav"
+	
+	
+[Ma3a]	
+	
+Parent                     	= ""     
+	
+Death0                    	= "voice\20018.wav"
+Death1                    	= "voice\20019.wav"
+Death2                    	= "voice\20020.wav"
+Distress0                    	= "voice\20021.wav"
+Distress1                    	= "voice\20022.wav"
+Distress2                    	= "voice\20023.wav"
+Idle0                    	= "voice\20011.wav"
+Idle1                    	= "voice\20012.wav"
+Idle2                    	= "voice\20013.wav"
+Idle3                    	= "voice\20014.wav"
+Pain0                    	= "voice\20015.wav"
+Pain1                    	= "voice\20016.wav"
+Pain2                    	= "voice\20017.wav"
+PlayerDeathResponse0                    	= "voice\20024.wav"
+PlayerDeathResponse1                    	= "voice\20025.wav"
+	
+[Ma3a_Compiled]	
+	
+Parent                     	= ""     
+	
+Attack0                    	= "voice\20050.wav"
+Attack1                    	= "voice\20051.wav"
+Attack2                    	= "voice\20052.wav"
+Attack3                    	= "voice\20053.wav"
+PlayerDeathResponse0                    	= "voice\20054.wav"
+PlayerDeathResponse1                    	= "voice\20055.wav"
+	
+	
+[Male_Program]	
+	
+Parent                     	= ""     
+	
+BackupLoaded0                    	= "voice\20363.wav"
+BackupLoaded1                    	= "voice\20364.wav"
+BackupLoaded2                    	= "voice\20365.wav"
+BackupLoaded3                    	= "voice\20406.wav"
+BackupLoaded4                    	= "voice\20407.wav"
+BackupLoaded5                    	= "voice\20408.wav"
+Death0                    	= "voice\20434.wav"
+Death1                    	= "voice\20435.wav"
+Death2                    	= "voice\20436.wav"
+Death3                    	= "voice\20369.wav"
+Death4                    	= "voice\20370.wav"
+Death5                    	= "voice\20371.wav"
+Death6                    	= "voice\20412.wav"
+Death7                    	= "voice\20413.wav"
+Death8                    	= "voice\20414.wav"
+Distress0                    	= "voice\20418.wav"
+Distress1                    	= "voice\20419.wav"
+Distress2                    	= "voice\20366.wav"
+Distress3                    	= "voice\20367.wav"
+Distress4                    	= "voice\20368.wav"
+Distress5                    	= "voice\20409.wav"
+Distress6                    	= "voice\20410.wav"
+Distress7                    	= "voice\20411.wav"
+Greeting0                    	= "voice\20415.wav"
+Greeting1                    	= "voice\20416.wav"
+Greeting2                    	= "voice\20417.wav"
+Greeting3                    	= "voice\20334.wav"
+Greeting4                    	= "voice\20335.wav"
+Greeting5                    	= "voice\20336.wav"
+Greeting6                    	= "voice\20345.wav"
+Greeting7                    	= "voice\20346.wav"
+Greeting8                    	= "voice\20352.wav"
+Greeting9                    	= "voice\20379.wav"
+Greeting10                    	= "voice\20380.wav"
+Idle0                    	= "voice\20420.wav"
+Idle1                    	= "voice\20421.wav"
+Idle2                    	= "voice\20422.wav"
+Idle3                    	= "voice\20423.wav"
+Idle4                    	= "voice\20424.wav"
+Idle5                    	= "voice\20425.wav"
+Idle6                    	= "voice\20426.wav"
+Idle7                    	= "voice\20427.wav"
+Idle8                    	= "voice\20437.wav"
+Idle9                    	= "voice\20438.wav"
+Idle10                    	= "voice\20439.wav"
+Idle11                    	= "voice\20440.wav"
+Idle12                    	= "voice\20354.wav"
+Idle13                    	= "voice\20355.wav"
+Idle14                    	= "voice\20356.wav"
+Idle15                    	= "voice\20357.wav"
+Idle16                    	= "voice\20358.wav"
+Idle17                    	= "voice\20398.wav"
+Idle18                    	= "voice\20399.wav"
+Idle19                    	= "voice\20400.wav"
+Idle20                    	= "voice\20401.wav"
+Pain0                    	= "voice\20428.wav"
+Pain1                    	= "voice\20429.wav"
+Pain2                    	= "voice\20430.wav"
+Pain3                    	= "voice\20359.wav"
+Pain4                    	= "voice\20360.wav"
+Pain5                    	= "voice\20361.wav"
+Pain6                    	= "voice\20402.wav"
+Pain7                    	= "voice\20403.wav"
+Pain8                    	= "voice\20404.wav"
+DamagePRoded0                    	= "voice\20441   .wav"
+	
+	
+[Mercury]	
+	
+Parent                     	= ""     
+	
+Death0                    	= "voice\20043.wav"
+Death1                    	= "voice\20044.wav"
+Death2                    	= "voice\20045.wav"
+Idle0                    	= "voice\20036.wav"
+Idle1                    	= "voice\20037.wav"
+Idle2                    	= "voice\20038.wav"
+Idle3                    	= "voice\20039.wav"
+Pain0                    	= "voice\20040.wav"
+Pain1                    	= "voice\20041.wav"
+Pain2                    	= "voice\20042.wav"
+PlayerDeathResponse0                    	= "voice\20048.wav"
+PlayerDeathResponse1                    	= "voice\20049.wav"
+	
+	
+[Rectorscript]	
+	
+Parent                     	= ""    
+	
+Attack0                    	= "voice\20676.wav"
+Attack1                    	= "voice\20677.wav"
+Attack2                    	= "voice\20678.wav"
+Attack3                    	= "voice\20679.wav"
+Attack4                    	= "voice\20713.wav"
+Attack5                    	= "voice\20714.wav"
+Attack6                    	= "voice\20715.wav"
+Death0                    	= "voice\20704.wav"
+Death1                    	= "voice\20705.wav"
+Death2                    	= "voice\20706.wav"
+DeathQuiet0                    	= "voice\20707.wav"
+DeathQuiet1                    	= "voice\20708.wav"
+DeathQuiet2                    	= "voice\20709.wav"
+DisturbanceHeardAlarming0                    	= "voice\20680.wav"
+DisturbanceHeardAlarming1                    	= "voice\20681.wav"
+DisturbanceHeardMajor0                    	= "voice\20682.wav"
+DisturbanceHeardMajor1                    	= "voice\20683.wav"
+DisturbanceHeardMinor0                    	= "voice\20684.wav"
+DisturbanceHeardMinor1                    	= "voice\20685.wav"
+DisturbanceSeenAlarming0                    	= "voice\20686.wav"
+DisturbanceSeenAlarming1                    	= "voice\20687.wav"
+DisturbanceSeenMajor0                    	= "voice\20688.wav"
+DisturbanceSeenMajor1                    	= "voice\20689.wav"
+DisturbanceSeenMinor0                    	= "voice\20690.wav"
+DisturbanceSeenMinor1                    	= "voice\20691.wav"
+Grenade0                    	= "voice\20692.wav"
+Grenade1                    	= "voice\20693.wav"
+Idle0                    	= "voice\20694.wav"
+Idle1                    	= "voice\20695.wav"
+Idle2                    	= "voice\20696.wav"
+Idle3                    	= "voice\20697.wav"
+Idle4                    	= "voice\20698.wav"
+Idle5                    	= "voice\20699.wav"
+Melee0                    	= "voice\20711.wav"
+Melee1                    	= "voice\20712.wav"
+Pain0                    	= "voice\20700.wav"
+Pain1                    	= "voice\20701.wav"
+Pain2                    	= "voice\20702.wav"
+Pain3                    	= "voice\20703.wav"
+DamagePRoded0                    	= "voice\20710.wav"
+	
+	
+[ResourceHog]	
+	
+Parent                     	= ""     
+ 	
+Attack0                    	= "voice\20751.wav"
+Attack1                    	= "voice\20752.wav"
+Attack2                    	= "voice\20753.wav"
+Attack3                    	= "voice\20754.wav"
+Attack4                    	= "voice\20827.wav"
+Attack5                    	= "voice\20828.wav"
+Attack6                    	= "voice\20829.wav"
+Attack7                    	= "voice\20830.wav"
+Attack8                    	= "voice\20831.wav"
+Backup0                    	= "voice\20755.wav"
+Backup1                    	= "voice\20756.wav"
+BackupFail0                    	= "voice\20757.wav"
+Bleeding0                    	= "voice\20758.wav"
+Bleeding1                    	= "voice\20759.wav"
+Charge0                    	= "voice\20760.wav"
+Charge1                    	= "voice\20761.wav"
+Chase0                    	= "voice\20762.wav"
+Chase1                    	= "voice\20763.wav"
+Chase2                    	= "voice\20764.wav"
+Chase3                    	= "voice\20765.wav"
+Cover0                    	= "voice\20766.wav"
+Cover1                    	= "voice\20767.wav"
+Cover2                    	= "voice\20768.wav"
+Cover3                    	= "voice\20769.wav"
+Crush0                    	= "voice\20770.wav"
+Death0                    	= "voice\20809.wav"
+Death1                    	= "voice\20810.wav"
+Death2                    	= "voice\20811.wav"
+DeathQuiet0                    	= "voice\20812.wav"
+DeathQuiet1                    	= "voice\20813.wav"
+DeathQuiet2                    	= "voice\20814.wav"
+DisturbanceHeardAlarming0                    	= "voice\20771.wav"
+DisturbanceHeardAlarming1                    	= "voice\20772.wav"
+DisturbanceHeardMajor0                    	= "voice\20773.wav"
+DisturbanceHeardMajor1                    	= "voice\20774.wav"
+DisturbanceHeardMinor0                    	= "voice\20775.wav"
+DisturbanceHeardMinor1                    	= "voice\20776.wav"
+DisturbanceSeenAlarming0                    	= "voice\20777.wav"
+DisturbanceSeenAlarming1                    	= "voice\20778.wav"
+DisturbanceSeenMajor0                    	= "voice\20779.wav"
+DisturbanceSeenMajor1                    	= "voice\20780.wav"
+DisturbanceSeenMinor0                    	= "voice\20781.wav"
+DisturbanceSeenMinor1                    	= "voice\20782.wav"
+Grenade0                    	= "voice\20783.wav"
+Grenade1                    	= "voice\20784.wav"
+Idle0                    	= "voice\20785.wav"
+Idle1                    	= "voice\20786.wav"
+Idle2                    	= "voice\20787.wav"
+Idle3                    	= "voice\20788.wav"
+Idle4                    	= "voice\20789.wav"
+Idle5                    	= "voice\20790.wav"
+Idle6                    	= "voice\20791.wav"
+Idle7                    	= "voice\20792.wav"
+Idle8                    	= "voice\20793.wav"
+Idle9                    	= "voice\20794.wav"
+Idle10                    	= "voice\20795.wav"
+Idle11                    	= "voice\20796.wav"
+Idle12                    	= "voice\20797.wav"
+Idle13                    	= "voice\20798.wav"
+Idle14                    	= "voice\20799.wav"
+InvestigateFail0                    	= "voice\20803.wav"
+InvestigateFail1                    	= "voice\20804.wav"
+InvestigateFail2                    	= "voice\20805.wav"
+JunctionDilemma0                    	= "voice\20806.wav"
+JunctionDilemma1                    	= "voice\20807.wav"
+JunctionDilemma2                    	= "voice\20808.wav"
+Melee0                    	= "voice\20816.wav"
+Melee1                    	= "voice\20817.wav"
+Melee2                    	= "voice\20818.wav"
+Pain0                    	= "voice\20800.wav"
+Pain1                    	= "voice\20801.wav"
+Pain2                    	= "voice\20802.wav"
+PlayerDeathResponse0                    	= "voice\20832.wav"
+PlayerDeathResponse1                    	= "voice\20833.wav"
+PlayerDeathResponse2                    	= "voice\20834.wav"
+PlayerDeathResponse3                    	= "voice\20835.wav"
+DamagePRoded0                    	= "voice\20815.wav"
+Search0                    	= "voice\20819.wav"
+Search1                    	= "voice\20820.wav"
+Search2                    	= "voice\20821.wav"
+Search3                    	= "voice\20822.wav"
+Search4                    	= "voice\20823.wav"
+SearchFail0                    	= "voice\20824.wav"
+SearchFail1                    	= "voice\20825.wav"
+SearchFail2                    	= "voice\20826.wav"
+	
+	
+[Thorn]	
+	
+Parent                     	= ""     
+	
+Attack0                    	= "voice\20292.wav"
+Attack1                    	= "voice\20293.wav"
+Attack2                    	= "voice\20294.wav"
+Death0                    	= "voice\20299.wav"
+Pain0                    	= "voice\20295.wav"
+Pain1                    	= "voice\20296.wav"
+Pain2                    	= "voice\20297.wav"
+Pain3                    	= "voice\20298.wav"
+PlayerDeathResponse0                    	= "voice\20300.wav"
+
+
+[Thorn_wounded]	
+	
+Parent                     	= "Thorn"     
+	
+	
+[Zealot]	
+	
+Parent                     	= ""     
+	
+AlertAllyMajor0                    	= "voice\20562.wav"
+AlertAllyMajor1                    	= "voice\20563.wav"
+AlertAllyMajor2                    	= "voice\20564.wav"
+AlertAllyMajor3                    	= "voice\20565.wav"
+AlertAllyMajor4                    	= "voice\20566.wav"
+AlertAllyMinor0                    	= "voice\20562.wav"
+AlertAllyMinor1                    	= "voice\20563.wav"
+AlertAllyMinor2                    	= "voice\20564.wav"
+AlertAllyMinor3                    	= "voice\20565.wav"
+AlertAllyMinor4                    	= "voice\20566.wav"
+Attack0                    	= "voice\20567.wav"
+Attack1                    	= "voice\20568.wav"
+Attack2                    	= "voice\20569.wav"
+Attack3                    	= "voice\20570.wav"
+Attack4                    	= "voice\20571.wav"
+Attack5                    	= "voice\20572.wav"
+Attack6                    	= "voice\20665.wav"
+Attack7                    	= "voice\20666.wav"
+Attack8                    	= "voice\20667.wav"
+Attack9                    	= "voice\20668.wav"
+Attack10                    	= "voice\20669.wav"
+Backup0                    	= "voice\20573.wav"
+Backup1                    	= "voice\20574.wav"
+Backup2                    	= "voice\20575.wav"
+BackupFail0                    	= "voice\20576.wav"
+Bleeding0                    	= "voice\20577.wav"
+Bleeding1                    	= "voice\20578.wav"
+Charge0                    	= "voice\20579.wav"
+Charge1                    	= "voice\20580.wav"
+Chase0                    	= "voice\20581.wav"
+Chase1                    	= "voice\20582.wav"
+Chase2                    	= "voice\20583.wav"
+Chase3                    	= "voice\20584.wav"
+Cover0                    	= "voice\20585.wav"
+Cover1                    	= "voice\20586.wav"
+Cover2                    	= "voice\20587.wav"
+Cover3                    	= "voice\20588.wav"
+Crush0                    	= "voice\20589.wav"
+Death0                    	= "voice\20637.wav"
+Death1                    	= "voice\20638.wav"
+Death2                    	= "voice\20639.wav"
+Death3                    	= "voice\20640.wav"
+DeathQuiet0                    	= "voice\20641.wav"
+DeathQuiet1                    	= "voice\20642.wav"
+DeathQuiet2                    	= "voice\20643.wav"
+DeathQuiet3                    	= "voice\20644.wav"
+DeathQuiet4                    	= "voice\20645.wav"
+DisturbanceHeardAlarming0                    	= "voice\20590.wav"
+DisturbanceHeardAlarming1                    	= "voice\20591.wav"
+DisturbanceHeardAlarming2                    	= "voice\20592.wav"
+DisturbanceHeardMajor0                    	= "voice\20593.wav"
+DisturbanceHeardMajor1                    	= "voice\20594.wav"
+DisturbanceHeardMajor2                    	= "voice\20595.wav"
+DisturbanceHeardMinor0                    	= "voice\20596.wav"
+DisturbanceHeardMinor1                    	= "voice\20597.wav"
+DisturbanceHeardMinor2                    	= "voice\20598.wav"
+DisturbanceSeenAlarming0                    	= "voice\20600.wav"
+DisturbanceSeenAlarming1                    	= "voice\20601.wav"
+DisturbanceSeenMajor0                    	= "voice\20602.wav"
+DisturbanceSeenMajor1                    	= "voice\20603.wav"
+DisturbanceSeenMajor2                    	= "voice\20604.wav"
+DisturbanceSeenMinor0                    	= "voice\20605.wav"
+DisturbanceSeenMinor1                    	= "voice\20606.wav"
+DisturbanceSeenMinor2                    	= "voice\20607.wav"
+Fall0                    	= "voice\20608.wav"
+FallingStairs0                    	= "voice\20609.wav"
+Idle0                    	= "voice\20610.wav"
+Idle1                    	= "voice\20611.wav"
+Idle2                    	= "voice\20612.wav"
+Idle3                    	= "voice\20613.wav"
+Idle4                    	= "voice\20614.wav"
+Idle5                    	= "voice\20615.wav"
+Idle6                    	= "voice\20616.wav"
+Idle7                    	= "voice\20617.wav"
+Idle8                    	= "voice\20618.wav"
+Idle9                    	= "voice\20619.wav"
+Idle10                    	= "voice\20620.wav"
+Idle11                    	= "voice\20621.wav"
+Idle12                    	= "voice\20622.wav"
+Idle13                    	= "voice\20623.wav"
+Idle14                    	= "voice\20624.wav"
+Idle15                    	= "voice\20625.wav"
+Idle16                    	= "voice\20626.wav"
+InvestigateFail0                    	= "voice\20631.wav"
+InvestigateFail1                    	= "voice\20632.wav"
+InvestigateFail2                    	= "voice\20633.wav"
+JunctionDilemma0                    	= "voice\20634.wav"
+JunctionDilemma1                    	= "voice\20635.wav"
+JunctionDilemma2                    	= "voice\20636.wav"
+Melee0                    	= "voice\20647.wav"
+Melee1                    	= "voice\20648.wav"
+Melee2                    	= "voice\20649.wav"
+Melee3                    	= "voice\20650.wav"
+Pain0                    	= "voice\20627.wav"
+Pain1                    	= "voice\20628.wav"
+Pain2                    	= "voice\20629.wav"
+Pain3                    	= "voice\20630.wav"
+PlayerDeathResponse0                    	= "voice\20671.wav"
+PlayerDeathResponse1                    	= "voice\20672.wav"
+PlayerDeathResponse2                    	= "voice\20673.wav"
+PlayerDeathResponse3                    	= "voice\20674.wav"
+PlayerDeathResponse4                    	= "voice\20675.wav"
+DamagePRoded0                    	= "voice\20646.wav"
+Search0                    	= "voice\20651.wav"
+Search1                    	= "voice\20652.wav"
+Search2                    	= "voice\20653.wav"
+Search3                    	= "voice\20654.wav"
+Search4                    	= "voice\20655.wav"
+Search5                    	= "voice\20656.wav"
+Search6                    	= "voice\20657.wav"
+Search7                    	= "voice\20658.wav"
+SearchFail0                    	= "voice\20659.wav"
+SearchFail1                    	= "voice\20660.wav"
+SearchFail2                    	= "voice\20661.wav"
+SeeCoreDump0                    	= "voice\20662.wav"
+SeeCoreDump1                    	= "voice\20663.wav"
+SeeCoreDump2                    	= "voice\20664.wav" 
+
+
+[Zealot2]	
+	
+Parent                     	= "Zealot"     
+
+
+[Zealot3]	
+	
+Parent                     	= "Zealot"
+
+
+
