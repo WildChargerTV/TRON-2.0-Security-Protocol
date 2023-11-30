@@ -11,3 +11,11 @@ Thank you for your interest in **TRON 2.0: Security Protocol**. At present, the 
 The version of TRON 2.0: Security Protocol currently available is a cosmetic change that sees an ICP Regular replacing Jet in performing the disc-throwing animation at the main menu. Future updates will build on this as they become available.
 
 More information will be available soon. Thank you.
+
+## Installation & Uninstallation
+
+To install **TRON 2.0: Security Protocol**, download the provided .zip file, and extract it into the folder holding your installation of TRON 2.0. This will add the option to launch the mod to your launcher's Custom menu.
+
+To uninstall **TRON 2.0: Security Protocol**, navigate to your TRON 2.0 installation. From there, enter the Custom folder, and then the Mods folder, and delete the folder inside Mods named "SecurityProtocol". 
+
+Dedicated installation & uninstallation programs may emerge at a later time; however, the mod is not yet complex enough to require this.
