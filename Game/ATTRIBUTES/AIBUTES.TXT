@@ -1,0 +1,3948 @@
+/************************************************************************
+**
+**                               --[AIBUTES]--
+**
+** AIButes are [DESC NEEDED]
+**
+**
+**
+**
+**
+**
+
+
+
+/*
+** Brains
+**
+** DodgeVectorCheckTime					- how frequently we check to see if we need to dodge a vector
+** DodgeVectorCheckChance				- the % chance we will check to see if we need to dodge a vector once this time is up
+** DodgeVectorDelayTime					- after dodging a vector, the time we must wait before we can check again
+** DodgeVectorShuffleDist               - how much space is needed to shuffle.
+** DodgeVectorRollDist                  - how much space is needed to roll.
+** DodgeVectorShuffleChance             - the % chance the dodge will be a shuffle.
+** DodgeVectorRollChance                - the % chance the dodge will be a roll.
+** DodgeVectorBlockChance               - the % chance the dodge will be a block.
+**
+** DodgeProjectileCheckTime				- how frequently we check to see if we need to dodge a Projectile
+** DodgeProjectileCheckChance			- the % chance we will check to see if we need to dodge a Projectile once this time is up
+** DodgeProjectileDelayTime				- after dodging a projectile, the time we must wait before we can check again
+** 									
+** AttackRangedRange					- the min/max distance we must be at to attack with a ranged weapon (e.g. rifle)
+** AttackThrownRange				    - the min/max distance we must be at to attack with a thrown weapon (e.g. grenade)
+** AttackMeleeRange						- the min/max distance we must be at to attack with a melee weapon (e.g. sword)
+** AttackChaseTime						- after we lose sight of our target, how long do we wait before chasing
+** AttackChaseTimeRandom				- an additional random amount of time to the above time
+** AttackPoseCrouchChance				- when we enter the attack state, chance we will crouch and fire
+** AttackGrenadeThrowTime				- how often we'll consider throwing a grenade
+** AttackGrenadeThrowChance				- chance we'll attempt to throw the grenade after this time expires
+** AttackSoundChance					- chance we'll play the attack sound (CombAggr*.wav) when we enter this state
+** AttackSoundTimeMin					- time which must pass since an AI last talked before a sound can be played.
+** AttackWhileMoving					- Can the AI attack while moving?
+** 
+** AttackFromCoverCoverTime				- how long we will stay covered for before uncovering
+** AttackFromCoverCoverTimeRandom		- an additional random amount of time to the above time
+** AttackFromCoverUncoverTime			- how long we will stay uncovered for before covering
+** AttackFromCoverUncoverTimeRandom		- an additional random amount of time to the above time
+** AttackFromCoverReactionTime			- if uncovered and shot at, the delay before we will go back to cover
+** AttackFromCoverMaxRetries			- how many times we will attempt to go for new cover when cover becomes invalidated
+** AttackFromCoverSoundChance			- chance we'll play the attackfromcover sound (CombDef*.wav) when we enter this state
+** AttackWhileMoving					- TRUE or FALSE; can the AI attack while moving?
+** 
+** AttackFromVantageAttackTime			- time we will fire from a vantage node before moving on to the next one
+** AttackFromVantageAttackTimeRandom	- an additional random amount of time to the above time
+**
+** AttackFromViewChaseTime				- how long we will we wait to chase at an attack from view node
+** 										
+** ChaseSoundTime						- time after which we'll play a chase sound
+** ChaseSoundTimeRandom					- an additional random amount of time to the above time
+** ChaseFoundSoundChance				- if we played a chase sound, once we spot the player, % chance we will play the found sound
+** ChaseExtraTime						- extra amount of time we continue running once we're in range and have spotted the player
+** ChaseExtraTimeRandom					- an additional random amount of time to the above time
+** ChaseSearchTime						- how long we will chase, after our last sighting of the player, until we give up and enter the search state
+** ChaseJunctionChance					- chance we will keep track of the player after they pass through a junction
+** 										
+** PatrolSoundTime						- time between chances of playing a patrolling sound
+** PatrolSoundTimeRandom				- an additional random amount of time to the above time
+** PatrolSoundChance					- the chance we'll play a patrol sound after the patrolsoundtime 
+**
+** DistressFacingThreshhold				- dot product (-1=180' to 1=0') at which target must be facing towards us to be considered threatening
+** DistressIncreaseRate					- rate at which distress increases when being threatened
+** DistressDecreaseRate					- rate at which distress decreases when not being threatened
+** DistressLevels						- how many levels of distress to go through before panic
+** DistressTimeMax						- max ammount of time it will take for an AI to go from distress -> undistressed.	
+**	
+** MajorAlarmThreshold					- how high alarm level must be to start searching (threat assumed)
+** ImmediateAlarmThreshold				- how high alarm level must be to know threat is immediate
+** 
+** TauntDelay							- How long between checks to taunt
+** TauntChance							- Chance the AI should taunt when it is able to
+** 
+** CanLipSync							- Is the AI Able to lipsync?
+** 
+** DamageMask                           - Mask of accepted types of damage. Other types are ignored.
+**                                        Valid choices are listed at the bottom of this file.
+**                                        "None" means affected by all damage types.
+*/
+
+[Brain0]
+
+Name								= "Default" // DO NOT REMOVE OR RENAME THIS ENTRY!
+									
+DodgeVectorCheckTime				= 0.25
+DodgeVectorCheckChance				= 1.00
+DodgeVectorDelayTime				= 3.00
+DodgeVectorShuffleDist				= 0.0 
+DodgeVectorRollDist					= 0.0 
+DodgeVectorShuffleChance			= 0.5 //  \ 
+DodgeVectorRollChance				= 0.5 //   >- must add up to 1.0
+DodgeVectorBlockChance				= 0.0 //  /
+DodgeProjectileCheckTime			= 0.25
+DodgeProjectileCheckChance			= 1.00
+DodgeProjectileDelayTime			= 3.00
+									
+AttackRangedRange					= [100.0, 5000.0000]
+AttackThrownRange					= [350.0, 1000.000]
+AttackMeleeRange					= [0.0, 100.0]
+AttackChaseTime						= 0.500000
+AttackChaseTimeRandom				= [-0.250000, 0.250000]
+AttackPoseCrouchChance				= 0.01
+AttackGrenadeThrowTime				= 2.00
+AttackGrenadeThrowChance			= 0.50
+AttackSoundChance					= 0.25
+AttackSoundTimeMin					= 16.0
+
+AttackFromCoverCoverTime			= 1.000000
+AttackFromCoverCoverTimeRandom		= 1.000000
+AttackFromCoverUncoverTime			= 5.000000
+AttackFromCoverUncoverTimeRandom	= 2.000000
+AttackFromCoverReactionTime			= 0.250000
+AttackFromCoverMaxRetries			= 3
+AttackFromCoverSoundChance			= 0.50
+AttackWhileMoving					= FALSE
+
+AttackFromVantageAttackTime			= 2.000000
+AttackFromVantageAttackTimeRandom	= 2.000000
+
+AttackFromViewChaseTime				= 5.0
+									
+ChaseSoundTime						= 10.0
+ChaseSoundTimeRandom				= [-1.0, 2.0]
+ChaseFoundSoundChance				= 0.25
+ChaseExtraTime						= 0.4000
+ChaseExtraTimeRandom				= [-0.1, 0.1]
+ChaseSearchTime						= 4.0
+ChaseJunctionContinueChance			= 0.5
+
+PatrolSoundTime						= 8.0
+PatrolSoundTimeRandom				= [-1.0, 2.0]
+PatrolSoundChance					= 0.25
+								
+DistressFacingThreshhold			= 0.95
+DistressIncreaseRate				= 0.5
+DistressDecreaseRate				= 0.2
+DistressLevels						= 4
+DistressTimeMax						= 3.0
+
+MajorAlarmThreshold					= 5
+ImmediateAlarmThreshold				= 10
+
+TauntDelay							= 0.000000
+TauntChance							= 0.000000
+
+CanLipSync							= TRUE
+DamageMask							= "None"
+OnlyDamagedByPlayer					= TRUE
+AttackPoseCrouchTime				= 5.0
+
+[Brain1]
+
+Name								= "ByStander" 
+									
+DodgeVectorCheckTime				= 0.25
+DodgeVectorCheckChance				= 1.00
+DodgeVectorDelayTime				= 3.00
+DodgeVectorShuffleDist				= 0.0 
+DodgeVectorRollDist					= 0.0 
+DodgeVectorShuffleChance			= 0.5 //  \ 
+DodgeVectorRollChance				= 0.5 //   >- must add up to 1.0
+DodgeVectorBlockChance				= 0.0 //  /
+DodgeProjectileCheckTime			= 0.25
+DodgeProjectileCheckChance			= 1.00
+DodgeProjectileDelayTime			= 3.00
+									
+AttackRangedRange					= [100.0, 5000.0000]
+AttackThrownRange					= [350.0, 1000.000]
+AttackMeleeRange					= [0.0, 100.0]
+AttackChaseTime						= 0.500000
+AttackChaseTimeRandom				= [-0.250000, 0.250000]
+AttackPoseCrouchChance				= 0.01
+AttackGrenadeThrowTime				= 2.00
+AttackGrenadeThrowChance			= 0.50
+AttackSoundChance					= 0.25
+AttackSoundTimeMin					= 16.0
+
+AttackFromCoverCoverTime			= 1.000000
+AttackFromCoverCoverTimeRandom		= 1.000000
+AttackFromCoverUncoverTime			= 5.000000
+AttackFromCoverUncoverTimeRandom	= 2.000000
+AttackFromCoverReactionTime			= 0.250000
+AttackFromCoverMaxRetries			= 3
+AttackFromCoverSoundChance			= 0.50
+AttackWhileMoving					= FALSE
+
+AttackFromVantageAttackTime			= 2.000000
+AttackFromVantageAttackTimeRandom	= 2.000000
+
+AttackFromViewChaseTime				= 5.0
+									
+ChaseSoundTime						= 10.0
+ChaseSoundTimeRandom				= [-1.0, 2.0]
+ChaseFoundSoundChance				= 0.25
+ChaseExtraTime						= 0.4000
+ChaseExtraTimeRandom				= [-0.1, 0.1]
+ChaseSearchTime						= 4.0
+ChaseJunctionContinueChance			= 0.5
+
+PatrolSoundTime						= 8.0
+PatrolSoundTimeRandom				= [-1.0, 2.0]
+PatrolSoundChance					= 0.25
+								
+DistressFacingThreshhold			= 0.95
+DistressIncreaseRate				= 0.5
+DistressDecreaseRate				= 0.2
+DistressLevels						= 0
+DistressTimeMax						= 3.0
+
+MajorAlarmThreshold					= 5
+ImmediateAlarmThreshold				= 10
+
+TauntDelay							= 0.000000
+TauntChance							= 0.000000
+
+CanLipSync							= TRUE
+DamageMask							= "None"
+OnlyDamagedByPlayer					= TRUE
+AttackPoseCrouchTime				= 5.0
+
+[Brain2]
+
+Name								= "ICRegular"
+									
+DodgeVectorCheckTime				= 0.25
+DodgeVectorCheckChance				= 1.00
+DodgeVectorDelayTime				= 0.25
+DodgeVectorShuffleDist				= 63.0
+DodgeVectorRollDist					= 119.0 
+DodgeVectorShuffleChance			= 1.00	//  \ 
+DodgeVectorRollChance				= 0.0	//   >- must add up to 1.0
+DodgeVectorBlockChance				= 0.00	//  /
+DodgeProjectileCheckTime			= 0.15
+DodgeProjectileCheckChance			= 1.00
+DodgeProjectileDelayTime			= 0.50
+									
+AttackRangedRange					= [100.0, 5000.0000]
+AttackThrownRange					= [350.0, 1000.000]
+AttackMeleeRange					= [0.0, 100.0]
+AttackChaseTime						= 0.2500000
+AttackChaseTimeRandom				= [-0.250000, 0.250000]
+AttackPoseCrouchChance				= 0.01
+AttackGrenadeThrowTime				= 2.00
+AttackGrenadeThrowChance			= 0.50
+AttackSoundChance					= 0.25
+AttackSoundTimeMin					= 16.0
+
+AttackFromCoverCoverTime			= 1.000000
+AttackFromCoverCoverTimeRandom		= 1.000000
+AttackFromCoverUncoverTime			= 5.000000
+AttackFromCoverUncoverTimeRandom	= 2.000000
+AttackFromCoverReactionTime			= 0.250000
+AttackFromCoverMaxRetries			= 3
+AttackFromCoverSoundChance			= 0.50
+AttackWhileMoving					= FALSE
+
+AttackFromVantageAttackTime			= 2.000000
+AttackFromVantageAttackTimeRandom	= 2.000000
+
+AttackFromViewChaseTime				= 5.0
+									
+ChaseSoundTime						= 10.0
+ChaseSoundTimeRandom				= [-1.0, 2.0]
+ChaseFoundSoundChance				= 0.25
+ChaseExtraTime						= 0.4000
+ChaseExtraTimeRandom				= [-0.1, 0.1]
+ChaseSearchTime						= 4.0
+ChaseJunctionChance					= 0.5
+
+PatrolSoundTime						= 8.0
+PatrolSoundTimeRandom				= [-1.0, 2.0]
+PatrolSoundChance					= 0.25
+								
+DistressFacingThreshhold			= 0.95
+DistressIncreaseRate				= 0.5
+DistressDecreaseRate				= 0.2
+DistressLevels						= 4
+DistressTimeMax						= 3.0
+
+MajorAlarmThreshold					= 5
+ImmediateAlarmThreshold				= 10
+
+TauntDelay							= 0.000000
+TauntChance							= 0.000000
+
+DoFiringTrails						= TRUE
+CanLipSync							= TRUE
+DamageMask							= "None"
+OnlyDamagedByPlayer					= FALSE
+AttackPoseCrouchTime				= 5.0
+
+// ALL deflecting characters require this additional data
+// AI will keep hands up for this long (max) as a timeout in case the deflect
+// doesn't happen
+AIData0 = "MaxDeflectDuration=0.5"			
+
+// ALL Catching characters require this additional data
+// AI will keep hands up for this long (max) as a timeout in case the catch 
+// doesn't happen
+AIData1 = "MaxCatchDuration=0.5"			
+
+// One cover animation style move out/back
+AIData2 = "OneAnimCover=1.0"
+
+AIData3 = "MeleeKnockBackDist=100.0"
+
+// Regulars have attack which swing way out to the right, so give them
+// extra distance when doing their checks.  Left is still small.
+AIData4 = "AttackRightMaxDist=24.0" 
+AIData5 = "AttackLeftMaxDist=12.0"
+AIData6 = "AttackCenterMaxDist=0.0"
+AIData7 = "UnlockFireAnimAfterFireKey=1.0"
+AIData8 = "DivergePaths=1.0"
+AIData9 = "DynMoveTimeMin=0.5"
+AIData10 = "DynMoveTimeMax=1.0"
+AIData11 = "DynMoveBackupDist=128.0"
+AIData12 = "DynMoveFlankPassDist=128.0"
+AIData13 = "DynMoveFlankWidthDist=192.0"
+
+
+// Don't allow generation of disk ammo
+PreventGenerationAmmo0 = "EnemyDiscEnergy"	
+PreventGenerationAmmo1 = "EnemyDiscEnergy_purple"
+PreventGenerationAmmo2 = "EnemyDiscEnergy_Blue"
+PreventGenerationAmmo3 = "EnemyDiscEnergy_Green"
+
+[Brain3]
+
+Name								= "ICShield"
+									
+DodgeVectorCheckTime				= 10.0
+DodgeVectorCheckChance				= 0.0   // was: 1.00
+DodgeVectorDelayTime				= 0.5
+DodgeVectorShuffleDist				= 63.0
+DodgeVectorRollDist					= 119.0 
+DodgeVectorShuffleChance			= 1.00	//  \ 
+DodgeVectorRollChance				= 0.0	//   >- must add up to 1.0
+DodgeVectorBlockChance				= 0.00	//  /
+DodgeProjectileCheckTime			= 0.15
+DodgeProjectileCheckChance			= 1.00
+DodgeProjectileDelayTime			= 0.50
+									
+AttackRangedRange					= [300.0, 5000.0000]
+AttackThrownRange					= [350.0, 1000.000]
+AttackMeleeRange					= [0.0, 125.0]
+AttackChaseTime						= 0.2500000
+AttackChaseTimeRandom				= [-0.250000, 0.250000]
+AttackPoseCrouchChance				= 0.01
+AttackGrenadeThrowTime				= 2.00
+AttackGrenadeThrowChance			= 0.50
+AttackSoundChance					= 0.25
+AttackSoundTimeMin					= 16.0
+
+AttackFromCoverCoverTime			= 1.000000
+AttackFromCoverCoverTimeRandom		= 1.000000
+AttackFromCoverUncoverTime			= 5.000000
+AttackFromCoverUncoverTimeRandom	= 2.000000
+AttackFromCoverReactionTime			= 0.250000
+AttackFromCoverMaxRetries			= 3
+AttackFromCoverSoundChance			= 0.50
+AttackWhileMoving					= FALSE
+
+AttackFromVantageAttackTime			= 2.000000
+AttackFromVantageAttackTimeRandom	= 2.000000
+
+AttackFromViewChaseTime				= 5.0
+									
+ChaseSoundTime						= 10.0
+ChaseSoundTimeRandom				= [-1.0, 2.0]
+ChaseFoundSoundChance				= 0.25
+ChaseExtraTime						= 0.4000
+ChaseExtraTimeRandom				= [-0.1, 0.1]
+ChaseSearchTime						= 4.0
+ChaseJunctionChance					= 0.5
+
+PatrolSoundTime						= 8.0
+PatrolSoundTimeRandom				= [-1.0, 2.0]
+PatrolSoundChance					= 0.25
+								
+DistressFacingThreshhold			= 0.95
+DistressIncreaseRate				= 0.5
+DistressDecreaseRate				= 0.2
+DistressLevels						= 4
+DistressTimeMax						= 3.0
+
+MajorAlarmThreshold					= 5
+ImmediateAlarmThreshold				= 10
+
+TauntDelay							= 0.000000
+TauntChance							= 0.000000
+
+CanLipSync							= TRUE
+DamageMask							= "None"
+OnlyDamagedByPlayer					= FALSE
+AttackPoseCrouchTime				= 5.0
+
+// ALL deflecting characters require this additional data
+// AI will keep hands up for this long (max) as a timeout in case the deflect
+// doesn't happen
+AIData0 = "MaxDeflectDuration=0.5"			
+AIData1 = "MeleeKnockBackDist=100.0"
+AIData2 = "MeleeKnockBackDist=200.0"
+AIData3 = "DashMinDist=256.0"
+AIData4 = "DashMaxDist=512.0"
+AIData5 = "DivergePaths=1.0"
+AIData6 = "DynMoveTimeMax=5.0"
+AIData7 = "DynMoveBackupDist=128.0"
+AIData8 = "DynMoveFlankPassDist=128.0"
+AIData9 = "DynMoveFlankWidthDist=192.0"
+AIData10 = "DynMoveTimeMin=3.0"
+
+
+
+[Brain4]
+
+Name								= "Zealot"
+
+DodgeVectorCheckTime				= 0.25
+DodgeVectorCheckChance				= 1.00
+DodgeVectorDelayTime				= 7.00
+DodgeVectorShuffleDist				= 62.0 
+DodgeVectorRollDist					= 116.0 
+DodgeVectorShuffleChance			= 0.7 //  \ 
+DodgeVectorRollChance				= 0.3 //   >- must add up to 1.0
+DodgeVectorBlockChance				= 0.0 //  /
+DodgeProjectileCheckTime			= 0.25
+DodgeProjectileCheckChance			= 1.00
+DodgeProjectileDelayTime			= 3.00
+									
+AttackRangedRange					= [100.0, 5000.0000]
+AttackThrownRange					= [350.0, 1000.000]
+AttackMeleeRange					= [0.0, 100.0]
+AttackChaseTime						= 0.500000
+AttackChaseTimeRandom				= [-0.250000, 0.250000]
+AttackPoseCrouchChance				= 0.01
+AttackGrenadeThrowTime				= 2.00
+AttackGrenadeThrowChance			= 0.50
+AttackSoundChance					= 0.25
+AttackSoundTimeMin					= 16.0
+
+AttackFromCoverCoverTime			= 1.000000
+AttackFromCoverCoverTimeRandom		= 1.000000
+AttackFromCoverUncoverTime			= 5.000000
+AttackFromCoverUncoverTimeRandom	= 2.000000
+AttackFromCoverReactionTime			= 0.250000
+AttackFromCoverMaxRetries			= 3
+AttackFromCoverSoundChance			= 0.50
+AttackWhileMoving					= TRUE
+
+AttackFromVantageAttackTime			= 2.000000
+AttackFromVantageAttackTimeRandom	= 2.000000
+
+AttackFromViewChaseTime				= 5.0
+									
+ChaseSoundTime						= 10.0
+ChaseSoundTimeRandom				= [-1.0, 2.0]
+ChaseFoundSoundChance				= 0.25
+ChaseExtraTime						= 0.4000
+ChaseExtraTimeRandom				= [-0.1, 0.1]
+ChaseSearchTime						= 4.0
+ChaseJunctionChance					= 0.5
+
+PatrolSoundTime						= 8.0
+PatrolSoundTimeRandom				= [-1.0, 2.0]
+PatrolSoundChance					= 0.25
+								
+DistressFacingThreshhold			= 0.95
+DistressIncreaseRate				= 0.5
+DistressDecreaseRate				= 0.2
+DistressLevels						= 4
+DistressTimeMax						= 3.0
+
+MajorAlarmThreshold					= 5
+ImmediateAlarmThreshold				= 10
+
+TauntDelay							= 0.000000
+TauntChance							= 0.000000
+
+CanLipSync							= TRUE
+DamageMask							= "None"
+OnlyDamagedByPlayer					= FALSE
+AttackPoseCrouchTime				= 5.0
+
+AIData0 = "OneAnimCover=1.0"
+AIData1 = "MeleeKnockBackDist=100.0"
+AIData2 = "BlowupDist=110.0"
+AIData3 = "BlowupTime=5.0"
+AIData4 = "ChanceToTransform=0.3"
+
+// Zlots have attack which swing way out to the right, so give them
+// extra distance when doing their checks.  Left is still small.
+AIData5 = "AttackRightMaxDist=45.0"
+AIData6 = "AttackLeftMaxDist=24.0"
+AIData7 = "DivergePaths=1.0"
+
+AIData8 = "DynMoveTimeMax=2.0"
+AIData9 = "DynMoveBackupDist=128.0"
+AIData10 = "DynMoveFlankPassDist=128.0"
+AIData11 = "DynMoveFlankWidthDist=192.0"
+AIData12 = "DynMoveTimeMin=1.0"
+
+// Zlots don't look as far for cover normally, as they are a bit more
+// animalistic.  But if one is shot, then he becomes much more likely
+// to look for cover.
+AIData14 = "AttackFromCoverBaseSearchScalar=0.5"
+AIData15 = "AttackFromCoverBonusSearchScalar=3.0"
+
+[Brain5]
+
+Name								= "HoveringCharacter"
+									
+DodgeVectorCheckTime				= 0.25
+DodgeVectorCheckChance				= 1.00
+DodgeVectorDelayTime				= 3.00
+DodgeVectorShuffleDist				= 0.0 
+DodgeVectorRollDist					= 0.0 
+DodgeVectorShuffleChance			= 0.5 //  \ 
+DodgeVectorRollChance				= 0.5 //   >- must add up to 1.0
+DodgeVectorBlockChance				= 0.0 //  /
+DodgeProjectileCheckTime			= 0.25
+DodgeProjectileCheckChance			= 1.00
+DodgeProjectileDelayTime			= 3.00
+									
+AttackRangedRange					= [100.0, 5000.0000]
+AttackThrownRange					= [350.0, 1000.000]
+AttackMeleeRange					= [0.0, 100.0]
+AttackChaseTime						= 0.500000
+AttackChaseTimeRandom				= [-0.250000, 0.250000]
+AttackPoseCrouchChance				= 0.01
+AttackGrenadeThrowTime				= 2.00
+AttackGrenadeThrowChance			= 0.50
+AttackSoundChance					= 0.25
+AttackSoundTimeMin					= 16.0
+
+AttackFromCoverCoverTime			= 1.000000
+AttackFromCoverCoverTimeRandom		= 1.000000
+AttackFromCoverUncoverTime			= 5.000000
+AttackFromCoverUncoverTimeRandom	= 2.000000
+AttackFromCoverReactionTime			= 0.250000
+AttackFromCoverMaxRetries			= 3
+AttackFromCoverSoundChance			= 0.50
+AttackWhileMoving					= FALSE
+
+AttackFromVantageAttackTime			= 2.000000
+AttackFromVantageAttackTimeRandom	= 2.000000
+
+AttackFromViewChaseTime				= 5.0
+									
+ChaseSoundTime						= 10.0
+ChaseSoundTimeRandom				= [-1.0, 2.0]
+ChaseFoundSoundChance				= 0.25
+ChaseExtraTime						= 0.4000
+ChaseExtraTimeRandom				= [-0.1, 0.1]
+ChaseSearchTime						= 4.0
+ChaseJunctionChance					= 0.5
+
+PatrolSoundTime						= 8.0
+PatrolSoundTimeRandom				= [-1.0, 2.0]
+PatrolSoundChance					= 0.25
+								
+DistressFacingThreshhold			= 0.95
+DistressIncreaseRate				= 0.5
+DistressDecreaseRate				= 0.2
+DistressLevels						= 4
+DistressTimeMax						= 3.0
+
+MajorAlarmThreshold					= 5
+ImmediateAlarmThreshold				= 10
+
+TauntDelay							= 0.000000
+TauntChance							= 0.000000
+
+CanLipSync							= TRUE
+DamageMask							= "None"
+OnlyDamagedByPlayer					= TRUE
+AttackPoseCrouchTime				= 5.0
+
+AIData0 = "HoverMaxSpeed=200.0"
+AIData1 = "HoverMinSpeed=1.0"
+AIData2 = "HoverAccelerationRate=200.0"
+AIData3 = "HoverResetSpeedTime=0.5"
+AIData4 = "DivergePaths=1.0"
+
+[Brain6]
+
+Name								= "Seeker"
+									
+DodgeVectorCheckTime				= 0.0
+DodgeVectorCheckChance				= 0.00
+DodgeVectorDelayTime				= 1.00
+DodgeVectorShuffleDist				= 0.0 
+DodgeVectorRollDist					= 0.0 
+DodgeVectorShuffleChance			= 0.0 //  \ 
+DodgeVectorRollChance				= 0.0 //   >- must add up to 1.0
+DodgeVectorBlockChance				= 1.0 //  /
+DodgeProjectileCheckTime			= 1.0
+DodgeProjectileCheckChance			= 0.00
+DodgeProjectileDelayTime			= 1.00
+									
+AttackRangedRange					= [0.0, 5000.0000]
+AttackThrownRange					= [350.0, 1000.000]
+AttackMeleeRange					= [0.0, 300.0]
+AttackChaseTime						= 0.500000
+AttackChaseTimeRandom				= [-0.250000, 0.250000]
+AttackPoseCrouchChance				= 0.01
+AttackGrenadeThrowTime				= 2.00
+AttackGrenadeThrowChance			= 0.50
+AttackSoundChance					= 0.25
+AttackSoundTimeMin					= 16.0
+
+AttackFromCoverCoverTime			= 1.000000
+AttackFromCoverCoverTimeRandom		= 1.000000
+AttackFromCoverUncoverTime			= 5.000000
+AttackFromCoverUncoverTimeRandom	= 2.000000
+AttackFromCoverReactionTime			= 0.250000
+AttackFromCoverMaxRetries			= 3
+AttackFromCoverSoundChance			= 0.50
+AttackWhileMoving					= FALSE
+
+AttackFromVantageAttackTime			= 3.000000
+AttackFromVantageAttackTimeRandom	= 2.000000
+
+AttackFromViewChaseTime				= 5.0
+									
+ChaseSoundTime						= 10.0
+ChaseSoundTimeRandom				= [-1.0, 2.0]
+ChaseFoundSoundChance				= 0.25
+ChaseExtraTime						= 0.4000
+ChaseExtraTimeRandom				= [-0.1, 0.1]
+ChaseSearchTime						= 4.0
+ChaseJunctionChance					= 0.5
+
+PatrolSoundTime						= 8.0
+PatrolSoundTimeRandom				= [-1.0, 2.0]
+PatrolSoundChance					= 0.25
+								
+DistressFacingThreshhold			= 0.95
+DistressIncreaseRate				= 0.5
+DistressDecreaseRate				= 0.2
+DistressLevels						= 4
+DistressTimeMax						= 3.0
+
+MajorAlarmThreshold					= 5
+ImmediateAlarmThreshold				= 10
+
+TauntDelay							= 0.000000
+TauntChance							= 0.000000
+
+CanLipSync							= FALSE
+DamageMask							= "None"
+OnlyDamagedByPlayer					= FALSE
+AttackPoseCrouchTime				= 5.0
+
+AIData0 = "MeleeKnockBackDist=100.0"
+AIData1 = "DivergePaths=1.0"
+
+
+[Brain7]
+
+Name						= "FconMonster"
+									
+DodgeVectorCheckTime				= 10.00
+DodgeVectorCheckChance				= 10.00
+DodgeVectorDelayTime				= 10.00
+DodgeVectorShuffleDist				= 0.0 
+DodgeVectorRollDist					= 0.0 
+DodgeVectorShuffleChance			= 0		//  \ 
+DodgeVectorRollChance				= 0		//   >- must add up to 1.0
+DodgeVectorBlockChance				= 0		//  /
+DodgeProjectileCheckTime			= 0.25
+DodgeProjectileCheckChance			= 1.00
+DodgeProjectileDelayTime			= 3.00
+									
+AttackRangedRange					= [300.0, 5000.0000]
+AttackThrownRange					= [350.0, 1000.000]
+AttackMeleeRange					= [0.0, 300.0]
+AttackChaseTime						= 0.500000
+AttackChaseTimeRandom				= [-0.250000, 0.250000]
+AttackPoseCrouchChance				= 0.00
+AttackGrenadeThrowTime				= 2.00
+AttackGrenadeThrowChance			= 0.50
+AttackSoundChance					= 0.25
+AttackSoundTimeMin					= 16.0
+AttackWhileMoving					= TRUE 
+
+AttackFromCoverCoverTime			= 1.000000
+AttackFromCoverCoverTimeRandom		= 1.000000
+AttackFromCoverUncoverTime			= 5.000000
+AttackFromCoverUncoverTimeRandom	= 2.000000
+AttackFromCoverReactionTime			= 0.250000
+AttackFromCoverMaxRetries			= 3
+AttackFromCoverSoundChance			= 0.50
+
+AttackFromVantageAttackTime			= 2.000000
+AttackFromVantageAttackTimeRandom	= 2.000000
+
+AttackFromViewChaseTime				= 5.0
+									
+ChaseSoundTime						= 10.0
+ChaseSoundTimeRandom				= [-1.0, 2.0]
+ChaseFoundSoundChance				= 0.25
+ChaseExtraTime						= 0.4000
+ChaseExtraTimeRandom				= [-0.1, 0.1]
+ChaseSearchTime						= 4.0
+
+PatrolSoundTime						= 8.0
+PatrolSoundTimeRandom				= [-1.0, 2.0]
+PatrolSoundChance					= 0.25
+								
+DistressFacingThreshhold			= 0.95
+DistressIncreaseRate				= 0.5
+DistressDecreaseRate				= 0.2
+DistressLevels						= 4
+DistressTimeMax						= 3.0
+
+MajorAlarmThreshold					= 5
+ImmediateAlarmThreshold				= 10
+
+CrawlThreshhold						= 0.00000
+CrawlChance							= 0.00000
+CrawlLifetime						= 0.00000
+
+TauntDelay							= 30.000000
+TauntChance							= 100.0000000
+
+CanLipSync							= TRUE
+DamageMask							= "None"
+OnlyDamagedByPlayer					= FALSE
+AttackPoseCrouchTime				= 5.0
+
+AIData0 = "LongJumpHeightMin=5.0"
+AIData1 = "LongJumpHeightMax=30.0"
+AIData2 = "LungeDistMin=300.0"
+AIData3 = "LungeDistMax=500.0"
+AIData4 = "LungeSpeed=700.0"
+AIData5 = "LungeStopDistance=0.0"
+AIData6 = "RetreatTriggerDist=100.0"
+AIData7 = "RetreatJumpDist=150.0"
+AIData8 = "RetreatSpeed=300.0"
+AIData9 = "DisappearDistMin=256.0"
+AIData10 = "DisappearDistMax=512.0"
+AIData11 = "ReappearDist=512.0"
+AIData12 = "DisappearFadeTime=0.5"
+AIData13 = "OneAnimCover=1.0"
+AIData14 = "DivergePaths=1.0"
+AIData15 = "MeleeKnockBackDist=200.0"
+
+AIData16 = "AttackRightMaxDist=43.0" 
+AIData17 = "AttackLeftMaxDist=83.0"
+AIData18= "AttackCenterMaxDist=0.0"
+
+AIData19="SelectWeaponBasedOnVisibility=1.0"
+
+
+
+
+[Brain8]
+
+Name								= "ICLauncher"
+									
+DodgeVectorCheckTime				= 0.25
+DodgeVectorCheckChance				= 1.00
+DodgeVectorDelayTime				= 1.00
+DodgeVectorShuffleDist				= 63.0
+DodgeVectorRollDist					= 119.0 
+DodgeVectorShuffleChance			= 1.00	//  \ 
+DodgeVectorRollChance				= 0.0	//   >- must add up to 1.0
+DodgeVectorBlockChance				= 0.00	//  /
+DodgeProjectileCheckTime			= 0.15
+DodgeProjectileCheckChance			= 1.00
+DodgeProjectileDelayTime			= 0.50
+									
+AttackRangedRange					= [100.0, 5000.0000]
+AttackThrownRange					= [350.0, 1000.000]
+AttackMeleeRange					= [0.0, 100.0]
+AttackChaseTime						= 0.2500000
+AttackChaseTimeRandom				= [-0.250000, 0.250000]
+AttackPoseCrouchChance				= 0.01
+AttackGrenadeThrowTime				= 2.00
+AttackGrenadeThrowChance			= 0.50
+AttackSoundChance					= 0.25
+AttackSoundTimeMin					= 16.0
+
+AttackFromCoverCoverTime			= 1.000000
+AttackFromCoverCoverTimeRandom		= 1.000000
+AttackFromCoverUncoverTime			= 5.000000
+AttackFromCoverUncoverTimeRandom	= 2.000000
+AttackFromCoverReactionTime			= 0.250000
+AttackFromCoverMaxRetries			= 3
+AttackFromCoverSoundChance			= 0.50
+AttackWhileMoving					= TRUE
+
+AttackFromVantageAttackTime			= 2.000000
+AttackFromVantageAttackTimeRandom	= 2.000000
+
+AttackFromViewChaseTime				= 5.0
+									
+ChaseSoundTime						= 10.0
+ChaseSoundTimeRandom				= [-1.0, 2.0]
+ChaseFoundSoundChance				= 0.25
+ChaseExtraTime						= 0.4000
+ChaseExtraTimeRandom				= [-0.1, 0.1]
+ChaseSearchTime						= 4.0
+ChaseJunctionChance					= 0.5
+
+PatrolSoundTime						= 8.0
+PatrolSoundTimeRandom				= [-1.0, 2.0]
+PatrolSoundChance					= 0.25
+								
+DistressFacingThreshhold			= 0.95
+DistressIncreaseRate				= 0.5
+DistressDecreaseRate				= 0.2
+DistressLevels						= 4
+DistressTimeMax						= 3.0
+
+MajorAlarmThreshold					= 5
+ImmediateAlarmThreshold				= 10
+
+TauntDelay							= 0.000000
+TauntChance							= 0.000000
+
+CanLipSync							= TRUE
+DamageMask							= "None"
+OnlyDamagedByPlayer					= FALSE
+AttackPoseCrouchTime				= 5.0
+
+// ALL deflecting characters require this additional data
+// AI will keep hands up for this long (max) as a timeout in case the deflect
+// doesn't happen
+AIData0 = "MeleeKnockBackDist=100.0"
+AIData1 = "MeleeKnockBackDist=100.0"
+AIData2 = "AttackRightMaxDist=18.0" 
+AIData3 = "AttackLeftMaxDist=18.0"
+AIData4 = "DivergePaths=1.0"
+AIData5 = "DynMoveTimeMax=2.0"
+AIData6 = "DynMoveBackupDist=128.0"
+AIData7 = "DynMoveFlankPassDist=128.0"
+AIData8 = "DynMoveFlankWidthDist=192.0"
+AIData9 = "DynMoveTimeMin=1.0"
+// Launchers don't look as far for cover, and they don't become more prone to
+// look for cover when shot.  They are tanks.
+AIData10 = "AttackFromCoverBaseSearchScalar=0.5"
+AIData11 = "AttackFromCoverBonusSearchScalar=1.0"
+
+[Brain9]
+
+Name								= "Rector"
+
+DodgeVectorCheckTime				= 0.25
+DodgeVectorCheckChance				= 1.00
+DodgeVectorDelayTime				= 3.00
+DodgeVectorShuffleDist				= 100.0 
+DodgeVectorRollDist					= 0.0 
+DodgeVectorShuffleChance			= 1.0 //  \ 
+DodgeVectorRollChance				= 0.0 //   >- must add up to 1.0
+DodgeVectorBlockChance				= 0.0 //  /
+DodgeProjectileCheckTime			= 0.25
+DodgeProjectileCheckChance			= 1.00
+DodgeProjectileDelayTime			= 3.00
+									
+AttackRangedRange					= [256.0, 5000.0000]
+AttackThrownRange					= [350.0, 1000.000]
+AttackMeleeRange					= [0.0, 256.0]
+AttackChaseTime						= 0.500000
+AttackChaseTimeRandom				= [-0.250000, 0.250000]
+AttackPoseCrouchChance				= 0.01
+AttackGrenadeThrowTime				= 2.00
+AttackGrenadeThrowChance			= 0.50
+AttackSoundChance					= 0.25
+AttackSoundTimeMin					= 16.0
+
+AttackFromCoverCoverTime			= 1.000000
+AttackFromCoverCoverTimeRandom		= 1.000000
+AttackFromCoverUncoverTime			= 5.000000
+AttackFromCoverUncoverTimeRandom	= 2.000000
+AttackFromCoverReactionTime			= 0.250000
+AttackFromCoverMaxRetries			= 3
+AttackFromCoverSoundChance			= 0.50
+AttackWhileMoving					= FALSE
+
+AttackFromVantageAttackTime			= 2.000000
+AttackFromVantageAttackTimeRandom	= 2.000000
+
+AttackFromViewChaseTime				= 5.0
+									
+ChaseSoundTime						= 10.0
+ChaseSoundTimeRandom				= [-1.0, 2.0]
+ChaseFoundSoundChance				= 0.25
+ChaseExtraTime						= 0.4000
+ChaseExtraTimeRandom				= [-0.1, 0.1]
+ChaseSearchTime						= 4.0
+ChaseJunctionChance					= 0.5
+
+PatrolSoundTime						= 8.0
+PatrolSoundTimeRandom				= [-1.0, 2.0]
+PatrolSoundChance					= 0.25
+								
+DistressFacingThreshhold			= 0.95
+DistressIncreaseRate				= 0.5
+DistressDecreaseRate				= 0.2
+DistressLevels						= 4
+DistressTimeMax						= 3.0
+
+MajorAlarmThreshold					= 5
+ImmediateAlarmThreshold				= 10
+
+TauntDelay							= 0.000000
+TauntChance							= 0.000000
+
+CanLipSync							= TRUE
+DamageMask							= "Rector"
+OnlyDamagedByPlayer					= FALSE
+AttackPoseCrouchTime				= 5.0
+
+AIData0 = "MeleeKnockBackDist=100.0"
+AIData1 = "DivergePaths=1.0"
+AIData2 = "DynMoveTimeMax=5.0"
+AIData3 = "DynMoveBackupDist=128.0"
+AIData4 = "DynMoveFlankPassDist=128.0"
+AIData5 = "DynMoveFlankWidthDist=192.0"
+AIData6 = "DynMoveTimeMin=3.0"
+
+[Brain10]
+
+Name								= "ICKernel"
+									
+DodgeVectorCheckTime				= 0.0
+DodgeVectorCheckChance				= 1.00
+DodgeVectorDelayTime				= 0.50
+DodgeVectorShuffleDist				= 63.0 
+DodgeVectorRollDist					= 0.0 
+DodgeVectorShuffleChance			= 0.50	//  \ 
+DodgeVectorRollChance				= 0.50	//   >- must add up to 1.0
+DodgeVectorBlockChance				= 0.00	//  /
+DodgeProjectileCheckTime			= 0.15
+DodgeProjectileCheckChance			= 1.00
+DodgeProjectileDelayTime			= 0.50
+									
+AttackRangedRange					= [300.0, 5000.0000]
+AttackThrownRange					= [350.0, 1000.000]
+AttackMeleeRange					= [0.0, 125.0]
+AttackChaseTime						= 0.2500000
+AttackChaseTimeRandom				= [-0.250000, 0.250000]
+AttackPoseCrouchChance				= 0.01
+AttackGrenadeThrowTime				= 2.00
+AttackGrenadeThrowChance			= 0.50
+AttackSoundChance					= 0.25
+AttackSoundTimeMin					= 16.0
+
+AttackFromCoverCoverTime			= 1.000000
+AttackFromCoverCoverTimeRandom		= 1.000000
+AttackFromCoverUncoverTime			= 5.000000
+AttackFromCoverUncoverTimeRandom	= 2.000000
+AttackFromCoverReactionTime			= 0.250000
+AttackFromCoverMaxRetries			= 3
+AttackFromCoverSoundChance			= 0.50
+AttackWhileMoving					= FALSE
+
+AttackFromVantageAttackTime			= 2.000000
+AttackFromVantageAttackTimeRandom	= 2.000000
+
+AttackFromViewChaseTime				= 5.0
+									
+ChaseSoundTime						= 10.0
+ChaseSoundTimeRandom				= [-1.0, 2.0]
+ChaseFoundSoundChance				= 0.25
+ChaseExtraTime						= 0.4000
+ChaseExtraTimeRandom				= [-0.1, 0.1]
+ChaseSearchTime						= 4.0
+ChaseJunctionChance					= 0.5
+
+PatrolSoundTime						= 8.0
+PatrolSoundTimeRandom				= [-1.0, 2.0]
+PatrolSoundChance					= 0.25
+								
+DistressFacingThreshhold			= 0.95
+DistressIncreaseRate				= 0.5
+DistressDecreaseRate				= 0.2
+DistressLevels						= 4
+DistressTimeMax						= 3.0
+
+MajorAlarmThreshold					= 5
+ImmediateAlarmThreshold				= 10
+
+TauntDelay							= 0.000000
+TauntChance							= 0.000000
+
+CanLipSync							= TRUE
+DamageMask							= "None"
+OnlyDamagedByPlayer					= FALSE
+AttackPoseCrouchTime				= 5.0
+
+AIData0 = "MeleeKnockBackDist=200.0"
+AIData1 = "AttackRightMaxDist=40.0" 
+AIData2 = "AttackLeftMaxDist=24.0"
+AIData3 = "DivergePaths=1.0"
+AIData4 = "MaxDeflectDuration=1.0"
+AIData5 = "OneAnimCover=1.0"
+AIData6 = "MaxDeflectDuration=0.5"			
+AIData7 = "MaxCatchDuration=0.5"			
+AIData8 = "DynMoveTimeMax=5.0"
+AIData9 = "DynMoveBackupDist=128.0"
+AIData10 = "DynMoveFlankPassDist=128.0"
+AIData11 = "DynMoveFlankWidthDist=192.0"
+AIData12 = "DynMoveTimeMin=3.0"
+
+
+// Don't allow generation of disk ammo
+PreventGenerationAmmo0 = "ICKernelDiscEnergy"
+
+
+[Brain11]
+
+Name								= "Hog"
+									
+DodgeVectorCheckTime				= 0.25
+DodgeVectorCheckChance				= 1.00
+DodgeVectorDelayTime				= 3.00
+DodgeVectorShuffleDist				= 63.0 
+DodgeVectorRollDist					= 0.0 
+DodgeVectorShuffleChance			= 1.00	//  \ 
+DodgeVectorRollChance				= 0.0	//   >- must add up to 1.0
+DodgeVectorBlockChance				= 0.00	//  /
+DodgeProjectileCheckTime			= 0.15
+DodgeProjectileCheckChance			= 1.00
+DodgeProjectileDelayTime			= 0.50
+									
+AttackRangedRange					= [100.0, 5000.0000]
+AttackThrownRange					= [350.0, 1000.000]
+AttackMeleeRange					= [0.0, 100.0]
+AttackChaseTime						= 0.2500000
+AttackChaseTimeRandom				= [-0.250000, 0.250000]
+AttackPoseCrouchChance				= 0.01
+AttackGrenadeThrowTime				= 2.00
+AttackGrenadeThrowChance			= 0.50
+AttackSoundChance					= 0.25
+AttackSoundTimeMin					= 16.0
+
+AttackFromCoverCoverTime			= 1.000000
+AttackFromCoverCoverTimeRandom		= 1.000000
+AttackFromCoverUncoverTime			= 5.000000
+AttackFromCoverUncoverTimeRandom	= 2.000000
+AttackFromCoverReactionTime			= 0.250000
+AttackFromCoverMaxRetries			= 3
+AttackFromCoverSoundChance			= 0.50
+AttackWhileMoving					= FALSE
+
+AttackFromVantageAttackTime			= 2.000000
+AttackFromVantageAttackTimeRandom	= 2.000000
+
+AttackFromViewChaseTime				= 5.0
+									
+ChaseSoundTime						= 10.0
+ChaseSoundTimeRandom				= [-1.0, 2.0]
+ChaseFoundSoundChance				= 0.25
+ChaseExtraTime						= 0.4000
+ChaseExtraTimeRandom				= [-0.1, 0.1]
+ChaseSearchTime						= 4.0
+ChaseJunctionChance					= 0.5
+
+PatrolSoundTime						= 8.0
+PatrolSoundTimeRandom				= [-1.0, 2.0]
+PatrolSoundChance					= 0.25
+								
+DistressFacingThreshhold			= 0.95
+DistressIncreaseRate				= 0.5
+DistressDecreaseRate				= 0.2
+DistressLevels						= 4
+DistressTimeMax						= 3.0
+
+MajorAlarmThreshold					= 5
+ImmediateAlarmThreshold				= 10
+
+TauntDelay							= 0.000000
+TauntChance							= 0.000000
+
+CanLipSync							= TRUE
+DamageMask							= "None"
+OnlyDamagedByPlayer					= FALSE
+AttackPoseCrouchTime				= 5.0
+
+// One cover animation style move out/back
+//AIData0 = "OneAnimCover=1.0"
+AIData0 = "DynMoveTimeMax=3.0"
+AIData1 = "DynMoveBackupDist=128.0"
+AIData2 = "DynMoveFlankPassDist=128.0"
+AIData3 = "DynMoveFlankWidthDist=192.0"
+AIData4 = "DynMoveTimeMin=2.0"
+
+AIData6 = "MeleeKnockBackDist=100.0"
+// Regulars have attack which swing way out to the right, so give them
+// extra distance when doing their checks.  Left is still small.
+AIData7 = "DivergePaths=1.0"
+
+
+PreventGenerationAmmo0 = "EnemyDiscEnergy" // Don't allow generation of disk ammo
+
+[Brain12]
+
+Name								= "Friend" // DO NOT REMOVE OR RENAME THIS ENTRY
+									
+DodgeVectorCheckTime				= 0.25
+DodgeVectorCheckChance				= 1.00
+DodgeVectorDelayTime				= 3.00
+DodgeVectorShuffleDist				= 0.0 
+DodgeVectorRollDist					= 0.0 
+DodgeVectorShuffleChance			= 0.5 //  \ 
+DodgeVectorRollChance				= 0.5 //   >- must add up to 1.0
+DodgeVectorBlockChance				= 0.0 //  /
+DodgeProjectileCheckTime			= 0.25
+DodgeProjectileCheckChance			= 1.00
+DodgeProjectileDelayTime			= 3.00
+									
+AttackRangedRange					= [100.0, 5000.0000]
+AttackThrownRange					= [350.0, 1000.000]
+AttackMeleeRange					= [0.0, 100.0]
+AttackChaseTime						= 0.500000
+AttackChaseTimeRandom				= [-0.250000, 0.250000]
+AttackPoseCrouchChance				= 0.01
+AttackGrenadeThrowTime				= 2.00
+AttackGrenadeThrowChance			= 0.50
+AttackSoundChance					= 0.25
+AttackSoundTimeMin					= 16.0
+
+AttackFromCoverCoverTime			= 1.000000
+AttackFromCoverCoverTimeRandom		= 1.000000
+AttackFromCoverUncoverTime			= 5.000000
+AttackFromCoverUncoverTimeRandom	= 2.000000
+AttackFromCoverReactionTime			= 0.250000
+AttackFromCoverMaxRetries			= 3
+AttackFromCoverSoundChance			= 0.50
+AttackWhileMoving					= FALSE
+
+AttackFromVantageAttackTime			= 2.000000
+AttackFromVantageAttackTimeRandom	= 2.000000
+
+AttackFromViewChaseTime				= 5.0
+									
+ChaseSoundTime						= 10.0
+ChaseSoundTimeRandom				= [-1.0, 2.0]
+ChaseFoundSoundChance				= 0.25
+ChaseExtraTime						= 0.4000
+ChaseExtraTimeRandom				= [-0.1, 0.1]
+ChaseSearchTime						= 4.0
+ChaseJunctionContinueChance			= 0.5
+
+PatrolSoundTime						= 8.0
+PatrolSoundTimeRandom				= [-1.0, 2.0]
+PatrolSoundChance					= 0.25
+								
+DistressFacingThreshhold			= 0.95
+DistressIncreaseRate				= 0.5
+DistressDecreaseRate				= 0.2
+DistressLevels						= 4
+DistressTimeMax						= 3.0
+
+MajorAlarmThreshold					= 5
+ImmediateAlarmThreshold				= 10
+
+TauntDelay							= 0.000000
+TauntChance							= 0.000000
+
+CanLipSync							= TRUE
+DamageMask							= "None"
+OnlyDamagedByPlayer					= TRUE
+AttackPoseCrouchTime				= 5.0
+
+
+[Brain13]
+
+Name								= "DataWraith"
+
+DodgeVectorCheckTime				= 0.25
+DodgeVectorCheckChance				= 0.25
+DodgeVectorDelayTime				= 6.00
+DodgeVectorShuffleDist				= 88.0 
+DodgeVectorRollDist					= 0.0 
+DodgeVectorShuffleChance			= 0.0 //  \ 
+DodgeVectorRollChance				= 0.0 //   >- must add up to 1.0
+DodgeVectorBlockChance				= 0.0 //  /
+DodgeProjectileCheckTime			= 0.25
+DodgeProjectileCheckChance			= 1.00
+DodgeProjectileDelayTime			= 3.00
+									
+AttackRangedRange					= [200.0, 4000.0000]
+AttackThrownRange					= [350.0, 1000.000]
+AttackMeleeRange					= [0.0, 100.0]
+AttackChaseTime						= 0.500000
+AttackChaseTimeRandom				= [-0.250000, 0.250000]
+AttackPoseCrouchChance				= 0.01
+AttackGrenadeThrowTime				= 2.00
+AttackGrenadeThrowChance			= 0.50
+AttackSoundChance					= 0.25
+AttackSoundTimeMin					= 16.0
+
+AttackFromCoverCoverTime			= 1.000000
+AttackFromCoverCoverTimeRandom		= 1.000000
+AttackFromCoverUncoverTime			= 5.000000
+AttackFromCoverUncoverTimeRandom	= 2.000000
+AttackFromCoverReactionTime			= 0.250000
+AttackFromCoverMaxRetries			= 3
+AttackFromCoverSoundChance			= 0.50
+AttackWhileMoving					= TRUE
+
+AttackFromVantageAttackTime			= 2.000000
+AttackFromVantageAttackTimeRandom	= 2.000000
+
+AttackFromViewChaseTime				= 5.0
+									
+ChaseSoundTime						= 10.0
+ChaseSoundTimeRandom				= [-1.0, 2.0]
+ChaseFoundSoundChance				= 0.25
+ChaseExtraTime						= 0.4000
+ChaseExtraTimeRandom				= [-0.1, 0.1]
+ChaseSearchTime						= 4.0
+ChaseJunctionChance					= 0.5
+
+PatrolSoundTime						= 8.0
+PatrolSoundTimeRandom				= [-1.0, 2.0]
+PatrolSoundChance					= 0.25
+								
+DistressFacingThreshhold			= 0.95
+DistressIncreaseRate				= 0.5
+DistressDecreaseRate				= 0.2
+DistressLevels						= 4
+DistressTimeMax						= 3.0
+
+MajorAlarmThreshold					= 5
+ImmediateAlarmThreshold				= 10
+
+TauntDelay							= 0.000000
+TauntChance							= 0.000000
+
+CanLipSync							= TRUE
+DamageMask							= "None"
+OnlyDamagedByPlayer					= FALSE
+AttackPoseCrouchTime				= 5.0
+
+AIData0 = "OneAnimCover=0.0"
+AIData1 = "DisappearDistMax=512.0"
+AIData2 = "DisappearDistMin=0.0"
+AIData3 = "DisappearFadeTime=0.5"
+AIData4 = "ReappearDist=512.0"
+AIData5 = "DisappearedMovingAnimRate=3.0"
+AIData6 = "MeleeKnockBackDist=100.0"
+AIData7 = "DivergePaths=1.0"
+AIData8 = "DynMoveTimeMax=2.0"
+AIData9 = "DynMoveBackupDist=128.0"
+AIData10 = "DynMoveFlankPassDist=128.0"
+AIData11 = "DynMoveFlankWidthDist=192.0"
+AIData12 = "DynMoveTimeMin=0.0"
+AIData13 = "CanGhost=1.0"
+AIData14 = "UseCachedAttackAnims=1.0"
+
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+/* 
+** Miser Settings
+**
+** Enabled			[bool]					is the miser enabled?
+**
+*/
+
+[Miser]
+
+Enabled				= TRUE
+
+///////////////////////////////////////////////////////////////////////////////////
+
+/* 
+** ResetTimer Settings
+**
+** JunctionResetTimer		[float in seconds]	amount of time after an AI uses a junction before another AI can use it.
+** BodyResetTimer			[float in seconds]	amount of time after an AI checks a body before another AI can check it.
+**
+*/
+
+[ResetTimers]
+
+JunctionResetTimer			= 10.000000
+BodyResetTimer				= 10.000000
+
+///////////////////////////////////////////////////////////////////////////////////
+
+/* 
+** TextID Settings
+**
+** ApprehendMissionFailedID		[integer]	ID of text for Mission Failure screen.
+**
+*/
+
+[TextIDs]
+
+ApprehendMissionFailedID	= 6502
+
+///////////////////////////////////////////////////////////////////////////////////
+
+/* 
+** Global Senses Settings
+**
+** NoFOVDistance				[float in dedit units]	the internal radius of an AI where the FOV is 180 no matter what
+** InstantSeeDistance			[float in dedit units]	the internal radius of an AI where they will see you instantly
+** ThreatTooCloseDistance		[float in dedit units]	the internal radius of an AI where they will abandon running to a node.
+** PersonalBubbleDistance		[float in dedit units]	the internal radius of an AI where they will ignore hidden, and gradually sense you when not in view.
+** PersonalBubbleMultiplier		[float]	the amount to multiply vision stimulation increases by when target is within the personal bubble.
+** DarknessMultiplier			[float]	the amount to multiply vision stimulation increases by when target is in darness
+**
+*/
+
+[Senses]
+
+NoFOVDistance				= 256.000000
+InstantSeeDistance			= 384.000000
+ThreatTooCloseDistance		= 128.000000
+PersonalBubbleDistance		= 128.000000
+PersonalBubbleMultiplier	= 0.25
+DarknessMultiplier			= 0.5
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+/* 
+** Attract Settings
+**
+** NoTargetTime		[float in seconds]
+**
+*/
+
+[Attract]
+
+NoTargetTime	= 10.000000
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+/* 
+** Rules Settings
+**
+** EnableDeltaRepathing		Enables heavier repathing for melee characters
+** KeepInvalidNodeHistory	Enables history of node failures, and pre goal
+**							commit path verification.
+** UseTrueWeaponPosition	Enables weapon firing from sockets instead of
+**							center of the AI.
+*/
+
+[Rules]
+
+EnableDeltaRepathing	= FALSE
+KeepInvalidNodeHistory	= TRUE
+UseTrueWeaponPosition	= TRUE
+EnableRecoilWeaponNodeTracking = TRUE
+TalkToPlayerCleanupDist = 256.0
+
+///////////////////////////////////////////////////////////////////////////////////
+
+/* 
+** Attribute Templates
+**
+**	Name			[String]
+**		Name of the template
+**	
+**	Alignment		[String]
+**		Binding to RelationData.txt
+**	
+**	RunSpeed		[Float]
+**		How fast the character runs
+**	
+**	JumpSpeed		[Float]
+**		Jumping speed
+**	
+**	JumpOverSpeed	[Float]
+**		Speed when jumping over something
+**	
+**	FallSpeed		[Float]
+**		How fast the character falls
+**	
+**	WalkSpeed		[Float]
+**		How fast the character walks
+**	
+**	SwimSpeed		[Float]
+**		How fast the character swims
+**	
+** - FlySpeed		[Float]
+**		Unused!!!
+**
+**	SoundRadius		[Float]
+**		How loud the AI plays certain sounds
+**	
+**	HitPoints		[Float]
+**		Pre-skill adjusted hitpoint ammount
+**	
+**	Armor			[Float]
+**		Pre-skill adjusted armor ammount
+**	
+**	Accuracy		[Float]
+**		Base accuracy
+**	
+**	AccuracyIncreaseRate	[Float]
+**		How quickly the AI becomes more accurate
+**	
+**	AccuracyDecreaseRate	[Float]
+**		How quickly the AI becomes less accurate
+**	
+**	DefensePercentage[Float]
+**		When an AI is blocking, it will use this percentage
+**		to determine how much damage to take.  
+**		The range: 0.0f - 1.0f
+**		Example: if hit for 10 points of damage and the percentage
+**		is 0.7, the character will take 3 points of damage.
+**
+**	UpdateRate		[Float]
+**		Rate at which senses update (default: 0.1)
+**	
+**	
+**	CanUseVolumeBaseVolume		Default: TRUE
+**	CanUseVolumeLadder			Default: TRUE
+**	CanUseVolumeStairs			Default: TRUE
+**	CanUseVolumeLedge			Default: TRUE
+**	CanUseVolumeHiding			Default: TRUE
+**	CanUseVolumeJumpUp			Default: TRUE
+**	CanUseVolumeJumpOver		Default: TRUE
+**	CanUseVolumeJunction		Default: TRUE
+**	CanUseVolumeTeleport		Default: TRUE
+**	
+**
+**	RamWeapon					[String]
+**		Weapon to fire at a target it is ramming.  (Note: Since the target
+**		will most likely be rammed multiple times, be sure to make it
+**		an infinite ammo weapon.
+**
+*/	
+
+[AttributeTemplate0]
+
+Name								= "FemaleByStander"
+Alignment							= "ByStander"
+WeaponSet							= "None"
+RunSpeed							= 230.0
+JumpSpeed							= 280.0
+JumpOverSpeed							= 200.0
+FallSpeed							= 600.0
+WalkSpeed							= 60.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 1.0
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 256.0
+AccuracyMissPerturb				  	= 64.0
+MaxMovementAccuracyPerturb		  	= 0.0
+MovementAccuracyPerturbTime		  	= 3.0
+CanUseVolumeLadder					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeTeleport				= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 1500.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= FALSE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= FALSE
+SeeEnemyDisturbanceDistance			= 0.0
+CanSeeEnemyFootprint				= FALSE
+SeeEnemyFootprintDistance			= 0.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= FALSE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= FALSE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= TRUE
+HearAllyWeaponFireDistance			= 200.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= FALSE
+SeeDangerousProjectileDistance		= 0.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= FALSE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= FALSE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= FALSE
+SeeInappropriateBehaviorDistance	= 0.0
+CanHearInappropriateBehavior		= FALSE
+HearInappropriateBehaviorDistance	= 0.0
+RamWeapon							= ""
+
+[AttributeTemplate1]
+
+Name								= "MaleByStander"
+Alignment							= "ByStander"
+WeaponSet							= "None"
+RunSpeed							= 230.0
+JumpSpeed							= 280.0
+JumpOverSpeed							= 200.0
+FallSpeed							= 600.0
+WalkSpeed							= 60.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 1.0
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 256.0
+AccuracyMissPerturb				  	= 64.0
+MaxMovementAccuracyPerturb		  	= 10.0
+MovementAccuracyPerturbTime		  	= 3.0
+CanUseVolumeLadder					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeTeleport				= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 1500.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= FALSE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= FALSE
+SeeEnemyDisturbanceDistance			= 0.0
+CanSeeEnemyFootprint				= FALSE
+SeeEnemyFootprintDistance			= 0.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= FALSE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= FALSE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= TRUE
+HearAllyWeaponFireDistance			= 200.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= FALSE
+SeeDangerousProjectileDistance		= 0.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= FALSE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= FALSE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= FALSE
+SeeInappropriateBehaviorDistance	= 0.0
+CanHearInappropriateBehavior		= FALSE
+HearInappropriateBehaviorDistance	= 0.0
+RamWeapon							= ""
+
+[AttributeTemplate2]
+
+Name								= "IC_Regular"
+Alignment							= "IC_Regular"
+WeaponSet							= "RegularWeapons"
+RunSpeed							= 280.0
+JumpSpeed							= 280.0
+JumpOverSpeed							= 200.0
+FallSpeed							= 600.0
+WalkSpeed							= 70.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 1.0
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 512.0
+AccuracyMissPerturb				  	= 32.0
+MaxMovementAccuracyPerturb		  	= 0.0
+MovementAccuracyPerturbTime		  	= 3.0
+DefensePercentage					= 1.0
+CanUseVolumeLadder					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeTeleport				= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 2000.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= TRUE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= TRUE
+SeeEnemyDisturbanceDistance			= 500.0
+CanSeeEnemyFootprint				= TRUE
+SeeEnemyFootprintDistance			= 500.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= TRUE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= TRUE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= TRUE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= TRUE
+SeeDangerousProjectileDistance		= 1000.0
+CanSeeCatchableProjectile			= TRUE
+SeeCatchableProjectileDistance		= 1000.0
+CanSeeAllyDistress					= TRUE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= TRUE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= TRUE
+SeeInappropriateBehaviorDistance	= 2000.0
+CanHearInappropriateBehavior		= TRUE
+HearInappropriateBehaviorDistance	= 500.0
+RamWeapon							= ""
+
+[AttributeTemplate3]
+
+Name								= "IC_Shield"
+Alignment							= "IC_Shield"
+WeaponSet							= "ShieldWeapons"
+RunSpeed							= 280.0
+JumpSpeed							= 280.0
+JumpOverSpeed							= 200.0
+FallSpeed							= 600.0
+WalkSpeed							= 70.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 10.0
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 256.0
+AccuracyMissPerturb				  	= 64.0
+MaxMovementAccuracyPerturb		  	= 0.0
+MovementAccuracyPerturbTime		  	= 3.0
+DefensePercentage					= 1.0
+CanUseVolumeLadder					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeTeleport				= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 2000.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= TRUE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= TRUE
+SeeEnemyDisturbanceDistance			= 500.0
+CanSeeEnemyFootprint				= TRUE
+SeeEnemyFootprintDistance			= 500.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= TRUE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= TRUE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= TRUE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= TRUE
+SeeDangerousProjectileDistance		= 1000.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= TRUE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= TRUE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= TRUE
+SeeInappropriateBehaviorDistance	= 2000.0
+CanHearInappropriateBehavior		= TRUE
+HearInappropriateBehaviorDistance	= 500.0
+RamWeapon							= "RammingRiotShield"
+
+[AttributeTemplate4]
+
+Name								= "IC_Kernel"
+Alignment							= "Kernel"
+WeaponSet							= "KernelWeapons"
+RunSpeed							= 280.0
+JumpSpeed							= 280.0
+JumpOverSpeed							= 200.0
+FallSpeed							= 600.0
+WalkSpeed							= 70.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+AllowDiskSpike						= FALSE
+Accuracy							= 10.0
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 256.0
+AccuracyMissPerturb				  	= 64.0
+MaxMovementAccuracyPerturb		  	= 0.0
+MovementAccuracyPerturbTime		  	= 3.0
+DefensePercentage					= 1.0
+CanUseVolumeLadder					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeTeleport				= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 2000.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= TRUE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= TRUE
+SeeEnemyDisturbanceDistance			= 500.0
+CanSeeEnemyFootprint				= TRUE
+SeeEnemyFootprintDistance			= 500.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= TRUE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= TRUE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= TRUE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= TRUE
+SeeDangerousProjectileDistance		= 1000.0
+CanSeeCatchableProjectile			= TRUE
+SeeCatchableProjectileDistance		= 1000.0
+CanSeeAllyDistress					= TRUE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= TRUE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= TRUE
+SeeInappropriateBehaviorDistance	= 2000.0
+CanHearInappropriateBehavior		= TRUE
+HearInappropriateBehaviorDistance	= 500.0
+RamWeapon							= ""
+[AttributeTemplate5]
+
+Name								= "IC_Launcher"
+Alignment							= "IC_Launcher"
+WeaponSet							= "LauncherWeapons"
+RunSpeed							= 280.0
+JumpSpeed							= 280.0
+JumpOverSpeed							= 200.0
+FallSpeed							= 600.0
+WalkSpeed							= 70.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 10.0
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 256.0
+AccuracyMissPerturb				  	= 64.0
+MaxMovementAccuracyPerturb		  	= 0.0
+MovementAccuracyPerturbTime		  	= 3.0
+DefensePercentage					= 1.0
+CanUseVolumeLadder					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeTeleport				= FALSE
+CanUseVolumeJumpUp					= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 2000.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= TRUE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= TRUE
+SeeEnemyDisturbanceDistance			= 500.0
+CanSeeEnemyFootprint				= TRUE
+SeeEnemyFootprintDistance			= 500.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= TRUE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= TRUE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= TRUE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= TRUE
+SeeDangerousProjectileDistance		= 1000.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= TRUE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= TRUE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= TRUE
+SeeInappropriateBehaviorDistance	= 2000.0
+CanHearInappropriateBehavior		= TRUE
+HearInappropriateBehaviorDistance	= 500.0
+RamWeapon							= ""
+
+[AttributeTemplate6]
+
+Name								= "Ma3a"
+Alignment							= "PlayerAlly"
+WeaponSet							= "None"
+HumanType							= "Hovering"
+RunSpeed							= 280.0
+JumpSpeed							= 280.0
+JumpOverSpeed							= 200.0
+FallSpeed							= 600.0
+WalkSpeed							= 70.0
+SwimSpeed							= 200.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 1.0
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 256.0
+AccuracyMissPerturb				  	= 64.0
+MaxMovementAccuracyPerturb		  	= 10.0
+MovementAccuracyPerturbTime		  	= 3.0
+CanUseVolumeLadder					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeTeleport				= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 1500.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= FALSE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= FALSE
+SeeEnemyDisturbanceDistance			= 0.0
+CanSeeEnemyFootprint				= FALSE
+SeeEnemyFootprintDistance			= 0.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= FALSE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= FALSE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= FALSE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= FALSE
+SeeDangerousProjectileDistance		= 0.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= FALSE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= FALSE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= FALSE
+SeeInappropriateBehaviorDistance	= 0.0
+CanHearInappropriateBehavior		= FALSE
+HearInappropriateBehaviorDistance	= 0.0
+RamWeapon							= ""
+
+[AttributeTemplate7]
+
+Name								= "Ma3a_Compiled"
+Alignment							= "Unimplemented"
+WeaponSet							= "None"
+RunSpeed							= 280.0
+JumpSpeed							= 280.0
+JumpOverSpeed							= 200.0
+FallSpeed							= 600.0
+WalkSpeed							= 70.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 1.0
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 256.0
+AccuracyMissPerturb				  	= 64.0
+MaxMovementAccuracyPerturb		  	= 10.0
+MovementAccuracyPerturbTime		  	= 3.0
+CanUseVolumeLadder					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeTeleport				= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 2000.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= TRUE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= TRUE
+SeeEnemyDisturbanceDistance			= 500.0
+CanSeeEnemyFootprint				= TRUE
+SeeEnemyFootprintDistance			= 500.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= TRUE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= TRUE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= TRUE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= TRUE
+SeeDangerousProjectileDistance		= 1000.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= TRUE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= TRUE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= FALSE
+SeeInappropriateBehaviorDistance	= 0.0
+CanHearInappropriateBehavior		= FALSE
+HearInappropriateBehaviorDistance	= 0.0
+RamWeapon							= ""
+
+[AttributeTemplate8]
+
+Name								= "Mercury"
+Alignment							= "Neutral"
+WeaponSet							= "None"
+RunSpeed							= 280.0
+JumpSpeed							= 280.0
+JumpOverSpeed							= 200.0
+FallSpeed							= 600.0
+WalkSpeed							= 70.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 1.0
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 256.0
+AccuracyMissPerturb				  	= 64.0
+MaxMovementAccuracyPerturb		  	= 10.0
+MovementAccuracyPerturbTime		  	= 3.0
+CanUseVolumeLadder					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeTeleport				= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 2000.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= TRUE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= TRUE
+SeeEnemyDisturbanceDistance			= 500.0
+CanSeeEnemyFootprint				= TRUE
+SeeEnemyFootprintDistance			= 500.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= TRUE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= TRUE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= TRUE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= TRUE
+SeeDangerousProjectileDistance		= 1000.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= TRUE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= TRUE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= FALSE
+SeeInappropriateBehaviorDistance	= 0.0
+CanHearInappropriateBehavior		= FALSE
+HearInappropriateBehaviorDistance	= 0.0
+RamWeapon							= ""
+
+
+[AttributeTemplate9]
+
+Name								= "DataWraith"
+Alignment							= "DataWraith"
+WeaponSet							= "DataWraithWeapons"
+RunSpeed							= 280.0
+JumpSpeed							= 600.0
+JumpOverSpeed						= 600.0
+FallSpeed							= 600.0
+WalkSpeed							= 70.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 1.0
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 512.0
+AccuracyMissPerturb				  	= 32.0
+MaxMovementAccuracyPerturb		  	= 2.0
+MovementAccuracyPerturbTime		  	= 3.0
+CanUseVolumeLadder				 	= FALSE
+CanUseVolumeHiding		 			= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 2000.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= TRUE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= TRUE
+SeeEnemyDisturbanceDistance			= 500.0
+CanSeeEnemyFootprint				= TRUE
+SeeEnemyFootprintDistance			= 500.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= TRUE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= TRUE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= TRUE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= TRUE
+SeeDangerousProjectileDistance		= 1000.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= TRUE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= TRUE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= FALSE
+SeeInappropriateBehaviorDistance	= 0.0
+CanHearInappropriateBehavior		= FALSE
+HearInappropriateBehaviorDistance	= 0.0
+
+RamWeapon							= ""
+
+[AttributeTemplate10]
+
+Name								= "I-No"
+Alignment							= "ByStander"
+WeaponSet							= "None"
+RunSpeed							= 400.0
+JumpSpeed							= 400.0
+JumpOverSpeed							= 200.0
+FallSpeed							= 600.0
+WalkSpeed							= 70.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 1.0
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 256.0
+AccuracyMissPerturb				  	= 64.0
+MaxMovementAccuracyPerturb		  	= 10.0
+MovementAccuracyPerturbTime		  	= 3.0
+CanUseVolumeLadder					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeTeleport				= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 1500.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= FALSE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= FALSE
+SeeEnemyDisturbanceDistance			= 0.0
+CanSeeEnemyFootprint				= FALSE
+SeeEnemyFootprintDistance			= 0.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= FALSE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= FALSE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= FALSE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= FALSE
+SeeDangerousProjectileDistance		= 0.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= FALSE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= FALSE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= FALSE
+SeeInappropriateBehaviorDistance	= 0.0
+CanHearInappropriateBehavior		= FALSE
+HearInappropriateBehaviorDistance	= 0.0
+RamWeapon							= ""
+
+[AttributeTemplate11]
+
+Name								= "Rectorscript"
+Alignment							= "Rectorscript"
+WeaponSet							= "RectorscriptWeapons"
+RunSpeed							= 300.0
+JumpSpeed							= 300.0
+JumpOverSpeed						= 125.0
+FallSpeed							= 600.0
+WalkSpeed							= 50.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 1.0
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 256.0
+AccuracyMissPerturb				  	= 64.0
+MaxMovementAccuracyPerturb		  	= 10.0
+MovementAccuracyPerturbTime		  	= 3.0
+CanUseVolumeLadder					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeTeleport				= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 5000.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 2000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 400.0
+CanSeeEnemyDanger					= TRUE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= TRUE
+SeeEnemyDisturbanceDistance			= 1000.0
+CanSeeEnemyFootprint				= TRUE
+SeeEnemyFootprintDistance			= 1000.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 1200.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 400.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 400.0
+CanHearEnemyFootstep				= TRUE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= TRUE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 256.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 500.0
+CanHearAllyWeaponFire				= TRUE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= TRUE
+SeeDangerousProjectileDistance		= 2000.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= TRUE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= TRUE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= FALSE
+SeeInappropriateBehaviorDistance	= 0.0
+CanHearInappropriateBehavior		= FALSE
+HearInappropriateBehaviorDistance	= 0.0
+RamWeapon							= ""
+
+[AttributeTemplate12]
+
+Name								= "Seeker"
+Alignment							= "Seeker"
+WeaponSet							= "SeekerWeapons"
+RunSpeed							= 800.0
+JumpSpeed							= 800.0
+JumpOverSpeed							= 200.0
+FallSpeed							= 600.0
+WalkSpeed							= 140.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 1.0
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 256.0
+AccuracyMissPerturb				  	= 64.0
+MaxMovementAccuracyPerturb		  	= 10.0
+MovementAccuracyPerturbTime		  	= 3.0
+CanUseVolumeLadder					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeTeleport				= FALSE
+CanUseVolumeJumpUp					= FALSE
+CanUseVolumeJumpOver				= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 2000.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= TRUE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= TRUE
+SeeEnemyDisturbanceDistance			= 500.0
+CanSeeEnemyFootprint				= TRUE
+SeeEnemyFootprintDistance			= 500.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= TRUE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= TRUE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= TRUE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= TRUE
+SeeDangerousProjectileDistance		= 1000.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= TRUE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= TRUE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= FALSE
+SeeInappropriateBehaviorDistance	= 0.0
+CanHearInappropriateBehavior		= FALSE
+HearInappropriateBehaviorDistance	= 0.0
+RamWeapon							= ""
+VerticalThreshold					= 1000.0
+
+[AttributeTemplate13]
+
+Name								= "Zealot"
+Alignment							= "Zealot"
+WeaponSet							= "ZealotWeapons"
+RunSpeed							= 400.0
+JumpSpeed							= 400.0
+JumpOverSpeed							= 200.0
+FallSpeed							= 600.0
+WalkSpeed							= 70.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 1.0
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 256.0
+AccuracyMissPerturb				  	= 64.0
+MaxMovementAccuracyPerturb		  	= 0.0
+MovementAccuracyPerturbTime		  	= 3.0
+CanUseVolumeLadder					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeTeleport				= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 2000.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= TRUE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= TRUE
+SeeEnemyDisturbanceDistance			= 500.0
+CanSeeEnemyFootprint				= TRUE
+SeeEnemyFootprintDistance			= 500.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= TRUE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= TRUE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= TRUE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= TRUE
+SeeDangerousProjectileDistance		= 1000.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= TRUE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= TRUE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= FALSE
+SeeInappropriateBehaviorDistance	= 0.0
+CanHearInappropriateBehavior		= FALSE
+HearInappropriateBehaviorDistance	= 0.0
+RamWeapon							= ""
+
+
+[AttributeTemplate14]
+Name							= "FconMonster"
+Alignment						= "FconMonster"
+WeaponSet						= "FconMonsterWeapons"
+RunSpeed						= 280.0
+JumpSpeed						= 1000.0
+// JumpSpeed						= 50.0
+JumpOverSpeed							= 200.0
+FallSpeed							= 600.0
+CrawlSpeed						= 25.0
+WalkSpeed						= 70.0
+SwimSpeed						= 0.0
+FlySpeed						= 0.0
+Marksmanship					= 0.8
+Bravado							= 0.95
+SoundRadius						= 1500.0
+HitPoints						= -1.0
+Armor							= -1.0
+Accuracy							= 10.0
+AccuracyIncreaseRate			= 1.0
+AccuracyDecreaseRate			= 1.0
+FullAccuracyRadius				= 256.0
+AccuracyMissPerturb				= 64.0
+MaxMovementAccuracyPerturb		= 0.0
+MovementAccuracyPerturbTime		= 3.0
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 2000.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= TRUE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= TRUE
+SeeEnemyDisturbanceDistance			= 500.0
+CanSeeEnemyFootprint				= TRUE
+SeeEnemyFootprintDistance			= 500.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= TRUE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= TRUE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= TRUE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= TRUE
+SeeDangerousProjectileDistance		= 1000.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= TRUE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= TRUE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= FALSE
+SeeInappropriateBehaviorDistance	= 0.0
+CanHearInappropriateBehavior		= FALSE
+HearInappropriateBehaviorDistance	= 0.0
+RamWeapon						= ""
+VerticalThreshold				= 200.0
+
+[AttributeTemplate15]
+
+Name								= "ResourceHog"
+Alignment							= "ResourceHog"
+WeaponSet							= "ResourceHogWeapons"
+RunSpeed							= 280.0
+JumpSpeed							= 280.0
+JumpOverSpeed							= 200.0
+FallSpeed							= 600.0
+WalkSpeed							= 70.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 1.0
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 256.0
+AccuracyMissPerturb				  	= 64.0
+MaxMovementAccuracyPerturb		  	= 10.0
+MovementAccuracyPerturbTime		  	= 3.0
+DefensePercentage					= 1.0
+CanUseVolumeLadder					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeTeleport				= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 2000.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= TRUE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= TRUE
+SeeEnemyDisturbanceDistance			= 500.0
+CanSeeEnemyFootprint				= TRUE
+SeeEnemyFootprintDistance			= 500.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= TRUE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= TRUE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= TRUE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= TRUE
+SeeDangerousProjectileDistance		= 1000.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= TRUE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= TRUE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= FALSE
+SeeInappropriateBehaviorDistance	= 0.0
+CanHearInappropriateBehavior		= FALSE
+HearInappropriateBehaviorDistance	= 0.0
+RamWeapon							= ""
+
+[AttributeTemplate16]
+
+Name								= "LightCyclist"
+Alignment							= "LightCyclist"
+WeaponSet							= "None"
+RunSpeed							= 280.0
+JumpSpeed							= 280.0
+JumpOverSpeed							= 200.0
+FallSpeed							= 600.0
+WalkSpeed							= 70.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 1.0
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 256.0
+AccuracyMissPerturb				  	= 64.0
+MaxMovementAccuracyPerturb		  	= 10.0
+MovementAccuracyPerturbTime		  	= 3.0
+DefensePercentage					= 1.0
+CanUseVolumeLadder					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeTeleport				= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 1500.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= FALSE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= FALSE
+SeeEnemyDisturbanceDistance			= 0.0
+CanSeeEnemyFootprint				= FALSE
+SeeEnemyFootprintDistance			= 0.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= FALSE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= FALSE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= FALSE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= FALSE
+SeeDangerousProjectileDistance		= 0.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= FALSE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= FALSE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= FALSE
+SeeInappropriateBehaviorDistance	= 0.0
+CanHearInappropriateBehavior		= FALSE
+HearInappropriateBehaviorDistance	= 0.0
+RamWeapon							= ""
+
+[AttributeTemplate17]
+
+Name								= "Byte"
+Alignment							= "PlayerAlly"
+WeaponSet							= "None"
+HumanType							= "Hovering"
+RunSpeed							= 280.0
+JumpSpeed							= 280.0
+JumpOverSpeed							= 200.0
+FallSpeed							= 600.0
+WalkSpeed							= 70.0
+SwimSpeed							= 200.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 0.5
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 256.0
+AccuracyMissPerturb				  	= 64.0
+MaxMovementAccuracyPerturb		  	= 10.0
+MovementAccuracyPerturbTime		  	= 3.0
+CanUseVolumeLadder					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeTeleport				= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 1500.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= FALSE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= FALSE
+SeeEnemyDisturbanceDistance			= 0.0
+CanSeeEnemyFootprint				= FALSE
+SeeEnemyFootprintDistance			= 0.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= FALSE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= FALSE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= FALSE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= FALSE
+SeeDangerousProjectileDistance		= 0.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= FALSE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= FALSE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= FALSE
+SeeInappropriateBehaviorDistance	= 0.0
+CanHearInappropriateBehavior		= FALSE
+HearInappropriateBehaviorDistance	= 0.0
+RamWeapon							= ""
+
+
+[AttributeTemplate18]
+
+Name							= "Microphone"
+Alignment						= "BadCharacter"
+WeaponSet						= "None"
+RunSpeed						= 0.0
+JumpSpeed						= 0.0
+JumpOverSpeed					= 0.0
+FallSpeed						= 0.0
+CrawlSpeed						= 0.0
+WalkSpeed						= 0.0
+SwimSpeed						= 0.0
+FlySpeed						= 0.0
+Marksmanship					= 0.0
+Bravado							= 0.0
+SoundRadius						= 0.0
+HitPoints						= 0.0
+Armor							= 0
+Accuracy						= 0.0
+AccuracyIncreaseRate			= 0.0
+AccuracyDecreaseRate			= 0.0
+FullAccuracyRadius				= 256.0
+AccuracyMissPerturb				= 64.0
+MaxMovementAccuracyPerturb		= 10.0
+MovementAccuracyPerturbTime		= 3.0
+CanSeeEnemy						= FALSE
+SeeEnemyDistance				= 0.0
+CanSeeEnemyLean					= FALSE
+SeeEnemyLeanDistance			= 0.0
+CanSeeAllyDeath					= FALSE
+SeeAllyDeathDistance			= 0.0
+CanHearAllyDeath				= TRUE
+HearAllyDeathDistance			= 0.0
+CanHearAllyPain					= TRUE
+HearAllyPainDistance			= 0.0
+CanHearEnemyFootstep			= TRUE
+HearEnemyFootstepDistance			= 0.0
+CanSeeEnemyFootprint			= FALSE
+SeeEnemyFootprintDistance		= 0.0
+CanHearEnemyWeaponFire			= TRUE
+HearEnemyWeaponFireDistance		= 0.0
+CanHearAllyWeaponFire			= TRUE
+HearAllyWeaponFireDistance		= 0.0
+CanSeeEnemyFlashlight			= FALSE
+SeeEnemyFlashlightDistance		= 0.0
+CanHearEnemyDisturbance			= TRUE
+HearEnemyDisturbanceDistance	= 0.0
+CanSeeEnemyDisturbance			= FALSE
+SeeEnemyDisturbanceDistance		= 0.0
+CanSeeEnemyLightDisturbance		= FALSE
+SeeEnemyLightDisturbanceDistance= 0.0
+CanSeeEnemyWeaponImpact			= FALSE
+SeeEnemyWeaponImpactDistance	= 0.0
+CanHearEnemyAlarm				= TRUE
+HearEnemyAlarmDistance			= 0.0
+CanSeeAllySpecialDamage			= FALSE
+SeeAllySpecialDamageDistance	= 0.0
+CanSeeAllyDisturbance			= FALSE
+SeeAllyDisturbanceDistance		= 0.0
+CanHearAllyDisturbance			= TRUE
+HearAllyDisturbanceDistance		= 0.0
+CanSeeAllyDistress				= FALSE
+SeeAllyDistressDistance			= 0.0
+CanSeeProjectile				= FALSE
+SeeProjectileDistance			= 0.0
+CanSeeEnemyDanger				= FALSE
+SeeEnemyDangerDistance			= 0.0
+CanUseVolumeAmbientLife			= FALSE
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+RamWeapon						= ""
+
+[AttributeTemplate19]
+
+Name								= "UnarmedPlayerAlly"
+Alignment							= "PlayerAlly"
+WeaponSet							= "None"
+RunSpeed							= 230.0
+JumpSpeed							= 280.0
+JumpOverSpeed						= 200.0
+FallSpeed							= 600.0
+WalkSpeed							= 60.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= 25.0
+Armor								= 0
+Accuracy							= 0.5
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 256.0
+AccuracyMissPerturb				  	= 64.0
+MaxMovementAccuracyPerturb		  	= 10.0
+MovementAccuracyPerturbTime		  	= 3.0
+CanUseVolumeLadder					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeTeleport				= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 1500.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= FALSE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= FALSE
+SeeEnemyDisturbanceDistance			= 0.0
+CanSeeEnemyFootprint				= FALSE
+SeeEnemyFootprintDistance			= 0.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= FALSE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= FALSE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= FALSE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= FALSE
+SeeDangerousProjectileDistance		= 0.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= FALSE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= FALSE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= FALSE
+SeeInappropriateBehaviorDistance	= 0.0
+CanHearInappropriateBehavior		= FALSE
+HearInappropriateBehaviorDistance	= 0.0
+RamWeapon							= ""
+
+[AttributeTemplate20]
+
+Name								= "GameBot"
+Alignment							= "GameBot"
+WeaponSet							= "GameBotWeapons"
+RunSpeed							= 280.0
+JumpSpeed							= 280.0
+JumpOverSpeed							= 200.0
+FallSpeed							= 600.0
+WalkSpeed							= 70.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 0.5
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 256.0
+AccuracyMissPerturb				  	= 64.0
+MaxMovementAccuracyPerturb		  	= 10.0
+MovementAccuracyPerturbTime		  	= 3.0
+DefensePercentage					= 1.0
+CanUseVolumeLadder					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeTeleport				= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 2000.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 1000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 200.0
+CanSeeEnemyDanger					= TRUE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= TRUE
+SeeEnemyDisturbanceDistance			= 500.0
+CanSeeEnemyFootprint				= TRUE
+SeeEnemyFootprintDistance			= 500.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 600.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 200.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 200.0
+CanHearEnemyFootstep				= TRUE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= TRUE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 128.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 250.0
+CanHearAllyWeaponFire				= TRUE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= TRUE
+SeeDangerousProjectileDistance		= 1000.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= TRUE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= TRUE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= FALSE
+SeeInappropriateBehaviorDistance	= 0.0
+CanHearInappropriateBehavior		= FALSE
+HearInappropriateBehaviorDistance	= 0.0
+RamWeapon							= ""
+
+[AttributeTemplate21]
+
+Name								= "Vegetable"
+Alignment							= "Neutral"
+WeaponSet							= "None"
+RunSpeed							= 0.0
+JumpSpeed							= 280.0
+JumpOverSpeed						= 0.0
+FallSpeed							= 0.0
+WalkSpeed							= 0.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 0.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 0.0
+AccuracyIncreaseRate				= 0.0
+AccuracyDecreaseRate				= 0.0
+FullAccuracyRadius					= 0.0
+AccuracyMissPerturb				  	= 0.0
+MaxMovementAccuracyPerturb		  	= 0.0
+MovementAccuracyPerturbTime		  	= 0.0
+UpdateRate							= 0.0
+CanUseVolumeBaseVolume				= FALSE
+CanUseVolumeLadder					= FALSE
+CanUseVolumeStairs					= FALSE
+CanUseVolumeLedge					= FALSE
+CanUseVolumeHiding					= FALSE
+CanUseVolumeJumpUp					= FALSE
+CanUseVolumeJumpOver				= FALSE
+CanUseVolumeJunction				= FALSE
+CanUseVolumeTeleport				= FALSE
+RamWeapon							= ""
+
+[AttributeTemplate22]
+
+Name								= "DataWraithSniper"
+Alignment							= "DataWraith"
+WeaponSet							= "DataWraithWeapons"
+RunSpeed							= 280.0
+JumpSpeed							= 600.0
+JumpOverSpeed						= 600.0
+FallSpeed							= 600.0
+WalkSpeed							= 70.0
+SwimSpeed							= 0.0
+FlySpeed							= 0.0
+SoundRadius							= 1500.0
+HitPoints							= -1.0
+Armor								= -1.0
+Accuracy							= 1.0
+AccuracyIncreaseRate				= 1.0
+AccuracyDecreaseRate				= 1.0
+FullAccuracyRadius					= 512.0
+AccuracyMissPerturb				  	= 64.0
+MaxMovementAccuracyPerturb		  	= 10.0
+MovementAccuracyPerturbTime		  	= 3.0
+CanUseVolumeLadder				 	= FALSE
+CanUseVolumeHiding		 			= FALSE
+CanSeeEnemy							= TRUE
+SeeEnemyDistance					= 5000.0
+CanSeeEnemyLean						= TRUE
+SeeEnemyLeanDistance				= 5000.0
+CanSeeEnemyWeaponImpact				= TRUE
+SeeEnemyWeaponImpactDistance		= 400.0
+CanSeeEnemyDanger					= TRUE
+SeeEnemyDangerDistance				= 0.0
+CanSeeEnemyDisturbance				= TRUE
+SeeEnemyDisturbanceDistance			= 1000.0
+CanSeeEnemyFootprint				= TRUE
+SeeEnemyFootprintDistance			= 1000.0
+CanSeeAllyDeath						= TRUE
+SeeAllyDeathDistance				= 1200.0
+CanSeeAllyDisturbance				= TRUE
+SeeAllyDisturbanceDistance			= 0.0
+CanHearEnemyWeaponFire				= TRUE
+HearEnemyWeaponFireDistance			= 400.0
+CanHearEnemyWeaponImpact			= TRUE
+HearEnemyWeaponImpactDistance		= 400.0
+CanHearEnemyFootstep				= TRUE
+HearEnemyFootstepDistance			= 0.0
+CanHearEnemyAlarm					= TRUE
+HearEnemyAlarmDistance				= 0.0
+CanHearEnemyDisturbance				= TRUE
+HearEnemyDisturbanceDistance		= 0.0
+CanHearAllyDeath					= TRUE
+HearAllyDeathDistance				= 512.0
+CanHearAllyPain						= TRUE
+HearAllyPainDistance				= 500.0
+CanHearAllyWeaponFire				= TRUE
+HearAllyWeaponFireDistance			= 0.0
+CanHearAllyDisturbance				= TRUE
+HearAllyDisturbanceDistance			= 0.0
+CanSeeDangerousProjectile			= TRUE
+SeeDangerousProjectileDistance		= 2000.0
+CanSeeCatchableProjectile			= FALSE
+SeeCatchableProjectileDistance		= 0.0
+CanSeeAllyDistress					= TRUE
+SeeAllyDistressDistance				= 0.0
+CanSeeAllySpecialDamage				= TRUE
+SeeAllySpecialDamageDistance		= 0.0
+CanSeeInappropriateBehavior			= FALSE
+SeeInappropriateBehaviorDistance	= 0.0
+CanHearInappropriateBehavior		= FALSE
+HearInappropriateBehaviorDistance	= 0.0
+
+/* 
+** Stimulus Settings
+**
+** Name                     [stimulus]             Name of stimulus (matches AIStimulusTypeEnum)
+** Sense                    [sense]                Sense that stimulus triggers (matches AISenseTypeEnum)
+** RequiredAlignment        [LIKE or HATE]         Required alignment of AIs to react to stimulus.
+**                                                 Assumes TOLERATE.
+** Distance                 [float in dedit units] The base amount of distance a stimulus carries.
+**                                                 1.0 means it is handled by code.
+** Duration                 [float in seconds]     Time that a stimulus exists.
+**                                                 Zero means it exists forever.
+** AlarmLevel               [int]                  Priority of how alarming a stimulus is.
+**                                                 The AlarmLevel corresponds to the MajorAlarmThreshold,
+**                                                 and ImmediateAlarmThreshold in the AIBrains (above in this file).
+** 
+** - Optional Parameters -
+**
+** ReactionDelay                    [float range]    How long the reaction delay to this sense is.
+**                                                   Default = [0.00, 0.00]
+** StimulationIncreaseRateAlert     [float rate]     The rate at which the sense stimulation increases when alert.
+**                                                   Default = 100.00
+** StimulationIncreaseRateUnalert   [float rate]     The rate at which the sense stimulation increases when unalert.
+**                                                   Default = 100.00
+** StimulationDecreaseRateAlert     [float rate]     The rate at which the sense stimulation decreases when alert.
+**                                                   Default = 100.00
+** StimulationDecreaseRateUnalert   [float rate]     The rate at which the sense stimulation decreases when unalert.
+**                                                   Default = 100.00
+** StimulationThreshhold            [float range]    Values that specify partial and full stimulation levels.
+**                                                   Default = [1.00, 1.00]
+** FalseStimulationLimit            [int]            How many false stimulation may occur before the ai will just jump to full stimulation.
+**                                                   Default = 0
+** MaxResponders                    [int]            How many AIs can respond to this stimulus.
+**                                                   Zero means no limit.
+**                                                   Default = 0
+** IgnoreOldStimulus                [TRUE or FALSE]  Should AI ignore stimulus older than last one seen?
+**                                                   Default = TRUE
+**
+*/
+
+
+[Stimulus0]
+
+Name                           = "EnemyVisible"
+Sense                          = "SeeEnemy"
+RequiredAlignment0             = "HATE"
+Distance                       = 5000.00
+Duration                       = 0.00  // Always in the queue.
+AlarmLevel                     = 100
+StimulationIncreaseRateAlert   = 10.00
+StimulationIncreaseRateUnalert = 0.50
+StimulationDecreaseRateAlert   = 0.125
+StimulationDecreaseRateUnalert = 0.500
+StimulationThreshhold          = [0.50, 1.00]
+FalseStimulationLimit          = 3
+FalseStimulusSense	           = "SeeEnemyLean"
+ReactionDelay                  = [0.00, 0.00]
+IgnoreOldStimulus              = TRUE
+
+[Stimulus1]
+
+Name                           = "EnemyLeanVisible"
+Sense                          = "SeeEnemyLean"
+RequiredAlignment0              = "HATE"
+Distance                       = 5000.00
+VerticalRadius				   = 512.00
+Duration                       = 0.00  // Lean code removes when finished.
+AlarmLevel                     = 1
+StimulationIncreaseRateAlert   = 5.00
+StimulationIncreaseRateUnalert = 0.25
+StimulationDecreaseRateAlert   = 0.06
+StimulationDecreaseRateUnalert = 0.25
+StimulationThreshhold          = [0.50, 1.00]
+FalseStimulationLimit          = 3
+ReactionDelay                  = [0.0, 0.0]
+IgnoreOldStimulus              = FALSE
+
+[Stimulus2]
+
+Name              = "EnemyFootprintVisible"
+Sense             = "SeeEnemyFootprint"
+RequiredAlignment0 = "HATE"
+Distance          = 10.00
+VerticalRadius    = 128.00
+Duration          = 1.00  // Gets multiplied by surface factor
+AlarmLevel        = 1
+ReactionDelay     = [1.00, 1.50]
+IgnoreOldStimulus = TRUE
+
+[Stimulus3]
+
+Name              = "EnemyWeaponFireSound"
+Sense             = "HearEnemyWeaponFire"
+RequiredAlignment0 = "HATE"
+RequiredAlignment1 = "TOLERATE"  // for neutrals
+Distance          = 1.00  // Handled by code
+VerticalRadius    = 512.00
+Duration          = 1.00
+AlarmLevel        = 75
+ReactionDelay     = [0.1, 0.3]
+IgnoreOldStimulus = TRUE
+
+[Stimulus4]
+
+Name              = "EnemyWeaponReloadSound"
+Sense             = "HearEnemyDisturbance"
+RequiredAlignment0 = "HATE"
+Distance          = 1.00  // Handled by code
+VerticalRadius    = 128.00
+Duration          = 1.00
+AlarmLevel        = 1
+ReactionDelay     = [0.3, 1.0]
+IgnoreOldStimulus = TRUE
+
+[Stimulus5]
+
+Name              = "EnemyWeaponImpactSound"
+Sense             = "HearEnemyWeaponImpact"
+RequiredAlignment0 = "HATE"
+RequiredAlignment1 = "TOLERATE"  // for neutrals
+Distance          = 1.00  // Handled by code
+VerticalRadius    = 256.00
+Duration          = 1.00
+AlarmLevel        = 1
+ReactionDelay     = [0.1, 0.3]
+IgnoreOldStimulus = TRUE
+
+[Stimulus6]
+
+Name              = "EnemyWeaponImpactVisible"
+Sense             = "SeeEnemyWeaponImpact"
+RequiredAlignment0 = "HATE"
+RequiredAlignment1 = "TOLERATE"  // for neutrals
+Distance          = 500.00
+VerticalRadius    = 256.00
+Duration          = 1.00
+AlarmLevel        = 50
+ReactionDelay     = [0.00, 0.00]
+IgnoreOldStimulus = FALSE
+
+[Stimulus7]
+
+Name                           = "EnemyFootstepSound"
+Sense                          = "HearEnemyFootstep"
+RequiredAlignment0              = "HATE"
+Distance                       = 500.00
+VerticalRadius				   = 128.00
+Duration                       = 0.50
+AlarmLevel                     = 1
+StimulationIncreaseRateAlert   = 50.000
+StimulationIncreaseRateUnalert = 50.000
+//StimulationIncreaseRateAlert   = 5.500
+//StimulationIncreaseRateUnalert = 5.250
+StimulationDecreaseRateAlert   = 0.125
+StimulationDecreaseRateUnalert = 0.250
+StimulationThreshhold          = [0.500, 1.00]
+FalseStimulationLimit          = 3
+ReactionDelay                  = [0.1, 0.3]
+IgnoreOldStimulus              = TRUE
+
+[Stimulus8]
+
+Name              = "EnemyAlarmSound"
+Sense             = "HearEnemyAlarm"
+RequiredAlignment0 = "HATE"
+Distance          = 1.00  // Handled by code
+Duration          = 1.00  // Handled by code.
+AlarmLevel        = 50
+ReactionDelay     = [0.3, 1.0]
+IgnoreOldStimulus = TRUE
+
+[Stimulus9]
+
+Name              = "EnemyDisturbanceSound"
+Sense             = "HearEnemyDisturbance"
+RequiredAlignment0 = "HATE"
+Distance          = 1.00	// multiplied by stimradius on prop or worldmodel.
+VerticalRadius    = 128.00
+Duration          = 0.50
+AlarmLevel        = 1
+ReactionDelay     = [0.3, 1.0]
+IgnoreOldStimulus = TRUE
+
+[Stimulus10]
+
+Name              = "EnemyDisturbanceVisible"
+Sense             = "SeeEnemyDisturbance"
+RequiredAlignment0 = "HATE"
+Distance          = 1.00	// multiplied by stimradius on prop or worldmodel.
+VerticalRadius    = 128.00
+Duration          = 0.0		// removed when disturbance reversed.
+AlarmLevel        = 1
+ReactionDelay     = [0.3, 1.0]
+IgnoreOldStimulus = FALSE
+
+[Stimulus11]
+
+Name              = "EnemyLightDisturbanceVisible"
+Sense             = "SeeEnemyLightDisturbance"
+RequiredAlignment0 = "HATE"
+Distance          = 1.00	// multiplied by radius of lit volume.
+VerticalRadius    = 256.00
+Duration          = 1.00
+AlarmLevel        = 1
+ReactionDelay     = [0.3, 1.0]
+IgnoreOldStimulus = FALSE
+
+[Stimulus12]
+
+Name              = "EnemyDangerVisible"
+Sense             = "SeeEnemyDanger"
+RequiredAlignment0 = "HATE"
+Distance          = 2000.00
+VerticalRadius    = 256.00
+Duration          = 0.0		// removed when danger is destroyed.
+AlarmLevel        = 5
+ReactionDelay     = [0.3, 0.5]
+IgnoreOldStimulus = FALSE
+
+[Stimulus13]
+
+Name              = "AllyDeathVisible"
+Sense             = "SeeAllyDeath"
+RequiredAlignment0 = "LIKE"
+RequiredAlignment1 = "TOLERATE"  // for neutrals
+Distance          = 2000.00
+VerticalRadius    = 256.00
+Duration          = 0.00  // Lasts until body disappears.
+AlarmLevel        = 10
+ReactionDelay     = [0.0, 0.0]
+IgnoreOldStimulus = FALSE
+
+[Stimulus14]
+
+Name              = "AllyPainSound"
+Sense             = "HearAllyPain"
+RequiredAlignment0 = "LIKE"
+RequiredAlignment1 = "TOLERATE"  // for neutrals
+Distance          = 512.00
+VerticalRadius    = 512.00
+Duration          = 1.00
+AlarmLevel        = 5
+ReactionDelay     = [0.3, 1.0]
+IgnoreOldStimulus = TRUE
+
+[Stimulus15]
+
+Name              = "AllyDeathSound"
+Sense             = "HearAllyDeath"
+RequiredAlignment0 = "LIKE"
+RequiredAlignment1 = "TOLERATE"  // for neutrals
+Distance          = 256.00
+VerticalRadius    = 128.00
+Duration          = 1.00
+AlarmLevel        = 30
+ReactionDelay     = [0.3, 1.0]
+IgnoreOldStimulus = TRUE
+
+[Stimulus16]
+
+Name              = "AllyWeaponFireSound"
+Sense             = "HearAllyWeaponFire"
+RequiredAlignment0 = "LIKE"
+RequiredAlignment1 = "TOLERATE"  // for neutrals
+Distance          = 1.00  // Handled by code
+Duration          = 1.00
+VerticalRadius    = 512.00
+AlarmLevel        = 70
+ReactionDelay     = [0.1, 0.3]
+IgnoreOldStimulus = TRUE
+
+[Stimulus17]
+
+Name              = "AllyDisturbanceVisible"
+Sense             = "SeeAllyDisturbance"
+RequiredAlignment0 = "LIKE"
+Distance          = 512.00
+VerticalRadius    = 256.00
+Duration          = 0.0
+AlarmLevel        = 5
+ReactionDelay     = [0.0, 0.0]
+IgnoreOldStimulus = FALSE
+
+[Stimulus18]
+
+Name              = "AllyDisturbanceSound"
+Sense             = "HearAllyDisturbance"
+RequiredAlignment0 = "LIKE"
+Distance          = 512.00
+VerticalRadius    = 128.00
+Duration          = 1.00
+AlarmLevel        = 1	// Handled by code.
+ReactionDelay     = [0.3, 1.0]
+IgnoreOldStimulus = TRUE
+
+[Stimulus19]
+
+Name              = "AllyDistressVisible"
+Sense             = "SeeAllyDistress"
+RequiredAlignment0 = "LIKE"
+Distance          = 1.00 // Handled by code
+VerticalRadius    = 256.00
+Duration          = 0.0	 // Removed in backup state code.
+AlarmLevel        = 80
+IgnoreOldStimulus = FALSE
+
+[Stimulus20]
+
+Name              = "AllySpecialDamageVisible"
+Sense             = "SeeAllySpecialDamage"
+RequiredAlignment0 = "LIKE"
+Distance          = 512.00
+VerticalRadius    = 256.00
+Duration          = 0.0	 // Removed in SpecialDamage goal code.
+AlarmLevel        = 10
+ReactionDelay     = [0.3, 1.0]
+IgnoreOldStimulus = FALSE
+
+// TRON SPECIFIC BELOW!!!
+// TOTALLY UNBALANCED!!!
+
+[Stimulus21]
+
+Name                           = "ProjectileVisible"
+Sense                          = "SeeDangerousProjectile"
+RequiredAlignment0             = "HATE"
+RequiredAlignment1             = "TOLERATE"
+Distance                       = 5000.00
+Duration                       = 0.0 // Always in the queue
+AlarmLevel                     = 101
+FalseStimulationLimit          = 0
+IgnoreOldStimulus			   = TRUE
+MaxResponders				   = 1
+
+[Stimulus22]
+
+Name                           = "CatchableProjectileVisible"
+Sense                          = "SeeCatchableProjectile"
+RequiredAlignment0             = "LIKE"
+Distance                       = 10.00
+Duration                       = 0.0 // Always in the queue
+AlarmLevel                     = 101
+FalseStimulationLimit          = 0
+IgnoreOldStimulus			   = TRUE
+RequireSourceIsNotSelf			= FALSE
+RequireSourceIsSelf				= TRUE
+MaxResponders				   = 1
+
+[Stimulus23]
+
+Name                           = "ProhibitedProjectileVisible"
+Sense                          = "SeeInappropriateBehavior"
+RequiredAlignment0             = "TOLERATE"
+Distance                       = 5000.00
+Duration                       = 0.00  // Always in the queue.
+AlarmLevel                     = 100
+//ReactionDelay				   = [0.2, 0.3]
+IgnoreOldStimulus			   = TRUE
+
+[Stimulus24]
+
+Name                           = "ProhibitedWeaponImpactVisible"
+Sense                          = "SeeInappropriateBehavior"
+RequiredAlignment0             = "TOLERATE"
+Distance                       = 5000.00
+Duration						= 1.00
+AlarmLevel                     = 100
+//ReactionDelay				   = [0.3, 1.0]
+IgnoreOldStimulus			   = FALSE
+
+[Stimulus25]
+
+Name                           = "ProhibitedWeaponImpactSound"
+Sense                          = "HearInappropriateBehavior"
+RequiredAlignment0             = "TOLERATE"
+Distance                       = 5000.00
+Duration						= 1.00
+AlarmLevel                     = 100
+//ReactionDelay				   = [0.3, 1.0]
+IgnoreOldStimulus			   = TRUE
+
+[Stimulus26]
+
+Name                           = "ProhibitedWeaponFireSound"
+Sense                          = "HearInappropriateBehavior"
+RequiredAlignment0             = "TOLERATE"
+Distance                       = 5000.00
+Duration						= 1.00
+AlarmLevel                     = 100
+//ReactionDelay				   = [0.3, 1.0]
+IgnoreOldStimulus			   = TRUE
+
+[Stimulus27]
+
+Name                           = "ProhibitedWeaponFireVisible"
+Sense                          = "SeeInappropriateBehavior"
+RequiredAlignment0             = "TOLERATE"
+Distance                       = 2000.00
+Duration						= 1.00
+AlarmLevel                     = 100
+//ReactionDelay				   = [0.3, 1.0]
+IgnoreOldStimulus			   = FALSE
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+/* 
+** AI Volume Sense Masks
+**
+** Name      Name of sense mask
+** Sense0-N  Senses to block out
+**
+*/
+
+[SenseMask0]
+Name = "None"
+
+[SenseMask1]
+Name = "EnemyPermitted"
+Sense0 = "SeeEnemy"
+Sense1 = "HearEnemyFootstep"
+Sense2 = "HearEnemyDisturbance"
+Sense3 = "SeeEnemyDisturbance"
+Sense4 = "SeeEnemyLightDisturbance"
+Sense5 = "SeeEnemyFootprint"
+Sense6 = "SeeEnemyLean"
+
+///////////////////////////////////////////////////////////////////////////////////
+//
+//	Weapon Sets
+//	
+//	Weapon Sets are groups of weapons a character is allowed to use.  They also
+//	used to determine which props are tied to which weapons.
+//
+//	[WeaponSet0-N]
+//	Name			= string -- Name of weapon set
+//	Rifle0-N		= string -- Valid weapon name
+//	RifleProp0-N	= string -- Valid animation prop name
+//	Melee0-N		= string -- Valid weapon name
+//	MeleeProp0-N	= string -- Valie animation prop name
+//	Grenade0-N		= string -- Valid weapon name
+//	GrenadeProp0-N	= string -- Valid animation prop name
+//
+
+//----------------------------------
+
+[WeaponSet0]
+Name		= "None"
+
+//----------------------------------
+
+[WeaponSet1]
+Name			= "ZealotWeapons"
+
+Weapon0			= "Ball"
+Prop0			= "Weapon1"
+NormalLock0		= TRUE
+MovementLock0	= FALSE 
+UnlockAnimPostFireNormalLock0		= FALSE
+UnlockAnimPostFireWithMovementLock0 = FALSE
+
+Weapon1			= "BallLauncher"
+Prop1			= "Weapon2"
+NormalLock1		= TRUE
+MovementLock1	= TRUE
+UnlockAnimPostFireNormalLock1		= FALSE
+UnlockAnimPostFireWithMovementLock1 = FALSE
+
+Weapon2			= "DrunkenDims"
+Prop2			= "Weapon2"
+NormalLock2		= TRUE
+MovementLock2	= TRUE
+UnlockAnimPostFireNormalLock2		= FALSE
+UnlockAnimPostFireWithMovementLock2 = FALSE
+
+Weapon3			= "Punch"
+Prop3			= "Weapon3"
+NormalLock3		= TRUE
+MovementLock3	= TRUE 
+UnlockAnimPostFireNormalLock3		= FALSE
+UnlockAnimPostFireWithMovementLock3 = FALSE
+
+Weapon4			= "NoWeapon"
+Prop4			= "Weapon3"
+NormalLock4		= TRUE
+MovementLock4	= TRUE
+UnlockAnimPostFireNormalLock4		= FALSE
+UnlockAnimPostFireWithMovementLock4 = FALSE
+
+//----------------------------------
+
+[WeaponSet2]
+Name			= "RegularWeapons"
+
+Weapon0 		= "ICRegularDisc"
+Prop0			= "Weapon1"
+NormalLock0		= TRUE
+MovementLock0	= TRUE
+UnlockAnimPostFireNormalLock0		= TRUE
+UnlockAnimPostFireWithMovementLock0 = FALSE
+
+Weapon1 		= "ICRegularDisc_Blue"
+Prop1			= "Weapon1"
+NormalLock1		= TRUE
+MovementLock1	= TRUE
+UnlockAnimPostFireNormalLock1		= TRUE
+UnlockAnimPostFireWithMovementLock1 = FALSE
+
+Weapon2 		= "ICRegularDisc_Green"
+Prop2			= "Weapon1"
+NormalLock2		= TRUE
+MovementLock2	= TRUE
+UnlockAnimPostFireNormalLock2		= TRUE
+UnlockAnimPostFireWithMovementLock2 = FALSE
+
+Weapon3 		= "ICRegularDisc_Purple"
+Prop3			= "Weapon1"
+NormalLock3		= TRUE
+MovementLock3	= TRUE
+UnlockAnimPostFireNormalLock3		= TRUE
+UnlockAnimPostFireWithMovementLock3 = FALSE
+
+Weapon4			= "ICRegularCluster"
+Prop4			= "Weapon1"
+NormalLock4		= TRUE
+MovementLock4	= TRUE
+UnlockAnimPostFireNormalLock4		= TRUE
+UnlockAnimPostFireWithMovementLock4 = FALSE
+
+Weapon5			= "DiscSmack"
+Prop5			= "Weapon3"
+NormalLock5		= TRUE
+MovementLock5	= TRUE
+UnlockAnimPostFireNormalLock5		= FALSE
+UnlockAnimPostFireWithMovementLock5 = FALSE
+
+//----------------------------------
+
+[WeaponSet3]
+Name			= "LauncherWeapons"
+
+Weapon0 		= "ICLauncherDisc"
+Prop0			= "Weapon1"
+NormalLock0		= TRUE
+MovementLock0	= TRUE
+UnlockAnimPostFireNormalLock0		= FALSE
+UnlockAnimPostFireWithMovementLock0 = FALSE
+
+Weapon1 		= "ICLauncherDisc_Blue"
+Prop1			= "Weapon1"
+NormalLock1		= TRUE
+MovementLock1	= TRUE
+UnlockAnimPostFireNormalLock1		= FALSE
+UnlockAnimPostFireWithMovementLock1 = FALSE
+
+Weapon2 		= "ICLauncherDisc_Green"
+Prop2			= "Weapon1"
+NormalLock2		= TRUE
+MovementLock2	= TRUE
+UnlockAnimPostFireNormalLock2		= FALSE
+UnlockAnimPostFireWithMovementLock2 = FALSE
+
+Weapon3 		= "ICLauncherDisc_Purple"
+Prop3			= "Weapon1"
+NormalLock3		= TRUE
+MovementLock3	= TRUE
+UnlockAnimPostFireNormalLock3		= FALSE
+UnlockAnimPostFireWithMovementLock3 = FALSE
+
+Weapon4			= "ICLauncherCluster"
+Prop4			= "Weapon1"
+NormalLock4		= TRUE
+MovementLock4	= TRUE
+UnlockAnimPostFireNormalLock4		= FALSE
+UnlockAnimPostFireWithMovementLock4 = FALSE
+
+Weapon5			= "Punch"
+Prop5			= "Weapon3"
+NormalLock5		= TRUE
+MovementLock5	= TRUE
+UnlockAnimPostFireNormalLock5		= FALSE
+UnlockAnimPostFireWithMovementLock5 = FALSE
+
+//----------------------------------
+
+[WeaponSet4]
+Name			= "ShieldWeapons"
+
+Weapon0 		= "RiotShield"
+Prop0			= "Weapon2"
+NormalLock0		= TRUE
+MovementLock0	= TRUE
+UnlockAnimPostFireNormalLock0		= FALSE
+UnlockAnimPostFireWithMovementLock0 = FALSE
+
+Weapon1 		= "ICShieldDisc"
+Prop1			= "Weapon1"
+NormalLock1		= TRUE
+MovementLock1	= TRUE
+UnlockAnimPostFireNormalLock1		= FALSE
+UnlockAnimPostFireWithMovementLock1 = FALSE
+
+Weapon2 		= "ICShieldDisc_Green"
+Prop2			= "Weapon1"
+NormalLock2		= TRUE
+MovementLock2	= TRUE
+UnlockAnimPostFireNormalLock2		= FALSE
+UnlockAnimPostFireWithMovementLock2 = FALSE
+
+Weapon3 		= "ICShieldDisc_Blue"
+Prop3			= "Weapon1"
+NormalLock3		= TRUE
+MovementLock3	= TRUE
+UnlockAnimPostFireNormalLock3		= FALSE
+UnlockAnimPostFireWithMovementLock3 = FALSE
+
+Weapon4 		= "ICShieldDisc_Purple"
+Prop4			= "Weapon1"
+NormalLock4		= TRUE
+MovementLock4	= TRUE
+UnlockAnimPostFireNormalLock4		= FALSE
+UnlockAnimPostFireWithMovementLock4 = FALSE
+
+//----------------------------------
+
+[WeaponSet5]
+Name			= "KernelWeapons"
+
+Weapon0			= "ICKernelDisc"
+Prop0			= "Weapon1"
+NormalLock0		= TRUE
+MovementLock0	= TRUE
+UnlockAnimPostFireNormalLock0		= FALSE
+UnlockAnimPostFireWithMovementLock0 = FALSE
+
+Weapon1			= "ICKernelLauncherDisc"
+Prop1			= "Weapon2"
+NormalLock1		= TRUE
+MovementLock1	= TRUE
+UnlockAnimPostFireNormalLock1		= FALSE
+UnlockAnimPostFireWithMovementLock1 = FALSE
+
+Weapon2			= "ICKernelDiscSmack"
+Prop2			= "Weapon3"
+NormalLock2		= TRUE
+MovementLock2	= TRUE
+UnlockAnimPostFireNormalLock2		= FALSE
+UnlockAnimPostFireWithMovementLock2 = FALSE
+
+//----------------------------------
+
+[WeaponSet6]
+Name			= "DataWraithWeapons"
+
+Weapon0			= "DataWraithBlaster"
+Prop0			= "Weapon1"
+NormalLock0		= TRUE
+MovementLock0	= TRUE
+UnlockAnimPostFireNormalLock0		= FALSE
+UnlockAnimPostFireWithMovementLock0 = FALSE
+
+Weapon1 		= "DataWraithMelee"
+Prop1			= "Weapon2"
+NormalLock1		= TRUE
+MovementLock1	= TRUE
+UnlockAnimPostFireNormalLock1		= FALSE
+UnlockAnimPostFireWithMovementLock1 = FALSE
+
+//----------------------------------
+
+[WeaponSet7]
+Name		= "RectorscriptWeapons"
+
+Weapon0			= "CorrupticDims"
+Prop0			= "Weapon1"
+NormalLock0		= TRUE
+MovementLock0	= TRUE
+UnlockAnimPostFireNormalLock0		= FALSE
+UnlockAnimPostFireWithMovementLock0 = FALSE
+
+Weapon1			= "Punch"
+Prop1			= "RectorZap"
+NormalLock1		= TRUE
+MovementLock1	= TRUE
+UnlockAnimPostFireNormalLock1		= FALSE
+UnlockAnimPostFireWithMovementLock1 = FALSE
+
+Weapon2			= "RectorZap"
+Prop2			= "RectorZap"
+NormalLock2		= TRUE
+MovementLock2	= TRUE
+UnlockAnimPostFireNormalLock2		= FALSE
+UnlockAnimPostFireWithMovementLock2 = FALSE
+
+//----------------------------------
+
+[WeaponSet8]
+Name			= "GameBotWeapons"
+
+Weapon0 		= "LOL"
+Prop0			= "Weapon1"
+NormalLock0		= TRUE
+MovementLock0	= TRUE
+UnlockAnimPostFireNormalLock0		= FALSE
+UnlockAnimPostFireWithMovementLock0 = FALSE
+
+
+// ------------------------------------
+[WeaponSet9]
+Name			= "SeekerWeapons"
+Weapon0			= "SeekerBlaster"
+Prop0			= "Weapon1"
+NormalLock0		= FALSE
+MovementLock0		= FALSE
+UnlockAnimPostFireNormalLock0		= FALSE
+UnlockAnimPostFireWithMovementLock0 = FALSE
+
+Weapon1			= "Punch"
+Prop1			= "Weapon2"
+MovementLock1	= TRUE
+NormalLock1		= TRUE
+UnlockAnimPostFireNormalLock1		= FALSE
+UnlockAnimPostFireWithMovementLock1 = FALSE
+
+// ------------------------------------
+[WeaponSet10]
+Name			= "FconMonsterWeapons"
+Weapon0			= "FconBlaster"
+Prop0			= "Weapon1"
+NormalLock0		= TRUE
+MovementLock0	= TRUE
+UnlockAnimPostFireNormalLock0		= FALSE
+UnlockAnimPostFireWithMovementLock0 = FALSE
+
+Weapon1			= "FconPrankster"
+Prop1			= "Weapon2"
+NormalLock1		= TRUE
+MovementLock1	= TRUE
+UnlockAnimPostFireNormalLock1		= FALSE
+UnlockAnimPostFireWithMovementLock1 = FALSE
+
+Weapon2			= "FconHead"
+Prop2			= "Weapon3"
+NormalLock2		= TRUE
+MovementLock2	= TRUE
+UnlockAnimPostFireNormalLock2		= FALSE
+UnlockAnimPostFireWithMovementLock2 = FALSE
+
+Weapon3			= "FConMelee"
+Prop3			= "Weapon3"
+NormalLock3		= TRUE
+MovementLock3	= TRUE
+UnlockAnimPostFireNormalLock3		= FALSE
+UnlockAnimPostFireWithMovementLock3 = FALSE
+
+//-------------------------------------
+
+[WeaponSet11]
+Name			= "ResourceHogWeapons"
+
+Weapon0 		= "HogSuffusion"
+Prop0			= "Weapon1"
+NormalLock0		= TRUE
+MovementLock0	= TRUE
+UnlockAnimPostFireNormalLock0		= TRUE
+UnlockAnimPostFireWithMovementLock0 = FALSE
+
+Weapon1			= "DiscSmack"
+Prop1			= "Weapon3"
+NormalLock1		= TRUE
+MovementLock1	= TRUE
+UnlockAnimPostFireNormalLock1		= FALSE
+UnlockAnimPostFireWithMovementLock1 = FALSE
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+/* 
+** Damage Masks
+**
+** Name       Name of damage mask
+** Damage0-N  Type of damage to accept
+**
+** Choices are:
+*/
+
+[DamageMask0]
+Name = "Rector"
+
+// *note*
+// the following is a complete list so we can know when things are intentionally
+// ommitted or new damage types are added that aren't here yet.
+// If something is intentionally omitted, damage type "UNSPECIFIED" is
+// used.
+Damage0  = "UNSPECIFIED"							// 0 DT_UNSPECIFIED - Unknown type (self-damage)
+Damage1  = "BLEEDING"							// 1 DT_BLEEDING - (loss of blood)
+Damage2  = "BULLET"								// 2 DT_BULLET - (bullets)
+Damage3  = "BURN"								// 3 DT_BURN - (fire, corrosives)
+Damage4  = "CHOKE"								// 4 DT_CHOKE - (water, hostile atmosphere)
+Damage5  = "CRUSH"								// 5 DT_CRUSH - (falling, crushing, collision)
+Damage6  = "ELECTROCUTE"							// 6 DT_ELECTROCUTE - (electricity)
+Damage7  = "EXPLODE"								// 7 DT_EXPLODE - (explosions)
+Damage8  = "FREEZE"								// 8 DT_FREEZE - (freezing air or fluid)
+Damage9  = "POISON"								// 9 DT_POISON - (poison gas/dart)
+Damage10 = "UNSPECIFIED"		//Damage10 = "ENDLESS FALL"	// 10 DT_ENDLESS_FALL - (Falling and can never get up)
+Damage11 = "SLEEPING"							// 11 DT_SLEEPING
+Damage12 = "STUN"								// 12 DT_STUN 
+Damage13 = "MELEE"								// 13 DT_MELEE
+Damage14 = "UNSPECIFIED"		//Damage14 = "CAMERA DISABLER"						// 14 DT_CAMERA_DISABLER
+Damage15 = "UNSPECIFIED"		//Damage15 = "GLUE"								// 15 DT_GLUE - (Glue Bomb)
+Damage16 = "UNSPECIFIED"		//Damage16 = "BEAR TRAP"							// 16 DT_BEAR_TRAP
+Damage17 = "UNSPECIFIED"		//Damage17 = "LAUGHING"							// 17 DT_LAUGHING - (Uncontrolable Laughing)
+Damage18 = "UNSPECIFIED"		//Damage18 = "ANTI-SUPER SOLDIER SERUM"			// 18 DT_ASSS - (Anti-super soldier serum)
+Damage19 = "UNSPECIFIED"		//Damage19 = "GADGET CODE DECIPHERER"				// 19 DT_GADGET_CODE_DECIPHERER
+Damage20 = "UNSPECIFIED"		//Damage20 = "GADGET POODLE"						// 20 DT_GADGET_POODLE
+Damage21 = "UNSPECIFIED"		//Damage21 = "GADGET LOCK PICK"					// 21 DT_GADGET_LOCK_PICK
+Damage22 = "UNSPECIFIED"		//Damage22 = "GADGET WELDER"						// 22 DT_GADGET_WELDER
+Damage23 = "UNSPECIFIED"		//Damage23 = "GADGET LIGHTER"						// 23 DT_GADGET_LIGHTER
+Damage24 = "UNSPECIFIED"		//Damage24 = "GADGET CAMERA"						// 24 DT_GADGET_CAMERA
+Damage25 = "UNSPECIFIED"		//Damage25 = "WORLD ONLY"							// 25 DT_WORLDONLY (can only damage worldmodels)
+Damage26 = "UNSPECIFIED"		//Damage26 = "GADGET INFRA RED"					// 26 DT_GADGET_INFRA_RED
+Damage27 = "UNSPECIFIED"		//Damage27 = "GADGET DECAY POWDER"					// 27 DT_GADGET_DECAYPOWDER
+Damage28 = "UNSPECIFIED"		//Damage28 = "GADGET TIME BOMB"					// 28 DT_GADGET_TIME_BOMB
+Damage29 = "UNSPECIFIED"		//Damage29 = "GADGET INK REAGENT"					// 29 DT_GADGET_INK_REAGENT
+Damage30 = "UNSPECIFIED"		//Damage30 = "GADGET EAVESDROP BUG"				// 30 DT_GADGET_EAVESDROPBUG
+Damage31 = "UNSPECIFIED"		//Damage31 = "SLIPPERY"							// 31 DT_SLIPPERY - (Banana, oil slick)
+Damage32 = "SWORD"								// 32 DT_SWORD - (Katana, Tulwar)
+Damage33 = "PROD"								// 33 DT_PROD - ((TRON)PRod weapon)
+Damage34 = "CORRODE"							// 34 DT_CORRODE ((TRON)Corrosive damage)
+Damage35 = "ENERGY CLAW"						// 35 DT_ENERGY_CLAW ((TRON)Energy Claw damage)
+Damage36 = "KNUCKLESANDWICH"					// 36 DT_KNUCKLESANDWICH ((TRON)KnuckleSandwich)
+Damage37 = "DISC"								// 37 DT_DISC ((TRON)Disc)
+Damage38 = "SEQUENCER"							// 38 DT_SEQUENCER ((TRON)Sequencer)
+Damage39 = "CLUSTER"							// 39 DT_CLUSTER ((TRON)Cluster)
+Damage40 = "SUFFUSION"							// 40 DT_SUFFUSION ((TRON)Suffusion)
+Damage41 = "LOL"								// 41 DT_LOL ((TRON)LOL)
+Damage42 = "BALL"								// 42 DT_BALL ((TRON)Ball)
+Damage43 = "BALLLAUNCHER"						// 43 DT_BALLLAUNCHER ((TRON)BallLauncher)
+Damage44 = "DRUNKENDIMS"						// 44 DT_DRUNKENDIMS ((TRON)DrunkenDims)
+Damage45 = "BLASTER"							// 45 DT_BLASTER ((TRON)Blaster)
+Damage46 = "PRANKSTERBIT"						// 46 DT_PRANKSTERBIT ((TRON)PranksterBit)
+Damage47 = "CLUSTERSHARDAMMO"					// 47 DT_CLUSTERSHARDAMMO ((TRON)ClusterShardAmmo)
+Damage48 = "ENEMYDISC"							// 48 DT_ENEMYDISC ((TRON)EnemyDisc)
+Damage49 = "UNSPECIFIED"		//Damage49 =  "CORRUPTICDIMS"						// 49 DT_CORRUPTICDIMS ((TRON)CorrupticDims)
+Damage50 = "CLUSTERAUTOBURST"					// 50 DT_CLUSTERAUTOBURST ((TRON)ClusterAutoBurst)
+Damage51 = "RIOTSHIELDAMMO"						// 51 DT_RIOTSHIELDAMMO ((TRON)RiotShieldAmmo)
+Damage52 = "OPTIMIZEREXPLOSION"					// 52 DT_OPTIMIZEREXPLOSION ((TRON)OptimizerExplosion)
+Damage53 = "SWATBLOCKMELEEATTACK"				// 53 DT_SWATBLOCKMELEEATTACK ((TRON)SwatBlockMeleeAttack)
+Damage54 = "FINDERWEAPON"						// 54 DT_FINDERWEAPON ((TRON)FinderWeapon)
+Damage55 = "PRANKSTERBITIMPLODE"				// 55 DT_PRANKSTERBITIMPLODE ((TRON)PranksterImplode)
+Damage56 = "POWERBLOCK"							// 56 DT_POWERBLOCK ((TRON)PowerBlock)
+Damage57 = "BALLRADIUS"							// 57 DT_BALLRADIUS ((TRON)BallRadius)
+Damage58 = "BALLLAUNCHERRADIUS"					// 58 DT_BALLLAUNCHERRADIUS ((TRON)BallLauncherRadius)
+Damage59 = "DRUNKENDIMSRADIUS"					// 59 DT_DRUNKENDIMSRADIUS ((TRON)DrunkenDimsRadius)

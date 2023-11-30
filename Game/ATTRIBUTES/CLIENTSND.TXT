@@ -1,0 +1,25 @@
+/************************************************************************
+**
+**		           TRON 2.0 Client Sound Attributes File
+**
+** This file contains attributes for the following:
+**
+**  Sound Paths
+**
+**
+*/
+
+/************************************************************************
+**
+** Path Sound Attributes
+**
+**  The following specifies paths to id based sounds
+**  
+*/
+
+[Paths]
+
+Dialogue = "Voice\"
+
+
+

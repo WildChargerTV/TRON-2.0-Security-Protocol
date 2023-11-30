@@ -1,0 +1,451 @@
+/************************************************************************
+**
+**                          --[ACTIVATETYPES]--
+**
+** ActivateTypes are a property in DEdit that correspond to either linear
+** or binary actions in TRON 2.0. The property is associated with objects
+** that the player can directly interact with in the game.
+**
+** The following objects are currently known to use this attribute:
+** BinaryBit,
+**
+** Because some classes in DEdit have static, unchangeable references to
+** an ActivateType, it is not recommended to modify or remove any of the
+** existing entries, and instead add your own to the end of the list.
+**
+** All ActivateTypes definitions should contain the following properties:
+**
+**  Name (String)
+**
+**	The user friendly name of the ActivateType (what shows up in DEdit).
+**
+**  StateON (integer)
+**
+**	A string ID from CRES.DLL of the text to display whe the object is in
+**	it's ON state.  Use -1 for no text.
+**
+**  StateOFF (integer)
+**
+**	A string ID from CRES.DLL of the text to display whe the object is in
+**	it's OFF state.  Use -1 for no text.
+*/
+
+/*
+** ActivateType0 - Door (Pretty Generic. Doors default to this.)
+*/
+
+[ActivateType0]
+
+Name		= "Door Open-Close"
+StateON		= 9501 // Close Door
+StateOFF	= 9500 // Open Door
+
+/*
+** ActivateType1 - ForceField
+*/
+
+[ActivateType1]
+
+Name		= "ForceField Raise-Lower"
+StateON		= 9503 // Raise Forcefield
+StateOFF	= 9502 // Lower Forcefield
+
+/*
+** ActivateType2 - Energy Bridge
+*/
+
+[ActivateType2]
+
+Name		= "Energy Bridge Activate-Deactivate"
+StateON		= 9505 // Deactivate Energy Bridge
+StateOFF	= 9504 // Activate Energy Bridge
+
+/*
+** ActivateType3 - Communication Bit (M04-02)
+*/
+
+
+[ActivateType3]
+
+Name		= "Communication Bit Overpower"
+StateON		= 9506 // Overpower Communication Bit
+StateOFF	= -1
+
+
+/*
+** ActivateType4 - Door to Power Stream Control Sector
+*/
+
+
+[ActivateType4]
+
+Name		= "Power Stream Control Sector Door Open-Close"
+StateON		= 9508 // Close door to Power Stream Control Sector
+StateOFF	= 9507 // Open door to Power Stream Control Sector
+
+
+/*
+** ActivateType5 - Power Streams Cycle (M01-02)
+*/
+
+
+[ActivateType5]
+
+Name		= "Power Streams Cycle"
+StateON		= -1 
+StateOFF	= 9509 // Cycle Power Streams
+
+/*
+** ActivateType6 - Overpower Bit
+*/
+
+
+[ActivateType6]
+
+Name		= "Bit Overpower"
+StateON		= 9510 // Overpower Bit
+StateOFF	= -1
+
+
+/*
+** ActivateType7 - PDA Function (M08-01)
+*/
+
+[ActivateType7]
+
+Name		= "PDA Function Activate-Deactivate"
+StateON		= 9512 // Deactivate PDA Function
+StateOFF	= 9511 // Activate PDA Function
+
+
+/*
+** ActivateType8 - Platform
+*/
+
+[ActivateType8]
+
+Name		= "Platform Activate-Deactivate"
+StateON		= 9513 // Activate Platform
+StateOFF	= 9513 // Activate Platform
+
+/*
+** ActivateType9 - Call Platform (M08-01)
+*/
+
+[ActivateType9]
+
+Name		= "Platform Call"
+StateON		= -1 
+StateOFF	= 9515 // Call Platform 
+
+/*
+** ActivateType10 - Data Hauler (M10-01)
+*/
+
+[ActivateType10]
+
+Name		= "Data Hauler Activate"
+StateON		= -1 
+StateOFF	= 9516 // Activate Data Hauler 
+
+/*
+** ActivateType11 - Activate Data Streams (M06-04)
+*/
+
+[ActivateType11]
+
+Name		= "Data Streams Activate-Deactivate"
+StateON		= 9518 // Deactivate Data Streams 
+StateOFF	= 9517 // Activate Data Streams 
+
+/*
+** ActivateType12 - Activate Data Streams (M06-04)
+*/
+
+[ActivateType12]
+
+Name		= "Security Clamp Release"
+StateON		= -1
+StateOFF	= 9519 // Release Security Clamp 
+
+/*
+** ActivateType13 - Activate Combat Training Program (M01-01)
+*/
+
+[ActivateType13]
+
+Name		= "Combat Training Program Activate"
+StateON		= -1
+StateOFF	= 9520 // Activate Combat Training Program
+
+/*
+** ActivateType14 - Releasing Mooring Apps (M02-03)
+*/
+
+[ActivateType14]
+
+Name		= "Mooring App Release"
+StateON		= -1
+StateOFF	= 9521 // Release Mooring App
+
+/*
+** ActivateType15 - Security Locker (M02-01)
+*/
+
+[ActivateType15]
+
+Name		= "Security Locker Open-Close"
+StateON		= 9523 // Close Security Locker
+StateOFF	= 9522 // Open Security Locker
+
+/*
+** ActivateType16 - Cycle Comm Port Rings (M03-01)
+*/
+
+[ActivateType16]
+
+Name		= "Comm Port Rings Cycle"
+StateON		= -1
+StateOFF	= 9524 // Cycle Comm Port Rings
+
+/*
+** ActivateType17 - Rotate Oculus (M04-03)
+*/
+
+[ActivateType17]
+
+Name		= "Oculus Rotate"
+StateON		= -1
+StateOFF	= 9525 // Rotate Oculus
+
+/*
+** ActivateType18 - Align Lenses (M04-03)
+*/
+
+[ActivateType18]
+
+Name		= "Lenses Align"
+StateON		= -1
+StateOFF	= 9526 // Align Lenses
+
+/*
+** ActivateType19 - Configure Gate Jumper (M05-02)
+*/
+
+[ActivateType19]
+
+Name		= "Gate Jumper Configure"
+StateON		= -1
+StateOFF	= 9527 // Configure Gate Jumper
+
+/*
+** ActivateType20 - Deactivate Primary Power Relay Station (M05-02)
+*/
+
+[ActivateType20]
+
+Name		= "Primary Power Relay Station Deactivate"
+StateON		= -1
+StateOFF	= 9528 // Deactivate Primary Power Relay Station
+
+/*
+** ActivateType21 - Activate Secondary Power Relay Station (M05-02)
+*/
+
+[ActivateType21]
+
+Name		= "Secondary Power Relay Station Activate"
+StateON		= -1
+StateOFF	= 9529 // Activate Secondary Power Relay Station
+
+/*
+** ActivateType22 - Reset Local Data Stream Functionality (M09-01)
+*/
+
+[ActivateType22]
+
+Name		= "Local Data Stream Functionality Reset"
+StateON		= -1
+StateOFF	= 9530 // Reset Local Data Stream Functionality
+
+/*
+** ActivateType23 - Ring 1 Align (M10-02)
+*/
+
+[ActivateType23]
+
+Name		= "Ring 1 Align"
+StateON		= -1
+StateOFF	= 9531 // Align Access Ring 1
+
+/*
+** ActivateType24 - Ring 2 Align (M10-02)
+*/
+
+[ActivateType24]
+
+Name		= "Ring 2 Align"
+StateON		= -1
+StateOFF	= 9532 // Align Access Ring 2
+
+/*
+** ActivateType25 - Ring 3 Align (M10-02)
+*/
+
+[ActivateType25]
+
+Name		= "Ring 3 Align"
+StateON		= -1
+StateOFF	= 9533 // Align Access Ring 3
+
+/*
+** ActivateType26 - Ring 1 and 3 Configure (M10-02)
+*/
+
+[ActivateType26]
+
+Name		= "Rings 1 and 3 Configure"
+StateON		= -1
+StateOFF	= 9534 // Configure Access Rings 1 and 3
+
+
+/*
+** ActivateType27 - Ring 2 and 3 Configure (M10-02)
+*/
+
+[ActivateType27]
+
+Name		= "Rings 2 and 3 Configure"
+StateON		= -1
+StateOFF	= 9535 // Configure Access Rings 2 and 3
+
+/*
+** ActivateType28 - Ring 1 and 2 Configure (M10-02)
+*/
+
+[ActivateType28]
+
+Name		= "Rings 1 and 2 Configure"
+StateON		= -1
+StateOFF	= 9536 // Configure Access Rings 1 and 2
+
+/*
+** ActivateType29 - Stabilizing Bit Access Door Open-Close (M09-03)
+*/
+
+[ActivateType29]
+
+Name		= "Stabilizing Bit Access Door Open-Close"
+StateON		= 9538 // Close Stabilizing Bit Access Door
+StateOFF	= 9537 // Open Stabilizing Bit Access Door 
+
+/*
+** ActivateType30 - Turn Nav Helm (M10-04)
+*/
+
+[ActivateType30]
+
+Name		= "Nav Helm Turn"
+StateON		= -1
+StateOFF	= 9539 // Turn Nav Helm
+
+/*
+** ActivateType31 - Stabilizer Bit Release (M10-04)
+*/
+
+[ActivateType31]
+
+Name		= "Stabilizer Bit Release"
+StateON		= 9540 // Release Stabilizer Bit
+StateOFF	= -1
+
+/*
+** ActivateType32 - Open Surge Supression Circuit (M05-04)
+*/
+
+[ActivateType32]
+
+Name		= "Surge Supression Circuit Open"
+StateON		= -1
+StateOFF	= 9541 // Open Surge Supression Circuit
+
+/*
+** ActivateType33 - Configure Exit Port for Power Router Destination (M03-01)
+*/
+
+[ActivateType33]
+
+Name		= "ConfigureExitPort"
+StateON		= -1
+StateOFF	= 9542 // Configure Exit Port for Power Router Destination
+
+
+/*
+** ActivateType34 - Circuit Overdrive Engage (M10-02)
+*/
+
+[ActivateType34]
+
+Name		= "Overdrive Circuit Engage"
+StateON		= -1
+StateOFF	= 9543 // Engage Overdrive Circuit
+
+/*
+** ActivateType35 - BuildNotes 
+*/
+
+[ActivateType35]
+
+Name		= "Pickup Build Note"
+StateON		= 9544 // Pickup Build Note
+StateOFF	=  -1
+
+/*
+** ActivateType36 - Engage IONode
+*/
+
+[ActivateType36]
+
+Name		= "Engage IONode"
+StateON		= 9545 // Activate I/O Node
+StateOFF	=  -1
+
+/*
+** ActivateType37 - Engage IONode
+*/
+
+[ActivateType37]
+
+Name		= "Disable Secrezzer"
+StateON		= 9546 // Deactivate Sec Rezzer
+StateOFF	=  -1
+
+/*
+** ActivateType38 - Use Optimizer
+*/
+
+[ActivateType38]
+
+Name		= "Use Optimizer"
+StateON		= 9547 // Activate Optimizer
+StateOFF	=  -1
+
+/*
+** ActivateType39 - Use Archivebin
+*/
+
+[ActivateType39]
+
+Name		= "Open Archivebin"
+StateON		= 9549 // Search Archive Bin
+StateOFF	= -1 
+
+/*
+** ActivateType39 - Use Coredump
+*/
+
+[ActivateType40]
+
+Name		= "Open Coredump"
+StateON		= 9548 // Search Core Dump
+StateOFF	= -1 
