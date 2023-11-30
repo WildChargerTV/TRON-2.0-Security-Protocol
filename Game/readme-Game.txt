@@ -22,5 +22,5 @@ TRON 2.0: Security Protocol supplies texture replacements that modify the color 
 
 [WORLDS]
 The Worlds folder is pretty straightforward, in that it contains all of the game's maps. Subfolders split the maps into categories, and within those subfolders, files that contain map data can be found. Compiled worlds use the .DAT file extension. Decompiled worlds that come with the Retail installation use the .TBW (TRON Binary World) file extension. Worlds created in DEdit can be both saved and read in the .LTA, .LTC, and .TBW formats; DEdit will default to using .LTC when saving worlds.
-It is unknown at this time whether there is a benefit to saving worlds as .TBW files.
+It is unknown at this time whether there is a benefit to saving worlds as .TBW files. At this time, the worlds are the only assets that must be developed within the main Game folder, as there is no tangible benefit to copying all of the game's objects into a unique project file.
 When the environments of TRON 2.0: Security Protocol are developed, they will be placed in this folder. For now, the folder contains an assortment of test files, as well as a world from the archived 2020 version of development.

@@ -1,8 +1,9 @@
 Documenting the way around for future reference
 
 When inside Custom/SecurityProtocol, all custom files must be REZ'd. No customrez.txt is needed.
-To avoid REZing, place any custom files in the tcdg folder.
+To avoid REZing, make a secpro folder structured in the same way the tcdg folder is, then add REZ commands to the command line arguments of both DEdit and the launcher.
 
 Make sure profiles are not carried over between mods to prevent save corruption.
 
 When hue shifting, average is 140 for red, xxx for yellow. Exact hue shifts do not need to be saved as original copies of textures should always be kept.
+Ensure textures are NEVER exported from GIMP with RLE compression. DEdit cannot import these.
