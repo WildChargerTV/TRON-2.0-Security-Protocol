@@ -1,6 +1,8 @@
 /************************************************************************
 **                             --[LAYOUT]--
 **
+** IMPORTANT: This is the 16:9 version of LAYOUT.TXT.
+**
 ** NOTE: This version of LAYOUT.TXT is modified from the version used
 ** the TRON 2.0: Killer App Mod, NOT from the base game version.
 ** 
@@ -1611,7 +1613,7 @@ MinorUpgradeLoops	= 10
 MinorUpgradeLoopLength	= 0.7
 MajorUpgradeLoops	= 10
 MajorUpgradeLoopLength	= 1.0
-BaseColor		= <90.0, 175.0, 255.0>
+BaseColor		= <255.0, 90.0, 90.0> // SecurityProtocol
 MinorUpgradeColor	= <255.0, 255.0, 255.0>
 MajorUpgradeColor	= <255.0, 255.0, 255.0>
 
@@ -1717,7 +1719,7 @@ CursorTexUV			= (117, 45, 254, 70)
 AnchorPos	= (12,22)
 IconTexture = "interface\hud\buildnote_hudicon.dtx"
 TextSize	= 16
-BaseColor	= <90.0, 175.0, 255.0>
+BaseColor	= <255.0, 90.0, 90.0> // SecurityProtocol
 
 
 /************************************************************************
@@ -2131,7 +2133,7 @@ BarSelectColor		= <192.0, 192.0, 0.0>
 SlideInSound		= "interface\snd\menuopen.wav"
 SlideOutSound		= "interface\snd\menuclose.wav"
 SelectedColor		= <255.0, 255.0, 255.0>
-NonSelectedColor	= <113.0, 158.0, 255.0>
+NonSelectedColor	= <255.0, 113.0, 113.0> // SecurityProtocol
 DisabledColor		= <180.0, 180.0, 200.0>
 
 /************************************************************************
@@ -2303,16 +2305,16 @@ DialogFrame 			= "interface\menu\sprtex\frame_solid.dtx"
 DialogFontNum			= 1
 DialogFontSize			= 14
 OKSelected			= <255.0, 255.0, 255.0>
-OKNormal			= <90.0, 175.0, 255.0>
+OKNormal			= <255.0, 113.0, 113.0> // SecurityProtocol
 OKDisabled			= <0.0, 75.0, 238.0>
 CancelSelected			= <255.0, 255.0, 255.0>
-CancelNormal			= <90.0, 175.0, 255.0>
+CancelNormal			= <255.0, 113.0, 113.0> // SecurityProtocol
 CancelDisabled			= <0.0, 75.0, 238.0>
 TextSelected			= <255.0, 255.0, 255.0>
-TextNormal			= <90.0, 175.0, 255.0>
+TextNormal			= <255.0, 113.0, 113.0> // SecurityProtocol
 TextDisabled			= <0.0, 75.0, 238.0>
 EditSelected			= <255.0, 255.0, 255.0>
-EditNormal			= <90.0, 175.0, 255.0>
+EditNormal			= <255.0, 113.0, 113.0> // SecurityProtocol
 EditDisabled			= <0.0, 75.0, 238.0>
 
 /************************************************************************
