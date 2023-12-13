@@ -20,11 +20,11 @@ TRON 2.0: Security Protocol supplies a modification to the file "MENUFX.FXF" tha
 The Interface folder is one of the most expansive folders, containing various assets, models, textures, sprites, sounds, and fonts that apply to most, if not all, of the game's UX elements. These include menus, the HUD, loading screens, and icons. It's too large to cover in this summary file.
 TRON 2.0: Security Protocol supplies texture replacements that modify the color scheme of the interface. It also supplies an unmodified copy of "JET_THROW.SPR", which is a menu sprite that simulates a deresolution when the character on the Main Menu throws their disc. This file is unmodified from the version provided alongside the TRON 2.0 Killer App Mod, and is only provided as an insurance policy in the event the game fails to properly load the version of the file installed alongside the TRON 2.0 Killer App Mod - an occurrence with unknown origins that is confirmed to occur.
 
-[PREFABS]
-The Prefabs folder holds, as the name implies, Prefabs, which are essentially packaged DEdit brush & object groups that can be easily imported and instantiated in a world.
-TRON 2.0: Security Protocol does not yet utilize a mod-exclusive prefab; rather, the one file present, DirLights.lta, is a set of three directional lights that allow the game's first-person animations to appear as they would in the Retail campaign. Because this is not supplied as standard, it is instead supplied alongside the mod.
-
 [WORLDS]
 The Worlds folder is pretty straightforward, in that it contains all of the game's maps. Subfolders split the maps into categories, and within those subfolders, files that contain map data can be found. Compiled worlds use the .DAT file extension. Decompiled worlds that come with the Retail installation use the .TBW (TRON Binary World) file extension. Worlds created in DEdit can be both saved and read in the .LTA, .LTC, and .TBW formats; DEdit will default to using .LTC when saving worlds.
 It is unknown at this time whether there is a benefit to saving worlds as .TBW files. At this time, the worlds are the only assets that must be developed within the main Game folder, as there is no tangible benefit to copying all of the game's objects into a unique project file.
 When the environments of TRON 2.0: Security Protocol are developed, they will be placed in this folder. For now, the folder contains an assortment of test files, as well as a world from the archived 2020 version of development.
+
+[CRES.DLL]
+CRES.DLL is the game's global string table. If it's text in the game, 99 times out of 100 it shows up in this file. Access its contents and modify them with a program like XN Resource Editor (provided with the TRON 2.0 Tools installer).
+TRON 2.0: Security Protocol modifies specific strings associated with menu options to make them more consistent, but the main bulk of the modification occurs in order to foster the mod's ingame dialogue subtitles, e-mails. and other text assets.
