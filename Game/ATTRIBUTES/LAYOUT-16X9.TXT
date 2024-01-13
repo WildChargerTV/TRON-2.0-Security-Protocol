@@ -4,58 +4,129 @@
 ** IMPORTANT: This is the 16:9 version of LAYOUT.TXT.
 **
 ** NOTE: This version of LAYOUT.TXT is modified from the version used
-** the TRON 2.0: Killer App Mod, NOT from the base game version.
-** 
-** TODO: Ask if modifying this has consequences to mod functionality.
+** in the TRON 2.0: Killer App Mod, NOT from the base game version.
+** Additionally, extraneous, commented-out values in previous versions
+** of this file have been removed for simplicity.
 **
-** The Layout file, as the name implies, specifies attributes used in
-** the game's menus, HUD, fonts, and other custom elements. These
-** attributes include, but are not limited to, screen position,
-** text/element color, and element scale.
+**  The Layout file, as the name implies, specifies attributes used for
+**  the game's menus, HUD, fonts, and other custom elements. These
+**  attributes include, but are not limited to, screen position,
+**  text/element color, and element scale.
 **
-** More specific documentation can be found within each section of this
-** document.
+**  This is a big file, so more specific documentation can be found
+**  within each section of the document.
+**
+**
+**  Term definitions for reference:
+**  Point (X, Y)
+**      - A point on the screen, in pixels.
+**  Point (Unit of Measurement)
+**      - Typically refers to the measurement of font size. 1 point is
+**      1/72nd of an inch.
+**  Rectangle (????)
+**      - Unknown
+**  Vector <r, g, b>
+**      - An RGB color value. Must be specified to a single decimal
+**      point, e.g. <255.0, 0.0, 128.0>.
+**  Integer (#)
+**      - A whole number value. Ignores decimals.
+**  Float (#)
+**      - A number value. Does not ignore decimals.
+**  String ("text")
+**      - A string of text.
+**  Path ("text")
+**      - A string that explicitly defines a directory path to a
+**      specific file.
+**
+**  Position (or Pos)
+**      - A Point that is able to scale at higher resolutions. The value
+**      is based on a 640x480 resolution and is scaled from there.
+**  Offset
+**      - A Point that is unable to scale at higher resolutions (an
+**      absolute value).
 */
+
 
 /************************************************************************
 **
-** Basic Screen Layout
+**                           Basic Screen Layout
 **
 ** The BasicLayout definition specifies positions and sizes for common
-** screen components.
+** menu screen components.
 **
-**	HelpRect (Rect)
+**	HelpRect (Rectangle)
+**      - The space allocated to display the menu detail text. Normally
+**      appears at the lower-middle section of the screen.
+**      - This setting is managed by the Killer App Mod.
 **
-**		The space allocated to display the rollover help
+**  HelpFont (Integer)
+**      - The font ID used for the main menu detail text.
+**
+**  HelpSize (Integer)
+**      - The point size of the main menu detail text.
+**      - This setting is managed by the Killer App Mod.
+**
+**  HUDFont (Integer)
+**      - The font ID used for the menu buttons(?).
+**      - Further verification required.
+**
+**  BackFont (Integer)
+**      - The font ID used for the back button text. Also applies to the
+**      OK button in the Options menu.
+**
+**  BackSize (Integer)
+**      - The point size of the back button text. Also applies to the OK
+**      button in the Options menu.
 **
 **	BackPos (Point)
+**		- The upper-left origin position of the Quit button in the main
+**      menu.
+**      - This setting is managed by the Killer App Mod.
 **
-**		The upper-left corner of the "back" item.
+**	NextPos (Point)
+**		- The upper-left origin position of the "next" item.
+**      - Is this used anywhere?
 **
-**	ContinuePos (Point)
+**  MainPos (Point)
+**      - The upper-left origin position of the "main" item.
+**      - Is this used anywhere?
 **
-**		The upper-left corner of the "continue" item.
+**	BackColor (Vector)
+**      - The color used for menu background fills.
+**      - This setting is not used in TRON 2.0.
 **
-**	BackColor	(Vector)
+**  BackSprite (Path)
+**      - The sprite used for the menu background.
+**      - This setting is not used in TRON 2.0.
 **
-**		The color to use for background fills.
-**		<r, g, b>
+**  BackSpriteScale (Float)
+**      - The scale of the BackSprite.
+**      - This setting is not used in TRON 2.0.
+**
+**  SliderTex (Path)
+**      - The texture used for menu sliders (e.g. the mouse sensitivity
+**      option).
+**
+**  ArrowBackTex (Path)
+**      - The texture used for the back button, when not highlighted.
+**
+**  ArrowBackTexH (Path)
+**      - The texture used for the back button, when highlighted.
+**
+**  ArrowBackPos (Point)
+**      - The upper-left origin position of the back button.
+**      - This setting is managed by the Killer App Mod.
 **
 **	LoadStringPos (Point)
-**
-**		The top-center position of the name of the world displayed on
-**		the loading screen.
+**		- The upper-middle origin position of the name of the world
+**		displayed on the loading screen.
 **
 **	LoadPhotoPos (Point)
+**		- The upper-left origin position of the photo of the world
+**		displayed on the loading screen.
 **
-**		The top-left corner of the photo of the world displayed on
-**		the loading screen.
-**
-**	BossRect (Rect)
-**
-**		The space allocated to display the boss meter
-**
-**
+**	BossRect (Rectangle)
+**		- The space allocated to display the boss health bar.
 */
 
 [BasicLayout]
@@ -65,16 +136,16 @@ HelpSize			= 16
 HUDFont 			= 1
 BackFont			= 0
 BackSize			= 18
-BackPos 			= (535,328) 			//(32,436)
-NextPos 			= (0,0)				//(569,436)
-MainPos 			= (0,0) //(128,100) 			//(128,390)
+BackPos 			= (535,328)
+NextPos 			= (0,0)
+MainPos 			= (0,0)
 BackColor			= <185.0, 205.0, 95.0>
-BackSprite			= ""//interface\menu\spr\mainmenu2.spr"
+BackSprite			= ""
 BackSpriteScale 	= 0.5
 SliderTex			= "interface\menu\sprtex\slider.dtx"
 ArrowBackTex		= "interface\menu\sprtex\menubutton_bg.dtx"
 ArrowBackTexH		= "interface\menu\sprtex\menubutton_bg_hl.dtx"
-ArrowBackPos		= (25,330)//(-20,425)
+ArrowBackPos		= (25,330)
 LoadStringPos		= (320,420)
 LoadPhotoPos		= (350,180)
 BossRect			= (160,90,480,100)
@@ -1101,38 +1172,54 @@ PostScale1		= "Loading_DiscArena01"
 
 /************************************************************************
 **
-**	Font Layout
+**	                            Font Layout
 **
+**  In TRON 2.0, pretty much all dynamic text in the game uses the same
+**  font. The only reason more than one font entry was ever needed was 
+**  likely because that was easier than reprogramming NOLF to only ever
+**  reference one or two fonts.
 **
+**  Unless you know what you're doing, it is not recommended to modify
+**  any of these entries, as the potential impact has not yet been
+**  properly measured. 
+**
+**  Fonts 1 thru 5 are used in some way in the base game. TRON 2.0: 
+**  Security Protocol adds a sixth font using the only other functioning
+**  font in the game, Tron_Console11, for debugging and testing purposes
+**  only.
+**
+**  For more information on fonts, please see [wiki link here].
+**
+**  Font# (Path)
+**      - The font file used by the game. Must be in .FFB format.
+**      - Replace the # with the number of the font being added. Cannot
+**      conflict with existing font entries.
+**
+**  FontSize# (Integer)
+**      - The intended point size of the font file. This should always
+**      be set to the size indicated in the name of the font file.
+**      - Replace the # with the number of the font being added. Cannot
+**      conflict with existing font entries.
 */
+
 [Fonts]
-Font0				= "Interface\Fonts\TwenCen_20.ffb"  //"Interface\Fonts\tcm_____.TTF"
+Font0				= "Interface\Fonts\TwenCen_20.ffb"
 FontSize0			= 20
-Font1				= "Interface\Fonts\TwenCen_20.ffb"  //"Interface\Fonts\tcm_____.TTF"
+Font1				= "Interface\Fonts\TwenCen_20.ffb"
 FontSize1			= 20
-Font2				= "Interface\Fonts\TwenCen_20.ffb"  //"Interface\Fonts\tcm_____.TTF"
+Font2				= "Interface\Fonts\TwenCen_20.ffb"
 FontSize2			= 20
-Font3				= "Interface\Fonts\TwenCen_20.ffb"  //"Interface\Fonts\tcm_____.TTF"
+Font3				= "Interface\Fonts\TwenCen_20.ffb"
 FontSize3			= 20
-Font4				= "Interface\Fonts\TwenCen_20.ffb"  //"Interface\Fonts\tcm_____.TTF"
+Font4				= "Interface\Fonts\TwenCen_20.ffb"
 FontSize4			= 20
 
 
-Font5				= "Interface\Fonts\TwenCen_20_Aliased.ffb"  //"Interface\Fonts\tcm_____.TTF"
+Font5				= "Interface\Fonts\TwenCen_20_Aliased.ffb" 
 FontSize5			= 10
 
-
-//Font4				= "Interface\Fonts\ethnocentric_36.ffb"
-//FontSize0				= 48
-//Font1				= "Interface\Fonts\tcm_____.TTF"
-//Font2				= "Interface\Fonts\tcm_____.TTF"
-//Font3				= "Interface\Fonts\tcm_____.TTF"
-//Font4				= "Interface\Fonts\tcm_____.TTF"
-//Font5				= "Interface\Fonts\tcm_____.TTF"
-//Font6				= "Interface\Fonts\tcm_____.TTF"
-//Font7				= "Interface\Fonts\tcm_____.TTF"
-//Font8				= "Interface\Fonts\tcm_____.TTF"
-
+Font6               = "Interface\Fonts\Tron_Console11.FFB"
+FontSize6           = 11
 
 
 /************************************************************************

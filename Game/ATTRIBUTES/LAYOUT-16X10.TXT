@@ -1,714 +1,1747 @@
 /************************************************************************
 **                             --[LAYOUT]--
 **
-** IMPORTANT: This is the 16:10 version of LAYOUT.TXT.
+**  IMPORTANT: This is the 16:10 version of LAYOUT.TXT.
 **
-** NOTE: This version of LAYOUT.TXT is modified from the version used
-** the TRON 2.0: Killer App Mod, NOT from the base game version.
-** 
-** TODO: Ask if modifying this has consequences to mod functionality.
+**  The Layout file, as the name implies, specifies attributes used for
+**  the game's menus, HUD, fonts, and other custom elements. These
+**  attributes include, but are not limited to, screen position,
+**  text/element color, and element scale.
 **
-** The Layout file, as the name implies, specifies attributes used in
-** the game's menus, HUD, fonts, and other custom elements. These
-** attributes include, but are not limited to, screen position,
-** text/element color, and element scale.
+**  This is a big file. So big, in fact, that to have left it in the
+**  state Monolith originally provided it in would have proven way too
+**  confusing. In the interest of overall clarity as well as to ensure
+**  the documentation would be for things that mattered, a significant
+**  amount of unnecessary things were outright removed, with testing
+**  performed to ensure the game would still run properly after their
+**  removal.
 **
-** More specific documentation can be found within each section of this
-** document.
+**  For this reason, it's important to know that if using this layout 
+**  file has resulted in anything breaking, that a clean copy is ALWAYS 
+**  available in the "tcdg" folder, inside the game's installation 
+**  directory. So, should you encounter any issues, report them to me on 
+**  GitHub, and then revert to the clean copy until it's fixed.
+**
+**  Also, please note that because of the sheer size of this file, it's
+**  almost impossible to ensure all of the documentation uses consistent
+**  verbage and structure the whole way through. If anything sounds too
+**  confusing, feedback is also welcomed on the GitHub. Just make sure
+**  that the suggestion is specific enough to be feasible to implement.
+**
+**  See the Table of Contents to find specific sections of the file more
+**  easily.
+**
+**  Values that have been modified specifically for TRON 2.0: Security
+**  Protocol will be labeled as such using a single-line comment placed
+**  directly on that value's line.
+**
+**  The first pass going through this file broke a few things. Now, I
+**  expected as such, but that doesn't mean it isn't a bit frustrating.
+**  I'll be doing a second pass from a clean copy. Being thorough is
+**  important, after all.
+**  TODO Leave fonts alone for now. Testing can be done later.
+**  TODO Great job, moron, you somehow misaligned the ingame chat menu.
+**  Gotta figure out why that happened
+**  TODO A random graphical glitch was introduced where the Ball
+**  Launcher may randomly fail to "wrap around" the player's arm. This
+**  effect is inconsistent and not influenced by anything specifically,
+**  yet.
+**  TODO Whoops, the active subroutine icons stretch off to the right
+**  now..
 */
+
 
 /************************************************************************
 **
-** Basic Screen Layout
+**                            Table of Contents
 **
-** The BasicLayout definition specifies positions and sizes for common
-** screen components.
+**  This file is over 6,000 lines long! Although it'd be impossible to
+**  add link references to a raw text file, this "Table of Contents"
+**  will provide the exact names of the sections of this file that can
+**  be slapped into a Find prompt. That should work, right?
 **
-**	HelpRect (Rect)
+**  TODO the table of contents, dummy (soonTM)
+*/
+
+
+/************************************************************************
 **
-**		The space allocated to display the rollover help
+**                           Basic Screen Layout
 **
+**  The BasicLayout definition specifies positions, sizes, and various
+**  other attributes for common menu screen components. Although it 
+**  doesn't technically set "default values", none of these values are 
+**  ever overridden when a menu screen uses them.
+**
+**	HelpRect (Rectangle)
+**      - The space allocated to display the menu "tooltip" text. 
+**      Appears at the lower-middle section of the screen when most, if
+**      not all, menu options are hovered.
+**      - This setting is managed by the Killer App Mod.
+**  HelpFont (Integer),
+**  HelpSize (Integer)
+**      - The font ID and text height of the main menu "tooltip" text.
+**      - HelpSize is managed by the Killer App Mod.
 **	BackPos (Point)
+**		- The upper-left origin position of the Quit button in the main
+**      menu.
+**      - TODO re-test this. "Common" screen components? Gotta be more
+**      than just this right????
+**      - This setting is managed by the Killer App Mod.
+**  BackFont (Integer),
+**  BackSize (Integer)
+**      - The font ID and text height of the back button text. Also 
+**      applies to the OK button in the Options menu.
+**      - TODO re-test this
+**  SliderTex (Path)
+**      - The texture used for menu sliders (e.g. the mouse sensitivity
+**      option). Notably does not apply to all arrow buttons that aren't
+**      attached to a slider.
+**  ArrowBackTex (Path),
+**  ArrowBackTexH (Path)
+**      - The texture used for the back button, when not highlighted and
+**      highlighted respectively.
+**  ArrowBackPos (Point)
+**      - The upper-left origin position of the back button.
+**      - This setting is managed by the Killer App Mod.
+**	BossRect (Rectangle)
+**		- The space allocated to display the boss health bar.
 **
-**		The upper-left corner of the "back" item.
-**
-**	ContinuePos (Point)
-**
-**		The upper-left corner of the "continue" item.
-**
-**	BackColor	(Vector)
-**
-**		The color to use for background fills.
-**		<r, g, b>
-**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  HUDFont (Integer)
+**      - The font ID used in unknown areas.
+**      - What is this???
+**	NextPos (Point)
+**		- The upper-left origin position of the "next" item.
+**      - This setting is not used in TRON 2.0(?).
+**  MainPos (Point)
+**      - The upper-left origin position of the "main" item.
+**      - This setting is not used in TRON 2.0(?).
+**	BackColor (Vector)
+**      - The color used for menu background fills.
+**      - This setting is not used in TRON 2.0.
+**  BackSprite (Path)
+**      - The sprite used for the menu background.
+**      - This setting is not used in TRON 2.0.
+**  BackSpriteScale (Float)
+**      - The scale of the BackSprite.
+**      - This setting is not used in TRON 2.0.
 **	LoadStringPos (Point)
-**
-**		The top-center position of the name of the world displayed on
-**		the loading screen.
-**
+**		- The upper-middle origin position of the name of the world
+**		displayed on the loading screen.
+**      - LoadingScreenDefault manages this, why is it here?
 **	LoadPhotoPos (Point)
-**
-**		The top-left corner of the photo of the world displayed on
-**		the loading screen.
-**
-**	BossRect (Rect)
-**
-**		The space allocated to display the boss meter
-**
-**
+**		- The upper-left origin position of the photo of the world
+**		displayed on the loading screen.
+**      - LoadingScreenDefault manages this, why is it here?
 */
-
 [BasicLayout]
-HelpRect			= (194, 442, 500, 470)
-HelpFont			= 1
-HelpSize			= 16
-HUDFont 			= 1
-BackFont			= 0
-BackSize			= 18
-BackPos 			= (560,366) 			//(32,436)
-NextPos 			= (0,0)				//(569,436)
-MainPos 			= (0,0) //(128,100) 			//(128,390)
-BackColor			= <185.0, 205.0, 95.0>
-BackSprite			= ""//interface\menu\spr\mainmenu2.spr"
-BackSpriteScale 	= 0.5
-SliderTex			= "interface\menu\sprtex\slider.dtx"
-ArrowBackTex		= "interface\menu\sprtex\menubutton_bg.dtx"
-ArrowBackTexH		= "interface\menu\sprtex\menubutton_bg_hl.dtx"
-ArrowBackPos		= (10,365)//(-20,425)
-LoadStringPos		= (320,420)
-LoadPhotoPos		= (350,180)
-BossRect			= (160,90,480,100)
+HelpRect		    = (194, 442, 500, 470)
+HelpFont		    = 1
+HelpSize		    = 16
+//HUDFont 		    = 1
+BackPos 		    = (560, 366)
+BackFont		    = 0
+BackSize		    = 18
+//NextPos 		    = (0, 0)
+//MainPos 		    = (0, 0)
+//BackColor		    = <185.0, 205.0, 95.0>
+//BackSprite		= ""
+//BackSpriteScale   = 0.5
+SliderTex		    = "interface\menu\sprtex\slider.dtx"
+ArrowBackTex	    = "interface\menu\sprtex\menubutton_bg.dtx"
+ArrowBackTexH	    = "interface\menu\sprtex\menubutton_bg_hl.dtx"
+ArrowBackPos	    = (10, 365)
+//LoadStringPos	    = (320, 420)
+//LoadPhotoPos	    = (350, 180)
+BossRect		    = (160, 90, 480, 100)
 
 
 /************************************************************************
 **
-** Screen Layout
+**                              Screen Layout
 **
-** The Screen Layout definitions specifies positions and sizes for screen
-** components. The GenericScreen section defines default values which will
-** be used if the specific screen doesn't override them.
+**  The Screen Layout definitions specify positions, sizes, and various
+**  other attributes of menu screen components.
 **
-** Individual screens may also have custom values specified in their section
-** that are used in addition to these common definitions:
+**  The GenericScreen section defines default values which will be used
+**  by all of the screen definitions made after it, unless overridden.
+**
+**  Individual screens also have custom values specified in their
+**  section that are used in addition to the GenericScreen definitions.
+**  These custom values will have their definitions given as they appear
+**  above their section headers.
 **
 **	TitlePos (Point)
-**
-**		The upper-left corner of the title string.
-**
-**	TitleFont (Integer)
-**
-**		Specifices which font to use for the title.
-**
+**	    - The upper-left origin position of the menu title string. Also
+**      applies to the current chapter title in Single Player loading
+**      screens.
+**      - This setting is managed by the Killer App Mod.
+**	TitleFont (Integer),
 **	TitleSize (Integer)
-**
-**		Specifices the size to use for the title.
-**
-**	PageRect (Rect)
-**
-**		The rectangle used by the screen items.
-**		(left,top,right,bottom)
-**
+**		- The default font ID and text height of the menu title string.
+**      Also applies to the current chapter title in Single Player
+**      loading screens.
+**	PageRect (Rectangle)
+**		- The space allocated to act as a general container for the main
+**      contents of the menu. It doesn't seem to restrict a lot of the
+**      elements, but it's impossible to know for certain.
+**      - This setting is managed by the Killer App Mod.
+**	FontFace (Integer),
+**	FontSize (Integer)
+**		- The default font ID and text height of all menu text.
 **	ItemSpace (Integer)
+**		- The default line spacing between each specific menu item.
+**	MusicIntensity (Integer)
+**		- Specifies what the music intensity should be for the current
+**		menu screen.
+**      - In TRON 2.0, there is only one "intensity" for the menu music.
+**      Intensity 1 is silence. Intensity 2 is the menu music. Keeping
+**      this set to 2 is advised.
+**  SelectedColor (Vector),
+**  NonSelectedColor (Vector),
+**  DisabledColor (Vector)
+**      - The default colors used for menu button text, when selected/
+**      highlighted, not selected/highlighted, and unable to be 
+**      selected/highlighted, in that order.
+**  ListFontSize (Integer)
+**      - The default text height used for various lists throughout the
+**      game.
 **
-**		The vertical space between menu items.
-**
-**	FontFace
-**
-**		Specifices which font to use by default for items.
-**
-**	FontSize
-**
-**		Specifices default size at which to render text.
-**
-**	MusicIntensity
-**
-**		Specifies what the menu intensity should be for this
-**		screen (1-7, with 1=silence, 7=high action)
-**
-** Typical Custom Components:
-**-------------------------------------
-**	FX#
-**		Plays an FX registered in the FX Layout Area of this
-**		text file  upon the loading of a screen.  You can call
-**		up any number of FX as long as they are sequentially
-**		numbered. i.e.
-**		FX0 	= "happyfx"
-**		FX1 	= "notSoHappyFX"
-**
-**	IntroFX#
-**		This will call up a registered FX at the start of a screen.
-**		When this FX is done the LoopFX with the same number will be
-**		launched.  i.e.
-**		IntroFX0...........LoopFX0
-**		IntroFX1.....LoopFX1
-**
-**	ShortIntroFX#
-**		This FX will be called up as an alternate to IntroFX for
-**		menus that will be seen often.
-**
-**	LoopFX#
-**		LoopFX are initiated after the IntroFX or ShortIntroFX and
-**		are terminated as soon as you switch menus.
-**
-**	ScaleName#
-**		This calls up a ScaleFX from FX.txt rather than an FX from FXEd.
-**
-**	Light#
-**		Lights described in the Lights Layouts area are called up by this
-**		flag.
-**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  MouseFX (Path?)
+**      - The FX used for the cursor?
+**      - This setting does not appear to be used in TRON 2.0.
 */
-
 [GenericScreen]
-TitlePos			= (24,8)
+TitlePos			= (24, 8)
 TitleFont			= 1
 TitleSize			= 22
-PageRect			= (54,148,585,385)
+PageRect			= (54, 148, 585, 385)
 FontFace			= 0
 FontSize			= 27
-//FontSize			= 18
 ItemSpace			= 0
 MusicIntensity		= 2
 SelectedColor		= <255.0, 255.0, 255.0>
 NonSelectedColor	= <255.0, 113.0, 113.0> // SecurityProtocol
 DisabledColor		= <180.0, 180.0, 200.0>
-MouseFX 			= ""
+//MouseFX 			= ""
 ListFontSize		= 20
 
+/*  -----[Main Menu]-----
+**  VersionPos (Point)
+**      - The upper-middle origin position of the text showing the
+**      game's current version number and custom branch name.
+**      - This setting is managed by the Killer App Mod.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
 [ScreenMain]
-TitlePos			= (0,0)
-VersionPos			= (545,25)
-ItemSpace			= 1
-PageRect			= (200,118,585,355)
-Light0				= "Main0"
+TitlePos	= (0,0)
+PageRect	= (200,118,585,355)
+ItemSpace	= 1
+VersionPos	= (545,25)
+Light0		= "Main0"
 
+/*  -----[Single Player Menu]-----
+**  DiffRect (Rectangle)
+**      - The space allocated to display the difficulty selector for a
+**      new game.
+**      - This setting is managed by the Killer App Mod.
+**  CustomRect (Rectangle)
+**      - The space allocated to display unknown contents.
+**      - What is this used for? Listing custom maps? I forgot how to
+**      bring that menu up. Oops.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
 [ScreenSingle]
-DiffRect				= (120,130,356,250)
-CustomRect			= (24,107,440,417)
-PageRect			= (450,170,25,-5)//(440,312,25,25)
-ItemSpace			= 1
-ListFontSize			= 18
-Light0				= "Main0"
-ScaleName0			= ""//WeaponBackgroundSpr1"
-ScaleName1			= "HelpTextBoxSpr1"
-ScaleName2			= "HelpTextBoxSpr2"
-ScaleName3			= "mainoperativetext"
-ScaleName4			= "mainnolftext"
+PageRect		= (450, 170, 25, -5)
+ItemSpace		= 1
+ListFontSize    = 18
+DiffRect		= (120, 130, 356, 250)
+CustomRect		= (24, 107, 440, 417)
+Light0			= "Main0"
 
-[ScreenMulti]
-Light0				= "Main0"
-PageRect			= (8,150,150,387)//(180,168,550,400)
-ItemSpace			= 1
-FontSize			= 24
-
+/*  -----[Load Game Menu]-----
+**  Applies to both the [Single Player -> Load Game] menu as well as the
+**  load menu that appears following the Game Over screen.
+**
+**  SmallFontSize (Integer)
+**      - The text height of the text listing all available save games.
+**  Indent (Integer)
+**      - Determines the indent of the bounding box listing saves from
+**      the left side of PageRect(?).
+**  NameWidth (Integer),
+**  TimeWidth (Integer)
+**      - The total widths of the columns listing save file names and
+**      creation dates respectively.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
 [ScreenLoad]
-ItemSpace			= 3
-PageRect			= (44,55,460,345)//(140,115,585,335)
-FontSize			= 16
-SmallFontSize		= 12
-Indent				= 0 // 20
-NameWidth			= 300
-TimeWidth			= 125
-Light0				= "Main0"
+PageRect		= (44, 55, 460, 345)
+FontSize		= 16
+ItemSpace		= 3
+SmallFontSize	= 12
+Indent			= 0
+NameWidth		= 300
+TimeWidth		= 125
+Light0			= "Main0"
 
-[ScreenSave]
-ItemSpace			= 3
-PageRect			= (140,60,585,280)
-FontSize			= 16
-SmallFontSize		= 12
-Indent				= 0 // 20
-NameWidth			= 300
-TimeWidth			= 125
-Light0				= "Main0"
-
-[ScreenOptions]
+/*  -----[Single Player -> Light Cycles Menu]-----
+**  TabRect (Rectangle)
+**      - The space allocated to display the tabs utilized by this menu.
+**      The space is divided evenly amongst each of the tabs.
+**      - This setting is managed by the Killer App Mod.
+**  BodyRect (Rectangle)
+**      - The default space allocated to display the main body box for
+**      the tabs utilized by this menu.
+**      - Unused by proxy - each tab has a TabBodyRect value that will
+**      override this value.
+**  ColumnWidth (Integer)
+**      - Sets the width of the first column in the "Custom Settings"
+**      tab. Notably does not affect the text in that column; seems to
+**      only be here to force the column holding the controls away from
+**      the text.
+**  CommandPos (Point)
+**      - The upper-left origin position of the commands to Create New,
+**      Rename, and Delete new custom configuration presets. Displayed
+**      beneath AvailRect.
+**      - This setting is managed by the Killer App Mod.
+**  AvailRect (Rectangle)
+**      - The space allocated to display the box listing player-defined
+**      custom configuration presets. Appears in the middle-right area
+**      of the screen when the "Custom Play" and "Custom Settings" tabs
+**      are being displayed.
+**      - This setting is managed by the Killer App Mod.
+**  ConfigTitlePos (Point)
+**      - The upper-left origin position of the "Custom Configuration"
+**      text displayed above AvailRect.
+**      - This setting is managed by the Killer App Mod.
+**  NamePos (Point)
+**      - The upper-left origin position of the Player Name text.
+**      - This setting is managed by the Killer App Mod.
+**  NameColumn (Integer)
+**      - The total width of the Player Name string. Includes text
+**      wrapping.
+**      - This setting is managed by the Killer App Mod.
+**  NameWidth (Integer)
+**      - The width of the current Player Name and Light Cycle model.
+**      Does not include text wrapping.
+**      - This excludes the "Player Name:" and "Current Light Cycle:"
+**      text and only applies to the labels directly following them.
+**  CycleNamePos (Point)
+**      - The total width of the Current Light Cycle string. Includes
+**      text wrapping.
+**      - This setting is managed by the Killer App Mod.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  ConfigurationPos (Point)
+**      - Unknown function.
+**      - What is this? Tried to set it to (0,0) and nothing happened
+**  GameTypePos (Point)
+**      - Unknown function.
+**      - Either this is unused or ConfigurationPos is unused. Neither
+**      one seems to do anything.
+**  TabColor (Vector)
+**      - The color used as the tab background?
+**      - Yet another thing that does nothing...
+**  TabAlpha (Float)
+**      - The alpha of the TabColor?
+**      - I feel like I'm missing something.
+*/
+[ScreenBaseLightCycle]
+PageRect			= (280, 100, 550, 400)
+FontSize			= 18
 ItemSpace			= 1
-PageRect			= (84,130,556,250)
-
-Light0				= "Main0"
-
-[ScreenDisplay]
+TabRect				= (47, 110, 497, 120)
+BodyRect			= (40, 160, 493, 400)
+//ConfigurationPos  = (250, 50)
+//GameTypePos		= (250, 70)
 ColumnWidth 		= 200
-SliderWidth			= 240
-ItemSpace			= 1
-PageRect			= (120,100,556,220)
+//TabColor			= <16.0, 16.0, 64.0>
+//TabAlpha			= 0.9
+CommandPos			= (534, 280)
+AvailRect			= (508, 153, 615, 275)
+ConfigTitlePos	    = (508, 135)
+NamePos				= (54, 45)
+NameColumn			= 118
+NameWidth 			= 330
+CycleNamePos		= (54, 65)
 Light0				= "Main0"
 
-[ScreenAudio]
-ColumnWidth 		= 240
-SliderWidth 		= 240
-ItemSpace			= 1
-PageRect			= (84,100,556,220)
-Light0				= "Main0"
-EAXImageTexture		= "Interface\Menu\art\EAX_ADVANCEDHD_4BLACK.dtx"
-EAXImageRect		= (0,0,96,48)
-EAXImagePos			= (450,240)
+/*  -----[Single Player -> Light Cycles -> Circuit Play Tab]-----
+**  AvailRect (Rectangle)
+**      - The space allocated to display the box listing all the Light
+**      Cycle circuit options.
+**  TabBodyRect (Rectangle)
+**      - The space allocated for the entire box underneath the tab.
+**      - This setting is managed by the Killer App Mod.
+**      - So is BodyRect just a required default definition that gets
+**      overridden?
+**  RestrictionPos (Point)
+**      - The upper-left origin position of the "Light Cycles Permitted"
+**      text.
+**      - This setting is managed by the Killer App Mod.
+**  LivesPos (Point)
+**      - The upper-left origin position of the "Lives" text, including
+**      the dynamic number of lives following it.
+**      - This setting is managed by the Killer App Mod.
+**  WavesPos (Point)
+**      - The upper-left origin position of the "Waves" text, including
+**      the dynamic number of waves following it.
+**      - This setting is managed by the Killer App Mod.
+**  ImagePos (Point)
+**      - The upper-left origin position of the selected circuit's
+**      thumbnail image.
+**      - This setting is managed by the Killer App Mod.
+**  ImageRect (Rectangle)
+**      - The space allocated to display the selected circuit's
+**      thumbnail image.
+**      - Unlike a traditional Rectangle declaration, this one has its
+**      first two values covered by ImagePos, meaning the first two
+**      values of this Rectangle are always 0. The last two values then
+**      determine the cutoff point for the image box.
+**      - This setting is managed by the Killer App Mod.
+**  RegularPos (Point)
+**      - The upper-left origin position of the "Light Cycle" text, as
+**      well as the dynamic text beneath it informing the player whether
+**      or not Light Cycles are permitted in the selected Circuit.
+**      - Note that the dynamic text cannot be shifted vertically, only
+**      horizontally.
+**      - This setting is managed by the Killer App Mod.
+**  SuperPos (Point)
+**      - The upper-left origin position of the "Super Light Cycle"
+**      text, as well as the dynamic text beneath it informing the
+**      player whether or not Super Light Cycles are permitted in the
+**      selected Circuit.
+**      - Note that the dynamic text cannot be shifted vertically, only
+**      horizontally.
+**      - This setting is managed by the Killer App Mod.
+**  CompletedCircuitColor (Vector),
+**  UncompletedCircuitColor (Vector)
+**      - The text color of a specific listed Circuit name when it has,
+**      or has not, been completed respectively at least once by the
+**      player.
+**  LaunchPos (Point),
+**  LaunchTex (Path),
+**  LaunchTexH (Path)
+**      - These values make up the "Play" button. LaunchPos sets the
+**      upper-left origin position. LaunchTex and LaunchTexH set the
+**      button's texture when not highlighted/highlighted respectively.
+**      - LaunchPos is managed by the Killer App Mod.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  AddPos (Point)
+**      - Unknown function.
+**  CommandPos (Point)
+**      - Unknown function.
+**  SelectRect (Rectangle)
+**      - Unknown function.
+**  InfoPos (Point)
+**      - Unknown function. Unused?
+*/
+[ScreenLightCycleCircuit]
+FontSize			    = 18
+TabBodyRect			    = (40, 160, 615, 400)
+//AddPos				= (54, 148)
+AvailRect			    = (60, 148, 255, 316)
+//CommandPos			= (345, 158)
+//SelectRect			= (445, 158, 595, 385)
+RestrictionPos		    = (260, 155)
+LivesPos			    = (260, 173)
+WavesPos			    = (260, 190)
+//InfoPos				= (260, 260)
+ImagePos			    = (260, 210)
+ImageRect			    = (0, 0, 315, 113)
+RegularPos			    = (405, 135)
+SuperPos			    = (495, 135)
+CompletedCircuitColor	= <251.0, 193.0, 193.0> // SecurityProtocol
+UncompletedCircuitColor	= <255.0, 74.0, 74.0> // SecurityProtocol
+LaunchPos			    = (500, 365)
+LaunchTex			    = "interface\menu\sprtex\menubutton_bg.dtx"
+LaunchTexH			    = "interface\menu\sprtex\menubutton_bg_hl.dtx"
+Light0				    = "Main0"
 
-[ScreenGame]
-PageRect			= (84,73,556,233)
-FontSize 			= 18
-ColumnWidth 		= 280
-SliderWidth 		= 200
-ItemSpace			= 3
-Light0				= "Main0"
+/*  -----[Single Player -> Light Cycles -> Light Cycles Tab]-----
+**  The name is redundant. This menu lets the player choose their Light
+**  Cycle model & color.
+**
+**  TabBodyRect (Rectangle)
+**      - The space allocated for the entire box underneath the tab.
+**      - This setting is managed by the Killer App Mod.
+**  Character (String)
+**      - The string ID of the Character definition that will display 
+**      the rotating Light Cycle model for this menu.
+**      - See the "Menu Character Layout" section for more details.
+**  LabelPos (Point)
+**      - The upper-left origin position of the "Light Cycle" text, seen
+**      normally to the upper-left of the tab body box.
+**      - This setting is managed by the Killer App Mod.
+**  BarWidth (Integer)
+**      - The total width of the bars used to display Light Cycle stats.
+**  StatsPos (Point)
+**      - The upper-left origin position of the entire Light Cycle stats
+**      module, including the bars and the label text.
+**      - This setting is managed by the Killer App Mod.
+**  TypeLeftArrowPos (Point),
+**  TypeTextPos (Point),
+**  TypeRightArrowPos (Point)
+**      - The upper-left origin positions of the buttons that make up
+**      the setting controlling the currently active Light Cycle type,
+**      with the text sandwiched between the left and right arrows.
+**      - These settings are managed by the Killer App Mod.
+**  ShadeLeftArrowPos (Point),
+**  ShadeTextPos (Point),
+**  ShadeRightArrowPos (Point)
+**      - The upper-left origin positions of the buttons that make up
+**      the setting controlling the currently active Light Cycle color,
+**      with the text sandwiched between the left and right arrows.
+**      - These settings are managed by the Killer App Mod.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  AddPos (Point)
+**      - Unknown function.
+**  AvailRect (Rectangle)
+**      - Unknown function.
+**  CommandPos (Point)
+**      - Unknown function.
+**  SelectRect (Rectangle)
+**      - Unknown function.
+**  LightCycleBackgroundPos (Point)
+**      - Unused. This set the origin position of the Light Cycle
+**      background image that later became deprecated.
+**  LightCycleBackgroundRect (Rectangle)
+**      - Unused. This assumedly allocated the bottom and right-side
+**      cutoffs for the Light Cycle background image that later became
+**      deprecated.
+*/
+[ScreenLightCyclePlayerConfig]
+FontSize			        = 18
+//AddPos				    = (54, 148)
+//AvailRect			        = (200, 158, 350, 385)
+//CommandPos			    = (200, 188)
+//SelectRect			    = (445, 158, 595, 385)
+TabBodyRect			        = (40, 160, 615, 400)
+Character			        = "LightCycleBase"
+LabelPos					= (60, 130)
+//LightCycleBackgroundPos	= (60, 195)
+//LightCycleBackgroundRect	= (0, 0, 250, 155)
+BarWidth					= 200
+StatsPos				    = (400, 130)
+TypeLeftArrowPos		    = (50, 290)
+TypeTextPos				    = (70, 290)
+TypeRightArrowPos		    = (300, 290)
+ShadeLeftArrowPos		    = (50, 310)
+ShadeTextPos			    = (70, 310)
+ShadeRightArrowPos		    = (300, 310)
+Light0				        = "Main0"
 
+/*  -----[Single Player -> Light Cycles -> Custom Play Tab]-----
+**  AvailRect (Rectangle)
+**      - The space allocated to display the list of available maps to
+**      add to the custom game.
+**      - This setting is managed by the Killer App Mod.
+**  CommandPos (Point)
+**      - The upper-left origin position of the button group holding the
+**      controls to add and remove maps for the custom game.
+**      - This setting is managed by the Killer App Mod.
+**  SelectRect (Rectangle)
+**      - The space allocated to display the list of maps added to the
+**      custom game.
+**      - This setting is managed by the Killer App Mod.
+**  TabBodyRect (Rectangle)
+**      - The space allocated for the entire box underneath the tab.
+**      - This setting is managed by the Killer App Mod.
+**  LaunchPos (Point),
+**  LaunchTex (Path),
+**  LaunchTexH (Path)
+**      - These values make up the "Play" button. LaunchPos sets the
+**      upper-left origin position. LaunchTex and LaunchTexH set the
+**      button's texture when not highlighted/highlighted respectively.
+**      - LaunchPos is managed by the Killer App Mod.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  AddPos (Point)
+**      - Unknown function.
+*/
+[ScreenLightCycleCustomMap]
+FontSize	= 18
+//AddPos	= (54, 148)
+AvailRect	= (60, 148, 230, 313)
+CommandPos	= (225, 188)
+SelectRect	= (320, 148, 490, 313)
+TabBodyRect	= (40, 160, 493, 400)
+LaunchPos	= (500,365)
+LaunchTex	= "interface\menu\sprtex\menubutton_bg.dtx"
+LaunchTexH	= "interface\menu\sprtex\menubutton_bg_hl.dtx"
+Light0		= "Main0"
 
-[ScreenPerformance]
-PageRect			= (54,95,556,245)
-//FontSize			= 16
-ListFontSize		= 18
-ColumnWidth 		= 180
-SliderWidth 		= 200
-DisplayRect 		= (420,96,550,303)
-DisplayColumn		= 160
-SFXRect 			= (420,96,550,303)
-SFXColumn			= 136
-TextureRect 		= (340,150,550,380)
-TextureColumn		= 160
-TextureSlider		= 110
-ItemSpace			= 5
-Light0				= "Main0"
-
-
-[ScreenCrosshair]
-PageRect			= (84,130,556,280)
-ColumnWidth 		= 240
-SliderWidth 		= 240
-ItemSpace			= 10
-Light0				= "Main0"
-
-
-[ScreenControls]
-PageRect			= (84,100,556,220)
-ColumnWidth 		= 300
-SliderWidth 		= 240
-ItemSpace			= 1
-Light0				= "Main0"
-
-
-[ScreenMouse]
-PageRect			= (54,88,585,325)
-ColumnWidth 		= 300
-SliderWidth 		= 240
-ItemSpace			= 1
-Light0				= "Main0"
-
-
-[ScreenKeyboard]
-PageRect			= (54,88,585,325)
-ColumnWidth 		= 300
-SliderWidth 		= 240
-ItemSpace			= 1
-Light0				= "Main0"
-
-[ScreenJoystick]
-PageRect			= (76,120,585,325)
-HeaderFontSize		= 18
+/*  -----[Single Player -> Light Cycles -> Custom Settings Tab]-----
+**  CommandPos (Point)
+**      - The upper-left origin position of the entire list of options.
+**      - This setting is managed by the Killer App Mod.
+**  TabBodyRect (Rectangle)
+**      - The space allocated for the entire box underneath the tab.
+**      - This setting is managed by the Killer App Mod.
+**  BodyRect (Rectangle)
+**      - The space allocated to display the pop-up box listing all
+**      available Light Cycle powerups. These values are limited to the
+**      bounding box of TabBodyRect and will not visually stretch any
+**      further.
+**      - This setting is managed by the Killer App Mod.
+**  LCPowerupListIndent (Point)
+**      - The upper-left origin position of the text listing all
+**      available Light Cycle powerups. These values are limited to the
+**      bounding box of BodyRect and will not visually go any further.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  AddPos (Point)
+**      - Unknown function.
+**  AvailRect (Rectangle)
+**      - Unknown function.
+**  SelectRect (Rectangle)
+**      - Unknown function.
+*/
+[ScreenLightCycleCustomGame]
 FontSize			= 18
-ColumnWidth			= 250
+//AddPos			= (54, 148)
+//AvailRect			= (200, 208, 380, 385)
+CommandPos			= (55,158)
+//SelectRect		= (415, 208, 595, 385)
+TabBodyRect			= (40, 160, 493, 400)
+BodyRect			= (110, 85, 530, 375)
+LCPowerupListIndent	= (50, 10)
 Light0				= "Main0"
 
-[ScreenConfigure]
-MoveControlPos			= (54, 100)
-PageRect			= (54,100,200,220)
-ItemSpace			= 1
-ListRect			= (225,60,585,325)	//(225,140,585,385)
-ListFontSize		= 16
-ActionWidth 		= 240
-EqualsWidth 		= 10
-CommandWidth		= 133
+/*  -----[Light Cycle Victory Screen]-----
+**  This is the screen that shows up when you've beaten all of the Light
+**  Cycle circuits. It displays similarly to a Game Over screen, but
+**  with different text references.
+**
+**  VictoryId (Integer)
+**      - The ID of a string in CRES.DLL of text to display for the
+**      victory message.
+**  VictoryStringRect (Rectangle)
+**      - The space allocated to display the victory message.
+**  VictoryStringSize (Integer)
+**      - The text height of the victory message.
+**  HelpStringPos (Point)
+**      - The upper-left origin position of the text telling the player
+**      to use the Escape key to return to the previous menu.
+**  HelpStringSize (Integer)
+**      - The text height of the text telling the player to use the
+**      Escape key to return to the previous menu.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  Delay (Float)
+**      - Unknown function. Unused?
+*/
+[ScreenLightCycleVictory]
+//MouseFX			= ""
+//Delay				= 10.0
+VictoryId			= 2561
+VictoryStringRect	= (20, 200, 620, 360)
+VictoryStringSize	= 24
+HelpStringPos		= (160, 360)
+HelpStringSize		= 12
 Light0				= "Main0"
 
+/*  -----[Multiplayer Menu]-----
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
+[ScreenMulti]
+PageRect	= (8, 150, 150, 387)
+FontSize	= 24
+ItemSpace   = 1
+Light0		= "Main0"
 
+/*  -----[Multiplayer -> Player Setup Menu]-----
+**  Character (String)
+**      - The string ID of the Character definition that will display 
+**      both the rotating Light Cycle model, as well as the rotating
+**      player model, for this menu.
+**      - See the "Menu Character Layout" section for more details.
+**  GameTypePos (Point)
+**      - The upper-left origin position of the Game Type toggle, which
+**      is used to switch between customizing the player's character and
+**      Light Cycle models for multiplayer.
+**      - This setting is managed by the Killer App Mod.
+**  NamePos (Point)
+**      - The upper-left origin position of the Player Name setting,
+**      which lets the player set their name in multiplayer modes.
+**      - This setting is managed by the Killer App Mod.
+**  NameColumn (Integer)
+**      - The total width of the Player Name string. Includes text
+**      wrapping.
+**  NameWidth (Integer)
+**      - The width of the current Player Name. Does not include text 
+**      wrapping.
+**  BandwidthPos (Point)
+**      - The upper-left origin position of the Bandwidth toggle, which
+**      is used to switch between different bandwidth types for
+**      multiplayer.
+**      - This setting is managed by the Killer App Mod.
+**  BandwidthColumn (Integer)
+**      - The total width of the Bandwidth string. Includes text
+**      wrapping.
+**  BandwidthWidth (Integer)
+**      - Unused function. Unlike the Name and Band2 rows, this row does
+**      not rely on a manually-input custom value, making this space 
+**      unnecessary. It's only staying here for consistency.
+**  Band2Pos (Point)
+**      - The upper-left origin position of the Bandwidth (custom)
+**      setting, which lets the player set their own bandwidth value.
+**      - This setting is managed by the Killer App Mod.
+**  Band2Column (Integer)
+**      - The total width of the Bandwidth (custom) string. includes
+**      text wrapping.
+**  Band2Width (Integer)
+**      - The width of the current custom bandwidth value. Does not
+**      include text wrapping.
+**  ModelTextPos (Point),
+**  ModelLeftArrowPos (Point),
+**  ModelRightArrowPos (Point)
+**      - The upper-left origin positions of the buttons that make up
+**      the setting controlling the currently used player or Light Cycle 
+**      model, with the text sandwiched between the left and right 
+**      arrows.
+**      - These settings are managed by the Killer App Mod.
+**  ColorTextPos (Point),
+**  ColorLeftArrowPos (Point),
+**  ColorRightArrowPos (Point)
+**      - The upper-left origin positions of the buttons that make up
+**      the setting controlling the active color/skin applied to the 
+**      current player or Light Cycle model, with the text sandwiched 
+**      between the left and right arrows.
+**      - These settings are managed by the Killer App Mod.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
 [ScreenPlayer]
-Light0				= "Main0"
-Light1				= "test"
-PageRect			= (190,220,400,460)
-Character			= "MPBase"
+PageRect			= (190, 220, 400, 460)
 FontSize			= 18
-GameTypePos			= (200,30)
-NamePos				= (200,50)
+Character			= "MPBase"
+GameTypePos			= (200, 30)
+NamePos				= (200, 50)
 NameColumn			= 200
 NameWidth 			= 220
-BandwidthPos		= (200,70)
+BandwidthPos		= (200, 70)
 BandwidthColumn		= 200
-BandwidthWidth 		= 200
+BandwidthWidth 	    = 200
 Band2Pos			= (200, 90)
 Band2Column			= 200
 Band2Width 			= 200
-ModelTextPos		= (205,325)
-ModelLeftArrowPos	= (185,325)
-ModelRightArrowPos	= (440,325)
-ColorTextPos		= (205,345)
-ColorLeftArrowPos	= (185,345)
-ColorRightArrowPos	= (440,345)
-
-
-[ScreenHost]
-PageRect			= (280,100,550,400)
-TabRect				= (225,70,575,80)
-TabColor			= <16.0, 16.0, 64.0>
-TabAlpha			= 0.9
-ConfigurationPos	= (210,26)
-GameTypePos			= (210,46)
-ItemSpace			= 1
-ColumnWidth 		= 200
+ModelTextPos		= (205, 325)
+ModelLeftArrowPos	= (185, 325)
+ModelRightArrowPos	= (440, 325)
+ColorTextPos		= (205, 345)
+ColorLeftArrowPos	= (185, 345)
+ColorRightArrowPos	= (440, 345)
 Light0				= "Main0"
+Light1				= "test"
+
+/*  -----[Multiplayer -> Join Internet/LAN Game -> Server List Tab]-----
+**  Counts as both the base menu as well as the menu for the first tab.
+**
+**  TabRect (Rectangle)
+**      - The space allocated to be divided evenly amongst the tabs.
+**      - This setting is managed by the Killer App Mod.
+**  BodyRect (Rectangle)
+**      - The space allocated to display the main body of the box for
+**      this tab.
+**      - This setting is managed by the Killer App Mod.
+**  DedicatedColumn (Integer),
+**  NameColumn (Integer),
+**  PingColumn (Integer),
+**  PlayersColumn (Integer),
+**  TypeColumn (Integer),
+**  MapColumn (Integer)
+**      - These values determine the widths of the columns, but it's not
+**      known exactly HOW these values work, either with each other or 
+**      the greater menu layout.
+**      - DedicatedColumn is managed by the Killer App Mod.
+**      - TODO understand how the hell these columns work????
+**  TablePos (Point)
+**      - The upper-left origin position of the box holding the server
+**      listing. Includes column headers.
+**      - This setting is managed by the Killer App Mod.
+**  ListRect (Rectangle)
+**      - The space allocated to display the box holding the server
+**      listing?
+**      - TODO why are these values being so finnicky?
+**      - This setting is managed by the Killer App Mod.
+**  PortPos (Point)
+**      - The upper-left origin position of the "Join Specific IP"
+**      button (Internet menu) and the Network Port text (LAN menu).
+**      - This setting is managed by the Killer App Mod.
+**  PortColumnWidth (Integer)
+**      - The total width of the column holding the player's current
+**      network port, with the text justified to the right (LAN menu).
+**      - Further verification needed. This may also apply to the "Join
+**      Specific IP" button but would have no effect there since there
+**      is no text that comes after that button.
+**  IPColumnWidth (Integer)
+**      - The total width of the column holding the "Join Specific IP"
+**      button (Internet menu). Includes text wrapping.
+**  FilterPos (Point),
+**  FilterPingPos (Point),
+**  FilterPlayerPos (Point),
+**  FilterTypePos (Point)
+**      - The upper-left origin positions of the various filters. The
+**      first value, FilterPos, just positions the "Filters:" text, and
+**      the remaining values position the filters themselves.
+**      - These settings are managed by the Killer App Mod.
+**  StatusPos (Point)
+**      - The upper-left origin position of the Status indicator (both
+**      menus).
+**      - This setting is managed by the Killer App Mod.
+**  GameSpyPos (Point),
+**  GameSpyWidth (Integer)
+**      - The upper-left origin position and total width of the GameSpy
+**      logo. Changing the width scales height accordingly to maintain 
+**      aspect ratio.
+**      - GameSpyPos is managed by the Killer App Mod.
+**  LaunchPos (Point),
+**  LaunchTex (Path),
+**  LaunchTexH (Path)
+**      - These values make up the "Join game" button. LaunchPos sets
+**      the upper-left origin position. LaunchTex and LaunchTexH set the
+**      button's texture when not highlighted/highlighted respectively.
+**      - LaunchPos is managed by the Killer App Mod.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  TabColor (Vector)
+**      - Unused function?
+**  TabAlpha (Float)
+**      - Unused function?
+**  JoinPos (Point)
+**      - Unused function?
+**  LockColumn (Integer)
+**      - Unused function?
+**  PlayerFilterColumn (Integer)
+**      - Unused function?
+**  PingFilterColumn (Integer)
+**      - Unused function?
+**  DedicatedFilterColumn (Integer)
+**      - Unused function?
+**  FilterDedicatedPos (Point)
+**      - Unused funcion? (Does this filter exist?)
+*/
+[ScreenJoinServerList]
+PageRect			    = (180, 100, 550, 400)
+FontSize			    = 18
+BodyRect			    = (20, 75, 620, 435)
+TabRect				    = (54, 40, 550, 75)
+//TabColor			    = <16.0, 16.0, 64.0>
+//TabAlpha			    = 0.9
+//JoinPos				= (540, 440)
+//LockColumn			= 0
+DedicatedColumn		    = 35
+NameColumn			    = 35
+PingColumn			    = 210
+PlayersColumn		    = 260
+TypeColumn			    = 320
+MapColumn			    = 420
+//PlayerFilterColumn	= 0
+//PingFilterColumn		= 200
+//DedicatedFilterColumn = 400
+TablePos			    = (38, 65)
+ListRect			    = (30, 85, 597, 321)
+PortPos				    = (50, 338)
+PortColumnWidth		    = 110
+IPColumnWidth			= 150
+FilterPos			    = (50, 320)
+FilterPingPos			= (100, 320)
+FilterPlayerPos			= (200, 320)
+FilterTypePos			= (350, 320)
+FilterDedicatedPos		= (450, 320)
+StatusPos			    = (310, 338)
+GameSpyPos			    = (180, 4)
+GameSpyWidth		    = 175
+LaunchPos			    = (500, 365)
+LaunchTex			    = "interface\menu\sprtex\menubutton_bg.dtx"
+LaunchTexH			    = "interface\menu\sprtex\menubutton_bg_hl.dtx"
+Light0				    = "Main0"
+
+/*  -----[Multiplayer -> Join Internet/LAN Game -> Server Info Tab]-----
+**  RefreshPos (Point)
+**      - The upper-left origin position of the Refresh button.
+**  LeftPlayerWidth (Integer)
+**      - The total width of the column displaying player names. Does
+**      not include text wrapping.
+**  RightPlayerWidth (Integer)
+**      - Unknown function. May handle a second column of player names,
+**      but verifying this is extremely hard. Or score?
+**  LeftInfoWidth (Integer)
+**      - The total width of the column that displays the names of
+**      different server attributes. Does not include text wrapping.
+**  RightInfoWidth (Integer)
+**      - The total width of the column that displays server attributes.
+**      Does not include text wrapping.
+**  LeftColumnPos (Point)
+**      - The upper-left origin position of the left column (displaying
+**      the list of online players).
+**      - This setting is managed by the Killer App Mod.
+**  RightColumnPos (Point)
+**      - The upper-left origin position of the right column (displaying
+**      server properties).
+**      - This setting is managed by the Killer App Mod.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  BodyRect (Rectangle)
+**      - Unused function.
+**      - But why?
+**  TabRect (Rectangle)
+**      - Unused function.
+**  JoinPos (Point)
+**      - Unused function.
+*/
+[ScreenServerInfo]
+PageRect			= (180, 100, 550, 400)
+FontSize			= 18
+RefreshPos			= (610, 30)
+//BodyRect			= (20, 75, 620, 435)
+//TabRect			= (54, 50, 550, 75)
+//JoinPos			= (540, 440)
+LeftPlayerWidth		= 130
+RightPlayerWidth    = 130
+LeftInfoWidth		= 170
+RightInfoWidth		= 150
+LeftColumnPos		= (40, 65)
+RightColumnPos		= (300, 65)
+Light0				= "Main0"
+
+/*  -----[Multiplayer -> Host Menu]-----
+**  TabRect (Rectangle)
+**      - The space allocated to be divided evenly amongst the tabs.
+**      - This setting is managed by the Killer App Mod.
+**  TabAlpha (Float)
+**      - The opacity of the background for both the tabs and the box
+**      beneath them.
+**  ConfigurationPos (Point)
+**      - The upper-left origin position of the string displaying the
+**      server's current configuration.
+**      - This setting is managed by the Killer App Mod.
+**  GameTypePos (Point)
+**      - The upper-left origin position of the string displaying the
+**      server's current game type.
+**      - This setting is managed by the Killer App Mod.
+**  ColumnWidth (Integer)
+**      - The total width of the column listing the available options
+**      to modify. Includes text wrapping.
+**  BodyRect (Rectangle)
+**      - The space allocated to display the entire box underneath the
+**      tabs.
+**      - This setting is managed by the Killer App Mod.
+**  CommandPos (Point)
+**      - The upper-left origin position of the commands to Create New,
+**      Rename, and Delete new custom configuration presets. Displayed
+**      beneath AvailRect.
+**      - This setting is managed by the Killer App Mod.
+**  AvailRect (Rectangle)
+**      - The space allocated to display the box listing player-defined
+**      custom configuration presets. Appears in the middle-right area
+**      of the screen when the "Custom Play" and "Custom Settings" tabs
+**      are being displayed.
+**      - This setting is managed by the Killer App Mod.
+**  ConfigTitlePos (Point)
+**      - The upper-left origin position of the "Custom Configuration"
+**      text displayed above AvailRect.
+**      - This setting is managed by the Killer App Mod.
+**  LaunchPos (Point)
+**      - The upper-left origin position of the "Launch" button.
+**      - This setting is managed by the Killer App Mod.
+**  LaunchTex (Path)
+**      - The texture used for the "Launch" button, when not
+**      highlighted.
+**  LaunchTexH (Path)
+**      - The texture used for the "Launch" button, when highlighted.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  TabColor (Vector)
+**      - Unused function.
+*/
+[ScreenHost]
+PageRect			= (280, 100, 550, 400)
+ItemSpace			= 1
+TabRect				= (225, 70, 575, 80)
+//TabColor			= <16.0, 16.0, 64.0>
+TabAlpha			= 0.9
+ConfigurationPos	= (210, 26)
+GameTypePos			= (210, 46)
+ColumnWidth 		= 200
 BodyRect			= (210, 110, 620, 435)
-CommandPos			= (34,290)
-AvailRect			= (8,113,158,285)
-ConfigTitlePos		= (8,95) // Just above AvailRect
-LaunchPos			= (500,365)
+CommandPos			= (34, 290)
+AvailRect			= (8, 113, 158, 285)
+ConfigTitlePos		= (8, 95)
+LaunchPos			= (500, 365)
 LaunchTex			= "interface\menu\sprtex\menubutton_bg.dtx"
 LaunchTexH			= "interface\menu\sprtex\menubutton_bg_hl.dtx"
-
-[ScreenHostMaps]
-FontSize			= 18
-AddPos				= (54,148)
-AvailRect			= (220,108,370,353)
-CommandPos			= (365,158)
-SelectRect			= (465,108,615,353)
 Light0				= "Main0"
 
+/*  -----[Multiplayer -> Host -> Connection Tab]-----
+**  CommandPos (Point)
+**      - The upper-left origin position of the entire server options
+**      list.
+**      - This setting is managed by the Killer App Mod.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
 [ScreenHostConnection]
 FontSize			= 18
 CommandPos			= (235, 88)
 Light0				= "Main0"
 
+/*  -----[Multiplayer -> Host -> Game Tab]-----
+** CommandPos (Point)
+**      - The upper-left origin position of the entire game options
+**      list.
+**      - This setting is managed by the Killer App Mod.
+**  LCPowerupListIndent (Point)
+**      - Likely unused function. The Light Cycle Powerup list has its
+**      own coordinates and changing this seems to do nothing.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
 [ScreenHostGame]
 FontSize			= 18
 CommandPos			= (235, 88)
-Light0				= "Main0"
 LCPowerupListIndent	= (50, 10)
-
-[ScreenJoinServerList]
-FontSize			= 18
-BodyRect			= (20, 75, 620, 435)
-PageRect			= (180,100,550,400)
-TabRect				= (54,40,550,75)
-TabColor			= <16.0, 16.0, 64.0>
-TabAlpha			= 0.9
-JoinPos				= (540,440)
-LockColumn			= 0
-DedicatedColumn			= 35
-NameColumn			= 35
-PingColumn			= 210
-PlayersColumn			= 260
-TypeColumn			= 320
-MapColumn			= 420
-PlayerFilterColumn		= 0
-PingFilterColumn		= 200
-DedicatedFilterColumn		= 400
-TablePos			= (38, 65)
-ListRect			= (30, 85, 597, 321)
-PortPos				= (50, 338)
-PortColumnWidth			= 110
-IPColumnWidth			= 150
-FilterPos			= (50, 320)
-FilterPingPos			= (100, 320)
-FilterPlayerPos			= (200, 320)
-FilterTypePos			= (350, 320)
-FilterDedicatedPos		= (450, 320)
-StatusPos			= (310, 338)
-GameSpyPos			= (180,4)
-GameSpyWidth		= 175
-Light0				= "Main0"
-LaunchPos			= (500,365)
-LaunchTex			= "interface\menu\sprtex\menubutton_bg.dtx"
-LaunchTexH			= "interface\menu\sprtex\menubutton_bg_hl.dtx"
-
-[ScreenFailure]
-MouseFX				= ""
-Delay				= 10.0
-FailStringRect		= (20,200,620,360)
-FailStringSize		= 24
-HelpStringPos		= (160,360)
-HelpStringSize		= 12
 Light0				= "Main0"
 
-[ScreenLightCycleVictory]
-MouseFX				= ""
-Delay				= 10.0
-VictoryId			= 2561
-VictoryStringRect	= (20,200,620,360)
-VictoryStringSize	= 24
-HelpStringPos		= (160,360)
-HelpStringSize		= 12
-Light0				= "Main0"
+/*  -----[Multiplayer -> Host -> Maps Tab]-----
+**  AvailRect (Rectangle)
+**      - The space allocated to display the list of available maps to
+**      add to the server.
+**      - This setting is managed by the Killer App Mod.
+**  CommandPos (Point)
+**      - The upper-left origin position of the button group holding the
+**      controls to add and remove maps for the server.
+**      - This setting is managed by the Killer App Mod.
+**  SelectRect (Rectangle)
+**      - The space allocated to display the list of maps added to the
+**      server.
+**      - This setting is managed by the Killer App Mod.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  AddPos (Point)
+**      - Unused function.
+*/
+[ScreenHostMaps]
+FontSize	= 18
+//AddPos	= (54, 148)
+AvailRect	= (220, 108, 370, 353)
+CommandPos	= (365, 158)
+SelectRect	= (465, 108, 615, 353)
+Light0		= "Main0"
 
-[ScreenServerInfo]
-FontSize			= 18
-RefreshPos			= (610, 30)
-BodyRect			= (20, 75, 620, 435)
-PageRect			= (180,100,550,400)
-TabRect				= (54,50,550,75)
-JoinPos				= (540,440)
-LeftPlayerWidth			= 130
-RightPlayerWidth			= 130
-LeftInfoWidth			= 170
-RightInfoWidth			= 150
-LeftColumnPos			= (40, 65)
-RightColumnPos			= (300, 65)
-Light0				= "Main0"
+/*  -----[Options Menu]-----
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
+[ScreenOptions]
+PageRect	= (84, 130, 556, 250)
+ItemSpace	= 1
+Light0		= "Main0"
 
+/*  -----[Options -> Display Menu]-----
+**  ColumnWidth (Integer)
+**      - The total width of the column used to display the names of the
+**      menu's settings.
+**  SliderWidth (Integer)
+**      - The width of any slider bars in the menu.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
+[ScreenDisplay]
+PageRect	= (120, 100, 556, 220)
+ItemSpace	= 1
+ColumnWidth = 200
+SliderWidth	= 240
+Light0		= "Main0"
+
+/*  -----[Options -> Sound Menu]-----
+**  ColumnWidth (Integer)
+**      - The total width of the column used to display the names of the
+**      menu's settings.
+**  SliderWidth (Integer)
+**      - The width of any slider bars in the menu.
+**  EAXImageTexture (Path)
+**      - The texture used to display the EAX logo.
+**  EAXImageRect (Rectangle)
+**      - The space allocated to display the EAX logo.
+**      - Unlike a traditional Rectangle declaration, this one has its
+**      first two values covered by EAXImagePos, meaning the first two
+**      values of this Rectangle are always 0. The last two values then
+**      determine the cutoff point for the image box.
+**  EAXImagePos (Point)
+**      - The upper-left origin position of the EAX logo.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
+[ScreenAudio]
+PageRect		= (84, 100, 556, 220)
+ItemSpace		= 1
+ColumnWidth 	= 240
+SliderWidth 	= 240
+EAXImageTexture	= "Interface\Menu\art\EAX_ADVANCEDHD_4BLACK.dtx"
+EAXImageRect	= (0, 0, 96, 48)
+EAXImagePos		= (450, 240)
+Light0			= "Main0"
+
+/*  -----[Options -> Controls Menu]-----
+**  ColumnWidth (Integer)
+**      - The total width of the column used to display the names of the
+**      menu's settings.
+**  SliderWidth (Integer)
+**      - The width of any slider bars in the menu.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
+[ScreenControls]
+PageRect	= (84, 100, 556, 220)
+ItemSpace	= 1
+ColumnWidth = 300
+SliderWidth = 240
+Light0		= "Main0"
+
+/*  -----[Options -> Controls -> Configure Controls Menu]-----
+**  MoveControlPos (Point)
+**      - The upper-left origin position of the four buttons used to
+**      switch between the control groups.
+**      - This setting is managed by the Killer App Mod.
+**  ListRect (Rectangle)
+**      - The space allocated to display the list of controls that the
+**      player can modify.
+**      - This setting is managed by the Killer App Mod.
+**  ListFontSize (Integer)
+**      - The text height of the text listing the controls that the
+**      player can modify.
+**  ActionWidth (Integer)
+**      - The width of the list column displaying the names of controls
+**      that the player can modify. Includes text wrapping.
+**  EqualsWidth (Integer)
+**      - Probably the width of the space between the control names and
+**      their bindings. Further verification needed.
+**  CommandWidth (Integer)
+**      - The width of the list column displaying the current bindings
+**      of the controls that the player can modify. Includes text 
+**      wrapping.
+**      - This setting is managed by the Killer App Mod.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
+[ScreenConfigure]
+PageRect		= (54, 100, 200, 220)
+ItemSpace		= 1
+ListFontSize	= 16
+MoveControlPos	= (54, 100)
+ListRect		= (225, 60, 585, 325)
+ActionWidth 	= 240
+EqualsWidth 	= 10
+CommandWidth	= 133
+Light0			= "Main0"
+
+/*  -----[Options -> Controls -> Mouse Menu]-----
+**  ColumnWidth (Integer)
+**      - The total width of the column used to display the names of the
+**      menu's settings.
+**  SliderWidth (Integer)
+**      - The width of any slider bars in the menu.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
+[ScreenMouse]
+PageRect	= (54, 88, 585, 325)
+ItemSpace	= 1
+ColumnWidth = 300
+SliderWidth = 240
+Light0		= "Main0"
+
+/*  -----[Options -> Controls -> Keyboard Menu]-----
+**  ColumnWidth (Integer)
+**      - The total width of the column used to display the names of the
+**      menu's settings.
+**  SliderWidth (Integer)
+**      - The width of any slider bars in the menu.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
+[ScreenKeyboard]
+PageRect	= (54, 88, 585, 325)
+ItemSpace	= 1
+ColumnWidth = 300
+SliderWidth = 240
+Light0		= "Main0"
+
+/*  -----[Options -> Controls -> Configure Joystick/Gamepad Menu]-----
+**  
+**  HeaderFontSize (Integer)
+**      - The text height of the "Axis" and "Action" column header text.
+**  ColumnWidth (Integer)
+**      - The total width of the column used to display the names of the
+**      menu's settings.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
+[ScreenJoystick]
+PageRect		= (76, 120, 585, 325)
+FontSize		= 18
+HeaderFontSize	= 18
+ColumnWidth		= 250
+Light0			= "Main0"
+
+/*  -----[Options -> Game Menu]-----
+**  ColumnWidth (Integer)
+**      - The total width of the column used to display the names of the
+**      menu's settings.
+**  SliderWidth (Integer)
+**      - The width of any slider bars in the menu.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
+[ScreenGame]
+PageRect	= (84, 73, 556, 233)
+FontSize 	= 18
+ItemSpace	= 3
+ColumnWidth = 280
+SliderWidth = 200
+Light0		= "Main0"
+
+/*  -----[Options -> Performance Menu]-----
+**  ColumnWidth (Integer)
+**      - The total width of the column used to display the names of the
+**      menu's settings.
+**  SliderWidth (Integer)
+**      - The width of any slider bars in the menu.
+**  DisplayRect (Rectangle)
+**      - The space allocated to display the Display options pop-up box.
+**      - This setting is managed by the Killer App Mod.
+**  DisplayColumn (Integer)
+**      - The total width of the column used to display the names of the
+**      settings inside the Display options pop-up box. Does not include
+**      text wrapping, but does not cut off the text either.
+**  SFXRect (Rectangle)
+**      - The space allocated to display the Special effects options
+**      pop-up box.
+**      - This setting is managed by the Killer App Mod.
+**  SFXColumn (Integer)
+**      - The total width of the column used to display the names of the
+**      settings inside the Special effects options pop-up box. Does not
+**      include text wrapping, but does not cut off the text either.
+**      - This setting is managed by the Killer App Mod.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  TextureRect (Rectangle)
+**      - Unused function.
+**  TextureColumn (Integer)
+**      - Unused function.
+**  TextureSlider (Integer)
+**      - Unused function.
+*/
+[ScreenPerformance]
+PageRect		= (54, 95, 556, 245)
+ItemSpace		= 5
+ListFontSize	= 18
+ColumnWidth 	= 180
+SliderWidth 	= 200
+DisplayRect 	= (420, 96, 550, 303)
+DisplayColumn   = 160
+SFXRect 		= (420, 96, 550, 303)
+SFXColumn		= 136
+//TextureRect 	= (340, 150, 550, 380)
+//TextureColumn	= 160
+//TextureSlider	= 110
+Light0			= "Main0"
+
+/*  -----[Crosshair Options Menu(?)]-----
+**  Am I blind? I couldn't find this one. Unless it's tucked under the
+**  Display menu? I'm not going in there to find out.
+**  ColumnWidth (Integer)
+**      - The total width of the column used to display the names of the
+**      menu's settings.
+**  SliderWidth (Integer)
+**      - The width of any slider bars in the menu.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
+[ScreenCrosshair]
+PageRect	= (84, 130, 556, 280)
+ItemSpace	= 10
+ColumnWidth = 240
+SliderWidth = 240
+Light0		= "Main0"
+
+/*  -----[Profile Menu]-----
+**  ProfileNamePos (Point)
+**      - The upper-left origin position of the list of menu options.
+**      - This setting is managed by the Killer App Mod.
+**  DialogSize (Point)
+**      - Although it functions as a Point, if set to 0, it does not set
+**      the box to the top left of the screen. More understanding is
+**      needed.
+**      - This setting is managed by the Killer App Mod.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  DialogPos (Point)
+**      - Unknown function.
+*/
 [ScreenProfile]
-ItemSpace			= 1
-ProfileNamePos			= (14, 130)//(75, 100))
-DialogPos			= (450, 221)
-DialogSize			= (300, 248)
-Light0				= "Main0"
+ItemSpace		= 1
+ProfileNamePos	= (14, 130)
+//DialogPos		= (450, 221)
+DialogSize		= (300, 248)
+Light0			= "Main0"
 
-
+/*  -----[Subroutines Menu: General]-----
+**  Quite a bit of the Subroutines menu (accessed by pressing F1 ingame)
+**  has been modified by the Killer App Mod whilst making the game work
+**  in widescreen. Unless you really know what you're doing, it is not
+**  recommended to touch any of these values.
+**
+**  Due to the inherent complexity of the menu, it has been split up
+**  into multiple sections.
+**
+**  ClearPos (Point)
+**      - The upper-left origin position of the Clear button at the
+**      bottom-right corner of the screen.
+**      - This setting is managed by the Killer App Mod.
+**  SysNamePos (Point)
+**      - The upper-left origin position of the name of the chapter the
+**      player is currently in.
+**      - This setting is managed by the Killer App Mod.
+**  VersionSize (Integer)
+**      - The text height of the text displaying the player's current
+**      version number.
+**  VersionPos (Point)
+**      - The upper-middle origin position of the text displaying the
+**      player's current version number.
+**      - This setting is managed by the Killer App Mod.
+**  OptimizerHitRect (Rectangle)
+**      - Unused function.
+**  Piece# (String)
+**      - The string ID of a Piece to use for the menu.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  CompilePos (Point)
+**      - Unused function.
+**  HelpRect (Rectangle)
+**      - Unused function?
+*/
 [ScreenSubroutines]
+PageRect		    = (0, 0, 200, 200)
 FontSize			= 18
 ClearPos			= (512, 332)
-CompilePos			= (0, 0)//(486, 442)
-SysNamePos			= (60, 2)
+//CompilePos	    = (0, 0)
+SysNamePos		    = (60, 2)
+//HelpRect		    = (2000, 1000, 0, 0)
+VersionSize		    = 18
+VersionPos		    = (320, 120)
+OptimizerHitRect    = (288, 208, 352, 272)
+Piece0			    = "sub_hub"
+Piece1			    = "servername"
+Piece2			    = "sub_commands"
+Piece3			    = "sub_hub_bg"
+Piece4			    = "buildpoints_bar_fixed"
+Light0			    = "Main0"
+
+/*  -----[Subroutines Menu: Tooltips]-----
+**  These values concern the tooltip that appears when moving the cursor
+**  over applicable text. It seems that the position of each tooltip is
+**  predefined and not modifiable. These values manage things that apply
+**  to all tooltips.
+**
+**  ToolTipFontSize (Integer)
+**      - The text height of the tooltip text.
+**  ToolTipTogglePos (Point)
+**      - The upper-left origin position of the setting at the bottom-
+**      right of the screen that lets the player choose whether or not
+**      tooltips should appear.
+**      - This setting is managed by the Killer App Mod.
+**  ToolTipToggleFontSize (Integer)
+**      - The text height of the setting at the bottom-right of the
+**      screen that lets the player choose whether or not tooltips
+**      should appear.
+**  ToolTipTitlePos (Point)
+**      - The upper-left origin position of the "Show Tooltips:" text at
+**      the bottom-right of the screen.
+**      - This setting is managed by the Killer App Mod.
+**  ToolTipTitleFontSize (Integer)
+**      - The text height of the "Show Tooltips:" text at the bottom-
+**      right of the screen.
+**  ToolTipColor (Vector)
+**      - The color of the special highlighted text at the beginning of
+**      the tooltip, confirming the definition that it is currently
+**      displaying.
+**  ToolTipFrameColor (Vector)
+**      - The background color used for the tooltip box. (This is NOT
+**      the color of the border.)
+**  ToolTipAlpha (Float)
+**      - The opacity of the background color used for the tooltip box.
+**  ToolTipWidth (Float)
+**      - The total width of the tooltip box.
+*/
 ToolTipFontSize			= 14
-ToolTipTogglePos		= (436, 374)//(10, 442)
-ToolTipToggleFontSize		= 18
-ToolTipTitlePos			= (483, 359)//(10, 400)
-ToolTipTitleFontSize		= 18
-//Character 		= "sub1"
-Light0				= "Main0"
-PageRect			= (0,0,200,200)
-HelpRect			= (2000, 1000, 0, 0)
-VersionSize			= 18
-VersionPos			= (320, 120)
-ToolTipColor		= <135, 191, 255>
-ToolTipFrameColor	= <0, 0, 100>
-ToolTipAlpha		= 0.85
+ToolTipTogglePos		= (436, 374)
+ToolTipToggleFontSize	= 18
+ToolTipTitlePos			= (483, 359)
+ToolTipTitleFontSize	= 18
+ToolTipColor		    = <255.0, 135.0, 135.0> // SecurityProtocol
+ToolTipFrameColor	    = <100.0, 0.0, 0.0> // SecurityProtocol
+ToolTipAlpha		    = 0.85
+ToolTipWidth		    = 200.0
 
-BuildNoteCountColor	= <255, 255, 255>
-BuildNoteCountSize	= 14
-BuildNoteCountPos	= (321, 274)
+/*  -----[Subroutines Menu: Build Notes]-----
+**  These values concern the build note count that appears at the lower-
+**  middle section of the screen.
+**
+**  BuildNoteCountColor (Vector)
+**      - Unused function?
+**  BuildNoteCountSize (Integer)
+**      - The text height of the text keeping track of the total amount
+**      of build notes that the player has collected.
+**  BuildNoteCountPos (Point)
+**      - The upper-middle origin position of the text keeping track of
+**      the total amount of build notes that the player has collected.
+**      - This setting is managed by the Killer App Mod.
+**  BuildNoteCountStringId (Integer)
+**      - The string ID from CRES.DLL to display as the build note
+**      counter.
+**  BuildNoteIconSpacer (Integer)
+**      - The width of the space between the build note icon and the
+**      build note counter text.
+**  BuildNoteIconTexture (Path)
+**      - Unused function. Although pointing it to a different texture
+**      will display the texture near the center of the screen, this is
+**      not recommended, as the position of that texture cannot change.
+**  BuildNoteIconScalar (Float)
+**      - The scale of the BuildNoteIconTexture.
+*/
+BuildNoteCountColor	    = <255, 255, 255>
+BuildNoteCountSize	    = 14
+BuildNoteCountPos	    = (321, 274)
 BuildNoteCountStringId	= 3229
-BuildNoteIconSpacer	= 8
-BuildNoteIconTexture = "interface\hud\buildnote_hudicon_dummy.dtx"
-BuildNoteIconScalar = 1.0
+BuildNoteIconSpacer	    = 8
+BuildNoteIconTexture    = "interface\hud\buildnote_hudicon_dummy.dtx"
+BuildNoteIconScalar     = 1.0
 
-ArrowLeftRect0		= (245, 180,  269, 194)
-ArrowRightRect0		= (371, 180, 395, 194)
-ArrowLeftRect1		= (245, 206, 269, 220)
-ArrowRightRect1		= (371, 206, 395, 220)
-ArrowLeftRect2		= (245, 233, 269, 247)
-ArrowRightRect2		= (371, 233, 395, 247)
-ArrowLeftRect3		= (245, 260, 269, 274)
-ArrowRightRect3		= (371, 260, 395, 274)
-ArrowLeftRect4		= (245, 286, 269, 300)
-ArrowRightRect4		= (371, 286, 395, 300)
+/*  -----[Subroutines Menu: Arrows]-----
+**  This is fairly self-explanatory, so instead of repeating the same
+**  thing ten times, this'll be simplified. These values allocate the
+**  space used to display the arrows next to the five rows of skills:
+**  Health, Energy, Weapon Efficiency, Transfer Rate, and Processor.
+**  These arrows only appear when the player gets their version number
+**  upgraded, and disappear once all available build notes are spent.
+**  One line declares the left arrow, the next declares the right, and
+**  so on, and so forth.
+**
+**  All of these are managed by the Killer App Mod.
+*/
+ArrowLeftRect0	= (245, 180, 269, 194)
+ArrowRightRect0	= (371, 180, 395, 194)
+ArrowLeftRect1  = (245, 206, 269, 220)
+ArrowRightRect1	= (371, 206, 395, 220)
+ArrowLeftRect2	= (245, 233, 269, 247)
+ArrowRightRect2	= (371, 233, 395, 247)
+ArrowLeftRect3	= (245, 260, 269, 274)
+ArrowRightRect3	= (371, 260, 395, 274)
+ArrowLeftRect4	= (245, 286, 269, 300)
+ArrowRightRect4	= (371, 286, 395, 300)
 
-OptimizerHitRect	= (288, 208, 352, 272)
-ToolTipWidth		= 200.0
+/*  -----[Save Game Menu]-----
+**  SmallFontSize (Integer)
+**      - The text height of the text listing all available save games.
+**  Indent (Integer)
+**      - Determines the indent of the bounding box listing saves from
+**      the left side of PageRect.
+**  NameWidth (Integer)
+**      - The total width of the column listing save file names.
+**  TimeWidth (Integer)
+**      - The total width of the column listing save file creation dates.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
+[ScreenSave]
+PageRect		= (140, 60, 585, 280)
+FontSize		= 16
+ItemSpace		= 3
+SmallFontSize   = 12
+Indent			= 0
+NameWidth		= 300
+TimeWidth		= 125
+Light0			= "Main0"
 
-Piece0			= "sub_hub"
-Piece1			= "servername"
-Piece2			= "sub_commands"
-//Piece3			= "optimizer"
-Piece3			= "sub_hub_bg"
-Piece4			= "buildpoints_bar_fixed"
+/*  -----[Game Over Menu]-----
+**  FailStringRect (Rectangle)
+**      - The space allocated to display the Game Over text.
+**      - This setting is managed by the Killer App Mod.
+**  FailStringSize (Integer)
+**      - The text height of the Game Over text.
+**  HelpStringPos (Point)
+**      - The position of the text that tells the player either to
+**      QuickLoad or go to the Load screen.
+**      - This setting is managed by the Killer App Mod.
+**  HelpStringSize (Integer)
+**      - The text height of the text that tells the player either to
+**      QuickLoad or go to the Load Screen.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  Delay (Float)
+**      - Unknown function. Unused?
+*/
+[ScreenFailure]
+//MouseFX		= ""
+//Delay			= 10.0
+FailStringRect	= (20, 200, 620, 360)
+FailStringSize	= 24
+HelpStringPos	= (160, 360)
+HelpStringSize	= 12
+Light0			= "Main0"
 
-[ScreenSecurity]
-MouseFX			= "none"
-Light0				= "Main0"
-
+/*  -----[Team Select Menu]-----
+**  This is the Team Select menu for Disc Arena, Disc Tournament, and 
+**  Light Cycles (both Free-For-All and Team).
+**
+**  PlayerTextColor (Vector)
+**      - The text color of whichever line is currently displaying the
+**      player's information. Includes all player stats, not just the
+**      player name.
+**  TextColor (Vector)
+**      - The text color of all the other lines that aren't displaying
+**      the player's information.
+**  FrameColor (Vector)
+**      - The background color of the bar at the top of the menu holding
+**      the column names.
+**  FrameAlpha (Float)
+**      - The opacity of the bar at the top of the menu holding the
+**      column names.
+**  HeaderFontSize (Integer)
+**      - The text height of the column header text.
+**  TeamRect (Rectangle)
+**      - The space allocated to display the menu of players currently
+**      on a team.
+**      - This setting is managed by the Killer App Mod.
+**  TeamColumn (Integer),
+**  MatchesWonColumn (Integer),
+**  PlayerColumn (Integer),
+**  GamesWonColumn (Integer),
+**  PingColumn (Integer)
+**      - The widths of all the columns that make up the list inside
+**      TeamRect.
+**      - PlayerColumn & GamesWonColumn are managed by the Killer App
+**      Mod.
+**  SpectatorRect (Rectangle)
+**      - The space allocated to display the menu of players currently
+**      spectating the game.
+**      - This setting is managed by the Killer App Mod.
+**  SpectatorColumn (Integer),
+**  SpectatorPingColumn (Integer)
+**      - The widths of both columns that make up the list inside
+**      SpectatorRect.
+**      - SpectatorColumn is managed by the Killer App Mod.
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
 [TeamSelect]
-PlayerTextColor	= <255.0, 255.0, 255.0>
-TextColor		= <192.0, 192.0, 192.0>
-FrameColor		= <0.0, 64.0, 240.0>
-FrameAlpha		= 0.5
-HeaderFontSize		= 14
-ListFontSize		= 12
-
-TeamRect		= (32, 30, 440, 406)
-TeamColumn		= 80
+ListFontSize	    = 12
+PlayerTextColor	    = <255.0, 255.0, 255.0>
+TextColor		    = <192.0, 192.0, 192.0>
+FrameColor		    = <240.0, 0.0, 0.0> // SecurityProtocol
+FrameAlpha		    = 0.5
+HeaderFontSize	    = 14
+TeamRect		    = (32, 30, 440, 406)
+TeamColumn		    = 80
 MatchesWonColumn	= 100
 PlayerColumn		= 133
 GamesWonColumn		= 55
-PingColumn		= 40
-
+PingColumn		    = 40
 SpectatorRect		= (460, 30, 620, 406)
 SpectatorColumn		= 115
 SpectatorPingColumn	= 25
 Light0				= "Main0"
 
+/*  -----[Team Derez Team Select Menu]-----
+**  This is the Team Select menu for specifically Team Derez.
+**
+**  PlayerTextColor (Vector)
+**      - The text color of whichever line is currently displaying the
+**      player's information. Includes all player stats, not just the
+**      player name.
+**  TextColor (Vector)
+**      - The text color of all the other lines that aren't displaying
+**      the player's information.
+**  FrameColor (Vector)
+**      - The background color of the bar at the top of the menu holding
+**      the column names.
+**  FrameAlpha (Float)
+**      - The opacity of the bar at the top of the menu holding the
+**      column names.
+**  HeaderFontSize (Integer)
+**      - The text height of the column header text.
+**  TeamRect (Rectangle)
+**      - The space allocated to display the menu of players currently
+**      on a team.
+**      - This setting is managed by the Killer App Mod.
+**  TeamColumn (Integer)
+**      - The total width of the "Team" column (for the team's name).
+**  RoundsWonColumn (Integer)
+**      - The total width of the "Rounds Won" column.
+**      - This setting is managed by the Killer App Mod.
+**  PlayerColumn (Integer)
+**      - The total width of the "Players" column (for player names).
+**      - This setting is managed by the Killer App Mod.
+**  FragsColumn (Integer)
+**      - The total width of the "Derezzes" column.
+**  PingColumn (Integer)
+**      - The total width of the "Ping" column.
+**  SpectatorRect (Rectangle)
+**      - The space allocated to display the menu of players currently
+**      spectating the game.
+**      - This setting is managed by the Killer App Mod.
+**  SpectatorColumn (Integer)
+**      - The total width of the "Spectators" column (for player names).
+**      - This setting is managed by the Killer App Mod.
+**  SpectatorPingColumn (Integer)
+**      - The total width of the "Ping" column (for spectators).
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
 [TDMTeamSelect]
-PlayerTextColor	= <255.0, 255.0, 255.0>
-TextColor		= <192.0, 192.0, 192.0>
-FrameColor		= <0.0, 64.0, 240.0>
-FrameAlpha		= 0.5
-HeaderFontSize		= 14
-ListFontSize		= 12
-
-TeamRect		= (20, 64, 440, 440)
-TeamColumn		= 120
-RoundsWonColumn		= 80
+ListFontSize	    = 12
+PlayerTextColor	    = <255.0, 255.0, 255.0>
+TextColor		    = <192.0, 192.0, 192.0>
+FrameColor		    = <0.0, 64.0, 240.0>
+FrameAlpha		    = 0.5
+HeaderFontSize	    = 14
+TeamRect		    = (20, 64, 440, 440)
+TeamColumn		    = 120
+RoundsWonColumn	    = 80
 PlayerColumn		= 120
-FragsColumn		= 60
-PingColumn		= 40
-
+FragsColumn		    = 60
+PingColumn		    = 40
 SpectatorRect		= (460, 64, 620, 440)
 SpectatorColumn		= 115
 SpectatorPingColumn	= 25
 Light0				= "Main0"
 
+/*  -----[Unknown Menu "ScreenSecurity"]-----
+**  I can't believe they predicted my mod when they made the game.
+**  But seriously, what is this menu? It seems empty. Commenting out the
+**  entire menu does not crash the game. Maybe unused?
+**
+**  Light# (String)
+**      - The string ID of a Light to use for the menu.
+*/
+[ScreenSecurity]
+//MouseFX   = "none"
+Light0	    = "Main0"
 
-// ******** Loading Screen Layout ******** //
-
+/*  -----[Loading Screens]-----
+**  Loading screens all use the same setup, with LoadScreenDefault
+**  setting the default attributes that the successive loading screens
+**  override. 
+**  TODO identify and name all of the loading screens
+**
+**  TitleColor (Vector)
+**      - The color of the current chapter name.
+**  LevelPos (Point),
+**  LevelFont (Integer),
+**  LevelSize (Integer),
+**  LevelColor (Vector)
+**      - The upper-left origin position, font ID, text height, and 
+**      color of the current level name, in that order.
+**      - LevelPos is managed by the Killer App Mod.
+**  ContinuePos (Point),
+**  ContinueFont (Integer),
+**  ContinueSize (Integer),
+**  ContinueColor (Vector)
+**      - The upper-left origin position, font ID, text height, and
+**      color of the "press any key to continue" string.
+**      - ContinuePos is managed by the Killer App Mod.
+**  PreLoopFX# (String)
+**      - The string ID of a PreLoopFX to use for the menu.
+**  LoadScale# (String)
+**      - The string ID of a LoadScale to use for the menu.
+**  PostScale# (String)
+**      - The string ID of a LoadScale to use for the menu.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  BriefingFont (Integer)
+**      - Unused function. Deprecated from NOLF briefing screens.
+**  BriefingSize (Integer)
+**      - Unused function. Deprecated from NOLF briefing screens.
+**  BriefingRect (Rectangle)
+**      - Unused function. Deprecated from NOLF briefing screens.
+**  BriefingColor (Vector)
+**      - Unused function. Deprecated from NOLF briefing screens.
+*/
 [LoadScreenDefault]
+TitlePos		= (40, 50)
 TitleFont		= 1
 TitleSize		= 24
-TitlePos		= (40,50)
 TitleColor		= <255.0, 255.0, 255.0>
+LevelPos		= (40, 75)
 LevelFont		= 1
 LevelSize		= 20
-LevelPos		= (40,75)
 LevelColor		= <255.0, 255.0, 255.0>
-BriefingFont		= 1
-BriefingSize		= 16
-BriefingRect		= (50,120,310,350)
-BriefingColor		= <255.0, 255.0, 255.0>
-ContinueFont		= 1
-ContinueSize		= 24
-ContinuePos		= (40,415)
-ContinueColor		= <0.0, 0.0, 0.0>
-//PreFX0		= "LOAD_Test"
-//PreIntroFX0		= "LOAD_Test"
-PreLoopFX0			= "LOAD_Test"
-LoadScale0			= "LoadTest"
-LoadScale1			= "loadingBackground_sprite"
-LoadScale2			= "loadingModel"
-//LoadScale1		= "TOM"
-//LoadScale1		= "loadingBackground"
-//LoadScale1		= "loadingBit"
-//PostScale0		   = "LoadTest"
-
-[LoadScreenC01]
-TitleColor			= <0.0, 32.0, 96.0>
-BriefingColor		= <0.0, 0.0, 0.0>
-//PreFX0				= "LOAD_Test"
-//PreIntroFX0			= "LOAD_Test"
-//PreLoopFX0			= "LOAD_Test"
-LoadScale0		    = "LoadTest"
-LoadScale1			= "loadingBit"
-//PostScale0		    = "LoadTest"
-
-[ScreenBaseLightCycle]
-FontSize			= 18
-PageRect			= (280,100,550,400)
-ConfigurationPos	= (250,50)
-// unused
-GameTypePos			= (250,70)
-ItemSpace			= 1
-ColumnWidth 		= 200
-Light0				= "Main0"
-// bounding box of the tab part of the "tabs"
-TabRect				= (47,110,497,120)
-TabColor			= <16.0, 16.0, 64.0>
-TabAlpha			= 0.9
-// bounding box of the body part of the "tabs"
-BodyRect			= (40, 160, 493, 400)
-// config box commands
-CommandPos			= (534,280)
-// config box square
-AvailRect			= (508,153,615,275)
-// config box title
-ConfigTitlePos		= (508,135) // Just above AvailRect
-// Player name display:
-NamePos				= (54,45)
-NameColumn			= 118
-NameWidth 			= 330
-// Lightcycle name
-CycleNamePos		= (54,65)
-
-
-[ScreenLightCycleCircuit]
-LaunchPos			= (500,365)
-LaunchTex			= "interface\menu\sprtex\menubutton_bg.dtx"
-LaunchTexH			= "interface\menu\sprtex\menubutton_bg_hl.dtx"
-FontSize			= 18
-AddPos				= (54,148)
-AvailRect			= (60,148,255,316)
-CommandPos			= (345,158)
-SelectRect			= (445,158,595,385)
-// body of the tab for this menu
-TabBodyRect			= (40, 160, 615, 400)
-Light0				= "Main0"
-RestrictionPos		= (260,155)
-LivesPos			= (260,173)
-WavesPos			= (260,190)
-InfoPos				= (260,260)
-ImagePos			= (260,210)			//(433,198)
-ImageRect			= (0, 0, 315, 113)	//(0, 0, 177, 177)
-RegularPos			= (405,135)
-SuperPos			= (495,135)
-
-// Circuit colors:
-CompletedCircuitColor	= <193.0, 220.0, 251.0>
-UncompletedCircuitColor	= <74.0, 111.0, 255.0>
-
-[ScreenLightCyclePlayerConfig]
-FontSize			= 18
-AddPos				= (54,148)
-AvailRect			= (200,158,350,385)
-//CommandPos			= (345,158)
-CommandPos			= (200,188)
-SelectRect			= (445,158,595,385)
-// body of the tab for this menu
-TabBodyRect			= (40, 160, 615, 400)
-Light0				= "Main0"
-Character			= "LightCycleBase"
-//LightCycleBackgroundTextureName = "interface\portraits\ping_default.dtx"
-LabelPos					= (60,130)
-LightCycleBackgroundPos		= (60,195)
-LightCycleBackgroundRect	= (0, 0, 250, 155)
-BarWidth					= 200
-
-// Starting position of the bars and descriptions
-StatsPos				= (400,130)
-
-TypeLeftArrowPos		= (50,290)
-TypeTextPos				= (70,290)
-TypeRightArrowPos		= (300,290)
-
-ShadeLeftArrowPos		= (50,310)
-ShadeTextPos			= (70,310)
-ShadeRightArrowPos		= (300,310)
-
-[ScreenLightCycleCustomGame]
-FontSize			= 18
-AddPos				= (54,148)
-AvailRect			= (200,208,380,385)
-CommandPos			= (55,158)
-SelectRect			= (415,208,595,385)
-// body of the tab for this menu
-TabBodyRect			= (40, 160, 493, 400)
-Light0				= "Main0"
-BodyRect			= (110, 85, 530, 375)
-LCPowerupListIndent	= (50, 10)
-
-[ScreenLightCycleCustomMap]
-LaunchPos			= (500,365)
-FontSize			= 18
-AddPos				= (54,148)
-AvailRect			= (60,148,230,313)
-CommandPos			= (225,188)
-SelectRect			= (320,148,490,313)
-// body of the tab for this menu
-TabBodyRect			= (40, 160, 493, 400)
-Light0				= "Main0"
-LaunchTex			= "interface\menu\sprtex\menubutton_bg.dtx"
-LaunchTexH			= "interface\menu\sprtex\menubutton_bg_hl.dtx"
-
-
-[LoadScreenM01]
+//BriefingFont	= 1
+//BriefingSize	= 16
+//BriefingRect	= (50, 120, 310, 350)
+//BriefingColor	= <255.0, 255.0, 255.0>
+ContinuePos		= (40, 415)
+ContinueFont	= 1
+ContinueSize	= 24
+ContinueColor   = <0.0, 0.0, 0.0>
 PreLoopFX0		= "LOAD_Test"
 LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_Mission_M01"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_Mission_M01"
+LoadScale1		= "loadingBackground_sprite"
+LoadScale2		= "loadingModel"
+
+[LoadScreenC01]
+TitleColor		= <0.0, 32.0, 96.0>
+//BriefingColor	= <0.0, 0.0, 0.0>
+LoadScale0		= "LoadTest"
+LoadScale1		= "loadingBit"
+
+[LoadScreenM01]
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_Mission_M01"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_Mission_M01"
 
 [LoadScreenM02]
 PreLoopFX0		= "LOAD_Test"
@@ -1098,595 +2131,847 @@ PostScale0		= "LoadingBackground_sprite"
 PostScale1		= "Loading_DiscArena01"
 
 
-
 /************************************************************************
 **
-**	Font Layout
+**	                            Font Layout
 **
+**  In TRON 2.0, pretty much all dynamic text in the game uses the same
+**  font. Additionally, the font system used in TRON 2.0 is completely
+**  unique to it, as it goes completely unused in any Lithtech Engine
+**  games both before and after it. This makes the ability to create and
+**  manage these fonts almost entirely impossible, as no font editing
+**  tool was ever released, officially or otherwise. Setting any font
+**  path to reference a .TTF file will not make the game work with it.
 **
+**  As such, the only fonts available to use are ones that are already
+**  in the game files, and have a .FFA, .FFB, and .DTX file associated
+**  with them. Besides the TwenCen font and its aliased version, the
+**  two other usable fonts are TronConsole and TronFont. The only way to
+**  modify any of these fonts is to modify their respective .DTX files.
+**
+**  Font# (Path)
+**      - The font file used by the game. Must be in .FFB format.
+**  FontSize# (Integer)
+**      - The intended text height of the font file. This should always
+**      be set to the size indicated in the name of the font file.
 */
 [Fonts]
-Font0				= "Interface\Fonts\TwenCen_20.ffb"  //"Interface\Fonts\tcm_____.TTF"
-FontSize0			= 20
-Font1				= "Interface\Fonts\TwenCen_20.ffb"  //"Interface\Fonts\tcm_____.TTF"
-FontSize1			= 20
-Font2				= "Interface\Fonts\TwenCen_20.ffb"  //"Interface\Fonts\tcm_____.TTF"
-FontSize2			= 20
-Font3				= "Interface\Fonts\TwenCen_20.ffb"  //"Interface\Fonts\tcm_____.TTF"
-FontSize3			= 20
-Font4				= "Interface\Fonts\TwenCen_20.ffb"  //"Interface\Fonts\tcm_____.TTF"
-FontSize4			= 20
-
-
-Font5				= "Interface\Fonts\TwenCen_20_Aliased.ffb"  //"Interface\Fonts\tcm_____.TTF"
-FontSize5			= 10
-
-
-//Font4				= "Interface\Fonts\ethnocentric_36.ffb"
-//FontSize0				= 48
-//Font1				= "Interface\Fonts\tcm_____.TTF"
-//Font2				= "Interface\Fonts\tcm_____.TTF"
-//Font3				= "Interface\Fonts\tcm_____.TTF"
-//Font4				= "Interface\Fonts\tcm_____.TTF"
-//Font5				= "Interface\Fonts\tcm_____.TTF"
-//Font6				= "Interface\Fonts\tcm_____.TTF"
-//Font7				= "Interface\Fonts\tcm_____.TTF"
-//Font8				= "Interface\Fonts\tcm_____.TTF"
-
+Font0			= "Interface\Fonts\TwenCen_20.ffb"
+FontSize0		= 20
+Font1			= "Interface\Fonts\TwenCen_20.ffb"
+FontSize1		= 20
+Font2			= "Interface\Fonts\TwenCen_20.ffb"
+FontSize2		= 20
+Font3			= "Interface\Fonts\TwenCen_20.ffb"
+FontSize3		= 20
+Font4			= "Interface\Fonts\TwenCen_20.ffb"
+FontSize4		= 20
+Font5			= "Interface\Fonts\TwenCen_20_Aliased.ffb" 
+FontSize5		= 10
 
 
 /************************************************************************
 **
-**	HUD Layout
+**	                             HUD Layout
 **
-** The HUDLayout definitions specify positions and sizes for in-game
-** interface components. If an attribute isn't listed for a particular
-** layout, the base value defined in the default layout (*)()HUDLayout0(*)() will
-** be used.
+**  The HUDLayout definitions specify positions and sizes for in-game
+**  interface components. The first definition, HudLayout0, demands that
+**  most of the valid arguments be defined. These values are then treated
+**  as defaults for all of the other HUDLayouts. For example, HUDLayout1
+**  does not have a defined BarHeight or TextHeight, and will therefore
+**  use HudLayout0's BarHeight and TextHeight as a fallback.
 **
-** Note:
-**		Positions (AmmoBasePos, etc.) are relative to a 640x480 resolution
-**			and will be scaled for other resolutions.
-**		Offsets are absolute distances and are not scaled for different
-**			resolutions.
-**
+**  Definitions for each setting will be provided in their respective
+**  sections.
 **
 **	LayoutName (Integer)
+**      - The string ID used to identify the layout configuration.
+**      - DO NOT CHANGE - String ID does NOT reference CRES.DLL and
+**      the actual source is not known.
+**	UseAmmoBar (Integer)
+**      - Boolean value that determines if the ammo display is visible.
+**		- 0 hides the ammo bar, 1 shows the ammo bar.
+**      - TRON 2.0 does not use traditional ammo, so this should always
+**      be set to 0.
+**      
+*/
+[HUDLayout0]
+LayoutName	    = 385
+UseAmmoBar	    = 0
+
+/*  -----[Armor Indicator]-----
+**  This is the graphic at the bottom-right that tells you what pieces
+**  of armor you're currently wearing.
 **
-**		The string id used to identify the layout configuration.
+**  ArmorOffset (Point)
+**      - The offset of the armor display from the lower-right corner
+**      of the screen.
+**      - Monolith note: All bitmaps used are specified in
+**      SUBROUTINES.TXT. (What does this have to do with armor?)
+*/
+ArmorOffset	= (10, 10)
+
+/*  -----[Health & Energy]-----
+**  These are self-explanatory - they control the Health & Energy bars.
+**  Does not include the Permissions ring between them.
 **
 **	BarHeight (Integer)
-**
-**		The height used for the HUD bars.
-**
-**	BarScale (Float)
-**
-**		The number of pixels per point in the various HUD bars.
-**
-**
-**	AmmoBasePos (Point)
-**
-**		Relative position of the Ammo display.
-**
-**	UseAmmoBar (Integer)
-**
-**		0 - hides ammo bar, 1 - shows ammo bar
-**
-**	AmmoClipOffset (Point)
-**
-**		Offset to the upper-RIGHT corner of the ammo-in-clip bar.
-**
-**	AmmoBarOffset (Point)
-**
-**		Offset to the upper-RIGHT corner of the total ammo bar.
-**
-**	UseAmmoText (Integer)
-**
-**		0 - hides ammo text, 1 - shows ammo text
-**
-**	AmmoTextOffset (Point)
-**
-**		Offset to the upper-left corner of the ammo text.
-**
-**	AmmoIconOffset (Point)
-**
-**		Offset to the upper-left corner of the ammo type icon.
-**
-**
-**	HealthBasePos (Point)
-**
-**		Relative position of the Health and Armor display.
-**
-**	UseHealthBar (Integer)
-**
-**		0 - hides health bar, 1 - shows health bar
-**
-**	HealthBarOffset (Point)
-**
-**		Offset to the upper-left corner of the health bar.
-**
-**	ArmorBarOffset (Point)
-**
-**		Offset to the  upper-left corner of the armor bar.
-**
-**	UseHealthText (Integer)
-**
-**		0 - hides health/armor text, 1 - shows health/armor text
-**
-**	HealthTextOffset (Point)
-**
-**		Text is justified to right so that the x coordinate is the offset of the right edge
-**		of the text from the center of the screen.
-**		The y coordinate is the offset of the center of the text from the
-**		bottom of the screen.
-**
-**	EnergyTextOffset (Point)
-**
-**		Text is justified to left so that the x coordinate is the offset of the left edge
-**		of the text from the center of the screen.
-**		The y coordinate is the offset of the center of the text from the
-**		bottom of the screen.
-**
-**	UseHealthIcon (Integer)
-**
-**		0 - hides health/armor icons, 1 - shows health/armor icons
-**
-**	HealthIconOffset (Point)
-**
-**		Offset to the upper-left corner of the health icon.
-**
-**	ArmorIconOffset (Point)
-**
-**		Offset to the upper-left corner of the armor icon.
-**
-**
-**
-**	AirBasePos (Point)
-**
-**		Relative position of the Air display.
-**
-**	UseAirIcon (Integer)
-**
-**		0 - hides air icon, 1 - shows air icon
-**
-**	AirIconOffset (Point)
-**
-**		Offset to the upper-left corner of the air icon.
-**
-**	UseAirText (Integer)
-**
-**		0 - hides air text, 1 - shows air text
-**
-**	AirTextOffset (Point)
-**
-**		Offset to the upper-left corner of the air text.
-**
-**	UseAirBar (Integer)
-**
-**		0 - hides air bar, 1 - shows air bar
-**
-**	AirBarOffset (Point)
-**
-**		Offset to the upper-left corner of the air bar.
-**
-**	ModeTextPos (Point)
-**
-**		Relative position of the sunglass mode text display.
-**
-**
-**
-**	DamageBasePos (Point)
-**
-**		Relative position (upper-left corner) of the damage display.
-**
-**
-**	HealthEnergyFont (integer)
-**		Index number for the font to use on the health/energy indicators
-**
-**	InfoTextPos
-**	InfoTextSize
-**	InfoTextWidth
-**	InfoTextJustify
-**	InfoTextAlpha
-**	InfoTextColor
-**	InfoTextBadAlpha
-**	InfoTextBadColor
-**	ProfilerPos (Point)
-**		Location for top-left corner of Profiler data spew
+**		- The total height used for the Health & Energy bars.
+**      - This setting is managed by the Killer App Mod.
+**	HealthBarWidth (Integer),
+**  EnergyBarWidth (Integer)
+**      - The total width used for the Health & Energy bars.
+**  HealthTex (Rectangle)
+**      - The space allocated to display the Health bar foreground (the
+**      bright red layer).
+**  HealthFGOffset (Point)
+**      - The offset of the Health bar foreground (the bright red layer)
+**      from the lower-middle point of the screen.
+**  HealthBGTex (Rectangle)
+**      - The space allocated to display the Health bar background (the
+**      dark red layer as well as the little blue line around it).
+**  HealthBGOffset (Point)
+**      - The offset of the Health bar background (the dark red layer as
+**      well as the little blue line around it) from the lower-middle
+**      point of the screen.
+**  EnergyTex (Rectangle)
+**      - The space allocated to display the Energy bar foreground (the
+**      bright green layer).
+**  EnergyFGOffset (Point)
+**      - The offset of the Energy bar foreground (the bright green
+**      layer) from the lower-middle point of the screen.
+**  EnergyBGTex (Rectangle)
+**      - The space allocated to display the Energy bar background (the
+**      dark green layer as well as the little blue line around it).
+**  EnergyBGOffset (Point)
+**      - The offset of the Energy bar background (the dark green layer
+**      as well as the little blue line around it) from the lower-middle
+**      point of the screen.
+**  TextHeight (Integer)
+**      - The text height of the Health & Energy indicator text.
+**  HealthEnergyFont (Integer),
+**  HealthEnergyFontSize (Integer)
+**      - The font ID and text height of the Health & Energy indicators.
+**  HealthTextOffset (Point),
+**  EnergyTextOffset (Point)
+**      - The offset of the Health & Energy indicators from the lower-
+**      middle point of the screen.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**	BarScale (Float?)
+**		- The number of pixels per point in the Health and Energy HUD
+**      bars?
+**      - Changing this value appears to have no effect.
+**  HealthBlinkTime (Integer)
+**      - Unknown function. Health doesn't blink, even when taking
+**      damage...?
+**  HealthBlinkTex (Rectangle)
+**      - Unknown function. Health doesn't blink, even when taking
+**      damage...?
+**  EnergyDeficitTex (Rectangle)
+**      - Unknown function. Was it possible at one point to have
+**      a negative energy level?
 */
-
-/*
-**	Hud#0 (Default) is Health=baronly; Armor=baronly; Ammo=icon,text,nobar;
-*/
-
-[HUDLayout0]
-LayoutName			= 385
-
-//-- Armor Indicator -->
-ArmorOffset			= ( 10, 10)	// all bitmaps used are specified in subroutines.txt.
-
-//--Health and Energy
 BarHeight				= 14
-TextHeight				= 20
-BarScale				= 1
-HealthEnergyFont		= 0
-HealthEnergyFontSize 	= 32
-UseAmmoBar				= 0
+//BarScale				= 1
 HealthBarWidth			= 158
-HealthBlinkTime			= 2
+//HealthBlinkTime		= 2
 EnergyBarWidth			= 158
-HealthTex				= (118,146,254,159)
+HealthTex				= (118, 146, 254, 159)
 HealthFGOffset			= (67, -20)
 HealthBGTex				= (2, 233, 254, 251)
 HealthBGOffset			= (0, -25)
-HealthBlinkTex			= (349,441,509,451)
+//HealthBlinkTex		= (349, 441, 509, 451)
+EnergyTex				= (118, 161, 254, 174)
+EnergyFGOffset			= (-65, -20)
 EnergyBGTex				= (3, 200, 253, 217)
 EnergyBGOffset			= (0, -25)
-EnergyTex				= (118, 161, 254, 174)
-EnergyDeficitTex		= (118,175,254,185)
-EnergyFGOffset			= (-65, -20)
+//EnergyDeficitTex		= (118, 175, 254, 185)
+TextHeight				= 20
+HealthEnergyFont		= 0
+HealthEnergyFontSize 	= 32
 HealthTextOffset		= (60, -15)
 EnergyTextOffset 		= (-60, -15)
 
-//-- Weapon Indicator -->
-WeaponIndicatorBox		= (70, 75,116, 116)
-WeaponIndicatorTex		= "interface\hud\hud.dtx"
-WeaponIndicatorAnimTime	= 0.25
+/*  -----[Weapon Indicator]-----
+**  This is just the small single box at the top-right corner of the
+**  screen that lets the player know what their currently equipped
+**  weapon is.
+**
+**  WeaponIndicatorAnimTime (Float)
+**      - Unknown function. It has something to do with the transition
+**      between seeing all of the weapons to just seeing the currently
+**      equipped one, but changing this value did not really make it
+**      easier to understand.
+**  WeaponIndicatorOffset (Point)
+**      - The offset of the currently equipped weapon indicator from the
+**      (almost) upper-left corner of the screen.
+**  WeaponIndicatorIconOffset (Point)
+**      - The offset of the currently equipped weapon's icon from the
+**      lower-right corner of the indicator box that contains it.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  WeaponIndicatorBox (Rectangle)
+**      - Unknown function.
+**  WeaponIndicatorTex (Path)
+**      - Unknown function.
+*/
+//WeaponIndicatorBox		= (70, 75, 116, 116)
+//WeaponIndicatorTex		= "interface\hud\hud.dtx"
+WeaponIndicatorAnimTime	    = 0.25
 WeaponIndicatorOffset		= (10, 10)
 WeaponIndicatorIconOffset	= (-7, -12)
 
-//-- Weapon Chooser -->
-ChooserTex			= "interface\hud\currentweapon.dtx"
+/*  -----[Weapon Chooser]-----
+**  This is the larger graphic that appears when the player wants to
+**  change their currently equipped weapon.
+**
+**  ChooserTex (Path),
+**  ChooserTexHi (Path)
+**      - The texture used as the background box for an available
+**      weapon, when not highlighted and highlighted respectively.
+**      - ChooserTexHi is reused for the Weapon Indicator.
+**  ChooserCorruptTex (Path),
+**  ChooserCorruptTexHi (Path)
+**      - The texture used as the background box for an available, but
+**      corrupted weapon, when not highlighted and highlighted
+**      respectively.
+**  ChooserEmptyTex (Path)
+**      - The texture used as the background box for an unavailable
+**      weapon, when not highlighted. Only appears when the player has
+**      insufficient energy to use that weapon.
+**  ChooserEmptyTexHi (Path)
+**      - The texture used as the background box for an unavailable
+**      weapon, when highlighted. The player isn't able to highlight
+**      weapons they can't use, so this is technically an unused value.
+**  ChooserTextColor (Vector),
+**  ChooserTextSize (Integer)
+**      - The color and text height of the string displaying the name of
+**      the currently highlighted weapon.
+**  ChooserBoxSize (Size)
+**      - The defined width and height of each available weapon box.
+**      Does not affect the texture size, just the box itself.
+**      - This setting is managed by the Killer App Mod.
+**  ChooserSpacing (Width, Height)
+**      - The defined width and height of the spacing between each
+**      available weapon box.
+**  ChooserIconOffset (Point)
+**      - The offset of an available weapon's icon from the lower-right
+**      corner of the chooser box that contains it.
+**  ChooserMargin (Point)
+**      - The (scalable?) offset of the weapon chooser from the upper-
+**      right corner of the screen.
+**  ClassNumber# (Path),
+**  ClassNumberHi# (Path)
+**      - These point to the textures used to indicate the numbers of
+**      the available weapon classes (4 in total), when not highlighted
+**      and highlighted respectively.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  ChooserTextAlpha (Float)
+**      - Probably the alpha of the text displaying the name of the
+**      currently highlighted weapon. Changing it did nothing.
+**  ChooserUVTitleBox (Rectangle)
+**      - Unknown function.
+**  ChooserTitleHight (Integer)
+**      - Unknown function. Maybe the chooser box used to have a title?
+**  ChooserIntroTime (Float)
+**      - Unknown function. It seems the fade-in is managed elsewhere.
+**  ChooserOutroTime (Float)
+**      - Unknown function. It seems the fade-out is managed elsewhere.
+*/
+ChooserTex			    = "interface\hud\currentweapon.dtx"
 ChooserTexHi			= "interface\hud\currentweapon_hl.dtx"
 ChooserCorruptTex		= "interface\hud\currentweapon_corrupt.dtx"
 ChooserCorruptTexHi		= "interface\hud\currentweapon_corrupt_hl.dtx"
 ChooserEmptyTex			= "interface\hud\currentweapon_empty.dtx"
 ChooserEmptyTexHi		= "interface\hud\currentweapon_empty_hl.dtx"
-ChooserTextAlpha		= 1.0
-ChooserTextColor			= <255.0, 255.0, 255.0>
+//ChooserTextAlpha		= 1.0
+ChooserTextColor		= <255.0, 149.0, 0.0> // SecurityProtocol
 ChooserTextSize			= 24
-ChooserUVTitleBox		= (117, 18, 254, 43)
+//ChooserUVTitleBox		= (117, 18, 254, 43)
 ChooserBoxSize			= (46, 42)
 ChooserSpacing			= (0, 6)
 ChooserIconOffset		= (-7, -12)
-ChooserMargin			= (10,0)
-ChooserTitleHeight		= 0
-ChooserIntroTime			= 0.5
-ChooserOutroTime		= 0.5
-//-- Unused Weapon Chooser stuff -->
-ChooserColumnWidth		= 48
-ChooserIconHeight		= 48
-ChooserTextureScale		= 0.75
-ChooserPosition			= 120
-ClassNumber0			= ""
+ChooserMargin			= (10,10) // SecurityProtocol
+//ChooserTitleHeight	= 0
+//ChooserIntroTime		= 0.5
+//ChooserOutroTime		= 0.5
 ClassNumber1			= "Interface\hud\currentweaponTab_1.dtx"
 ClassNumber2			= "Interface\hud\currentweaponTab_2.dtx"
 ClassNumber3			= "Interface\hud\currentweaponTab_3.dtx"
 ClassNumber4			= "Interface\hud\currentweaponTab_4.dtx"
-ClassNumberHi0			= ""
 ClassNumberHi1			= "Interface\hud\currentweapon_hlTab_1.dtx"
 ClassNumberHi2			= "Interface\hud\currentweapon_hlTab_2.dtx"
 ClassNumberHi3			= "Interface\hud\currentweapon_hlTab_3.dtx"
 ClassNumberHi4			= "Interface\hud\currentweapon_hlTab_4.dtx"
 
-//-- Objective blinking indicator
-ObjectiveOffsetChris		= (8,-264 )  // chris' version
-ObjectiveOffset			= (8,-40 ) //correct version
+/*  -----[New Objective Indicator]-----
+**  I'm leaving this in, but not sure if it's actually used, assuming
+**  that it references the UPDATE_FLASH texture. It doesn't seem to be
+**  visible anywhere.
+**
+**  ObjectiveOffsetChris (Point)
+**      - Chris' silly little objective indicator. Pay it no mind.
+**      - Seriously, don't bother looking at it. Just.. move on.
+**      - ...
+**      - Why are you still reading this? Go modify a different value,
+**      this one's off-limits.
+**  ObjectiveOffset (Point)
+**      - The offset of the new objective indicator.
+*/  
+ObjectiveOffsetChris	= (8, -264)
+ObjectiveOffset			= (8, -40)
 
-//-- Pings -->
-PingIconSize			= (130,65)
-PingStartPoint			= (6,105)
+/*  -----[Pings]-----
+**  These are for the pings that pop up on the left side of the screen
+**  when certain events happen, like getting new subroutines, getting an
+**  I/O node message, or getting a new objective.
+**
+**  PingIconSize (Width, Height)
+**      - The defined width and height of the ping icon boxes. Does not
+**      affect the texture size, just the boxes themselves.
+**      - This setting is managed by the Killer App Mod.
+**  PingStartPoint (Point)
+**      - The upper-left origin position of the ping list.
+**      - This setting is managed by the Killer App Mod.
+**  PingSpacing (Width, Height)
+**      - The defined width and height of the spacing between ping icon
+**      boxes.
+**  PingBlinkCount (Integer)
+**      - The amount of times a ping will blink when it pops up.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  PingFontNum (Integer)
+**      - Unused function. Pings don't use text.
+**  PingFontSize (Integer)
+**      - Unused function. Pings don't use text.
+**  PingBlinkTime (Float)
+**      - Unused function. This seems to be managed elsewhere.
+*/
+PingIconSize		= (130, 65)
+PingStartPoint		= (6, 105)
 PingSpacing			= 0
-PingFontNum			= 0
-PingFontSize		= 0
+//PingFontNum		= 0
+//PingFontSize		= 0
 PingBlinkCount		= 4
-PingBlinkTime		= 0.5
+//PingBlinkTime		= 0.5
 
-//-- Pset Indicator -->
-PsetOffset				= (0,4)
-PsetWidth				= 67
-PsetHeight				= 67
+/*  -----[Permission Set Indicator]-----
+**  This is the permission ring at the center of the screen. It's unique
+**  in that it's one of the few elastic elements - meaning the width and
+**  height can be different and the entire HUD element is able to scale
+**  accordingly.
+**
+**  PsetOffset (Point)
+**      - The offset of the permission set indicator from the lower-
+**      middle point of the screen.
+**  PsetWidth (Integer),
+**  PsetHeight (Integer)
+**      - The width and height of the permission set indicator.
+*/
+PsetOffset	= (0,0) // SecurityProtocol
+PsetWidth	= 80 // SecurityProtocol
+PsetHeight	= 80 // SecurityProtocol
 
-//-- Crosshair -->
+/*  -----[Crosshair Text Elements]-----
+**  This isn't about the crosshair itself; rather, it's meant to be for
+**  the stuff around the crosshair. The Activation Text is the yellow
+**  text beneath the crosshair that shows up when something can be
+**  interacted with, and the Info Text is... something.
+**
+**  ActivationTextPos (Point)
+**      - The upper-left origin position of the activation text.
+**      - This setting is managed by the Killer App Mod.
+**  ActivationTextSize (Integer)
+**      - The text height of the activation text.
+**  ActivationTextJustify (Integer)
+**      - The justification value of the activation text.
+**      - TODO figure out what the justification values are and/or mean
+**  ActivationTextAlpha (Float)
+**      - The opacity of the activation text.
+**  ActivationTextColor (Vector)
+**      - The color of the activation text.
+**  ActivationTextDisAlpha (Integer)
+**      - The opacity of the activation text, when disabled.
+**      - Is this used?
+**  ActivationTextDisColor (Vector)
+**      - The color of the activation text, when disabled.
+**      - Is this used?
+**
+**  Info Text is I guess used? What is this?
+**  InfoTextPos (Point)
+**      - This setting is managed by the Killer App Mod.
+**  InfoTextSize (Integer)
+**  InfoTextWidth (Integer)
+**  InfoTextJustify (Integer)
+**  InfoTextAlpha (Integer?)
+**  InfoTextColor (Vector)
+**  InfoTextBadAlpha (Integer?)
+**  InfoTextBadColor (Vector)
+**  
+**  ---[SAFELY DEPRECATED VALUES]---
+**  Deprecated all of the debug text values. It seems to have been a dev
+**  feature removed before the retail release went out, so there's no
+**  reason to keep them around. The values are below, but won't have
+**  definitions.
+**  DebugTextPos (Point)
+**  DebugTextSize (Integer)
+**  DebugTextJustify (Integer)
+**  DebugTextAlpha (Float)
+**  DebugTextColor (Vector)
+*/
 ActivationTextPos		= (320, 255)
 ActivationTextSize		= 14
-ActivationTextJustify		= 2
-ActivationTextAlpha		= 1
+ActivationTextJustify	= 2
+ActivationTextAlpha		= 1.0
 ActivationTextColor		= <255.0, 255.0, 0.0>
-ActivationTextDisAlpha		= 255
-ActivationTextDisColor		= <128.0, 128.0, 128.0>
-DebugTextPos			= (360,100)
-DebugTextSize			= 12
-DebugTextJustify		= 0
-DebugTextAlpha			= 1.0
-DebugTextColor			= <255.0, 255.0, 255.0>
-InfoTextPos			= (320, 275)
+ActivationTextDisAlpha  = 255
+ActivationTextDisColor	= <128.0, 128.0, 128.0>
+//DebugTextPos			= (360,100)
+//DebugTextSize			= 12
+//DebugTextJustify		= 0
+//DebugTextAlpha	    = 1.0
+//DebugTextColor		= <255.0, 255.0, 255.0>
+InfoTextPos			    = (320, 275)
 InfoTextSize			= 12
 InfoTextWidth			= 200
 InfoTextJustify			= 2
 InfoTextAlpha			= 128
 InfoTextColor			= <255.0, 255.0, 0.0>
-InfoTextBadAlpha			= 128
-InfoTextBadColor			= <255.0, 64.0, 64.0>
+InfoTextBadAlpha	    = 128
+InfoTextBadColor		= <255.0, 64.0, 64.0>
 
-//-- Datalog -->
-DataLogRect			= (150, 50, 490, 400)
+/*  -----[Data Log]-----
+**  What's this?
+**
+**  DataLogRect (Rectangle)
+**  DataLogFontSize (Integer)
+**  DataLogHeaderFontSize (Integer)
+**  DataLogFrame (Path)
+*/
+DataLogRect			    = (150, 50, 490, 400)
 DataLogFontSize			= 20
-DataLogHeaderFontSize		= 18
+DataLogHeaderFontSize	= 18
 DataLogFrame			= "interface\hud\hud.dtx"
 
-//-- Profiler -->
+/*  -----[Profiler Subroutine Text]-----
+**  This is the text for the Profiler subroutine.
+**
+**  ProfilerPos (Point)
+**      - The lower-right origin position of the Profiler text.
+**  ProfilerTextSize (Integer)
+**      - The text height of the Profiler text.
+*/
 ProfilerPos			= (370, 240)
 ProfilerTextSize	= 16
 
-//--Light Cycle HUD Elements-->
-PowerupIconPos					= (320, 32)		// center of icon
-PowerupIconTexture0				= "Interface\HUD\LC_pickup_Shield.dtx"			// eShield
-PowerupIconTexture1				= "Interface\HUD\LC_pickup_TurboBoost.dtx"		// eTurbo
-PowerupIconTexture2				= "Interface\HUD\LC_pickup_TrailSpike.dtx"		// eTrailSpike
-PowerupIconTexture3				= "Interface\HUD\LC_pickup_Missle.dtx"			// eMissile
-PowerupIconTexture4				= "Interface\HUD\LC_pickup_WallExtender.dtx"	// eWallExtender
-PowerupIconTexture5				= "Interface\HUD\LC_pickup_TurboCurse.dtx"		// eTurboCurse
-PowerupIconTexture6				= "Interface\HUD\LC_pickup_Grab.dtx"			// eGrab
-PowerupIconTexture7				= "Interface\hud\LC_pickup_Reset.dtx"			// eTrailReset
-PowerupIconTexture8				= "Interface\HUD\LC_pickup_ForceUse.dtx"		// eForceUse
-
-LivesIconPos					= (625, 0)										// upper right of icon
-LivesTextOffset					= 4												// space between icon and text
-LivesTextHeight					= 16
-
-RosterPosition					= (6, 46)										// top left corner of roster list beginning
-RosterTextHeight				= 14											// roster text height
-RosterTextOffset				= 4												// distance between icon and text
-RosterLineOffset				= 4												// distance between roster lines
-RosterEnableIconScaling			= 1												// 0/1 to enable/disable icon scaling.
-RosterIconBaseSizeIfScalingIsEnabled= (26, 16)										// base icon size if scaling is enabled.
-
-IntroMasterPos					= (320, 8)									// the top middle of the frame
-IntroVFrameBorder				= 6											// vertical distance between text and frame
-IntroHFrameBorder				= 10											// horizontal distance between text and frame
-IntroTitleHeight				= 22											// height of the title text
-IntroEntryHeight				= 16											// height of the entry text
-IntroTitleSpace					= 6											// vertical distance between bottom of title and top of 1st entry
-IntroEntrySpace					= 6												// vertical distance between entries
-IntroHeaderOffset				= -81											// horizontal sideways distance from the center to place the header texts
-IntroValueOffset				= 49											// horizontal sideways distance from the center to place the value texts
-IntroValueTime					= 4.0											// time to display the intro screen for
-IntroFrameBackground			= "interface\menu\sprtex\frame_solid.dtx"		// texture to use for the background  //REMOVE_AFTER_NEXT_BUILD
-IntroTexturedFrameName			= "lightcycle_start"								// which textured background to use (see definition elsewhere in this file)
-
-SpeedometerPos					= (34, 8)									// upper left
-SpeedometerTextHeight			= 24											// height of the text
-SpeedometerVBorder				= 3												// vertical height between text and frame border
-SpeedometerHBorder				= -23											// horizontal distance between text and frame broder (on right side)
-SpeedometerFrameWidth			= 26											// horizontal length of the frame
-SpeedometerFrameHeight			= 24											// vertical length of the frame
-SpeedometerFrameBackground		= "interface\hud\frame_lightcycle.dtx"		// texture to use for the frame background  //REMOVE_AFTER_NEXT_BUILD
-SpeedometerFontNum				= 4												// number of the font to use
-SpeedometerTexturedFrameName	= "lightcycle_speedometer"								// which textured background to use (see definition elsewhere in this file)
-
-//-- Zoom values for sniper scopes
-FOVZoomLOL			= 30.0
+/*  -----[LOL & Triangulate Subroutine Zoom Values]-----
+**  The exact unit of measurement used for the FOV zoom is unknown, but
+**  the effect is consistent at least. When Triangulate is equipped, the
+**  game moves between the three zoom values for Triangulate. When the
+**  LOL is equipped, the game uses the single zoom value for the LOL.
+**
+**  When BOTH subroutines are equipped, and the player zooms in with the
+**  LOL, it will initially use the LOL zoom value; however, if the
+**  player zooms in further and then zooms back out to the first value,
+**  the game will instead use the first Triangulate value rather than
+**  going back to the LOL value. This resets every time the zoom is
+**  exited.
+**
+**  FOVZoomLOL (Float)
+**      - The designated FOV zoom value when the player scopes in with
+**      the LOL.
+**  FOVZoomTriangulate# (Float)
+**      - The designated FOV zoom values when the player scopes in with
+**      Triangulate. 3 maximum values permitted.
+*/
+FOVZoomLOL			    = 30.0
 FOVZoomTriangulate1		= 20.0
 FOVZoomTriangulate2		= 7.0
 FOVZoomTriangulate3		= 3.0
 
-//-- Distance Icon
-DistanceIconPos			= (294,336)
+/*  -----[Distance Icon]-----
+**  What's this?
+**
+**  DistanceIconPos (Point)
+**  DistanceIconBlinkSpeed (Float)
+**  DistanceIconAlpha (Float)
+**  DistanceIconFadeOutSpeed (Float)
+*/
+DistanceIconPos			= (294, 336)
 DistanceIconBlinkSpeed		= 6.0
 DistanceIconAlpha		= 0.8
 DistanceIconFadeOutSpeed	= 1.0
 
-//-- Useless stuff ?????-->
-// This is from TO2's boss-bar
-DisplayMeterBasePosY		= 54
-DisplayMeterOffset		= (0,0)
-DisplayMeterHeight		= 8
-DisplayMeterScale		= 2.5
-DisplayMeterTexture		= "Interface\hud\bossbar.dtx"
+/*  -----[Light Cycle HUD Elements]-----
+**  The HUD is completely different while using a Light Cycle. Luckily,
+**  this is one of the very few areas where Monolith provided the exact
+**  definition for all of these values!
+**
+** ---[Powerups]---
+**  PowerupIconPos (Point)
+**      - The "true center" origin position of the player's currently
+**      stored powerup.
+**  PowerupIconTexture# (Path)
+**      - The textures used to display the icon for each powerup.
+**      - The texture names can speak for themselves, but here's the
+**      list anyways:
+**      Powerup 0: Shield Break
+**      Powerup 1: Turbo Boost
+**      Powerup 2: Wall Spike
+**      Powerup 3: Missile
+**      Powerup 4: Wall Extender
+**      Powerup 5: Turbo Curse
+**      Powerup 6: Grab
+**      Powerup 7: Wall Reset
+**      Powerup 8: Force Use
+*/
+PowerupIconPos		= (320, 32)
+PowerupIconTexture0	= "Interface\HUD\LC_pickup_Shield.dtx"
+PowerupIconTexture1	= "Interface\HUD\LC_pickup_TurboBoost.dtx"
+PowerupIconTexture2	= "Interface\HUD\LC_pickup_TrailSpike.dtx"
+PowerupIconTexture3	= "Interface\HUD\LC_pickup_Missle.dtx"
+PowerupIconTexture4	= "Interface\HUD\LC_pickup_WallExtender.dtx"
+PowerupIconTexture5	= "Interface\HUD\LC_pickup_TurboCurse.dtx"
+PowerupIconTexture6	= "Interface\HUD\LC_pickup_Grab.dtx"
+PowerupIconTexture7	= "Interface\hud\LC_pickup_Reset.dtx"
+PowerupIconTexture8	= "Interface\HUD\LC_pickup_ForceUse.dtx"
 
-AmmoBasePos 		= (624,450)
-AmmoClipOffset		= (-8,8)
-AmmoClipUnitSize		= (7,12)
-AmmoBarOffset		= (0,0)
-UseAmmoText 		= 1
-AmmoTextOffset		= (-72,-16)
-AmmoTextColor		= <160.0, 128.0, 32.0>
-AmmoTextAlpha		= 0.8
-AmmoIconOffset		= (-104,-16)
-AmmoIconSize		= 24
+/*  ---[Lives]---
+**  Lives are only used in the Single Player Light Cycle Circuits.
+**
+**  LivesIconPos (Point)
+**      - The upper-right origin position of the lives icon.
+**  LivesTextOffset (Integer)
+**      - The offset of the lives text to the left of the lives icon.
+**  LivesTextHeight (Integer)
+**      - The text height of the lives text.
+*/
+LivesIconPos	= (625, 0)
+LivesTextOffset	= 4	
+LivesTextHeight	= 16
 
-UseHealthBar		= 1
-HealthBasePos		= (16,430)
-HealthBarOffset 		= (0,34)
-ArmorBarOffset		= (6,22)
-UseHealthText		= 0
-HealthColor 		= <192.0, 0.0, 0.0>
-ArmorColor			= <0.0, 0.0, 192.0>
+/*  ---[Roster]---
+**  This is the list showing the remaining competitors in the current
+**  race.
+**
+**  RosterPosition (Point)
+**      - The upper-left origin position of the entire roster list.
+**      - This setting is managed by the Killer App Mod.
+**  RosterTextHeight (Integer)
+**      - The text height of the names on the roster.
+**  RosterTextOffset (Integer)
+**      - The offset of the roster names to the left of their respective
+**      icons.
+**  RosterLineOffset (Integer)
+**      - The vertical spacing between roster lines.
+**  RosterEnableIconScaling (Integer)
+**      - Boolean value. Decides whether roster icon scaling is enabled
+**      or not.
+**  RosterIconBaseSizeIfScalingIsEnabled (Size)
+**      - The defined minimum width and height of a roster icon. Only
+**      used if RosterEnableIconScaling is set to 1.
+**      - This setting is managed by the Killer App Mod.
+*/
+RosterPosition					= (6, 46)
+RosterTextHeight				= 14
+RosterTextOffset				= 4
+RosterLineOffset				= 4
+RosterEnableIconScaling			= 1
+RosterIconBaseSizeIfScalingIsEnabled= (26, 16)
 
-HealthAlpha 		= 0.8
-UseHealthIcon		= 0
-HealthIconOffset		= (0,-20)
-ArmorIconOffset 		= (64,-20)
-HealthIconSize		= 20
+/*  ---[Intro]---
+**  Not sure what this is?
+**
+**  IntroMasterPos (Point)
+**      - The upper-middle origin position of the intro frame.
+**  IntroVFrameBorder (Integer),
+**  IntroHFrameBorder (Integer)
+**      - The vertical and horizontal distance between the intro text
+**      and frame.
+**  IntroTitleHeight (Integer),
+**  IntroEntryHeight (Integer)
+**      - The text height of the title and entry text.
+**  IntroTitleSpace (Integer)
+**      - The vertical space between the title and the top of the first
+**      entry.
+**  IntroEntrySpace (Integer)
+**      - The vertical spacing between entries.
+**  IntroHeaderOffset (Integer),
+**  IntroValueOffset (Integer)
+**      - The offset of the header and value texts from the center of
+**      the screen.
+**      - These settings are managed by the Killer App Mod.
+**  IntroValueTime (Float)
+**      - The amount of time, in seconds, to show the intro screen for.
+**  IntroFrameBackground (Path)
+**      - The texture used for the intro frame background.
+**      - Potentially unused.
+**   IntroTexturedFrameName (String)
+**      - The name of the TexturedFrame object used for the intro frame.
+**      - For more details, see the "Textured Frames Layout" section.
+**      - Potentially unused.
+*/
+IntroMasterPos					= (320, 8)
+IntroVFrameBorder				= 6
+IntroHFrameBorder				= 10
+IntroTitleHeight				= 22
+IntroEntryHeight				= 16
+IntroTitleSpace					= 6
+IntroEntrySpace					= 6
+IntroHeaderOffset				= -81
+IntroValueOffset				= 49
+IntroValueTime					= 4.0
+IntroFrameBackground			= "interface\menu\sprtex\frame_solid.dtx"
+IntroTexturedFrameName			= "lightcycle_start"
 
-UseAirIcon			= 1
-AirBasePos			= (24,400)
-UseAirText			= 0
-AirTextOffset		= (24,-26)
-UseAirBar			= 1
-AirBarOffset		= (12,0)
-AirIconOffset		= (-20,-8)
-AirColor			= <0.0, 202.0, 158.0>
-AirAlpha			= 0.8
-AirIconSize 		= 32
+/*  ---[Speedometer]---
+**  SpeedometerPos (Point)
+**      - The upper-left origin position of the speedometer.
+**      - This setting is managed by the Killer App Mod.
+**  SpeedometerFontNum (Integer),
+**  SpeedometerTextHeight (Integer)
+**      - The font ID and text height of the speedometer text.
+**  SpeedometerVBorder (Integer),
+**  SpeedomederHBorder (Integer)
+**      - The vertical and horizontal distance between the speedometer
+**      text and frame border. (Text is horizontally offset from the
+**      right side.)
+**      - These settings are managed by the Killer App Mod.
+**  SpeedometerFrameWidth (Integer),
+**  SpeedometerFrameHeight (Integer)
+**      - The total width and height of the speedometer frame.
+**      - These settings are managed by the Killer App Mod.
+**  SpeedometerFrameBackground (Path)
+**      - The texture used for the speedometer frame background.
+**      - Potentially unused.
+**  SpeedometerTexturedFrameName (String)
+**      - The name of the TexturedFrame object used for the speedometer
+**      frame.
+**      - For more details, see the "Textured Frames Layout" section.
+**      - Potentially unused.
+*/
+SpeedometerPos					= (34, 8)
+SpeedometerFontNum				= 4
+SpeedometerTextHeight			= 24
+SpeedometerVBorder				= 3
+SpeedometerHBorder				= -23
+SpeedometerFrameWidth			= 26
+SpeedometerFrameHeight			= 24
+SpeedometerFrameBackground		= "interface\hud\frame_lightcycle.dtx"
+SpeedometerTexturedFrameName	= "lightcycle_speedometer"
 
-ModeTextPos 		= (80,40)
-
-DamageBasePos		= (0,240)
-
-CompassPos		= (528,16)
-CompassSize 		= 96
-
-HideIconPos 		= (288,336)
-HideIconBlinkSpeed	= 3.0
-HideIconAlpha		= 0.6
-
-DamageSize			= 32
-
+/*  -----[HUD Layout 1]-----
+**  Was this kept around for anything?
+**  Hold off on documentation
+*/
 [HUDLayout1]
-ArmorOffset				= (-64, -128)
-HealthEnergyFontSize 	= 0
-HealthBarWidth			= 0
-EnergyBarWidth			= 0
-HealthBGTex				= (0, 0, 0, 0)
-EnergyBGTex				= (0, 0, 0, 0)
-WeaponIndicatorOffset	= (-64, 0)
-PingIconSize			= (0,0)
-PsetWidth				= 0
-PsetHeight				= 0
-ActivationTextPos		= (320, -16)
-InfoTextPos			= (320, -16)
-ProfilerTextSize	= 0
-PowerupIconTexture0				= "Interface\HUD\Reticle.dtx"
-PowerupIconTexture1				= "Interface\HUD\Reticle.dtx"
-PowerupIconTexture2				= "Interface\HUD\Reticle.dtx"
-PowerupIconTexture3				= "Interface\HUD\Reticle.dtx"
-PowerupIconTexture4				= "Interface\HUD\Reticle.dtx"
-PowerupIconTexture5				= "Interface\HUD\Reticle.dtx"
-PowerupIconTexture6				= "Interface\HUD\Reticle.dtx"
-PowerupIconTexture7				= "Interface\HUD\Reticle.dtx"
-PowerupIconTexture8				= "Interface\HUD\Reticle.dtx"
-LivesIconPos					= (0, -32)
-LivesTextHeight					= 0
-RosterTextHeight				= 0
-RosterIconBaseSizeIfScalingIsEnabled= (0, 0)
-IntroTitleHeight				= 0
-IntroEntryHeight				= 0
-SpeedometerTextHeight			= 0
-DistanceIconAlpha		= 0
+ArmorOffset				                = (-64, -128)
+HealthEnergyFontSize 	                = 0
+HealthBarWidth			                = 0
+EnergyBarWidth			                = 0
+HealthBGTex				                = (0, 0, 0, 0)
+EnergyBGTex				                = (0, 0, 0, 0)
+WeaponIndicatorOffset	                = (-64, 0)
+PingIconSize			                = (0,0)
+PsetWidth				                = 0
+PsetHeight				                = 0
+ActivationTextPos		                = (320, -16)
+InfoTextPos			                    = (320, -16)
+ProfilerTextSize	                    = 0
+PowerupIconTexture0		                = "Interface\HUD\Reticle.dtx"
+PowerupIconTexture1		                = "Interface\HUD\Reticle.dtx"
+PowerupIconTexture2				        = "Interface\HUD\Reticle.dtx"
+PowerupIconTexture3				        = "Interface\HUD\Reticle.dtx"
+PowerupIconTexture4				        = "Interface\HUD\Reticle.dtx"
+PowerupIconTexture5				        = "Interface\HUD\Reticle.dtx"
+PowerupIconTexture6				        = "Interface\HUD\Reticle.dtx"
+PowerupIconTexture7				        = "Interface\HUD\Reticle.dtx"
+PowerupIconTexture8				        = "Interface\HUD\Reticle.dtx"
+LivesIconPos					        = (0, -32)
+LivesTextHeight					        = 0
+RosterTextHeight				        = 0
+RosterIconBaseSizeIfScalingIsEnabled    = (0, 0)
+IntroTitleHeight				        = 0
+IntroEntryHeight				        = 0
+SpeedometerTextHeight			        = 0
+DistanceIconAlpha		                = 0
+
 
 /************************************************************************
 **
-**	Jet's Version number
+**	                        Player Version Number
+**  
+**  The VersionNumber definition manages the HUD element displaying the
+**  player's name and  current version number. For the build note count
+**  beneath it, see the next section below.
 **
-**	Position (point)
+**  When the player picks up a Build Note, the game will perform either
+**  a major or a minor upgrade. A major upgrade occurs when the first of
+**  the three numbers increments. A minor upgrade occurs when the second
+**  or the third numbers increment.
 **
-**		Location in screen coordinates to place the string
-**
-**	Font (int)
-**
-**		Font number (usually 0)
-**
-**	FontSize (int)
-**
-**		Height, in pixels, at which to draw the font.
-**
-**	BaseColor (vector)
-**
-**		RGB values at which to render the string under normal circumstances
-**
-**	MinorUpgradeColor (vector)
-**	MajorUpgradeColor (vector)
-**
-**		RGB values for the color to ramp to (and from) for the two different
-**		levels of upgrading.
-**
-**	MinorUpgradeLoops (int)
-**	MajorUpgradeLoops (int)
-**
-**		Number of times to flash the version number to the upgrade color.
-**
-**	MinorUpgradeLoopLength (float)
-**	MajorUpgradeLoopLength (float)
-**
-**		Period, in seconds, over which the flash takes place.
-**		The wave is a triangle wave i.e. /\/\/\, with '/\' representing one period.
-**
+**	Position (Point)
+**      - The upper-left origin position of the version number.
+**	Font (Integer)
+**		- The font ID of the version number.
+**	FontSize (Integer)
+**		The pixel height of the version number.
+**	BaseColor (Vector)
+**		- The color of the version number text.
+**	MinorUpgradeColor (Vector),
+**	MajorUpgradeColor (Vector)
+**      - The colors that the text will flash to when the player's
+**      version number is upgraded. 
+**	MinorUpgradeLoops (Integer),
+**	MajorUpgradeLoops (Integer)
+**		- The amount of times the text will flash to the respective
+**      upgrade color.
+**	MinorUpgradeLoopLength (Float),
+**	MajorUpgradeLoopLength (Float)
+**		- The amount of time, in seconds, that the text will take to
+**      perform a single flash to the respective upgrade color.
 */
-
 [VersionNumber]
-Position		= (10, 5)
-Font			= 0
-FontSize		= 16
-MinorUpgradeLoops	= 10
-MinorUpgradeLoopLength	= 0.7
-MajorUpgradeLoops	= 10
+Position		        = (10, 5)
+Font			        = 0
+FontSize		        = 16
+BaseColor		        = <255.0, 90.0, 90.0> // SecurityProtocol
+MajorUpgradeColor	    = <255.0, 255.0, 255.0>
+MinorUpgradeColor	    = <255.0, 255.0, 255.0>
+MajorUpgradeLoops	    = 10
+MinorUpgradeLoops	    = 10
 MajorUpgradeLoopLength	= 1.0
-BaseColor		= <255.0, 90.0, 90.0> // SecurityProtocol
-MinorUpgradeColor	= <255.0, 255.0, 255.0>
-MajorUpgradeColor	= <255.0, 255.0, 255.0>
+MinorUpgradeLoopLength	= 0.7
 
 /************************************************************************
 **
-**	Single String
-**	For multiplayer, this puts a persistent announcement on the
-**	screen.
+**	                         Build Note Counter
 **
-**	Position (point)
-**
-**		Location in screen coordinates to place the string
-**
-**	Font (int)
-**
-**		Font number (usually 0)
-**
-**	FontSize (int)
-**
-**		Height, in pixels, at which to draw the font.
-**
-**	BaseColor (vector)
-**
-**		RGB values at which to render the string under normal circumstances
-**
+**  The BuildNoteCount definition manages the HUD element displaying the
+**  amount of build notes that the player can get on the current map.
+**  
+**  AnchorPos (Point)
+**      - The upper-left origin position of the build note counter.
+**  IconTexture (Path)
+**      - The texture used for the build note icon to the left of the
+**      counter.
+**  TextSize (Integer)
+**      - The pixel height of the build note counter text.
+**  BaseColor (Vector)
+**      - The color of the build note counter text.
 */
+[BuildNoteCount]
+AnchorPos	= (12, 22)
+IconTexture = "interface\hud\buildnote_hudicon.dtx"
+TextSize	= 16
+BaseColor	= <255.0, 90.0, 90.0> // SecurityProtocol
 
-[SingleString]
-Font = 0
-FontSize = 27
-Position = (320,165)
-DiscMPPosition = (320,165)
-FontColor = <255.0, 255.0, 90.0>
 
 /************************************************************************
 **
-**	IONode HUD Thingiedoodles...
+**	                        I/O Node HUD Elements
 **
-**	Piece1Tex			(string)
-**	Piece1MinAlpha		(float)
-**	Piece1MaxAlpha		(float)
-**	Piece1Period		(float)
-**	Piece1Radius		(float)
-**	Center			(point)
-**	Piece2Tex			(string)
-**	Piece2MinInterval		(float)
-**	Piece2MaxInterval	(float)
-**	Piece2MinRadius		(float)
-**	Piece2MaxRadius		(float)
-**	Piece2MinFlickers		(int)
-**	Piece2MaxFlicker		(int)
-**	Piece2FlickerTime		(float)
+**  The IONodeCam definition manages the HUD elements used for I/O Node
+**  calls. There are two main pieces to it: Piece 1 is for the frame and
+**  the ring decoration to its sides, and Piece 2 is for the static
+**  inside the frame and (assumedly) the glow of the decoration.
+**
+**  Understanding how these I/O Nodes work ingame is a bit difficult, so
+**  it's unlikely the definitions provided here will explain it well or
+**  are even fully accurate, especially in the case of Piece2.
+**
+**	Center (Point)
+**      - This defines the "center of the screen" that the HUD Pieces
+**      will use for reference.
+**	Piece1Tex (Path)
+**      - The texture to use for the first I/O Node HUD Piece.
+**	Piece1MinAlpha (Float),
+**	Piece1MaxAlpha (Float)
+**      - The highest and lowest opacity value that Piece1 will
+**      fluctuate between.
+**	Piece1Period (Float)
+**      - The amount of time, in seconds, that Piece1 will take to
+**      perform a single fluctuation.
+**	Piece1Radius (Float)
+**      - The width of the Piece1Tex, which makes up half of the frame.
+**      The game will use this same width value when mirroring the
+**      texture.
+**      - This setting is managed by the Killer App Mod.
+**	Piece2Tex (Path)
+**      - The texture to use for the second I/O Node HUD Piece.
+**	Piece2MinRadius	(Float),
+**	Piece2MaxRadius (Float)
+**      - The highest and lowest width value that Piece2 will fluctuate
+**      between when performing a flicker.
+**      - These settings are managed by the Killer App Mod.
+**	Piece2MinInterval (Float),
+**	Piece2MaxInterval (Float)
+**      - The highest and lowest time, in seconds, that Piece2 will wait
+**      between flickers.
+**	Piece2MinFlickers (Integer),
+**	Piece2MaxFlicker (Integer)
+**      - The highest and lowest amount of times Piece2 will flicker
+**      between the minimum and maximum radius?
+**	Piece2FlickerTime (Float)
+**      - The amount of time, in seconds, that Piece2 will take to
+**      perform a single flicker.
 */
-
 [IONodeCam]
+Center			    = (320, 357)
 Piece1Tex			= "Interface\hud\IONode_hud.dtx"
 Piece1MinAlpha		= 0.27
 Piece1MaxAlpha		= 0.36
 Piece1Period		= 3.0
 Piece1Radius		= 216.0
-Center			= ( 320, 357 )
 Piece2Tex			= "Interface\hud\IONode_static.dtx"
-Piece2MinInterval		= 0.01
-Piece2MaxInterval	= 0.25
 Piece2MinRadius		= 214.0
 Piece2MaxRadius		= 230.0
-Piece2MinFlickers		= 12
-Piece2MaxFlicker		= 22
-Piece2FlickerTime		= 0.04
+Piece2MinInterval	= 0.01
+Piece2MaxInterval	= 0.25
+Piece2MinFlickers	= 12
+Piece2MaxFlicker	= 22
+Piece2FlickerTime	= 0.04
+
 
 /************************************************************************
 **
-**	Utility Subroutine Chooser
+**	                            Single String
+**
+**  The SingleString definition prints a persistent announcement to the
+**  screen in multiplayer. This is the big yellow text that usually
+**  shows up between rounds or between games.
+**
+**	Position (Point),
+**  DiscMPPosition (Point)
+**		- The upper-left origin position of the text. For Disc Arena and
+**      Disc Tournament modes, use DiscMPPosition. For all other modes,
+**      use Position.
+**      - These settings are managed by the Killer App Mod.
+**	Font (Integer),
+**	FontSize (Integer),
+**  FontColor (Vector)
+**		- The font ID, pixel height, and color of the text.
+*/
+[SingleString]
+Position = (320, 165)
+DiscMPPosition = (320, 165)
+Font = 0
+FontSize = 27
+FontColor = <255.0, 255.0, 90.0>
+
+
+/************************************************************************
+**
+**	                    Utility Subroutine Chooser
+**
+**  It seems like this is a HUD element, but I can't find any evidence
+**  of it existing anywhere. Commenting out this entire section does
+**  nothing. What is this? Monolith's original notes are below but do
+**  not really help to explain anything.
+**
+**  Documentation unavailable.
 **
 **	There are two attributes defined under HudLayout0 :
 **	ChooserTextAlpha
@@ -1705,56 +2990,85 @@ TopLine				= 56
 BackgroundTex		= "interface\hud\hud.dtx"
 BackgroundTexUV		= (154, 113, 182, 141)
 BadBackgroundTex	= "interface\hud\utilitybg_corrupt.dtx"
-BadBackgroundTexUV	= (2,2,30,30)
+BadBackgroundTexUV	= (2, 2, 30, 30)
 CursorTex			= "interface\hud\hud.dtx"
 CursorTexUV			= (117, 45, 254, 70)
 
 
 /************************************************************************
 **
-**	BuildNoteCount HUD Layout
+**	                    Objective Progress (Tab Menu)
 **
+**  The ProgressBox definition manages the pop-up box accessed by
+**  pressing and holding the Tab key. This box displays all of the
+**  objectives the player has received, whether completed or otherwise,
+**  on the current map. It appears toward the bottom-left corner of the
+**  screen.
+**
+**  Note that this does not apply to chooser boxes that appear in the
+**  same place (e.g. the prompts to skip tutorials).
+**  
+**  ProgressRect (Rectangle)
+**      - The space allocated to display the objective progress menu.
+**  HUDOffset (Integer)
+**      - 
+**  TitleFont (Integer),
+**  TitleFontSize (Integer),
+**  TitleAlpha (Float),
+**  TitleColor (Vector)
+**      - The font ID, pixel height, opacity, and color of both the
+**      "Objective" header and the "Tasks" subheader.
+**      - TitleFontSize is managed by the Killer App Mod.
+**  ObjectiveFont (Integer),
+**  ObjectiveFontSize (Integer)
+**      - The font ID and pixel height of all objective text.
+**      - ObjectiveFontSize is managed by the Killer App Mod.
+**  ObjectiveAlpha (Float),
+**  ObjectiveColor (Vector)
+**      - The opacity and color of incomplete objective text.
+**  CompletedObjectiveAlpha (Float),
+**  CompletedObjectiveColor (Vector)
+**      - The opacity and color of complete objective text.
+**  SecondaryObjectiveAlpha (Float),
+**  SecondaryObjectiveColor (Vector)
+**      - The opacity and color of secondary objective text.
+**  ObjectiveSpacing (Integer)
+**      - The designated spacing between objective lines.
 */
-[BuildNoteCount]
-AnchorPos	= (12,22)
-IconTexture = "interface\hud\buildnote_hudicon.dtx"
-TextSize	= 16
-BaseColor	= <255.0, 90.0, 90.0> // SecurityProtocol
-
-
-/************************************************************************
-**
-**	Progress HUD Layout
-**
-*/
-
 [ProgressBox]
-ProgressRect			= (10,250,250,480)
-HUDOffset				= 42
-
-UVBoxLeftInset			= (32, 0, 56, 14)
-UVBoxLeftFullInset		= (4, 0, 28, 14)
-UVBoxLeftBigInset		= (32, 0, 56, 14)
-UVBoxLeftBigFullInset		= (4, 0, 28, 14)
-UVSeparator			= (117, 15, 254, 16)
-UVProgressEmpty			= (55, 155, 102, 158)
-UVProgressFull			= (6, 155, 53, 158)
-
-TitleFont				= 1
-TitleFontSize			= 28
-TitleAlpha				= 1.0
-TitleColor				= <255.0, 255.0, 255.0>
-ObjectiveFont			= 0
-ObjectiveFontSize		= 24
-ObjectiveAlpha			= 0.75
-ObjectiveColor			= <255.0, 255.0, 255.0>
-ObjectiveSpacing			= 8
+ProgressRect			    = (10, 250, 250, 480)
+HUDOffset				    = 42
+TitleFont				    = 1
+TitleFontSize			    = 28
+TitleAlpha				    = 1.0
+TitleColor				    = <255.0, 255.0, 255.0>
+ObjectiveFont			    = 0
+ObjectiveFontSize		    = 24
+ObjectiveAlpha			    = 0.75
+ObjectiveColor			    = <255.0, 255.0, 255.0>
 CompletedObjectiveAlpha 	= 0.75
 CompletedObjectiveColor 	= <128.0, 128.0, 128.0>
 SecondaryObjectiveAlpha 	= 0.75
 SecondaryObjectiveColor 	= <255.0, 255.0, 255.0>
+ObjectiveSpacing			= 8
 
-//-- soon to be obsolete -->
+/* ---[UV Box Values]---
+**  There's a lotta stuff to look at here. For now just know it's
+**  responsible for holding all the stuff in the box exactly where it
+**  is.
+**  
+**  TODO what does UV stand for?
+**  TODO documentation for this section... all of this seems to work
+**  with itself but good luck knowing if most of these have a visible
+**  difference
+*/
+UVBoxLeftInset			    = (32, 0, 56, 14)
+UVBoxLeftFullInset		    = (4, 0, 28, 14)
+UVBoxLeftBigInset		    = (32, 0, 56, 14)
+UVBoxLeftBigFullInset		= (4, 0, 28, 14)
+UVSeparator			        = (117, 15, 254, 16)
+UVProgressEmpty			    = (55, 155, 102, 158)
+UVProgressFull			    = (6, 155, 53, 158)
 UVFrameTopLeft		= ( 1, 128, 4, 153 )
 UVFrameTop		= ( 6, 128, 101, 153 )
 UVFrameTopRight		= ( 103, 128, 115, 153 )
@@ -1764,7 +3078,6 @@ UVFrameRight		= ( 0, 0, 0, 0 )
 UVFrameBottomLeft	= ( 1, 160, 4, 163 )
 UVFrameBottom		= ( 6, 160, 101, 163 )
 UVFrameBottomRight	= ( 103, 160, 115, 163 )
-
 UVBoxTopLeft		= ( 1, 165, 13, 170 )
 UVBoxTop		= ( 15, 165, 98, 170 )
 UVBoxTopRight		= ( 100, 165, 115, 170 )
@@ -1775,23 +3088,61 @@ UVBoxBottomLeft	= ( 1, 177, 13, 188 )
 UVBoxBottom		= ( 15, 177, 98, 188 )
 UVBoxBottomRight	= ( 100, 177, 115, 188 )
 
+
+/************************************************************************
+**
+**                      Procedural Indicator
+**
+**  The ProceduralHUD definition is responsible for listing subroutines
+**  that are active underneath the currently equipped weapon, along the
+**  right side of the screen. Holding the Tab key also shows the names
+**  of those subroutines.
+**
+**  Or is it? None of these values are doing anything and they seem to
+**  be pulling values from the Weapon Chooser. The text color is
+**  representative of this. So... what is this, then?
+**
+**  FrameTex (Path)
+**      - The texture used for the frame around each active subroutine.
+**  TopBound (Integer)
+**      - Unknown function.
+**  Font (Integer),
+**  FontSize (Integer),
+**  Alpha (Float),
+**  Color (Vector)
+**      - The font ID, pixel height, opacity, and color of the text that
+**      names each active subroutine when the player holds the Tab key.
+**  Spacing (Integer)
+**      - The amount of vertical space between each procedural.
+**  IconWidth (Integer),
+**  IconHeight (Integer)
+**      - The width and height of each procedural.
+**  IconOffset (Integer)
+**      - The offset of the procedural indicator from the right side of
+**      the screen.
+*/
 [ProceduralHUD]
 FrameTex		= "interface\hud\procindicator_frame.dtx"
-EmptyBarTex		= "interface\hud\procindicator_bg.dtx"
-FullBarTex		= "interface\hud\procindicator_bg_full.dtx"
 TopBound		= 60
 Font			= 0
 FontSize		= 24
 Alpha			= 1.0
 Color			= <165, 233.0, 255.0>
-
-Spacing			= 40 // Between each procedural
-
+Spacing			= 40
 IconWidth		= 39
 IconHeight		= 39
 IconOffset		= 44 // From right edge of screen (positive is left)
 
-// Progress Bar settings
+/*  ---[Progress Bar Settings]---
+**  TODO Unsure how to test these? Where does this show up?
+**  
+**  EmptyBarTex (Path),
+**  FullBarTex (Path)
+**      - 
+**  
+*/
+EmptyBarTex		= "interface\hud\procindicator_bg.dtx"
+FullBarTex		= "interface\hud\procindicator_bg_full.dtx"
 /*//Small bar--->
 PBarXOffset		= 61  // From the left edge of Icon (positive is left)
 PBarYOffset		= -3   // From top of Icon (negative is down)
@@ -1816,10 +3167,25 @@ StringYOffset	= -16 // From top of progress bar (negative is down)
 
 /************************************************************************
 **
-**	Textured Frames
+**	                      Textured Frames Layout
 **
-**		These guys can be used by practically any HUD element in order
-**		to draw a nicely textured box or frame on screen.
+**  The TexturedFrame defitions can be used by practically any HUD
+**  element in order to draw a nicely textured box or frame on screen.
+**  The game obviously uses these to some degree, just not here. Not
+**  in this file, anyway.
+**
+**	TODO what does UV stand for??? again
+**  
+**  Name (String),
+**  Texture (Path)
+**      - The name and texture of the textured frame.
+**  Hollow (Integer)
+**      - Untested. Assumed:
+**      - Boolean value. Tells the game if the textured frame is hollow.
+**  Inscribe (Integer)
+**      - Unknown function.
+**  Margins (Integer)
+**      - Unknown function.
 */
 [TexturedFrame0]
 // includes a black border
@@ -2017,17 +3383,6 @@ Name			= "Basic"
 Texture			= "Interface\hud\hud.dtx"
 Hollow			= 0
 Inscribe		= 1
-
-//UVTopLeft		= (10, 291, 25, 295)
-//UVTop			= (27, 291, 155, 295)
-//UVTopRight		= (157, 291, 164, 295)
-//UVLeft			= (10, 310, 25, 321)
-//UVCenter		= (27, 310, 155, 321)
-//UVRight			= (157, 310, 164, 321)
-//UVBottomLeft		= (10, 323, 25, 327)
-//UVBottom		= (27, 323, 155, 327)
-//UVBottomRight		= (157, 323, 164, 327)
-
 UVTopLeft		= (10, 35, 27, 44)
 UVTop			= (28, 35, 154, 44)
 UVTopRight		= (166, 35, 166, 44)
@@ -2105,43 +3460,132 @@ UVBottomRight		= (248, 225, 261, 243)
 
 /************************************************************************
 **
-**	Menu Layout
+**	                             Menu Layout
 **
-**		These values are shared by all in-game menus, and cannot be
-**		overridden by a specific menu.
+**  The Menu definition declares default values that are shared by all
+**  in-game menus, and cannot be overridden by specific menus.
+**
+**  This definition - which was from Monolith - is pretty deceptive.
+**  Most of the values here are for the pause menu, and the ones that
+**  aren't confirmed to be for the pause menu are unconfirmed to be even
+**  used at all. Sure, they're never overridden by anything else. But
+**  that could just be because nothing else uses them at all.
+**
+**	Position (Integer)
+**      - This is less of a position and more of an offset, since it's
+**      an integer instead of a point. It's the offset of the body of
+**      the pause menu from the left side of the screen - but scalable, 
+**      unlike most offsets. 
+**  Size (Size)
+**      - The defined width and height of the body of the pause menu -
+**      - This setting is managed by the Killer App Mod.
+**  Frame (Path),
+**  FrameTip (Path)
+**      - The textures used to display the body of the pause menu. 
+**      FrameTip is used to show the fading out at the bottom of the
+**      menu.
+**  BarPosition (Point)
+**      - The upper-left origin position of the bar at the top of the
+**      pause menu.
+**  BarSize (Size)
+**      - The defined width and height of the bar at the top of the
+**      pause menu.
+**  BarFont (Integer),
+**  BarFontSize (Integer)
+**      - The font ID and text height of the tab buttons on the pause
+**      menu bar.
+**  BarSpacing (Integer)
+**      - The horizontal spacing between each of the buttons on the
+**      pause menu bar. Also applies to the spacing of the first item
+**      from the left side of the bar.
+**  BarSelectColor (Vector)
+**      - The text color of the buttons on the pause menu bar, when
+**      highlighted.
+**  Bar (Path),
+**  BarTip (Path)
+**      - The textures used to display the bar at the top of the pause
+**      menu. BarTip is used to show the fading out to the bar's right
+**      side.
+**  SlideInTime (Float),
+**  SlideOutTime (Float)
+**      - The amount of time, in seconds, that it takes to display the
+**      entry and exit sliding animations for the pause menu.
+**  SlideInSound (Path),
+**  SlideOutSound (Path)
+**      - The sounds used for opening and closing the pause menu.
+**  UpArrow (Path),
+**  UpArrowH (Path)
+**      - The textures used for the menu's up arrow, when not
+**      highighted and highlighted respectively.
+**      - Potentially unused?
+**  DownArrow (Path),
+**  DownArrowH (Path)
+**      - The textures used for the menu's down arrow, when not
+**      highlighted and highlighted respectively.
+**      - Potentially unused?
+**  SelectedColor (Vector),
+**  NonSelectedColor (Vector),
+**  DisabledColor (Vector)
+**      - The text color for not hightlighted, highlighted, and disabled
+**      text respectively.
+**      - Potentially unused?
 */
-
 [Menu]
 Position			= 320
-Size				= (280,200)
-SlideInTime			= 0.25
-SlideOutTime		= 0.25
+Size				= (280, 200)
 Frame				= "interface\menu\menubar_tile.dtx"
 FrameTip			= "interface\menu\menubar_tip.dtx"
+BarPosition			= (320, 4)
+BarSize				= (312, 25)
+BarFont				= 1
+BarFontSize			= 16
+BarSpacing			= 16
+BarSelectColor		= <192.0, 192.0, 0.0>
 Bar					= "interface\menu\menudown_tile.dtx"
 BarTip				= "interface\menu\menudown_tip.dtx"
+SlideInTime			= 0.25
+SlideOutTime		= 0.25
+SlideInSound		= "interface\snd\menuopen.wav"
+SlideOutSound		= "interface\snd\menuclose.wav"
 UpArrow				= "interface\menu\sprtex\arrowup.dtx"
 UpArrowH			= "interface\menu\sprtex\arrowup_h.dtx"
 DownArrow			= "interface\menu\sprtex\arrowdn.dtx"
 DownArrowH			= "interface\menu\sprtex\arrowdn_h.dtx"
-BarSize				= (312,25)
-BarFont				= 1
-BarFontSize			= 16
-BarPosition			= (320, 4)
-BarSpacing			= 16
-BarSelectColor		= <192.0, 192.0, 0.0>
-SlideInSound		= "interface\snd\menuopen.wav"
-SlideOutSound		= "interface\snd\menuclose.wav"
 SelectedColor		= <255.0, 255.0, 255.0>
 NonSelectedColor	= <255.0, 113.0, 113.0> // SecurityProtocol
 DisabledColor		= <180.0, 180.0, 200.0>
 
 /************************************************************************
 **
-**	Generic Menu Layout
+**	                         Generic Menu Layout
 **
-**		These defualt values are shared by in-game menus, but may be
-**		overridden by a specific menu.
+**  The GenericMenu definition declares default values that are shared
+**  by all in-game menus, but can be overridden by specific menus.
+**  
+**  Same deal as the previous definition; pretty much only applies to
+**  the pause menu, and whatever values aren't might not be used at all.
+**  Further clarification may be needed.
+**
+**  Size (Size)
+**      - Unknown function.
+**      - This setting is managed by the Killer App Mod.
+**  FontSize (Integer)
+**      - The text height of the buttons on the body of the pause menu.
+**      - This setting is managed by the Killer App Mod.
+**  TitleSize (Integer)
+**      - The text height of any title text on the pause menu.
+**      - Potentially unused?
+**      - This setting is managed by the Killer App Mod.
+**  Indent (Point)
+**      - The indent, both horizontal and vertical, of the buttons on
+**      the body of the pause menu.
+**  SelectedColor (Vector),
+**  NonSelectedColor (Vector),
+**  DisabledColor (Vector)
+**      - The text color of the buttons on the body of the pause menu,
+**      when highlighted, not highlighted, and disabled, respectively.
+**      - The disabled color is unused by proxy, since there aren't any
+**      pause menu buttons that are ever disabled.
 */
 [GenericMenu]
 Size				= (240,200)
@@ -2155,11 +3599,12 @@ DisabledColor		= <95.0, 95.0, 95.0>
 
 /************************************************************************
 **
-**	Custom Menu Layouts
+**	                        Custom Menu Layouts
 **
-**		These values apply to specific menus and in some cases override
-**		defaults set under [GenericMenu]
+**  The custom menu definitions declare values for specific menus that
+**  may override values set under GenericMenu.
 **
+**  There's only one menu here... is it even used?
 */
 [MenuPlayer]
 Size				= (280,240)
@@ -2172,17 +3617,16 @@ PopupFrame			= "interface\menu\sprtex\frame_interlace.dtx"
 
 /************************************************************************
 **
-**	Miscellaneous Layout
+**	                        Miscellaneous Layout
 **
-** The Miscellaneous definition specifies data for interface components
-** not covered under other definitions.
+**  The Miscellaneous definition sets values for interface components
+**  not covered under other definitions.
 **
-**	MessageBoxTexture (String)
+**  
 **
-**		The name of the DTX to use for background art on the Message Box.
-**
+**	MessageBoxTexture (Path)
+**		- The name of the DTX to use for background art on the Message Box.
 **	FailScreenBackground (String)
-**
 **		The name of the pcx to use for background art on the Mission
 **		Failure screen.
 **
@@ -2198,7 +3642,8 @@ PopupFrame			= "interface\menu\sprtex\frame_interlace.dtx"
 **
 **	DeathDelay (Float)
 **
-**		How long (in seconds) to wait after player dies before showing the Mission Failure screen.
+**		How long (in seconds) to wait after player dies before showing the 
+**      Mission Failure screen.
 **
 **	NightVisionModelColor (Vector)
 **
@@ -2456,7 +3901,7 @@ Color			= <255.0, 255.0, 255.0>
 BasePos 		= (95,320)
 
 
-/***********************************************************
+/************************************************************************
 **
 **	MissionText Layout
 **
@@ -2522,7 +3967,7 @@ TypeSound				= "interface\snd\type.wav"
 ScrollSound 			= "interface\snd\enter.wav"
 
 
-/***********************************************************
+/************************************************************************
 **
 **	Subtitle Layout
 **
@@ -2635,16 +4080,27 @@ FrameAlpha		= 0.50
 
 /************************************************************************
 **
-**	Overlay Layout
+**	                            Screen Overlays
 **
-**	0 = LOL scope
-**	1 = Triangulate
-**	2 = super soldier mask
-**	3 = static
-**	4 = camera
-**	5 = camera target (when you are over something you are supposed to take a picture of.)
+**  The Overlay definition defines the set of overlays that the game can
+**  reference at any time. In the case of TRON 2.0, this only concerns
+**  the scopes for the LOL and Triangulate subroutines.
+**
+**  A single-line comment will be placed above each overlay value group
+**  that will identify it. Overlays 0 and 1 define the LOL and 
+**  Triangulate scopes, and Overlays 6 through 14 are
+**  all derivative of those first two. Overlay values 2 through 5 can be
+**  safely assumed to be unused in TRON 2.0, likely left over from NOLF
+**  or a different Monolith game.
+**
+**	0 = LOL Scope
+**	1 = Triangulate Scope
+**	2 = "Super Soldier Mask" (Unused)
+**	3 = Static (Unused)
+**	4 = Camera (Unused)
+**	5 = Camera Target (Unused)
 **	6 = LOL Zoom In
-**	7 = LOL Zoom out.
+**	7 = LOL Zoom Out
 **	8 = LOL Loop
 **	9 = Triangulate Zoom In
 **	10 = Triangulate Zoom Out
@@ -2653,18 +4109,20 @@ FrameAlpha		= 0.50
 **	13 = Corrupt Triangulate Zoom out
 **	14 = Corrupt Triangulate Loop
 **
-**
+**  Scale# (Float)
+**  Sprite# (Path)
+**  Model# (Path)
+**  Skin# (Path)
+**  Anim# (String)
+**  Renderstyle# (Path)
+**  Alpha# (Float)
 */
 [Overlay]
 Scale0			= 0.15
 Sprite0			= ""
-//Model0			= "Interface\hud\Spr\zoomout.ltb"
-//Skin0			= "Interface\hud\Spr\zoomout.dtx"
 
 Scale1			= 0.25
 Sprite1			= ""
-//Model0			= "Interface\hud\Spr\zoomout.ltb"
-//Skin0			= "Interface\hud\Spr\zoomout.dtx"
 
 Scale6			= 0.285
 Model6			= "Interface\hud\screen_sniper.ltb"
@@ -2729,27 +4187,50 @@ Anim14			= "loop"
 Renderstyle14		= "RS\Alpha_Additive_wglow.ltb"
 Alpha14			= 0.8
 
-[Character0]
-/* Note that this one is used for MP char selection
-**	so the model and skin are just place holders
+/************************************************************************
+**
+**	                        Menu Character Layout
+**
+**  The Character menu element has one purpose: to display a spinning
+**  view of the currently equipped Player & Light Cycle model. 
+**
+**  MPBase is used for Multiplayer character selection. LightCycleBase
+**  is defined for use in the Single Player Light Cycle selection, but
+**  also appears in the Multiplayer Player Setup menu when the Game Type
+**  is set to Light Cycles.
+**
+**  Name (String)
+**      - The name of the Character object.
+**  Model (Path)
+**      - The model to use for the Character object. Must be in .LTB
+**      format.
+**  Skin# (Path)
+**      - The texture to use for the skin of the Character object. Must
+**      be in .DTX format.
+**  Pos (Vector????)
+**      - Unknown function. Why is it in Vector format?
+**  Scale (Float)
+**      - Unknown function, requires further testing.
+**  Rotation (Float)
+**      - Unknown function, requires further testing.
 */
-Name			= "MPBase"
-Model			= "chars\models\hero_action.ltb"
-Skin0			= "chars\skins\CateAction.dtx"
-Pos			= <0.0,-1,20.0>
-Scale			= 0.15
-Rotation		= 0.0
+
+[Character0]
+Name		= "MPBase"
+Model		= "chars\models\hero_action.ltb"
+Skin0		= "chars\skins\CateAction.dtx"
+Pos			= <0.0,-1.0,20.0>
+Scale		= 0.15
+Rotation	= 0.0
 
 [Character1]
-/* Note that this one is used for Single Player Cycle selection
-**	so the model and skin are just place holders
-*/
-Name			= "LightCycleBase"
-Model			= "Props\Models\LightCycle.ltb"
-Skin0			= "FX\Tex\specular.dtx"
-Pos				= <-4.0,-1.0,10.0>
-Scale			= 0.075
-Rotation		= 90.0
+Name		= "LightCycleBase"
+Model		= "Props\Models\LightCycle.ltb"
+Skin0		= "FX\Tex\specular.dtx"
+Pos			= <-4.0,-1.0,10.0>
+Scale		= 0.075
+Rotation    = 90.0
+
 
 /************************************************************************
 **
@@ -3680,6 +5161,7 @@ FXName			= "MENU_KA_logo"
 Pos 			= <35.5,24.7,25.0>
 Loop			= 1
 
+
 /************************************************************************
 **
 **	Credits Layout
@@ -3723,7 +5205,6 @@ Loop			= 1
 **		(This specifies the lower left corner and is relative to a 640x480 screen.)
 **
 */
-
 [Credits]
 FadeInTime	= 0.6
 HoldTime	= 3.0
@@ -3734,7 +5215,7 @@ PositionUR	= (560,90)
 PositionLR	= (560,390)
 PositionLL	= (80,390)
 
-/***********************************************************
+/************************************************************************
 **
 **	DecisionWindow Layout
 **
@@ -3784,7 +5265,7 @@ Font					= 1
 FontSize				= 16
 Width					= 280
 TextOffset				= (8,4)
-TextColor				= <255.0, 255.0, 255.0>//<16.0, 16.0, 64.0>
+TextColor				= <255.0, 255.0, 255.0>
 Frame					= "interface\menu\sprtex\frame_solid.dtx"
 
 [DecisionWindow0]
@@ -3793,7 +5274,7 @@ Font					= 1
 FontSize				= 16
 Width					= 280
 TextOffset				= (8,4)
-TextColor				= <255.0, 255.0, 255.0>//<16.0, 16.0, 64.0>
+TextColor				= <255.0, 255.0, 255.0>
 Frame					= "interface\menu\sprtex\frame_solid.dtx"
 NumColumns				= 1
 RemoveItems				= 0
@@ -3806,7 +5287,7 @@ Font					= 1
 FontSize				= 16
 Width					= 240
 TextOffset				= (8,4)
-TextColor				= <255.0, 255.0, 255.0>//<16.0, 16.0, 64.0>
+TextColor				= <255.0, 255.0, 255.0>
 Frame					= "Interface\hud\hud.dtx"
 Hollow					= 0
 Inscribe				= 1
@@ -3814,7 +5295,6 @@ UVTopLeft				= (10, 35, 25, 42)
 UVTop					= (28, 35, 152, 42)
 UVTopRight				= (166, 35, 164, 42)
 UVLeft					= (10, 45, 25, 48)
-//UVCenter				= (0, 0, 512, 256)
 UVCenter				= (28, 45, 152, 48)
 UVRight					= (166, 45, 164, 48)
 UVBottomLeft				= (10, 51, 25, 58)
@@ -3831,7 +5311,7 @@ Font					= 1
 FontSize				= 16
 Width					= 460
 TextOffset				= (8,4)
-TextColor				= <255.0, 255.0, 255.0>//<16.0, 16.0, 64.0>
+TextColor				= <255.0, 255.0, 255.0>
 Frame					= "interface\menu\sprtex\frame_solid.dtx"
 NumColumns				= 5
 RemoveItems				= 1
@@ -3844,7 +5324,7 @@ Font					= 1
 FontSize				= 16
 Width					= 460
 TextOffset				= (8,4)
-TextColor				= <255.0, 255.0, 255.0>//<16.0, 16.0, 64.0>
+TextColor				= <255.0, 255.0, 255.0>
 Frame					= "interface\menu\sprtex\frame_solid.dtx"
 NumColumns				= 5
 RemoveItems				= 0
@@ -3857,7 +5337,7 @@ Font					= 1
 FontSize				= 16
 Width					= 460
 TextOffset				= (8,4)
-TextColor				= <255.0, 255.0, 255.0>//<16.0, 16.0, 64.0>
+TextColor				= <255.0, 255.0, 255.0>
 Frame					= "interface\menu\sprtex\frame_solid.dtx"
 NumColumns				= 5
 RemoveItems				= 1
@@ -3865,13 +5345,13 @@ RemoveWindow			= 0
 
 /************************************************************************
 **
-**	Screen Transition Declarations
+**	                   Screen Transition Declarations
 **
 **	A Transition will override the FX associated with a single menu screen.
 **	So when a screen gains focus, it will first inquire of the
 **	TransitionFXMgr if it has a special set of FX for the intro. If there
 **	is one, then BaseScreen will use that one.	If not, then BaseScreen
-**	will use the Intro/ShortIntro/LoopFX combo --if any-- for that screen.
+**	will use the Intro/ShortIntro/LoopFX combo (if any) for that screen.
 **
 **	In a similar vein, if a Transition has a "From" field but no "To" field,
 **	then this transition will always be used when leaving the "From" screen.
@@ -3882,7 +5362,7 @@ RemoveWindow			= 0
 **	"To" field will always have precedence over a Transitions with just one
 **	of these two fields.
 **
-**	notes:
+**	Notes:
 **	*LoopFX will be played after the IntroFX with the corresponding number
 **	has ended.	For example when IntroFX1 finishes LoopFX1 should launch if
 **	indeed there actually was one.
@@ -4995,3 +6475,73 @@ IntroFX2				= ""
 LoopFX2					= "MENU_tronlogo"
 IntroFX3			= ""
 LoopFX3			= "MENU_KA_logo"
+
+/************************************************************************
+**
+**                                Glossary
+**
+**  Because this file is so incredibly long and complex, it's completely
+**  understandable to struggle remembering all the unique terms being
+**  thrown around. For this reason, this last portion of the file will
+**  be a nice little home for a glossary, just like a real book!
+**
+**  These definitions aren't the most concise, but should at least give
+**  a rough understanding that can be used to put together the pieces
+**  faster.
+**
+**  Point (X, Y)
+**      - A point on the screen, in pixels.
+**  Size (Width, Height)
+**      - When just specifying a width or a height doesn't work by
+**      itself. Defines... a rectangular area? But not a rectangle.
+**      - TODO figure out which other "Point" values actually work this
+**      way.
+**  Rectangle (Left, Top, Right, Bottom)
+**      - Defines a rectangular area.
+**  Vector <r, g, b>
+**      - An RGB color value. Must be specified to a single decimal
+**      point, e.g. <255.0, 0.0, 128.0>.
+**  Integer (#)
+**      - A whole number value. Ignores decimals.
+**  Float (#)
+**      - A number value. Does not ignore decimals.
+**  String ("text")
+**      - A string of text.
+**  Path ("text")
+**      - A string that explicitly defines a directory path to a
+**      specific file.
+**
+**  Position (or Pos)
+**      - A Point that is able to scale at higher resolutions. The value
+**      is based on a 640x480 resolution and is scaled from there.
+**  Offset
+**      - A Point that is unable to scale at higher resolutions (an
+**      absolute value).
+**  Light
+**      - A Light is a defined light object in the "Interface Lights
+**      Layout" section of this document. The first entry, Light0, is
+**      pretty much called by every menu that needs a light. Multiple
+**      Lights can be called at the same time when sequentially
+**      numbered.
+**  Piece
+**      - A Piece, similar to a Light, is a defined object in the "Menu
+**      Piece Layout" section of this document.
+**  FX
+**      - An FX is a defined FX object in the "Interface FX Layout"
+**      section of this document. When called by a screen layout, it
+**      plays the FX immediately as the screen is loaded. Multiple FX
+**      can be called at the same time when sequentially numbered.
+**  IntroFX, ShortIntroFX, and LoopFX
+**      - IntroFX and ShortIntroFX are played immediately once a screen
+**      is loaded, and LoopFX are played on an infinite loop afterward.
+**  Scale
+**      - A Scale is an FX that is referenced from FX.TXT, as opposed to
+**      one pulled from FXEd. Multiple Scales can be called at the same
+**      time when sequentially numbered.
+**  "Font Size"
+**      - Because of the funny way fonts are handled in this game, when
+**      a value comes up talking about a "font size" for something, it's
+**      only referring to the pixel height of the text and nothing else.
+**      It'll then just do whatever it does to make sure the text comes
+**      out looking as expected.
+*/
