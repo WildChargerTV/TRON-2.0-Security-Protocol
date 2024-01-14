@@ -3639,6 +3639,17 @@ DisabledColor		= <95.0, 95.0, 95.0>
 **  may override values set under GenericMenu.
 **
 **  There's only one menu here... is it even used?
+**
+**  Size (Size)
+**      - 
+**  NameWidth (Integer)
+**      - 
+**  LevelWidth (Integer)
+**      - 
+**  PopupSize (Size)
+**      - 
+**  PopupFrame (Path)
+**      - 
 */
 [MenuPlayer]
 Size				= (280,240)
@@ -3656,83 +3667,48 @@ PopupFrame			= "interface\menu\sprtex\frame_interlace.dtx"
 **  The Miscellaneous definition sets values for interface components
 **  not covered under other definitions.
 **
-**  
-**
 **	MessageBoxTexture (Path)
 **		- The name of the DTX to use for background art on the Message Box.
 **	FailScreenBackground (String)
 **		The name of the pcx to use for background art on the Mission
 **		Failure screen.
-**
 **	FailStringPos (Point)
-**
 **		The position of the text string on the Mission Failure screen.
 **		This point is relative to a 640x480 resolution and will be scaled
 **		for other resolutions.
-**
 **	FailScreenDelay (Float)
-**
 **		How long (in seconds) to wait on the Mission Failure screen.
-**
 **	DeathDelay (Float)
-**
 **		How long (in seconds) to wait after player dies before showing the 
 **      Mission Failure screen.
-**
 **	NightVisionModelColor (Vector)
-**
 **		Color to add to models while using night vision <r, g, b>
-**
 **	NightVisionScreenTint (Vector)
-**
 **		Color to tint the screen while using night vision <r, g, b>
-**
 **	WeaponPickupColor (Vector)
-**
 **		Color to tint the screen when a weapon is picked up <r, g, b>
-**
 **	AmmoPickupColor (Vector)
-**
 **		Color to tint the screen when a weapon is picked up <r, g, b>
-**
 **	TintTime (Float)
-**
 **		Duration in seconds of screen tint when weapons or ammo are picked up
-**
 **	HelpFont (String)
-**
 **		Name of the bitmap font to use rollover help.
-**
 **	SmallFontBase (String)
-**
 **		Base name of the bitmap font set used for small text.
-**
 **	MediumFontBase (String)
-**
 **		Base name of the bitmap font set used for medium text.
-**
 **	LargeFontBase (String)
-**
 **		Base name of the bitmap font set used for large text.
-**
 **	TitleFont (String)
-**
 **		Name of the bitmap font to use for screen titles.
-**
 **	MessageTime (Float)
-**
 **		How long in seconds that messages are displayed.
 **		(includes fade out time)
-**
 **	MessageFade (Float)
-**
 **		How long in seconds that messages are it takes for a message to fade.
 **		(included in total message time)
-**
 **	MaxMessages (int)
-**
 **		How many messages may appear on screen at one time.
-**
 */
 
 [Miscellaneous]
@@ -3798,30 +3774,21 @@ EditDisabled			= <0.0, 75.0, 238.0>
 
 /************************************************************************
 **
-**	MessageQueue
+**	                             MessageQueue
 **
 ** The MessageQueue definitions specifies data for various message queues
 ** in the game.
 **
 **	MessageTime (Float)
-**
 **		How long in seconds that messages are displayed.
 **		(not including fade out time)
-**
 **	MessageFade (Float)
-**
 **		How long in seconds that messages are it takes for a message to fade.
 **		(after normal message time)
-**
 **	MaxMessages (int)
-**
 **		How many messages may appear on screen at one time.
-**
 **	MaxHistory (int)
-**
 **		How many old messages are stored.
-**
-**
 */
 
 [ChatMessageQueue]
@@ -3937,55 +3904,36 @@ BasePos 		= (95,320)
 
 /************************************************************************
 **
-**	MissionText Layout
+**	                        Mission Text Layout
 **
 ** The MissionText definition specifies data for "typing"
 ** mission related text (e.g. "Somewhere in Berlin, 9:43 AM")
 ** to the screen.
 **
 **	Width (Int)
-**
 **		Specifies how wide the area used for the text should be
 **
 **	NumLines (Int)
-**
 **		Specifies how many of lines of text may be displayed at before
 **		scrolling
-**
 **	LetterDelay (Float)
-**
 **		How long (in seconds) to wait after adding each letter
-**
 **	LineDelay	(Float)
-**
 **		How long (in seconds) to wait after finishing each line
-**
 **	LineScrollTime	(Float)
-**
 **		How long (in seconds) to scroll up one line
-**
 **	FadeDelay	(Float)
-**
 **		How long (in seconds) to wait after adding the last line
 **			before starting the fade.
-**
 **	FadeTime	(Float)
-**
 **		How long (in seconds) to fade out the text
-**
 **	Pos 	(Point)
-**
 **		Position (relative to a 640x480 screen) of the text
-**
 **	TypeSound	(String)
-**
 **		Sound file to play (looping) while typing text
-**
 **	ScrollSound (String)
-**
 **		Sound file to play (once) when a line starts scrolling
-**
-**/
+*/
 [MissionText]
 Font					= 0
 FontSize				= 12
@@ -5405,39 +5353,39 @@ RemoveWindow			= 0
 
 //----------------------------	Main
 [Transition0]
-TransitionTo			= "ScreenMain"
+TransitionTo    = "ScreenMain"
 
-IntroFX0			= "MENU_main_intro"
-LoopFX0 		= "MENU_main_loop"
+IntroFX0	    = "MENU_main_intro"
+LoopFX0 	    = "MENU_main_loop"
 
-IntroFX1			= ""
-LoopFX1 		= "MENU_bgloop"
-IntroFX2			= ""
-LoopFX2		= "MENU_tronlogo"
-IntroFX3			= "MENU_KA_logo_dummy"
-LoopFX3			= "MENU_KA_logo"
-IntroFX4			= "MENU_main_Jet_throw"
-LoopFX4			= ""
+IntroFX1	    = ""
+LoopFX1 	    = "MENU_bgloop"
+IntroFX2	    = ""
+LoopFX2		    = "MENU_tronlogo"
+IntroFX3	    = "MENU_KA_logo_dummy"
+LoopFX3	        = "MENU_KA_logo"
+IntroFX4        = "MENU_main_Jet_throw"
+LoopFX4		    = ""
 
 //----------------------------	Single Player
 [Transition1]
-TransitionFrom			= "ScreenMain"
-TransitionTo			= "ScreenSingle"
+TransitionFrom	= "ScreenMain"
+TransitionTo	= "ScreenSingle"
 
-IntroFX0			= "MENU_blankFX_700"
-ShortIntroFX0			= "MENU_blankFX_700"
-LoopFX0 			= "MENU_single_loop"
+IntroFX0		= "MENU_blankFX_700"
+ShortIntroFX0	= "MENU_blankFX_700"
+LoopFX0 	    = "MENU_single_loop"
 
-IntroFX1			= "MENU_single_intro"
-ShortIntroFX1			= "MENU_single_intro"
-LoopFX1 			= ""
+IntroFX1		= "MENU_single_intro"
+ShortIntroFX1	= "MENU_single_intro"
+LoopFX1 		= ""
 
-IntroFX2			= ""
-ShortIntroFX2			= ""
-LoopFX2 			= "MENU_bgloop"
-IntroFX3			= ""
-LoopFX3		= "MENU_tronlogo"
-IntroFX4 			= ""
+IntroFX2		= ""
+ShortIntroFX2	= ""
+LoopFX2 		= "MENU_bgloop"
+IntroFX3		= ""
+LoopFX3		    = "MENU_tronlogo"
+IntroFX4 		= ""
 LoopFX4			= "MENU_KA_logo"
 
 //----------------------------
