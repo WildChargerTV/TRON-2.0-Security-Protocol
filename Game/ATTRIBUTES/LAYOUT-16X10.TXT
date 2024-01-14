@@ -2130,6 +2130,40 @@ LoadScale3		= "loadingModel"
 PostScale0		= "LoadingBackground_sprite"
 PostScale1		= "Loading_DiscArena01"
 
+/************************************************************************
+**
+**	                             Credits Layout
+**
+**  The Credits definition sets values pertaining to the game's credits
+**  sequence. This used to be positioned near the bottom of the file,
+**  but has been moved up here so that it can fit in with the rest of
+**  the menu layouts.
+**
+**	FadeInTime (Float),
+**	HoldTime (Float),
+**	FadeOutTime (Float),
+**	DelayTime (Float)
+**		- The amount of time it takes for each section of the credits
+**      to fade in, stay visible, fade out, and stay invisible (before
+**      the next section fades in), in that order.
+**	PositionUL (Point),
+**	PositionUR (Point),
+**	PositionLL (Point),
+**	PositionLR (Point)
+**		- The origin positions used for the credits displayed in each of
+**      the four corners of the screen - in the upper-left, upper-right,
+**      lower-left, and lower-right corners, in that order. 
+*/
+[Credits]
+FadeInTime	= 0.6
+HoldTime	= 3.0
+FadeOutTime = 0.6
+DelayTime	= 0.35
+PositionUL	= (80,90)
+PositionUR	= (560,90)
+PositionLL	= (80,390)
+PositionLR	= (560,390)
+
 
 /************************************************************************
 **
@@ -3969,51 +4003,77 @@ ScrollSound 			= "interface\snd\enter.wav"
 
 /************************************************************************
 **
-**	Subtitle Layout
+**	                           Subtitle Layout
 **
+**  The Subtitle definition sets values pertaining to the subtitles in
+**  the game. (Surprising, huh?)
 **
-**	NumLines (Int)
-**
-**		Specifies how many of lines of text may be displayed at once
-**
+**  Font (Integer),
+**  FontSize (Integer)
+**      - The font ID and text height of the subtitle text.
+**      - For some reason, when these values were first added, their
+**      names were all lowercase. The liberty has been taken to correct
+**      that oversight, for the OCD-afflicted around the world. The game
+**      does not appear to care, thankfully.
+**	NumLines (Integer)
+**		- The amount of text lines that the screen can display at once.
 **	LineScrollTime	(Float)
-**
-**		How long (in seconds) to scroll up one line
-**
-**	Width (Int)
-**
-**		Specifies how wide the area used for the text should be
-**		when playing cinematics.
-**		(scaled for resolutions greater than 640x480)
-**
-**	Pos 	(Point)
-**
-**		Position (relative to a 640x480 screen) of the text
-**		when playing cinematics.
-**
-**	FullScreenWidth (Int)
-**
-**		Specifies how wide the area used for the text should be
-**		when not in cinematics.
-**		(scaled for resolutions greater than 640x480)
-**
-**	FullScreenPos		(Point)
-**
-**		Position (relative to a 640x480 screen) of the text
-**		when not in cinematics.
-**
+**		- The amount of time, in seconds, taken to scroll a single line,
+**      for the longer subtitles that require it.
+**	Width (Integer),
+**	Pos (Point)
+**      - The width and upper-left origin position of the subtitle text
+**      displayed in cutscenes or other cinematics.
+**	FullScreenWidth (Integer),
+**	FullScreenPos (Point)
+**      - The width and upper-left origin position of the subtitle text
+**      displayed during gameplay. 
 **/
 [Subtitle]
-font					=0
-fontsize				=16
-NumLines				= 3
-LineScrollTime			= 0.5
-Width					= 256
-Pos 					= (200,338)
-FullScreenWidth 		= 256
-FullScreenPos			= (200,320)
-TextColor			= <255.0, 255.0, 255.0>
+font			= 0
+fontsize		= 16
+NumLines		= 3
+LineScrollTime	= 0.5
+Width			= 256
+Pos 			= (200,338)
+FullScreenWidth = 256
+FullScreenPos	= (200,320)
+TextColor		= <255.0, 255.0, 255.0>
 
+
+/************************************************************************
+**
+**                              Scores Layout
+**
+**  The Scores definitions assign values pertaining to score displays in
+**  Multiplayer(?). By default, the menu is accessed by holding the Tab
+**  key.
+**
+**  Note that although all of the below definition groups use the same
+**  values, the Scores definition is not considered a list of defaults.
+**  It is not known what the basic Scores definition group is even for
+**  (yet).
+**
+**  ---------------------------------------------------------------------
+**  Documentation is incomplete until I can drag another poor soul to
+**  sit in a multiplayer server and play disc games so I can actually
+**  get into those lobbies and see the score menus...
+**  ---------------------------------------------------------------------
+**
+**  TODO confirm that these never appear in singleplayer
+**  TODO what is the Scores group used for??
+**
+**  ---[Scores (Unknown Usage)]---
+**  Font (Integer),
+**  FontSize (Integer)
+**      - The font ID and text height used for the menu text.
+**  BasePos (Point)
+**      - The upper-left origin position of the score menu.
+**      - For unknown reasons, the horizontal position is locked in.
+**      The menu's position can only be influenced vertically.
+**  
+*/
+/*  ---[Scores Menu (unknown usage)]---  */
 [Scores]
 Font			= 0
 FontSize		= 14
@@ -4025,6 +4085,7 @@ ElimPlayerTextColor = <128.0, 128.0, 128.0>
 FrameColor		= <0.0, 64.0, 240.0>
 FrameAlpha		= 0.50
 
+/*  ---[Scores Menu for Multiplayer Light Cycle Modes]---  */
 [MultiplayerLightCycleScores]
 Font			= 0
 FontSize		= 14
@@ -4053,7 +4114,7 @@ BackroundBorderFrameColor = <73.0, 157.0, 252.0>
 BackroundBorderFrameAlpha = 1.0
 BackroundBorderFrameSize = 2
 
-
+/*  ---[Scores Menu for Disc Arena/Disc Tournament]---  */
 [DiscScores]
 Font			= 0
 FontSize		= 14
@@ -4080,18 +4141,18 @@ FrameAlpha		= 0.50
 
 /************************************************************************
 **
-**	                            Screen Overlays
+**	                          Screen Overlays
 **
-**  The Overlay definition defines the set of overlays that the game can
+**  The Overlay definition assigns the set of overlays that the game can
 **  reference at any time. In the case of TRON 2.0, this only concerns
 **  the scopes for the LOL and Triangulate subroutines.
 **
 **  A single-line comment will be placed above each overlay value group
-**  that will identify it. Overlays 0 and 1 define the LOL and 
-**  Triangulate scopes, and Overlays 6 through 14 are
-**  all derivative of those first two. Overlay values 2 through 5 can be
-**  safely assumed to be unused in TRON 2.0, likely left over from NOLF
-**  or a different Monolith game.
+**  that will identify it. Overlays 0 and 1 define the LOL & Triangulate
+**  scopes, and Overlays 6 through 14 are all derivatives of those first
+**  two. Overlay values 2 through 5 can be safely assumed to be unused
+**  in TRON 2.0, likely left over from NOLF or a different Monolith
+**  game.
 **
 **	0 = LOL Scope
 **	1 = Triangulate Scope
@@ -4189,7 +4250,7 @@ Alpha14			= 0.8
 
 /************************************************************************
 **
-**	                        Menu Character Layout
+**	                       Menu Character Layout
 **
 **  The Character menu element has one purpose: to display a spinning
 **  view of the currently equipped Player & Light Cycle model. 
@@ -4234,66 +4295,64 @@ Rotation    = 90.0
 
 /************************************************************************
 **
-**	Menu Piece Layout  (Formerly known as Character Layout.)
+**	                         Menu Piece Layout
 **
+**  The MenuPiece definitions assign values that create, as the name
+**  implies, menu pieces, which (assumedly) are neat little packages of
+**  textures/models that make animated menu elements easier to implement
+**  maybe?
 **
-**	Name	(String)
+**  It's likely most of these have references in the source code, so it
+**  is strongly not recommended to change any existing menu pieces.
 **
-**		Programmer friendly name for the menu piece.
+**  TODO maybe give these all names? if i figure out what these are
 **
-**	Model (String)
-**
-**		Path to the Model Resource.
-**
-**	Skin# (String)
-**
-**		Path to the Skin Resource.  For multiple skins use like Skin0, Skin1...
-**
-**	RenderStyle (String)
-**
-**		Path to the RenderStyle Resource.  For multiple renderstyles use like
-**		RenderStyle0, Renderstyle1...
-**
+**	Name (String)
+**		- The programmer-friendly name for the menu piece.
+**	Model (Path)
+**		- The model used for the menu piece. A menu piece cannot have
+**      multiple model definitions.
+**	Skin# (Path)
+**		- The skin used for the menu piece. A menu piece can have
+**      multiple skin definitions.
+**	RenderStyle# (Path)
+**		- The render style used for the menu piece. A menu piece can
+**      have multiple render style definitions.
 **	Pos (Vector)
-**
-**		Position at which piece should be placed.  Items that have a ParentPiece declared
-**		Should not have a Pos Attribute.
-**
+**      - The [unknown corner] origin position of the menu piece. 
+**      - Monolith says this value must not be used if the menu piece
+**      has a ParentPiece defined, but most of the menu pieces below
+**      seem to ignore this supposed rule, so...
+**		- Why is a Vector being used for a position value???????
 **	IntroAnim (String)
-**
-**		Name of the Intro Animation to play.
-**		If there is an Intro Animation the code attempts to play that animation and then
-**		play the loop animation.  If there is a LoopAnim Specified the code will attempt to
-**		play that particular animation rather than the animation called "loop".
-**
+**		- The name of the intro animation that the menu piece will use.
+**		- If there is an intro animation, the code attempts to play that
+**      animation, and then play the loop animation. If a LoopAnim is
+**      specified, the code will attempt to play that specific animation
+**      rather than the animation called "loop".
 **	LoopAnim (String)
-**
-**		Name of the Loop Animation to play.
-**		If there is no LoopAnim Attribute, than the code looks for an animation called "loop".
-**		If there is no LoopAnim declared, and no animation in the model called "loop", then
-**		the first animation in the list gets played.
-**		If you want a particular animation played as the loop use this field to declare just which
-**		animation that is and all sorts of happiness will come to you.
-**
+**		- The name of the loop animation that the menu piece will use.
+**      If a menu piece does not have this value, it defaults to using
+**      the LoopAnim named "loop".
+**      - Fun fact: Monolith's original documentation states that if you
+**      want to play a specific loop animation, just declare it in this
+**      field, and quote, "all sorts of happiness will come to you".
 **	ParentPiece (String)
-**
-**	The Model to which this model will attach itself to.
-**
+**	    - The name of the parent piece that the menu piece will attach
+**      itself to. Leave out this value if none exists.
 **	ParentSocket (String)
-**
-**		The Socket to which this model's position will be moved.
-**
-**	Layer (int)
-**
-**		The layer on which this model exists for rendering order purposes.
-**		Lower numbers are rendered first and behind whatever numbers come after,
-**		regardless of actual position in the world.  A sort of Visual Caste System ya know...
-**
+**		- The name of the parent socket that the menu piece will attach
+**      itself to. Leave out this value if none exists.
+**	Layer (Integer)
+**		- The layer on which this model exists, for rendering order 
+**      purposes (some games also refer to this as the "Z Layer"). Lower
+**		numbers are rendered first and behind whatever numbers come 
+**      after, regardless of actual position in the menu.
 */
 
 [MenuPiece0]
 Name			= "sub_hub"
-Model		= "Interface\Subroutines\models\subroutine_hub.ltb"
+Model		    = "Interface\Subroutines\models\subroutine_hub.ltb"
 Skin0			= "Interface\Subroutines\skins\subroutine_hub.dtx"
 Skin1			= "Interface\Subroutines\skins\subhub_bg.dtx"
 RenderStyle0	= "RS\Menu_Alpha_Fullbright_blocker.ltb"
@@ -4305,10 +4364,9 @@ Layer			= 30
 Name			= "servername"
 Model			= "Interface\Subroutines\models\servername.ltb"
 Skin0			= "Interface\Subroutines\skins\subroutine_commands.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright_blocker.ltb"
-//Pos 		= <0.0, 0.0, 321.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright_blocker.ltb"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_hub"
+ParentSocket    = "skt_hub"
 IntroAnim		= "show"
 Layer			= 30
 
@@ -4316,10 +4374,10 @@ Layer			= 30
 Name			= "sub_commands"
 Model			= "Interface\Subroutines\models\commands.ltb"
 Skin0			= "Interface\Subroutines\skins\subroutine_commands.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright_blocker.ltb"
-Pos 		= <0.0, 0.0, 321.0>
+RenderStyle0    = "RS\Menu_Alpha_fullbright_blocker.ltb"
+Pos 		    = <0.0, 0.0, 321.0>
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_hub"
+ParentSocket	= "skt_hub"
 IntroAnim		= "show"
 Layer			= 10
 
@@ -4327,19 +4385,17 @@ Layer			= 10
 Name			= "browser_top"
 Model			= "Interface\Subroutines\models\browser_top.ltb"
 Skin0			= "Interface\Subroutines\skins\subroutine_hub.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, 0.0, 300.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, 0.0, 300.0>
 LoopAnim		= "hid"
-//ParentPiece		= "sub_hub"
-//ParentSocket		= "skt_hub"
 Layer			= 10
 
 [MenuPiece4]
 Name			= "browser_left"
 Model			= "Interface\Subroutines\models\browser_left.ltb"
 Skin0			= "Interface\Subroutines\skins\subroutine_hub.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, 0.0, 300.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, 0.0, 300.0>
 LoopAnim		= "hid"
 Layer			= 10
 
@@ -4347,8 +4403,8 @@ Layer			= 10
 Name			= "browser_right"
 Model			= "Interface\Subroutines\models\browser_right.ltb"
 Skin0			= "Interface\Subroutines\skins\subroutine_hub.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, 0.0, 300.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, 0.0, 300.0>
 LoopAnim		= "hid"
 Layer			= 10
 
@@ -4356,298 +4412,295 @@ Layer			= 10
 Name			= "buildpoints_bar"
 Model			= "Interface\Subroutines\models\buildpoints_bar.ltb"
 Skin0			= "Interface\Subroutines\skins\buildpoints_bar.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-//Pos 		= <0.0, 0.0, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 LoopAnim		= "loop"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_hub"
+ParentSocket	= "skt_hub"
 Layer			= 40
 
 [MenuPiece7]
 Name			= "rating1_bar"
 Model			= "Interface\Subroutines\models\ratings_bar_fill.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_cell.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, 53.0, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, 53.0, 320.0>
 LoopAnim		= "fill"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbar_1"
+ParentSocket	= "skt_ratbar_1"
 Layer			= 50
 
 [MenuPiece8]
 Name			= "rating1_fixedbar"
 Model			= "Interface\Subroutines\models\ratings_bar.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_cell_bg.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, 53.0, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, 53.0, 320.0>
 LoopAnim		= "fill"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbar_1"
+ParentSocket	= "skt_ratbar_1"
 Layer			= 40
 
 [MenuPiece9]
 Name			= "rating1_button_left"
 Model			= "Interface\Subroutines\models\ratings_button_left.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_button_left_press.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <-72.0, 53.0, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <-72.0, 53.0, 320.0>
 LoopAnim		= "loop"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbut_1l"
+ParentSocket	= "skt_ratbut_1l"
 Layer			= 40
 
 [MenuPiece10]
 Name			= "rating1_button_right"
 Model			= "Interface\Subroutines\models\ratings_button_right.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_button_right_press.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <72.0, 53.0, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <72.0, 53.0, 320.0>
 LoopAnim		= "loop"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbut_1r"
+ParentSocket	= "skt_ratbut_1r"
 Layer			= 40
 
 [MenuPiece11]
 Name			= "rating2_bar"
 Model			= "Interface\Subroutines\models\ratings_bar_fill.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_cell.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, 26.5, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, 26.5, 320.0>
 LoopAnim		= "fill"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbar_2"
+ParentSocket	= "skt_ratbar_2"
 Layer			= 50
 
 [MenuPiece12]
 Name			= "rating2_fixedbar"
 Model			= "Interface\Subroutines\models\ratings_bar.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_cell_bg.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, 26.5, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, 26.5, 320.0>
 LoopAnim		= "loop"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbar_2"
+ParentSocket	= "skt_ratbar_2"
 Layer			= 40
 
 [MenuPiece13]
 Name			= "rating2_button_left"
 Model			= "Interface\Subroutines\models\ratings_button_left.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_button_left_press.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <-72.0, 26.5, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <-72.0, 26.5, 320.0>
 LoopAnim		= "loop"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbut_2l"
+ParentSocket	= "skt_ratbut_2l"
 Layer			= 40
 
 [MenuPiece14]
 Name			= "rating2_button_right"
 Model			= "Interface\Subroutines\models\ratings_button_right.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_button_right_press.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <72.0, 26.5, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <72.0, 26.5, 320.0>
 LoopAnim		= "loop"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbut_2r"
+ParentSocket	= "skt_ratbut_2r"
 Layer			= 40
 
 [MenuPiece15]
 Name			= "rating3_bar"
 Model			= "Interface\Subroutines\models\ratings_bar_fill.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_cell.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, 0.0, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, 0.0, 320.0>
 LoopAnim		= "fill"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbar_3"
+ParentSocket	= "skt_ratbar_3"
 Layer			= 50
 
 [MenuPiece16]
 Name			= "rating3_fixedbar"
 Model			= "Interface\Subroutines\models\ratings_bar.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_cell_bg.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, 0.0, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, 0.0, 320.0>
 LoopAnim		= "fill"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbar_3"
+ParentSocket	= "skt_ratbar_3"
 Layer			= 40
 
 [MenuPiece17]
 Name			= "rating3_button_left"
 Model			= "Interface\Subroutines\models\ratings_button_left.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_button_left_press.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <-72.0, 0.0, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <-72.0, 0.0, 320.0>
 LoopAnim		= "loop"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbut_3l"
+ParentSocket	= "skt_ratbut_3l"
 Layer			= 40
 
 [MenuPiece18]
 Name			= "rating3_button_right"
 Model			= "Interface\Subroutines\models\ratings_button_right.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_button_right_press.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <72.0, 0.0, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <72.0, 0.0, 320.0>
 LoopAnim		= "loop"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbut_3r"
+ParentSocket	= "skt_ratbut_3r"
 Layer			= 40
 
 [MenuPiece19]
 Name			= "rating4_bar"
 Model			= "Interface\Subroutines\models\ratings_bar_fill.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_cell.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, -26.5, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, -26.5, 320.0>
 LoopAnim		= "fill"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbar_4"
+ParentSocket	= "skt_ratbar_4"
 Layer			= 50
 
 [MenuPiece20]
 Name			= "rating4_fixedbar"
 Model			= "Interface\Subroutines\models\ratings_bar.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_cell_bg.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, -26.5, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, -26.5, 320.0>
 LoopAnim		= "fill"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbar_4"
+ParentSocket	= "skt_ratbar_4"
 Layer			= 40
 
 [MenuPiece21]
 Name			= "rating4_button_left"
 Model			= "Interface\Subroutines\models\ratings_button_left.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_button_left_press.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <-72.0, -26.5, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <-72.0, -26.5, 320.0>
 LoopAnim		= "loop"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbut_4l"
+ParentSocket	= "skt_ratbut_4l"
 Layer			= 40
 
 [MenuPiece22]
 Name			= "rating4_button_right"
 Model			= "Interface\Subroutines\models\ratings_button_right.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_button_right_press.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <72.0, -26.5, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <72.0, -26.5, 320.0>
 LoopAnim		= "loop"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbut_4r"
+ParentSocket	= "skt_ratbut_4r"
 Layer			= 40
 
 [MenuPiece23]
 Name			= "rating5_bar"
 Model			= "Interface\Subroutines\models\ratings_bar_fill.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_cell.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, -53.0, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, -53.0, 320.0>
 LoopAnim		= "fill"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbar_5"
+ParentSocket	= "skt_ratbar_5"
 Layer			= 50
 
 [MenuPiece24]
 Name			= "rating5_fixedbar"
 Model			= "Interface\Subroutines\models\ratings_bar.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_cell_bg.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, -53.0, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, -53.0, 320.0>
 LoopAnim		= "fill"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbar_5"
+ParentSocket	= "skt_ratbar_5"
 Layer			= 40
 
 [MenuPiece25]
 Name			= "rating5_button_left"
 Model			= "Interface\Subroutines\models\ratings_button_left.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_button_left_press.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <-72.0, -53.0, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <-72.0, -53.0, 320.0>
 LoopAnim		= "loop"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbut_5l"
+ParentSocket	= "skt_ratbut_5l"
 Layer			= 40
 
 [MenuPiece26]
 Name			= "rating5_button_right"
 Model			= "Interface\Subroutines\models\ratings_button_left.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_button_right_press.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <72.0, -53.0, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <72.0, -53.0, 320.0>
 LoopAnim		= "loop"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_ratbut_5r"
+ParentSocket	= "skt_ratbut_5r"
 Layer			= 40
 
 [MenuPiece27]
 Name			= "lib_hi"
-//Model			= "Interface\Subroutines\models\sublib_hl.ltb"
-//Skin0			= "Interface\Subroutines\skins\sublib_hl.dtx"
 Model			= "Interface\Subroutines\models\seg_lib.ltb"
 Skin0			= "Interface\Subroutines\skins\sys_hl.dtx"
-RenderStyle0		= "RS\Alpha_Additive_fullbright.ltb"
+RenderStyle0	= "RS\Alpha_Additive_fullbright.ltb"
 LoopAnim		= "hl"
-Pos 		= <0.0, 0.0, 0.0>
+Pos 		    = <0.0, 0.0, 0.0>
 Layer			= 20
 
 [MenuPiece28]
 Name			= "sys_hi"
 Model			= "Interface\Subroutines\models\seg_sys_hl.ltb"
 Skin0			= "Interface\Subroutines\skins\sys_hl.dtx"
-RenderStyle0		= "RS\Alpha_Additive_fullbright.ltb"
+RenderStyle0	= "RS\Alpha_Additive_fullbright.ltb"
 LoopAnim		= "hl"
-Pos 		= <0.0, 0.0, 0.0>
+Pos 		    = <0.0, 0.0, 0.0>
 Layer			= 70
 
 [MenuPiece29]
 Name			= "sys_conflict"
 Model			= "Interface\Subroutines\models\seg_sys_conflict.ltb"
 Skin0			= "Interface\Subroutines\skins\sys_conflict.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, 0.0, 0.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, 0.0, 0.0>
 Layer			= 70
 
 [MenuPiece30]
 Name			= "sys_alpha"
 Model			= "Interface\Subroutines\models\seg_sys_alpha.ltb"
 Skin0			= "Interface\Subroutines\skins\sys_alpha.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, 0.0, 0.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, 0.0, 0.0>
 Layer			= 50
 
 [MenuPiece31]
 Name			= "sys_beta"
 Model			= "Interface\Subroutines\models\seg_sys_beta.ltb"
 Skin0			= "Interface\Subroutines\skins\sys_beta.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, 0.0, 0.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, 0.0, 0.0>
 Layer			= 50
 
 [MenuPiece32]
 Name			= "sys_gold"
 Model			= "Interface\Subroutines\models\seg_sys_gold.ltb"
 Skin0			= "Interface\Subroutines\skins\sys_gold.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, 0.0, 0.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, 0.0, 0.0>
 Layer			= 50
 
 [MenuPiece33]
 Name			= "sys_badblock"
 Model			= "Interface\Subroutines\icons\models\bad_block.ltb"
 Skin0			= "Interface\Subroutines\icons\skins\bad_block.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, 0.0, 0.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, 0.0, 0.0>
 Layer			= 80
 
 [MenuPiece34]
 Name			= "sys_basecode"
 Model			= "Interface\Subroutines\models\sys_basecode.ltb"
 Skin0			= "Interface\Subroutines\skins\sys_basecode.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright_blocker.ltb"
+RenderStyle0	= "RS\Menu_Alpha_fullbright_blocker.ltb"
 Pos 			= <0.0, 0.0, 319.9>
 Layer			= 50
 
@@ -4655,24 +4708,24 @@ Layer			= 50
 Name			= "sys_basecode_left"
 Model			= "Interface\Subroutines\models\sys_basecode.ltb"
 Skin0			= "Interface\Subroutines\skins\sys_basecode.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright_blocker.ltb"
-Pos 		= <0.0, 0.0, 0.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright_blocker.ltb"
+Pos 		    = <0.0, 0.0, 0.0>
 Layer			= 50
 
 [MenuPiece36]
 Name			= "sys_basecode_middle"
 Model			= "Interface\Subroutines\models\sys_basecode.ltb"
 Skin0			= "Interface\Subroutines\skins\sys_basecode.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright_blocker.ltb"
-Pos 		= <0.0, 0.0, 0.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright_blocker.ltb"
+Pos 		    = <0.0, 0.0, 0.0>
 Layer			= 50
 
 [MenuPiece37]
 Name			= "sys_basecode_right"
 Model			= "Interface\Subroutines\models\sys_basecode.ltb"
 Skin0			= "Interface\Subroutines\skins\sys_basecode.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright_blocker.ltb"
-Pos 		= <0.0, 0.0, 0.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright_blocker.ltb"
+Pos 		    = <0.0, 0.0, 0.0>
 Layer			= 50
 
 [MenuPiece38]
@@ -4680,19 +4733,18 @@ Name			= "optimizer"
 Model			= "Props\models\optimizer.ltb"
 Skin0			= "interface\subroutines\skins\optimizer_subroutinesocket.dtx"
 Skin1			= "Props\skins\optimizer_2.dtx"
-RenderStyle0		= "RS\menu_optimizer.ltb"
+RenderStyle0	= "RS\menu_optimizer.ltb"
 Pos 			= <0.0, 0.0, 0.0>
 LoopAnim		= "liveloop"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_opt"
+ParentSocket	= "skt_opt"
 layer			= 40
 
 [MenuPiece39]
 Name			= "proc_progress"
 Model			= "Interface\Subroutines\models\proc_progress.ltb"
 Skin0			= "Interface\subroutines\skins\procedural_object.dtx"
-//RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-RenderStyle0		= "RS\Alpha_Additive_NoCulling_readz.ltb"
+RenderStyle0	= "RS\Alpha_Additive_NoCulling_readz.ltb"
 LoopAnim		= "progress"
 Layer			= 51
 
@@ -4701,10 +4753,10 @@ Name			= "proc_left_base"
 Model			= "Interface\Subroutines\models\proc_base.ltb"
 Skin0			= "Interface\subroutines\skins\procedural_object.dtx"
 Skin1			= "Interface\subroutines\skins\proc_port_waiting.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 LoopAnim		= "loop"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_add_1"
+ParentSocket	= "skt_add_1"
 Layer			= 40
 
 [MenuPiece41]
@@ -4712,10 +4764,10 @@ Name			= "proc_right_base"
 Model			= "Interface\Subroutines\models\proc_base.ltb"
 Skin0			= "Interface\subroutines\skins\procedural_object.dtx"
 Skin1			= "Interface\subroutines\skins\proc_disinfect_waiting.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 LoopAnim		= "loop"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_add_2"
+ParentSocket	= "skt_add_2"
 Layer			= 40
 
 [MenuPiece42]
@@ -4723,52 +4775,52 @@ Name			= "proc_bottom_base"
 Model			= "Interface\Subroutines\models\proc_base.ltb"
 Skin0			= "Interface\subroutines\skins\procedural_object.dtx"
 Skin1			= "Interface\subroutines\skins\proc_defrag_waiting.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 LoopAnim		= "loop"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_add_3"
+ParentSocket	= "skt_add_3"
 Layer			= 40
 
 [MenuPiece43]
 Name			= "optring_alpha"
 Model			= "Interface\Subroutines\icons\models\opt_ring.ltb"
 Skin0			= "Interface\Subroutines\icons\skins\opt_ring_alpha.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 Layer			= 75
 
 [MenuPiece44]
 Name			= "optring_beta"
 Model			= "Interface\Subroutines\icons\models\opt_ring.ltb"
 Skin0			= "Interface\Subroutines\icons\skins\opt_ring_beta.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 Layer			= 75
 
 [MenuPiece45]
 Name			= "optring_gold"
 Model			= "Interface\Subroutines\icons\models\opt_ring.ltb"
 Skin0			= "Interface\Subroutines\icons\skins\opt_ring_gold.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 Layer			= 75
 
 [MenuPiece46]
 Name			= "foreign_sub"
 Model			= "Interface\Subroutines\icons\models\foreign.ltb"
 Skin0			= "Interface\Subroutines\icons\skins\foreign.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 layer			= 80
 
 [MenuPiece47]
 Name			= "foreign_ring"
 Model			= "Interface\Subroutines\icons\models\opt_ring.ltb"
 Skin0			= "Interface\Subroutines\icons\skins\opt_ring_alpha.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 Layer			= 75
 
 [MenuPiece48]
 Name			= "proc_working"
 Model			= "Interface\Subroutines\models\proc_working.ltb"
 Skin0			= "Interface\subroutines\skins\procedural_object.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 LoopAnim		= "working"
 Layer			= 90
 
@@ -4776,34 +4828,32 @@ Layer			= 90
 Name			= "sys_alpha_hl"
 Model			= "Interface\Subroutines\models\seg_sys_alpha.ltb"
 Skin0			= "Interface\Subroutines\skins\sys_alpha_hl.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, 0.0, 0.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, 0.0, 0.0>
 Layer			= 70
 
 [MenuPiece50]
 Name			= "sys_beta_hl"
 Model			= "Interface\Subroutines\models\seg_sys_beta.ltb"
 Skin0			= "Interface\Subroutines\skins\sys_beta_hl.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, 0.0, 0.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, 0.0, 0.0>
 Layer			= 70
 
 [MenuPiece51]
 Name			= "sys_gold_hl"
 Model			= "Interface\Subroutines\models\seg_sys_gold.ltb"
 Skin0			= "Interface\Subroutines\skins\sys_gold_hl.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, 0.0, 0.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+Pos 		    = <0.0, 0.0, 0.0>
 Layer			= 70
 
 [MenuPiece52]
 Name			= "ratings_bar_surge"
 Model			= "Interface\Subroutines\models\ratings_bar_surge.ltb"
 Skin0			= "Interface\Subroutines\skins\ratings_bar_surge.dtx"
-RenderStyle0		= "RS\Alpha_Additive_wglow.ltb"
+RenderStyle0	= "RS\Alpha_Additive_wglow.ltb"
 LoopAnim		= "loop"
-//ParentPiece		= "sub_hub"
-//ParentSocket		= "skt_ratbar_5"
 Layer			= 60
 
 
@@ -4811,47 +4861,41 @@ Layer			= 60
 Name			= "corruption_alpha"
 Model			= "Interface\Subroutines\models\corruption_alpha.ltb"
 Skin0			= "Interface\Subroutines\skins\corruption_alpha.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 Layer			= 60
 
 [MenuPiece54]
 Name			= "corruption_beta"
 Model			= "Interface\Subroutines\models\corruption_beta.ltb"
 Skin0			= "Interface\Subroutines\skins\corruption_alpha.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 Layer			= 60
 
 [MenuPiece55]
 Name			= "corruption_gold"
 Model			= "Interface\Subroutines\models\corruption_gold.ltb"
 Skin0			= "Interface\Subroutines\skins\corruption_alpha.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 Layer			= 60
 
 [MenuPiece56]
 Name			= "sub_hub_bg"
-Model		= "Interface\Subroutines\models\subroutine_hub_bg.ltb"
+Model		    = "Interface\Subroutines\models\subroutine_hub_bg.ltb"
 Skin0			= "Interface\Subroutines\skins\subhub_bg.dtx"
 RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
-Pos 		= <0.0, 0.0, 321.0>
-//ParentPiece		= "sub_hub"
-//ParentSocket		= "skt_hub"
+Pos 		    = <0.0, 0.0, 321.0>
 IntroAnim		= "show"
 LoopAnim		= "shown"
 Layer			= 35
 
 [MenuPiece57]
 Name			= "buildpoints_bar_fixed"
-//Model			= "Interface\Subroutines\icons\models\opt_ring.ltb"
-//Skin0			= "Interface\Subroutines\icons\skins\opt_ring_gold.dtx"
-//RenderStyle0		= "RS\Alpha_fullbright.ltb"
 Model			= "Interface\Subroutines\models\buildpoints_bar_bg.ltb"
 Skin0			= "Interface\Subroutines\skins\buildpoints_bar_bg.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
-//Pos 		= <0.0, 0.0, 320.0>
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 LoopAnim		= "loop"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_hub"
+ParentSocket	= "skt_hub"
 Layer			= 35
 
 
@@ -4859,34 +4903,34 @@ Layer			= 35
 Name			= "corruption_lib"
 Model			= "Interface\Subroutines\icons\models\corruption_lib.ltb"
 Skin0			= "Interface\Subroutines\icons\skins\corruption_lib.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 Layer			= 90
 
 [MenuPiece59]
 Name			= "optimizer_bg"
 Model			= "Interface\Subroutines\models\optimizer_bg.ltb"
 Skin0			= "Interface\Subroutines\skins\optimizer_bg.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_hub"
+ParentSocket	= "skt_hub"
 Layer			= 37
 
 [MenuPiece60]
 Name			= "browser_outline_top"
 Model			= "Interface\Subroutines\models\browser_top.ltb"
 Skin0			= "Interface\Subroutines\skins\subroutine_hub_liboutlines.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 Pos 			= <0.0, 0.0, 320.0>
 LoopAnim		= "shown"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_hub"
+ParentSocket	= "skt_hub"
 Layer			= 10
 
 [MenuPiece61]
 Name			= "browser_outline_left"
 Model			= "Interface\Subroutines\models\browser_left.ltb"
 Skin0			= "Interface\Subroutines\skins\subroutine_hub_liboutlines.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 Pos 			= <0.0, 0.0, 320.0>
 LoopAnim		= "shown"
 Layer			= 10
@@ -4895,7 +4939,7 @@ Layer			= 10
 Name			= "browser_outline_right"
 Model			= "Interface\Subroutines\models\browser_right.ltb"
 Skin0			= "Interface\Subroutines\skins\subroutine_hub_liboutlines.dtx"
-RenderStyle0		= "RS\Menu_Alpha_fullbright.ltb"
+RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 Pos 			= <0.0, 0.0, 320.0>
 LoopAnim		= "shown"
 Layer			= 10
@@ -4905,17 +4949,37 @@ Name			= "dead_optimizer"
 Model			= "Props\models\optimizer.ltb"
 Skin0			= "Props\skins\optimizer_off1.dtx"
 Skin1			= "Props\skins\optimizer_off2.dtx"
-RenderStyle0		= "RS\menu_optimizer.ltb"
+RenderStyle0	= "RS\menu_optimizer.ltb"
 Pos 			= <0.0, 0.0, 0.0>
 LoopAnim		= "liveloop"
 ParentPiece		= "sub_hub"
-ParentSocket		= "skt_opt"
+ParentSocket	= "skt_opt"
 layer			= 40
+
 
 /************************************************************************
 **
-**	Interface Lights Layout
+**	                     Interface Lights Layout
 **
+**  The Light definitions assign values that create light objects used
+**  in menus. Because pretty much all menus are *technically* rendered
+**  as 3D spaces (except for ones that appear as pop-ups, obviously),
+**  any 3D models that render inside that menu will need a light to
+**  display as they normally would ingame.
+**
+**  Pretty much all menus in TRON 2.0 use the first definition Light0 as
+**  the light. It's not known at the moment what Light1 and Light2 are
+**  used for, if they are used at all.
+**
+**  Name (String)
+**      - The programmer-friendly name for the light object.
+**  Pos (Vector)
+**      - The origin position for the light object.
+**      - Is a vector used for a 3D position argument? Is that normal???
+**  Color (Vector)
+**      - The color of the light itself.
+**  Radius (Float)
+**      - The effective distance of the light from its origin point.
 */
 [Light0]
 Name			= "Main0"
@@ -4936,329 +5000,286 @@ Color			= <255.0,255.0,255.0>
 Radius			= 8000.0
 
 /************************************************************************
-****  Interface FX Layout
 **
+**                           Interface FX Layout
+**
+**  The FX definitions assign values that create effect objects used in
+**  menus. It's not known where the effects themselves originate when
+**  referenced here (I couldn't find anything in FX.TXT).
+**
+**  TODO find out where the FX origin files are
+**
+**  Name (String)
+**      - The programmer-friendly name for the FX object.
+**  FXName (String)
+**      - The name of the FX to display.
+**  Pos (Vector)
+**      - The origin position of the FX object.
+**  Loop (Integer)
+**      - Boolean value. Used to specify if the FX will loop when
+**      displayed.  
 */
 [FX0]
-Name			= "MainBackground"
-FXName			= "TestBackFX"
-Pos 			= <0.0,0.0,300.0>
-Loop			= 1
+Name	= "MainBackground"
+FXName	= "TestBackFX"
+Pos 	= <0.0,0.0,300.0>
+Loop	= 1
 
 [FX1]
-Name			= "Burn"
-FXName			= "Test_BurningFX"
-Pos 			= <0.0,-15.0,0.0>
-Loop			= 0
+Name	= "Burn"
+FXName	= "Test_BurningFX"
+Pos 	= <0.0,-15.0,0.0>
+Loop	= 0
 
 [FX2]
-Name			= "MENU_main_intro"
-FXName			= "MENU_main_intro_bar"
-Pos 			= <0.0,1.5,17.3>
-Loop			= 0
+Name	= "MENU_main_intro"
+FXName	= "MENU_main_intro_bar"
+Pos 	= <0.0,1.5,17.3>
+Loop	= 0
 
 [FX3]
-Name			= "MENU_main_shortin"
-FXName			= "MENU_main_loop"
-Pos 			= <0.0,1.5,17.3>
-Loop			= 1
+Name	= "MENU_main_shortin"
+FXName	= "MENU_main_loop"
+Pos 	= <0.0,1.5,17.3>
+Loop	= 1
 
 [FX4]
-Name			= "MENU_main_loop"
-FXName			= "MENU_main_loop"
-Pos 			= <0.0,1.5,17.3>
-Loop			= 1
+Name	= "MENU_main_loop"
+FXName	= "MENU_main_loop"
+Pos 	= <0.0,1.5,17.3>
+Loop	= 1
 
 [FX5]
-Name			= "SUBS_subroutine_intro"
-FXName			= "SUBS_subroutine_introa"
-Pos 			= <0.0,0.0,320.0>
-Loop			= 0
+Name	= "SUBS_subroutine_intro"
+FXName	= "SUBS_subroutine_introa"
+Pos 	= <0.0,0.0,320.0>
+Loop	= 0
 
 [FX6]
-Name			= "SUBS_subroutine_loop"
-FXName			= "SUBS_subroutine_loop"
-Pos 			= <0.0,0.0,320.0>
-Loop			= 1
+Name	= "SUBS_subroutine_loop"
+FXName	= "SUBS_subroutine_loop"
+Pos 	= <0.0,0.0,320.0>
+Loop	= 1
 
 [FX7]
-Name			= "MENU_single_intro"
-FXName			= "MENU_single_intro"
-Pos 			= <0.0,1.5,17.3>
-Loop			= 0
+Name	= "MENU_single_intro"
+FXName	= "MENU_single_intro"
+Pos 	= <0.0,1.5,17.3>
+Loop	= 0
 
 [FX8]
-Name			= "MENU_single_shortin"
-FXName			= "MENU_single_intro"
-Pos 			= <0.0,1.5,17.3>
-Loop			= 0
+Name	= "MENU_single_shortin"
+FXName	= "MENU_single_intro"
+Pos 	= <0.0,1.5,17.3>
+Loop	= 0
 
 [FX9]
-Name			= "MENU_single_loop"
-FXName			= "MENU_single_loop"
-Pos 			= <0.0,1.5,17.3>
-Loop			= 1
+Name	= "MENU_single_loop"
+FXName	= "MENU_single_loop"
+Pos 	= <0.0,1.5,17.3>
+Loop	= 1
 
 [FX10]
-Name			= "MENU_single_main"
-FXName			= "MENU_single_main"
-Pos 			= <0.0,1.5,17.3>
-Loop			= 1
+Name	= "MENU_single_main"
+FXName  = "MENU_single_main"
+Pos 	= <0.0,1.5,17.3>
+Loop	= 1
 
 [FX11]
-Name			= "MENU_blankFX_700"
-FXName			= "MENU_blankFX_700"
-Pos 			= <0.0,0.0,20.0>
-Loop			= 1
+Name	= "MENU_blankFX_700"
+FXName	= "MENU_blankFX_700"
+Pos 	= <0.0,0.0,20.0>
+Loop	= 1
 
 [FX12]
-Name			= "MENU_multi_intro"
-FXName			= "MENU_multi_intro"
-Pos 			= <0.0,0.0,20.0>
-Loop			= 1
+Name	= "MENU_multi_intro"
+FXName	= "MENU_multi_intro"
+Pos 	= <0.0,0.0,20.0>
+Loop	= 1
 
 [FX13]
-Name			= "MENU_multi_loop"
-FXName			= "MENU_multi_loop"
-Pos 			= <0.0,0.0,20.0>
-Loop			= 1
+Name	= "MENU_multi_loop"
+FXName	= "MENU_multi_loop"
+Pos 	= <0.0,0.0,20.0>
+Loop	= 1
 
 [FX14]
-Name			= "MENU_multi_main"
-FXName			= "MENU_multi_main"
-Pos 			= <0.0,1.5,17.3>
-Loop			= 1
+Name	= "MENU_multi_main"
+FXName	= "MENU_multi_main"
+Pos 	= <0.0,1.5,17.3>
+Loop	= 1
 
 [FX15]
-Name			= "MENU_bgloop"
-FXName			= "MENU_bgloop"
-Pos 			= <0.0,0.0,25.0>
-Loop			= 1
+Name	= "MENU_bgloop"
+FXName	= "MENU_bgloop"
+Pos 	= <0.0,0.0,25.0>
+Loop	= 1
 
 [FX16]
-Name			= "MENU_options_intro"
-FXName			= "MENU_options_intro"
-Pos 			= <0.0,1.5,17.3>
-Loop			= 1
+Name	= "MENU_options_intro"
+FXName	= "MENU_options_intro"
+Pos 	= <0.0,1.5,17.3>
+Loop	= 1
 
 [FX17]
-Name			= "MENU_options_loop"
-FXName			= "MENU_options_loop"
-Pos 			= <0.0,1.5,17.3>
-Loop			= 1
+Name	= "MENU_options_loop"
+FXName	= "MENU_options_loop"
+Pos 	= <0.0,1.5,17.3>
+Loop	= 1
 
 [FX18]
-Name			= "MENU_options_main"
-FXName			= "MENU_options_main"
-Pos 			= <0.0,1.5,17.3>
-Loop			= 1
+Name	= "MENU_options_main"
+FXName	= "MENU_options_main"
+Pos 	= <0.0,1.5,17.3>
+Loop	= 1
 
 [FX19]
-Name			= "MENU_profile_intro"
-FXName			= "MENU_profile_intro"
-Pos 			= <0.0,1.5,17.3>
-Loop			= 1
+Name	= "MENU_profile_intro"
+FXName	= "MENU_profile_intro"
+Pos 	= <0.0,1.5,17.3>
+Loop	= 1
 
 [FX20]
-Name			= "MENU_profile_loop"
-FXName			= "MENU_profile_loop"
-Pos 			= <0.0,1.5,17.3>
-Loop			= 1
+Name	= "MENU_profile_loop"
+FXName	= "MENU_profile_loop"
+Pos 	= <0.0,1.5,17.3>
+Loop	= 1
 
 [FX21]
-Name			= "MENU_profile_main"
-FXName			= "MENU_profile_main"
-Pos 			= <0.0,1.5,17.3>
-Loop			= 1
+Name	= "MENU_profile_main"
+FXName	= "MENU_profile_main"
+Pos 	= <0.0,1.5,17.3>
+Loop	= 1
 
 [FX22]
-Name			= "SUBS_proc_port_waitintro"
-FXName			= "SUBS_proc_port_waitintro"
-Pos 			= <0.0,0.0,320.0>
-Loop			= 0
+Name	= "SUBS_proc_port_waitintro"
+FXName	= "SUBS_proc_port_waitintro"
+Pos 	= <0.0,0.0,320.0>
+Loop	= 0
 
 [FX23]
-Name			= "SUBS_proc_port_workintro"
-FXName			= "SUBS_proc_port_workintro"
-Pos 			= <0.0,0.0,320.0>
-Loop			= 0
+Name	= "SUBS_proc_port_workintro"
+FXName	= "SUBS_proc_port_workintro"
+Pos 	= <0.0,0.0,320.0>
+Loop	= 0
 
 [FX24]
-Name			= "SUBS_proc_disinfect_waitintro"
-FXName			= "SUBS_proc_disinfect_waitintro"
-Pos 			= <0.0,0.0,320.0>
-Loop			= 0
+Name	= "SUBS_proc_disinfect_waitintro"
+FXName	= "SUBS_proc_disinfect_waitintro"
+Pos 	= <0.0,0.0,320.0>
+Loop	= 0
 
 [FX25]
-Name			= "SUBS_proc_disinfect_workintro"
-FXName			= "SUBS_proc_disinfect_workintro"
-Pos 			= <0.0,0.0,320.0>
-Loop			= 0
+Name	= "SUBS_proc_disinfect_workintro"
+FXName	= "SUBS_proc_disinfect_workintro"
+Pos 	= <0.0,0.0,320.0>
+Loop	= 0
 
 [FX26]
-Name			= "SUBS_proc_defrag_waitintro"
-FXName			= "SUBS_proc_defrag_waitintro"
-Pos 			= <0.0,0.0,320.0>
-Loop			= 0
+Name	= "SUBS_proc_defrag_waitintro"
+FXName	= "SUBS_proc_defrag_waitintro"
+Pos 	= <0.0,0.0,320.0>
+Loop	= 0
 
 [FX27]
-Name			= "SUBS_proc_defrag_workintro"
-FXName			= "SUBS_proc_defrag_workintro"
-Pos 			= <0.0,0.0,320.0>
-Loop			= 0
+Name	= "SUBS_proc_defrag_workintro"
+FXName	= "SUBS_proc_defrag_workintro"
+Pos 	= <0.0,0.0,320.0>
+Loop	= 0
 
 [FX28]
-Name			= "SUBS_proc_shred_waitintro"
-FXName			= "SUBS_proc_shred_waitintro"
-Pos 			= <0.0,0.0,320.0>
-Loop			= 0
+Name	= "SUBS_proc_shred_waitintro"
+FXName	= "SUBS_proc_shred_waitintro"
+Pos 	= <0.0,0.0,320.0>
+Loop	= 0
 
 [FX29]
-Name			= "SUBS_proc_restore_waitintro"
-FXName			= "SUBS_proc_restore_waitintro"
-Pos 			= <0.0,0.0,320.0>
-Loop			= 0
+Name	= "SUBS_proc_restore_waitintro"
+FXName	= "SUBS_proc_restore_waitintro"
+Pos     = <0.0,0.0,320.0>
+Loop	= 0
 
 [FX30]
-Name			= "SUBS_proc_restore_workintro"
-FXName			= "SUBS_proc_restore_workintro"
-Pos 			= <0.0,0.0,320.0>
-Loop			= 0
+Name	= "SUBS_proc_restore_workintro"
+FXName	= "SUBS_proc_restore_workintro"
+Pos 	= <0.0,0.0,320.0>
+Loop	= 0
 
 [FX31]
-Name            = "LOAD_Test"
-FXName          = "LOAD_Test"
-Pos             = <0.0,0.0,50.0>
-Loop            = 1
+Name    = "LOAD_Test"
+FXName  = "LOAD_Test"
+Pos     = <0.0,0.0,50.0>
+Loop    = 1
 
 [FX32]
-Name			= "MENU_tronlogo"
-FXName			= "MENU_TronLogo"
-Pos 			= <18.0,25.7,26.0>
-Loop			= 1
+Name	= "MENU_tronlogo"
+FXName	= "MENU_TronLogo"
+Pos 	= <18.0,25.7,26.0>
+Loop	= 1
 
 [FX33]
-Name			= "SUBS_optimize"
-FXName			= "SUBS_optimize"
-Pos 			= <0.0, 0.0, 40.0>
-Loop			= 0
+Name	= "SUBS_optimize"
+FXName	= "SUBS_optimize"
+Pos 	= <0.0, 0.0, 40.0>
+Loop	= 0
 
 [FX34]
-Name			= "MENU_main_Jet_throw"
-FXName			= "MENU_main_Jet_throw"
-Pos 			= <2.75, 0.5, 32.0>
-Loop			= 0
+Name	= "MENU_main_Jet_throw"
+FXName	= "MENU_main_Jet_throw"
+Pos 	= <2.75, 0.5, 32.0>
+Loop	= 0
 
 [FX35]
-Name			= "MENU_KA_logo_dummy"
-FXName			= "MENU_KA_logo_dummy"
-Pos 			= <35.5,24.7,25.0>
-Loop			= 0
+Name	= "MENU_KA_logo_dummy"
+FXName	= "MENU_KA_logo_dummy"
+Pos 	= <35.5,24.7,25.0>
+Loop	= 0
 
 [FX36]
-Name			= "MENU_KA_logo"
-FXName			= "MENU_KA_logo"
-Pos 			= <35.5,24.7,25.0>
-Loop			= 1
-
-
-/************************************************************************
-**
-**	Credits Layout
-**
-**	These sections specify data related to the Credits display
-**
-**	FadeInTime (float)
-**
-**		Number of seconds for text to fade in
-**
-**	HoldTime (float)
-**
-**		Number of seconds for text to stay visible
-**
-**	FadeOutTime (float)
-**
-**		Number of seconds for text to fade out
-**
-**	DelayTime (float)
-**
-**		Number of seconds for text to pause before next credit
-**
-**	PositionUL (point)
-**
-**		The position to use for credits displayed in the upper left.
-**		(This specifies the upper left corner and is relative to a 640x480 screen.)
-**
-**	PositionUR (point)
-**
-**		The position to use for credits displayed in the upper right.
-**		(This specifies the upper right corner and is relative to a 640x480 screen.)
-**
-**	PositionLR (point)
-**
-**		The position to use for credits displayed in the lower right.
-**		(This specifies the lower right corner and is relative to a 640x480 screen.)
-**
-**	PositionLL (point)
-**
-**		The position to use for credits displayed in the lower left.
-**		(This specifies the lower left corner and is relative to a 640x480 screen.)
-**
-*/
-[Credits]
-FadeInTime	= 0.6
-HoldTime	= 3.0
-FadeOutTime = 0.6
-DelayTime	= 0.35
-PositionUL	= (80,90)
-PositionUR	= (560,90)
-PositionLR	= (560,390)
-PositionLL	= (80,390)
+Name	= "MENU_KA_logo"
+FXName	= "MENU_KA_logo"
+Pos 	= <35.5,24.7,25.0>
+Loop	= 1
 
 /************************************************************************
 **
-**	DecisionWindow Layout
+**	                     Decision Window Layout
 **
-** The DecisionWindow definition specifies data for displaying
-** gameplay choices to the player.
+**  The DecisionWindow definition assigns values for the menu displaying
+**  gameplay choices to the player. This is the menu that appears at the
+**  lower-left corner of the screen to display things like Archive Bin
+**  items.
 **
-**	Pos 	(Point)
-**
-**		Position (relative to a 640x480 screen) of the window
-**
-**	Width (Int)
-**
-**		Specifies how wide the window should be
-**
-**	TextOffset	(Point)
-**
-**		How much the text is indented from the window edges
-**
-**	TextColor	(Vector)
-**
-**		The color to use for the text.
-**		<r, g, b>
-**
-**	Frame	(String)
-**
-**		Name of the texture to use for the window frame
-**
-**	NumColumns
-**
-**		Number of columns to use for this window
-**
-**	RemoveItems
-**
+**	Pos (Point)
+**		- The [unknown corner] origin position of the window.
+**  Font (Integer),
+**  FontSize (Integer)
+**      - The font ID and text height of the window text.
+**	Width (Integer)
+**      - The total width of the window.
+**	TextOffset (Point)
+**		- The offset of the text from the left side of the window.
+**	TextColor (Vector)
+**		- The color of the window text.
+**	Frame (Path)
+**		- The texture to use for the window frame.
+**  Hollow (Integer)
+**      - Unknown function.
+**  Inscribe (Integer)
+**      - Unknown function.
+**	NumColumns (Integer)
+**		- The number of columns to use for the window.
+**	RemoveItems (Integer)
+**      - Boolean value. Decides whether a row of the window is removed
+**      or not when an option is selected.
 **		0 = never change available selections
 **		1 = remove row after selection is made
-**
-**	RemoveWindow
-**
+**	RemoveWindow (Integer)
+**      - Boolean value. Decides whether the window is closed or not
+**      when an option is selected.
 **		0 = leave window open after selection
 **		1 = remove window after selection
-**
-**/
-
+*/
 [DecisionWindow]
 Pos 					= (400,60)
 Font					= 1
@@ -5280,7 +5301,7 @@ NumColumns				= 1
 RemoveItems				= 0
 RemoveWindow			= 1
 
-
+// TODO okay WHY are the UV box values back????
 [DecisionWindow1]
 Pos 					= (10,60)
 Font					= 1
@@ -5342,6 +5363,7 @@ Frame					= "interface\menu\sprtex\frame_solid.dtx"
 NumColumns				= 5
 RemoveItems				= 1
 RemoveWindow			= 0
+
 
 /************************************************************************
 **
@@ -6475,6 +6497,7 @@ IntroFX2				= ""
 LoopFX2					= "MENU_tronlogo"
 IntroFX3			= ""
 LoopFX3			= "MENU_KA_logo"
+
 
 /************************************************************************
 **
