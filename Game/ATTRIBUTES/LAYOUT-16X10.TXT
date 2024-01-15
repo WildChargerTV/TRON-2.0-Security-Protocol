@@ -2427,7 +2427,7 @@ ChooserTextSize			= 24
 ChooserBoxSize			= (46, 42)
 ChooserSpacing			= (0, 6)
 ChooserIconOffset		= (-7, -12)
-ChooserMargin			= (10,10) // SecurityProtocol
+ChooserMargin			= (10, 10) // SecurityProtocol
 //ChooserTitleHeight	= 0
 //ChooserIntroTime		= 0.5
 //ChooserOutroTime		= 0.5
@@ -2504,7 +2504,7 @@ PingBlinkCount		= 4
 **  PsetHeight (Integer)
 **      - The width and height of the permission set indicator.
 */
-PsetOffset	= (0,0) // SecurityProtocol
+PsetOffset	= (0, 0) // SecurityProtocol
 PsetWidth	= 80 // SecurityProtocol
 PsetHeight	= 80 // SecurityProtocol
 
@@ -2633,9 +2633,9 @@ FOVZoomTriangulate3		= 3.0
 **  DistanceIconAlpha (Float)
 **  DistanceIconFadeOutSpeed (Float)
 */
-DistanceIconPos			= (294, 336)
+DistanceIconPos			    = (294, 336)
 DistanceIconBlinkSpeed		= 6.0
-DistanceIconAlpha		= 0.8
+DistanceIconAlpha		    = 0.8
 DistanceIconFadeOutSpeed	= 1.0
 
 /*  -----[Light Cycle HUD Elements]-----
@@ -2708,12 +2708,12 @@ LivesTextHeight	= 16
 **      used if RosterEnableIconScaling is set to 1.
 **      - This setting is managed by the Killer App Mod.
 */
-RosterPosition					= (6, 46)
-RosterTextHeight				= 14
-RosterTextOffset				= 4
-RosterLineOffset				= 4
-RosterEnableIconScaling			= 1
-RosterIconBaseSizeIfScalingIsEnabled= (26, 16)
+RosterPosition					        = (6, 46)
+RosterTextHeight				        = 14
+RosterTextOffset				        = 4
+RosterLineOffset				        = 4
+RosterEnableIconScaling			        = 1
+RosterIconBaseSizeIfScalingIsEnabled    = (26, 16)
 
 /*  ---[Intro]---
 **  Not sure what this is?
@@ -2808,7 +2808,7 @@ EnergyBarWidth			                = 0
 HealthBGTex				                = (0, 0, 0, 0)
 EnergyBGTex				                = (0, 0, 0, 0)
 WeaponIndicatorOffset	                = (-64, 0)
-PingIconSize			                = (0,0)
+PingIconSize			                = (0, 0)
 PsetWidth				                = 0
 PsetHeight				                = 0
 ActivationTextPos		                = (320, -16)
@@ -2989,11 +2989,11 @@ Piece2FlickerTime	= 0.04
 **		- The font ID, pixel height, and color of the text.
 */
 [SingleString]
-Position = (320, 165)
-DiscMPPosition = (320, 165)
-Font = 0
-FontSize = 27
-FontColor = <255.0, 255.0, 90.0>
+Position        = (320, 165)
+DiscMPPosition  = (320, 165)
+Font            = 0
+FontSize        = 27
+FontColor       = <255.0, 255.0, 90.0>
 
 
 /************************************************************************
@@ -3096,31 +3096,31 @@ ObjectiveSpacing			= 8
 **  with itself but good luck knowing if most of these have a visible
 **  difference
 */
-UVBoxLeftInset			    = (32, 0, 56, 14)
-UVBoxLeftFullInset		    = (4, 0, 28, 14)
-UVBoxLeftBigInset		    = (32, 0, 56, 14)
-UVBoxLeftBigFullInset		= (4, 0, 28, 14)
-UVSeparator			        = (117, 15, 254, 16)
-UVProgressEmpty			    = (55, 155, 102, 158)
-UVProgressFull			    = (6, 155, 53, 158)
-UVFrameTopLeft		= ( 1, 128, 4, 153 )
-UVFrameTop		= ( 6, 128, 101, 153 )
-UVFrameTopRight		= ( 103, 128, 115, 153 )
-UVFrameLeft		= ( 1, 155, 4, 158 )
-UVFrameCenter		= ( 0, 0, 0, 0 )
-UVFrameRight		= ( 0, 0, 0, 0 )
-UVFrameBottomLeft	= ( 1, 160, 4, 163 )
-UVFrameBottom		= ( 6, 160, 101, 163 )
-UVFrameBottomRight	= ( 103, 160, 115, 163 )
-UVBoxTopLeft		= ( 1, 165, 13, 170 )
-UVBoxTop		= ( 15, 165, 98, 170 )
-UVBoxTopRight		= ( 100, 165, 115, 170 )
-UVBoxLeft		= ( 1, 172, 13, 175 )
-UVBoxCenter		= ( 15, 172, 98, 175 )
-UVBoxRight		= ( 100, 172, 115, 175 )
-UVBoxBottomLeft	= ( 1, 177, 13, 188 )
-UVBoxBottom		= ( 15, 177, 98, 188 )
-UVBoxBottomRight	= ( 100, 177, 115, 188 )
+UVBoxLeftInset			= (32, 0, 56, 14)
+UVBoxLeftFullInset		= (4, 0, 28, 14)
+UVBoxLeftBigInset		= (32, 0, 56, 14)
+UVBoxLeftBigFullInset   = (4, 0, 28, 14)
+UVSeparator			    = (117, 15, 254, 16)
+UVProgressEmpty			= (55, 155, 102, 158)
+UVProgressFull			= (6, 155, 53, 158)
+UVFrameTopLeft		    = (1, 128, 4, 153)
+UVFrameTop		        = (6, 128, 101, 153)
+UVFrameTopRight		    = (103, 128, 115, 153)
+UVFrameLeft		        = (1, 155, 4, 158)
+UVFrameCenter		    = (0, 0, 0, 0)
+UVFrameRight		    = (0, 0, 0, 0)
+UVFrameBottomLeft	    = (1, 160, 4, 163)
+UVFrameBottom		    = (6, 160, 101, 163)
+UVFrameBottomRight	    = (103, 160, 115, 163)
+UVBoxTopLeft		    = (1, 165, 13, 170)
+UVBoxTop		        = (15, 165, 98, 170)
+UVBoxTopRight		    = (100, 165, 115, 170)
+UVBoxLeft		        = (1, 172, 13, 175)
+UVBoxCenter		        = (15, 172, 98, 175)
+UVBoxRight		        = (100, 172, 115, 175)
+UVBoxBottomLeft	        = (1, 177, 13, 188)
+UVBoxBottom		        = (15, 177, 98, 188)
+UVBoxBottomRight	    = (100, 177, 115, 188)
 
 
 /************************************************************************
@@ -3165,7 +3165,7 @@ Color			= <165, 233.0, 255.0>
 Spacing			= 40
 IconWidth		= 39
 IconHeight		= 39
-IconOffset		= 44 // From right edge of screen (positive is left)
+IconOffset		= 44
 
 /*  ---[Progress Bar Settings]---
 **  TODO Unsure how to test these? Where does this show up?
@@ -3173,7 +3173,15 @@ IconOffset		= 44 // From right edge of screen (positive is left)
 **  EmptyBarTex (Path),
 **  FullBarTex (Path)
 **      - 
-**  
+**  PBarXOffset (Integer),
+**  PBarYOffset (Integer)
+**      - 
+**  PBarWidth (Integer),
+**  PBarHeight (Integer)
+**      - 
+**  StringXOffset (Integer),
+**  StringYOffset (Integer)
+**      - 
 */
 EmptyBarTex		= "interface\hud\procindicator_bg.dtx"
 FullBarTex		= "interface\hud\procindicator_bg_full.dtx"
@@ -3227,15 +3235,15 @@ Name			= "Basic"
 Texture			= "Interface\hud\chooser_box.dtx"
 Hollow			= 0
 Inscribe		= 1
-UVTopLeft		= ( 0, 164, 14, 171 )
-UVTop			= ( 14, 164, 99, 171 )
-UVTopRight		= ( 99, 164, 116, 171 )
-UVLeft			= ( 0, 171, 14, 176 )
-UVCenter		= ( 14, 171, 99, 176 )
-UVRight			= ( 99, 171, 116, 176 )
-UVBottomLeft		= ( 0, 176, 14, 189 )
-UVBottom		= ( 14, 176, 99, 189 )
-UVBottomRight		= ( 99, 176, 116, 189 )
+UVTopLeft		= (0, 164, 14, 171)
+UVTop			= (14, 164, 99, 171)
+UVTopRight		= (99, 164, 116, 171)
+UVLeft			= (0, 171, 14, 176)
+UVCenter		= (14, 171, 99, 176)
+UVRight			= (99, 171, 116, 176)
+UVBottomLeft	= (0, 176, 14, 189)
+UVBottom		= (14, 176, 99, 189)
+UVBottomRight	= (99, 176, 116, 189)
 
 [TexturedFrame1]
 // includes a black border
@@ -3243,16 +3251,16 @@ Name			= "datalogframe"
 Texture			= "Interface\hud\hud.dtx"
 Hollow			= 1
 Inscribe		= 1
-Margins			= ( 4, 25, 0, 0)
-UVTopLeft		= ( 117, 72, 120, 97 )
-UVTop			= ( 121, 72, 206, 97 )
-UVTopRight		= ( 207, 72, 254, 97 )
-UVLeft			= ( 117, 98, 120, 103 )
-UVCenter		= ( 0, 0, 0, 0 )
-UVRight			= ( 0, 0, 0, 0 )
-UVBottomLeft		= ( 117, 104, 120, 111 )
-UVBottom		= ( 133, 104, 206, 111 )
-UVBottomRight		= ( 207, 104, 254, 111 )
+Margins			= (4, 25, 0, 0)
+UVTopLeft		= (117, 72, 120, 97)
+UVTop			= (121, 72, 206, 97)
+UVTopRight		= (207, 72, 254, 97)
+UVLeft			= (117, 98, 120, 103)
+UVCenter		= (0, 0, 0, 0)
+UVRight			= (0, 0, 0, 0)
+UVBottomLeft	= (117, 104, 120, 111)
+UVBottom		= (133, 104, 206, 111)
+UVBottomRight	= (207, 104, 254, 111)
 
 
 [TexturedFrame2]
@@ -3261,15 +3269,15 @@ Name			= "datalogbox"
 Texture			= "Interface\hud\hud.dtx"
 Hollow			= 0
 Inscribe		= 1
-UVTopLeft		= ( 183, 113, 193, 126 )
-UVTop			= ( 194, 113, 238, 126 )
-UVTopRight		= ( 238, 113, 254, 126 )
-UVLeft			= ( 183, 127, 193, 131 )
-UVCenter		= ( 194, 127, 238, 131 )
-UVRight			= ( 238, 127, 254, 131 )
-UVBottomLeft		= ( 183, 132, 193, 143 )
-UVBottom		= ( 194, 132, 238, 143 )
-UVBottomRight		= ( 239, 132, 254, 143 )
+UVTopLeft		= (183, 113, 193, 126)
+UVTop			= (194, 113, 238, 126)
+UVTopRight		= (238, 113, 254, 126)
+UVLeft			= (183, 127, 193, 131)
+UVCenter		= (194, 127, 238, 131)
+UVRight			= (238, 127, 254, 131)
+UVBottomLeft	= (183, 132, 193, 143)
+UVBottom		= (194, 132, 238, 143)
+UVBottomRight	= (239, 132, 254, 143)
 
 [TexturedFrame3]
 // includes a black border
@@ -3277,15 +3285,15 @@ Name			= "ionodebox"
 Texture			= "Interface\hud\ionode.dtx"
 Hollow			= 0
 Inscribe		= 1
-UVTopLeft		= ( 0, 27, 55, 65 )
-UVTop			= ( 55, 27, 200, 65 )
-UVTopRight		= ( 200, 0, 255, 65 )
-UVLeft			= ( 0, 65, 195, 74 )
-UVCenter		= ( 195, 65, 202, 74 )
-UVRight			= ( 202, 65, 255, 13 )
-UVBottomLeft		= ( 0, 74, 195, 255 )
-UVBottom		= ( 195, 74, 202, 255 )
-UVBottomRight		= ( 202, 74, 255, 255 )
+UVTopLeft		= (0, 27, 55, 65)
+UVTop			= (55, 27, 200, 65)
+UVTopRight		= (200, 0, 255, 65)
+UVLeft			= (0, 65, 195, 74)
+UVCenter		= (195, 65, 202, 74)
+UVRight			= (202, 65, 255, 13)
+UVBottomLeft	= (0, 74, 195, 255)
+UVBottom		= (195, 74, 202, 255)
+UVBottomRight	= (202, 74, 255, 255)
 
 //--Are we using this ?
 [TexturedFrame4]
@@ -3293,31 +3301,31 @@ Name			= "subtitle"
 Texture			= "Interface\hud\subtitles.dtx"
 Hollow			= 0
 Inscribe		= 1
-UVTopLeft		= ( 0, 0, 13, 9 )
-UVTop			= ( 13, 0, 18, 9 )
-UVTopRight		= ( 18, 0, 31, 9 )
-UVLeft			= ( 0, 9, 13, 13 )
-UVCenter		= ( 13, 9, 18, 13 )
-UVRight			= ( 18, 9, 31, 13 )
-UVBottomLeft		= ( 0, 13, 13, 26 )
-UVBottom		= ( 13, 13, 18, 26 )
-UVBottomRight		= ( 18, 13, 31, 31 )
+UVTopLeft		= (0, 0, 13, 9)
+UVTop			= (13, 0, 18, 9)
+UVTopRight		= (18, 0, 31, 9)
+UVLeft			= (0, 9, 13, 13)
+UVCenter		= (13, 9, 18, 13)
+UVRight			= (18, 9, 31, 13)
+UVBottomLeft	= (0, 13, 13, 26)
+UVBottom		= (13, 13, 18, 26)
+UVBottomRight	= (18, 13, 31, 31)
 
 [TexturedFrame5]
 Name			= "chooserframe"
 Texture			= "Interface\hud\hud.dtx"
 Hollow			= 1
 Inscribe		= 0
-UVTopLeft		= ( 1, 116, 4, 149 )
-UVTop			= ( 7, 116, 99, 149 )
-UVTopRight		= ( 100, 116, 115, 149 )
-UVLeft			= ( 1, 150, 4, 151 )
-UVCenter		= ( 0, 0, 0, 0 )
-UVRight			= ( 0, 0, 0, 0 )
-UVBottomLeft		= ( 1, 152, 4, 163 )
-UVBottom		= ( 7, 152, 99, 163 )
-UVBottomRight		= ( 100, 152, 115, 163 )
-Margins			= ( 4, 26, 15, 4)
+UVTopLeft		= (1, 116, 4, 149)
+UVTop			= (7, 116, 99, 149)
+UVTopRight		= (100, 116, 115, 149)
+UVLeft			= (1, 150, 4, 151)
+UVCenter		= (0, 0, 0, 0)
+UVRight			= (0, 0, 0, 0)
+UVBottomLeft	= (1, 152, 4, 163)
+UVBottom		= (7, 152, 99, 163)
+UVBottomRight	= (100, 152, 115, 163)
+Margins			= (4, 26, 15, 4)
 
 
 [TexturedFrame6]
@@ -3325,91 +3333,91 @@ Name			= "chooserbox"
 Texture			= "Interface\hud\hud.dtx"
 Hollow			= 0
 Inscribe		= 1
-UVTopLeft		= ( 1, 165, 13, 170 )
-UVTop			= ( 15, 165, 98, 170 )
-UVTopRight		= ( 100, 165, 115, 170 )
-UVLeft			= ( 1, 172, 13, 175 )
-UVCenter		= ( 15, 172, 98, 175 )
-UVRight			= ( 100, 172, 115, 175 )
-UVBottomLeft		= ( 1, 177, 13, 188 )
-UVBottom		= ( 15, 177, 98, 188 )
-UVBottomRight		= ( 100, 177, 115, 188 )
-Margins			= ( 13, 5, 15, 11)
+UVTopLeft		= (1, 165, 13, 170)
+UVTop			= (15, 165, 98, 170)
+UVTopRight		= (100, 165, 115, 170)
+UVLeft			= (1, 172, 13, 175)
+UVCenter		= (15, 172, 98, 175)
+UVRight			= (100, 172, 115, 175)
+UVBottomLeft	= (1, 177, 13, 188)
+UVBottom		= (15, 177, 98, 188)
+UVBottomRight	= (100, 177, 115, 188)
+Margins			= (13, 5, 15, 11)
 
 [TexturedFrame7]
 Name			= "chooserwarn"
 Texture			= "Interface\hud\chooser_frame_warn.dtx"
 Hollow			= 0
 Inscribe		= 1
-UVTopLeft		= ( 1, 1, 11, 11 )
-UVTop			= ( 13, 1, 18, 11 )
-UVTopRight		= ( 20, 1, 30, 11 )
-UVLeft			= ( 1, 13, 11, 18 )
-UVCenter		= ( 13, 13, 18, 18 )
-UVRight			= ( 20, 13, 30, 18 )
-UVBottomLeft		= ( 1, 20, 11, 30 )
-UVBottom		= ( 13, 20, 18, 30 )
-UVBottomRight		= ( 20, 20, 30, 30 )
+UVTopLeft		= (1, 1, 11, 11)
+UVTop			= (13, 1, 18, 11)
+UVTopRight		= (20, 1, 30, 11)
+UVLeft			= (1, 13, 11, 18)
+UVCenter		= (13, 13, 18, 18)
+UVRight			= (20, 13, 30, 18)
+UVBottomLeft	= (1, 20, 11, 30)
+UVBottom		= (13, 20, 18, 30)
+UVBottomRight	= (20, 20, 30, 30)
 
 [TexturedFrame8]
 Name			= "chooserboxwarn"
 Texture			= "Interface\hud\chooser_box_warn.dtx"
 Hollow			= 0
 Inscribe		= 1
-UVTopLeft		= ( 1, 1, 12, 12 )
-UVTop			= ( 13, 1, 18, 12 )
-UVTopRight		= ( 19, 1, 30, 12 )
-UVLeft			= ( 1, 13, 12, 19 )
-UVCenter		= ( 13, 13, 18, 19 )
-UVRight			= ( 19, 13, 30, 19 )
-UVBottomLeft		= ( 1, 20, 12, 30 )
-UVBottom		= ( 13, 20, 18, 30 )
-UVBottomRight		= ( 19, 20, 30, 30 )
+UVTopLeft		= (1, 1, 12, 12)
+UVTop			= (13, 1, 18, 12)
+UVTopRight		= (19, 1, 30, 12)
+UVLeft			= (1, 13, 12, 19)
+UVCenter		= (13, 13, 18, 19)
+UVRight			= (19, 13, 30, 19)
+UVBottomLeft	= (1, 20, 12, 30)
+UVBottom		= (13, 20, 18, 30)
+UVBottomRight	= (19, 20, 30, 30)
 
 [TexturedFrame9]
 Name			= "weaponchooserframe"				//--Are we using this?
 Texture			= "Interface\hud\weapon_chooser.dtx"
 Hollow			= 0
 Inscribe		= 1
-UVTopLeft		= ( 0, 0, 9, 26 )
-UVTop			= ( 9, 0, 98, 26 )
-UVTopRight		= ( 98, 0, 127, 34 )
-UVLeft			= ( 0, 34, 8, 60 )
-UVCenter		= ( 0, 0, 0, 0 )
-UVRight			= ( 119, 34, 127, 60 )
-UVBottomLeft		= ( 0, 60, 9, 63 )
-UVBottom		= ( 9, 60, 119, 63 )
-UVBottomRight		= ( 119, 60, 127, 63  )
+UVTopLeft		= (0, 0, 9, 26)
+UVTop			= (9, 0, 98, 26)
+UVTopRight		= (98, 0, 127, 34)
+UVLeft			= (0, 34, 8, 60)
+UVCenter		= (0, 0, 0, 0)
+UVRight			= (119, 34, 127, 60)
+UVBottomLeft	= (0, 60, 9, 63)
+UVBottom		= (9, 60, 119, 63)
+UVBottomRight	= (119, 60, 127, 63)
 
 [TexturedFrame10]
 Name			= "lightcycle_speedometer"
 Texture			= "Interface\hud\frame_lightcycle.dtx"
 Hollow			= 0
 Inscribe		= 1
-UVTopLeft		= ( 1, 1, 42, 15 )
-UVTop			= ( 43, 1, 53, 15 )
-UVTopRight		= ( 54, 1, 63, 15 )
-UVLeft			= ( 1, 16, 42, 53 )
-UVCenter		= ( 43, 16, 53, 53 )
-UVRight			= ( 54, 16, 63, 53 )
-UVBottomLeft	= ( 1, 54, 42, 63 )
-UVBottom		= ( 43, 54, 53, 63 )
-UVBottomRight	= ( 53, 54, 63, 63 )
+UVTopLeft		= (1, 1, 42, 15)
+UVTop			= (43, 1, 53, 15)
+UVTopRight		= (54, 1, 63, 15)
+UVLeft			= (1, 16, 42, 53)
+UVCenter		= (43, 16, 53, 53)
+UVRight			= (54, 16, 63, 53)
+UVBottomLeft	= (1, 54, 42, 63)
+UVBottom		= (43, 54, 53, 63)
+UVBottomRight	= (53, 54, 63, 63)
 
 [TexturedFrame11]
 Name			= "lightcycle_start"
 Texture			= "Interface\hud\frame_lightcycle_start.dtx"
 Hollow			= 0
 Inscribe		= 1
-UVTopLeft		= ( 1, 1, 9, 12 )
-UVTop			= ( 10, 1, 28, 12 )
-UVTopRight		= ( 29, 1, 63, 12 )
-UVLeft			= ( 1, 13, 9, 54 )
-UVCenter		= ( 10, 13, 28, 54 )
-UVRight			= ( 29, 13, 63, 54 )
-UVBottomLeft	= ( 1, 55, 9, 63 )
-UVBottom		= ( 10, 55, 28, 63 )
-UVBottomRight	= ( 29, 55, 63, 63 )
+UVTopLeft		= (1, 1, 9, 12)
+UVTop			= (10, 1, 28, 12)
+UVTopRight		= (29, 1, 63, 12)
+UVLeft			= (1, 13, 9, 54)
+UVCenter		= (10, 13, 28, 54)
+UVRight			= (29, 13, 63, 54)
+UVBottomLeft	= (1, 55, 9, 63)
+UVBottom		= (10, 55, 28, 63)
+UVBottomRight	= (29, 55, 63, 63)
 
 /*
 [TexturedFrame10]
@@ -3423,9 +3431,9 @@ UVTopRight		= (166, 35, 166, 44)
 UVLeft			= (10, 45, 27, 50)
 UVCenter		= (28, 45, 154, 50)
 UVRight			= (166, 45, 166, 50)
-UVBottomLeft		= (10, 51, 27, 60)
+UVBottomLeft	= (10, 51, 27, 60)
 UVBottom		= (28, 51, 154, 60)
-UVBottomRight		= (166, 51, 166, 60)
+UVBottomRight	= (166, 51, 166, 60)
 
 
 [TexturedFrame11]
@@ -3438,11 +3446,11 @@ UVTopLeft		= (71, 93, 126, 231)
 UVTop			= (126, 193, 139, 222)
 UVTopRight		= (139, 166, 194, 231)
 UVLeft			= (0, 193, 23, 238)
-UVCenter		= (0,0,0,0)
+UVCenter		= (0, 0, 0, 0)
 UVRight			= (61, 193, 71, 238)
-UVBottomLeft		= (0, 238, 23, 255)
+UVBottomLeft	= (0, 238, 23, 255)
 UVBottom		= (23, 238, 61, 255)
-UVBottomRight		= (61, 238, 71, 255)
+UVBottomRight	= (61, 238, 71, 255)
 
 [TexturedFrame12]
 // includes a black border
@@ -3456,9 +3464,9 @@ UVTopRight		= (48, 193, 61, 210)
 UVLeft			= (23, 210, 40, 221)
 UVCenter		= (40, 210, 48, 221)
 UVRight			= (48, 210, 61, 221)
-UVBottomLeft		= (48, 221, 61, 238)
+UVBottomLeft	= (48, 221, 61, 238)
 UVBottom		= (48, 221, 61, 238)
-UVBottomRight		= (48, 221, 61, 238)
+UVBottomRight	= (48, 221, 61, 238)
 
 [TexturedFrame13]
 // includes a black border
@@ -3472,9 +3480,9 @@ UVTopRight		= (139, 166, 194, 231)
 UVLeft			= (204, 0, 399, 9)
 UVCenter		= (400, 0, 407, 9)
 UVRight			= (408, 0, 511, 9)
-UVBottomLeft		= (204, 9, 399, 196)
+UVBottomLeft	= (204, 9, 399, 196)
 UVBottom		= (204, 9, 399, 196)
-UVBottomRight		= (204, 9, 399, 196)
+UVBottomRight	= (204, 9, 399, 196)
 
 [TexturedFrame14]
 Name			= "subtitle"
@@ -3487,9 +3495,9 @@ UVTopRight		= (248, 197, 261, 210)
 UVLeft			= (220, 211, 233, 224)
 UVCenter		= (234, 211, 247, 224)
 UVRight			= (248, 211, 261, 224)
-UVBottomLeft		= (220, 225, 233, 243)
+UVBottomLeft	= (220, 225, 233, 243)
 UVBottom		= (234, 225, 247, 243)
-UVBottomRight		= (248, 225, 261, 243)
+UVBottomRight	= (248, 225, 261, 243)
 */
 
 /************************************************************************
@@ -3622,10 +3630,10 @@ DisabledColor		= <180.0, 180.0, 200.0>
 **      pause menu buttons that are ever disabled.
 */
 [GenericMenu]
-Size				= (240,200)
+Size				= (240, 200)
 FontSize			= 20
 TitleSize			= 25
-Indent				= (12,28)
+Indent				= (12, 28)
 SelectedColor		= <255.0, 255.0, 255.0>
 NonSelectedColor	= <0.0, 0.0, 0.0>
 DisabledColor		= <95.0, 95.0, 95.0>
@@ -3652,10 +3660,10 @@ DisabledColor		= <95.0, 95.0, 95.0>
 **      - 
 */
 [MenuPlayer]
-Size				= (280,240)
+Size				= (280, 240)
 NameWidth			= 90
 LevelWidth			= 70
-PopupSize			= (200,160)
+PopupSize			= (200, 160)
 PopupFrame			= "interface\menu\sprtex\frame_interlace.dtx"
 
 
@@ -3716,7 +3724,7 @@ DialogFrame 			= "interface\menu\sprtex\frame_solid.dtx"
 DialogFontFace			= 1
 DialogFontSize			= 14
 FailScreenBackground	= "interface\missionfailure.pcx"
-FailStringPos			= (320,200)
+FailStringPos			= (320, 200)
 FailScreenDelay 		= 5.0
 DeathDelay				= 5.0
 NightVisionModelColor	= <32.0, 128.0, 32.0>
@@ -3739,8 +3747,8 @@ PerturbWalkPercent		= 0.33
 MessageTime 			= 9.0
 MessageFade 			= 0.75
 MaxMessages 			= 5
-PopupTextRect			= (20,80,620,340)
-ObjectiveRect			= (80,40,560,300)
+PopupTextRect			= (20, 80, 620, 340)
+ObjectiveRect			= (80, 40, 560, 300)
 SubtitleTint			= <255.0, 255.0, 128.0>
 HealthTint				= <255.0, 128.0, 128.0>
 ArmorTint				= <128.0, 128.0, 255.0>
@@ -3748,29 +3756,29 @@ AmmoTint				= <240.0, 240.0, 128.0>
 PopupTint				= <255.0, 255.0, 255.0>
 Team1Color				= <64.0, 64.0, 255.0>
 Team2Color				= <255.0, 64.0, 64.0>
-//IOCameraRect			= (210,20,430,185)
-IOCameraRect			= (263,102,378,275)
+//IOCameraRect			= (210, 20, 430, 185)
+IOCameraRect			= (263, 102, 378, 275)
 IOCameraFOVX			= 70.0
 IOCameraFOVY			= 60.0
 TimerSize				= 24
-TimerPos				= (300,92)
+TimerPos				= (300, 92)
 
 [DialogBox]
-DialogFrame 			= "interface\menu\sprtex\frame_solid.dtx"
-DialogFontNum			= 1
-DialogFontSize			= 14
-OKSelected			= <255.0, 255.0, 255.0>
-OKNormal			= <255.0, 113.0, 113.0> // SecurityProtocol
-OKDisabled			= <0.0, 75.0, 238.0>
-CancelSelected			= <255.0, 255.0, 255.0>
-CancelNormal			= <255.0, 113.0, 113.0> // SecurityProtocol
-CancelDisabled			= <0.0, 75.0, 238.0>
-TextSelected			= <255.0, 255.0, 255.0>
-TextNormal			= <255.0, 113.0, 113.0> // SecurityProtocol
-TextDisabled			= <0.0, 75.0, 238.0>
-EditSelected			= <255.0, 255.0, 255.0>
-EditNormal			= <255.0, 113.0, 113.0> // SecurityProtocol
-EditDisabled			= <0.0, 75.0, 238.0>
+DialogFrame 	= "interface\menu\sprtex\frame_solid.dtx"
+DialogFontNum	= 1
+DialogFontSize	= 14
+OKSelected		= <255.0, 255.0, 255.0>
+OKNormal		= <255.0, 113.0, 113.0> // SecurityProtocol
+OKDisabled		= <0.0, 75.0, 238.0>
+CancelSelected	= <255.0, 255.0, 255.0>
+CancelNormal	= <255.0, 113.0, 113.0> // SecurityProtocol
+CancelDisabled	= <0.0, 75.0, 238.0>
+TextSelected	= <255.0, 255.0, 255.0>
+TextNormal		= <255.0, 113.0, 113.0> // SecurityProtocol
+TextDisabled	= <0.0, 75.0, 238.0>
+EditSelected	= <255.0, 255.0, 255.0>
+EditNormal		= <255.0, 113.0, 113.0> // SecurityProtocol
+EditDisabled	= <0.0, 75.0, 238.0>
 
 /************************************************************************
 **
@@ -3792,65 +3800,65 @@ EditDisabled			= <0.0, 75.0, 238.0>
 */
 
 [ChatMessageQueue]
-Font			= 0
-FontSize		= 14
-TextColor		= <255.0, 255.0, 255.0>
-ChatColor		= <255.0, 255.0, 255.0>
-TeamChatColor	= <0.0, 255.0, 255.0>
-CheatColor		= <255.0, 0.0, 255.0>
-TransColor		= <0.0, 255.0, 0.0>
+Font			    = 0
+FontSize		    = 14
+TextColor		    = <255.0, 255.0, 255.0>
+ChatColor		    = <255.0, 255.0, 255.0>
+TeamChatColor	    = <0.0, 255.0, 255.0>
+CheatColor		    = <255.0, 0.0, 255.0>
+TransColor		    = <0.0, 255.0, 0.0>
 MultiAnnounceColor	= <255.0, 255.0, 90.0>
-BasePos 		= (10,42)
-Width			= 600
-MessageTime 	= 7.5
-MessageFade 	= 1.5
-MaxMessages 	= 3
-MaxHistory		= 3
+BasePos 		    = (10, 42)
+Width			    = 600
+MessageTime 	    = 7.5
+MessageFade 	    = 1.5
+MaxMessages 	    = 3
+MaxHistory		    = 3
 
 [MultiChatMessageQueue]
-Font			= 0
-FontSize		= 14
-TextColor		= <255.0, 255.0, 255.0>
-ChatColor		= <255.0, 255.0, 255.0>
-TeamChatColor	= <0.0, 255.0, 255.0>
-CheatColor		= <255.0, 0.0, 255.0>
-TransColor		= <0.0, 255.0, 0.0>
+Font			    = 0
+FontSize		    = 14
+TextColor		    = <255.0, 255.0, 255.0>
+ChatColor		    = <255.0, 255.0, 255.0>
+TeamChatColor	    = <0.0, 255.0, 255.0>
+CheatColor		    = <255.0, 0.0, 255.0>
+TransColor		    = <0.0, 255.0, 0.0>
 MultiAnnounceColor	= <255.0, 255.0, 90.0>
-BasePos 		= (24,206)
-Width			= 600
-MessageTime 	= 7.5
-MessageFade 	= 1.5
-MaxMessages 	= 3
-MaxHistory		= 7
+BasePos 		    = (24,206)
+Width			    = 600
+MessageTime 	    = 7.5
+MessageFade 	    = 1.5
+MaxMessages 	    = 3
+MaxHistory		    = 7
 
 [PickupMessageQueue]
-Font			= 0
-FontSize		= 12
-IconSize		= 24
-TextColor		= <255.0, 255.0, 255.0>
-BasePos 		= (320,44)
-Width			= 240
-MessageTime 	= 5
-MessageFade 	= 1
-MaxMessages 	= 3
+Font		= 0
+FontSize	= 12
+IconSize	= 24
+TextColor	= <255.0, 255.0, 255.0>
+BasePos 	= (320, 44)
+Width		= 240
+MessageTime = 5
+MessageFade = 1
+MaxMessages = 3
 Justify		= 1
 
 [SearchMessageQueue]
-Font			= 0
-FontSize		= 12
-IconSize		= 24
-TextColor		= <255.0, 255.0, 255.0>
-BasePos 		= (200,400)
-Width			= 240
-MessageTime 	= 5
-MessageFade 	= 1
-MaxMessages 	= 5
+Font		= 0
+FontSize	= 12
+IconSize	= 24
+TextColor	= <255.0, 255.0, 255.0>
+BasePos 	= (200, 400)
+Width		= 240
+MessageTime = 5
+MessageFade = 1
+MaxMessages = 5
 
 [RewardMessageQueue]
 Font		= 1
 FontSize	= 12
 TextColor	= <255.0, 255.0, 255.0>
-BasePos	= (400,240)
+BasePos	    = (400, 240)
 Width		= 400
 MessageTime	= 7.5
 MessageFade	= 1.5
@@ -3858,48 +3866,48 @@ MaxMessages	= 5
 MaxHistory	= 10
 
 [AnnouncementMessageQueue]
-BasePos 		= (320,82)
-Font			= 0
-FontSize		= 14
-MessageTime 		= 4
-MessageFade 		= 0.5
-Width			= 400
-MaxMessages 		= 2
-MaxHistory		= 2
-TextColor		= <90.0, 199.0, 255.0>
+BasePos 	= (320, 82)
+Font		= 0
+FontSize	= 14
+MessageTime = 4
+MessageFade = 0.5
+Width		= 400
+MaxMessages = 2
+MaxHistory	= 2
+TextColor	= <90.0, 199.0, 255.0>
 
 [MultiAnnouncementMessageQueue]
-BasePos 		= (320,240)
-Font			= 0
-FontSize		= 22
-MessageTime 		= 10
-MessageFade 		= 1.5
-Width			= 400
-MaxMessages 		= 5
-MaxHistory		= 2
-TextColor		= <90.0, 199.0, 255.0>
+BasePos 	= (320, 240)
+Font		= 0
+FontSize	= 22
+MessageTime = 10
+MessageFade = 1.5
+Width		= 400
+MaxMessages = 5
+MaxHistory	= 2
+TextColor	= <90.0, 199.0, 255.0>
 
 [Transmission]
 Font			= 0
 FontSize		= 27
 TextColor		= <255.0, 255.0, 90.0>
-BasePos 		= (320,175)
+BasePos 		= (320, 175)
 Width			= 400
 Time			= 4
 FadeTime		= 1
 DiscMPFont		= 0
 DiscMPFontSize	= 27
 DiscMPTextColor	= <255.0, 255.0, 90.0>
-DiscMPBasePos 	= (320,175)
+DiscMPBasePos 	= (320, 175)
 DiscMPWidth		= 400
 DiscMPTime		= 4
 DiscMPFadeTime	= 1
 
 [ChatInput]
-Font			= 0
-FontSize		= 12
-Color			= <255.0, 255.0, 255.0>
-BasePos 		= (95,320)
+Font		= 0
+FontSize    = 12
+Color		= <255.0, 255.0, 255.0>
+BasePos 	= (95, 320)
 
 
 /************************************************************************
@@ -3935,18 +3943,18 @@ BasePos 		= (95,320)
 **		Sound file to play (once) when a line starts scrolling
 */
 [MissionText]
-Font					= 0
-FontSize				= 12
-TextColor				= <255.0, 155.0, 0.0>
-NumLines				= 1
-LetterDelay 			= 0.015
-LineDelay				= 0.2
-LineScrollTime			= 0.25
-FadeDelay				= 3.0
-FadeTime				= 2.0
-Pos 					= (100,132)
-TypeSound				= "interface\snd\type.wav"
-ScrollSound 			= "interface\snd\enter.wav"
+Font			= 0
+FontSize		= 12
+TextColor		= <255.0, 155.0, 0.0>
+NumLines		= 1
+LetterDelay 	= 0.015
+LineDelay		= 0.2
+LineScrollTime	= 0.25
+FadeDelay		= 3.0
+FadeTime		= 2.0
+Pos 			= (100, 132)
+TypeSound		= "interface\snd\type.wav"
+ScrollSound 	= "interface\snd\enter.wav"
 
 
 /************************************************************************
@@ -3983,9 +3991,9 @@ fontsize		= 16
 NumLines		= 3
 LineScrollTime	= 0.5
 Width			= 256
-Pos 			= (200,338)
+Pos 			= (200, 338)
 FullScreenWidth = 256
-FullScreenPos	= (200,320)
+FullScreenPos	= (200, 320)
 TextColor		= <255.0, 255.0, 255.0>
 
 
@@ -4023,68 +4031,68 @@ TextColor		= <255.0, 255.0, 255.0>
 */
 /*  ---[Scores Menu (unknown usage)]---  */
 [Scores]
-Font			= 0
-FontSize		= 14
-BasePos			= (32,64)
-PlayerTextColor	= <255.0, 255.0, 255.0>
-TextColor		= <192.0, 192.0, 192.0>
-ElimTextColor	= <96.0, 96.0, 96.0>
+Font			    = 0
+FontSize		    = 14
+BasePos			    = (32, 64)
+PlayerTextColor	    = <255.0, 255.0, 255.0>
+TextColor		    = <192.0, 192.0, 192.0>
+ElimTextColor	    = <96.0, 96.0, 96.0>
 ElimPlayerTextColor = <128.0, 128.0, 128.0>
-FrameColor		= <0.0, 64.0, 240.0>
-FrameAlpha		= 0.50
+FrameColor		    = <0.0, 64.0, 240.0>
+FrameAlpha		    = 0.50
 
 /*  ---[Scores Menu for Multiplayer Light Cycle Modes]---  */
 [MultiplayerLightCycleScores]
-Font			= 0
-FontSize		= 14
-BasePos			= (190,85)
-PlayerTextColor	= <255.0, 255.0, 255.0>
-TextColor		= <192.0, 192.0, 192.0>
-ElimTextColor	= <96.0, 96.0, 96.0>
-ElimPlayerTextColor = <128.0, 128.0, 128.0>
-FrameColor		= <0.0, 64.0, 240.0>
-FrameAlpha		= 0.50
-FrameWidth		= 275
-FrameVBorder	= 8
-FrameHBorder	= 8 // not hooked up
-BorderSize		= 16
-InfoColumn1			= 135
-InfoColumn2			= 130
-InfoColumn3			= 130
-ScoreColumn1		= 135
-ScoreColumn2		= 85
-ScoreColumn3		= 85
-ScoreColumn4		= 85
-ScoreColumn5		= 85
-BackroundFrameColor = <15.0, 11.0, 84.0>
-BackroundFrameAlpha = 0.50
-BackroundBorderFrameColor = <73.0, 157.0, 252.0>
-BackroundBorderFrameAlpha = 1.0
-BackroundBorderFrameSize = 2
+Font			            = 0
+FontSize		            = 14
+BasePos			            = (190, 85)
+PlayerTextColor	            = <255.0, 255.0, 255.0>
+TextColor		            = <192.0, 192.0, 192.0>
+ElimTextColor	            = <96.0, 96.0, 96.0>
+ElimPlayerTextColor         = <128.0, 128.0, 128.0>
+FrameColor		            = <0.0, 64.0, 240.0>
+FrameAlpha		            = 0.50
+FrameWidth		            = 275
+FrameVBorder	            = 8
+FrameHBorder	            = 8 // not hooked up
+BorderSize		            = 16
+InfoColumn1			        = 135
+InfoColumn2			        = 130
+InfoColumn3			        = 130
+ScoreColumn1		        = 135
+ScoreColumn2		        = 85
+ScoreColumn3		        = 85
+ScoreColumn4		        = 85
+ScoreColumn5		        = 85
+BackroundFrameColor         = <15.0, 11.0, 84.0>
+BackroundFrameAlpha         = 0.50
+BackroundBorderFrameColor   = <73.0, 157.0, 252.0>
+BackroundBorderFrameAlpha   = 1.0
+BackroundBorderFrameSize    = 2
 
 /*  ---[Scores Menu for Disc Arena/Disc Tournament]---  */
 [DiscScores]
-Font			= 0
-FontSize		= 14
-BasePos		= (32,64)
-KeyPos		= (32, 400)
-TextColor		= <255.0, 255.0, 255.0>
-ElimTextColor	= <128.0, 128.0, 128.0>
-FrameColor		= <0.0, 64.0, 240.0>
-FrameAlpha		= 0.50
-BackroundFrameColor = <15.0, 11.0, 84.0>
-BackroundFrameAlpha = 0.50
-BackroundBorderFrameColor = <73.0, 157.0, 252.0>
-BackroundBorderFrameAlpha = 1.0
-BackroundBorderFrameSize = 2
+Font			            = 0
+FontSize		            = 14
+BasePos		                = (32, 64)
+KeyPos		                = (32, 400)
+TextColor		            = <255.0, 255.0, 255.0>
+ElimTextColor	            = <128.0, 128.0, 128.0>
+FrameColor		            = <0.0, 64.0, 240.0>
+FrameAlpha		            = 0.50
+BackroundFrameColor         = <15.0, 11.0, 84.0>
+BackroundFrameAlpha         = 0.50
+BackroundBorderFrameColor   = <73.0, 157.0, 252.0>
+BackroundBorderFrameAlpha   = 1.0
+BackroundBorderFrameSize    = 2
 
 [DiscMatches]
-Font			= 0
-FontSize		= 14
+Font		= 0
+FontSize	= 14
 BasePos		= (100,150)
-TextColor		= <192.0, 192.0, 192.0>
-FrameColor		= <0.0, 64.0, 240.0>
-FrameAlpha		= 0.50
+TextColor	= <192.0, 192.0, 192.0>
+FrameColor	= <0.0, 64.0, 240.0>
+FrameAlpha	= 0.50
 
 
 /************************************************************************
@@ -4135,65 +4143,65 @@ Sprite1			= ""
 
 Scale6			= 0.285
 Model6			= "Interface\hud\screen_sniper.ltb"
-Skin6				= "Interface\hud\screen_sniper.dtx"
+Skin6			= "Interface\hud\screen_sniper.dtx"
 Anim6			= "zoomin"
-Renderstyle6		= "RS\Alpha_Additive_wglow.ltb"
+Renderstyle6	= "RS\Alpha_Additive_wglow.ltb"
 Alpha6			= 0.8
 
 Scale7			= 0.285
 Model7			= "Interface\hud\screen_sniper.ltb"
-Skin7				= "Interface\hud\screen_sniper.dtx"
+Skin7			= "Interface\hud\screen_sniper.dtx"
 Anim7			= "zoomout"
-Renderstyle7		= "RS\Alpha_Additive_wglow.ltb"
+Renderstyle7	= "RS\Alpha_Additive_wglow.ltb"
 Alpha7			= 0.8
 
 Scale8			= 0.285
 Model8			= "Interface\hud\screen_sniper.ltb"
-Skin8				= "Interface\hud\screen_sniper.dtx"
+Skin8			= "Interface\hud\screen_sniper.dtx"
 Anim8			= "loop"
-Renderstyle8		= "RS\Alpha_Additive_wglow.ltb"
+Renderstyle8	= "RS\Alpha_Additive_wglow.ltb"
 Alpha8			= 0.8
 
 Scale9			= 0.285
 Model9			= "Interface\hud\screen_triangulate.ltb"
-Skin9				= "Interface\hud\screen_triangulate.dtx"
+Skin9			= "Interface\hud\screen_triangulate.dtx"
 Anim9			= "zoomin"
-Renderstyle9		= "RS\Alpha_Additive_wglow.ltb"
+Renderstyle9	= "RS\Alpha_Additive_wglow.ltb"
 Alpha9			= 0.8
 
 Scale10			= 0.285
 Model10			= "Interface\hud\screen_triangulate.ltb"
 Skin10			= "Interface\hud\screen_triangulate.dtx"
 Anim10			= "zoomout"
-Renderstyle10		= "RS\Alpha_Additive_wglow.ltb"
+Renderstyle10	= "RS\Alpha_Additive_wglow.ltb"
 Alpha10 		= 0.8
 
 Scale11			= 0.285
 Model11			= "Interface\hud\screen_triangulate.ltb"
 Skin11			= "Interface\hud\screen_triangulate.dtx"
 Anim11			= "loop"
-Renderstyle11		= "RS\Alpha_Additive_wglow.ltb"
+Renderstyle11	= "RS\Alpha_Additive_wglow.ltb"
 Alpha11 		= 0.8
 
 Scale12			= 0.285
 Model12			= "Interface\hud\screen_triangulate.ltb"
-Skin12				= "Interface\hud\screen_triangulate_corrupt.dtx"
+Skin12			= "Interface\hud\screen_triangulate_corrupt.dtx"
 Anim12			= "zoomin"
-Renderstyle12		= "RS\Alpha_Additive_wglow.ltb"
+Renderstyle12	= "RS\Alpha_Additive_wglow.ltb"
 Alpha12			= 0.8
 
 Scale13			= 0.285
 Model13			= "Interface\hud\screen_triangulate.ltb"
 Skin13			= "Interface\hud\screen_triangulate_corrupt.dtx"
 Anim13			= "zoomout"
-Renderstyle13		= "RS\Alpha_Additive_wglow.ltb"
+Renderstyle13	= "RS\Alpha_Additive_wglow.ltb"
 Alpha13			= 0.8
 
 Scale14			= 0.285
 Model14			= "Interface\hud\screen_triangulate.ltb"
 Skin14			= "Interface\hud\screen_triangulate_corrupt.dtx"
 Anim14			= "loop"
-Renderstyle14		= "RS\Alpha_Additive_wglow.ltb"
+Renderstyle14	= "RS\Alpha_Additive_wglow.ltb"
 Alpha14			= 0.8
 
 /************************************************************************
@@ -4207,6 +4215,8 @@ Alpha14			= 0.8
 **  is defined for use in the Single Player Light Cycle selection, but
 **  also appears in the Multiplayer Player Setup menu when the Game Type
 **  is set to Light Cycles.
+**
+**  TODO further testing
 **
 **  Name (String)
 **      - The name of the Character object.
@@ -5191,7 +5201,7 @@ Loop	= 1
 
 /************************************************************************
 **
-**	                     Decision Window Layout
+**	                       Decision Window Layout
 **
 **  The DecisionWindow definition assigns values for the menu displaying
 **  gameplay choices to the player. This is the menu that appears at the
@@ -5229,93 +5239,95 @@ Loop	= 1
 **		1 = remove window after selection
 */
 [DecisionWindow]
-Pos 					= (400,60)
-Font					= 1
-FontSize				= 16
-Width					= 280
-TextOffset				= (8,4)
-TextColor				= <255.0, 255.0, 255.0>
-Frame					= "interface\menu\sprtex\frame_solid.dtx"
+Pos 		= (400, 60)
+Font		= 1
+FontSize	= 16
+Width		= 280
+TextOffset	= (8, 4)
+TextColor	= <255.0, 255.0, 255.0>
+Frame		= "interface\menu\sprtex\frame_solid.dtx"
 
 [DecisionWindow0]
-Pos 					= (10,60)
-Font					= 1
-FontSize				= 16
-Width					= 280
-TextOffset				= (8,4)
-TextColor				= <255.0, 255.0, 255.0>
-Frame					= "interface\menu\sprtex\frame_solid.dtx"
-NumColumns				= 1
-RemoveItems				= 0
-RemoveWindow			= 1
+Pos 			= (10, 60)
+Font			= 1
+FontSize		= 16
+Width			= 280
+TextOffset		= (8, 4)
+TextColor		= <255.0, 255.0, 255.0>
+Frame			= "interface\menu\sprtex\frame_solid.dtx"
+NumColumns		= 1
+RemoveItems		= 0
+RemoveWindow	= 1
 
 // TODO okay WHY are the UV box values back????
 [DecisionWindow1]
-Pos 					= (10,60)
-Font					= 1
-FontSize				= 16
-Width					= 240
-TextOffset				= (8,4)
-TextColor				= <255.0, 255.0, 255.0>
-Frame					= "Interface\hud\hud.dtx"
-Hollow					= 0
-Inscribe				= 1
-UVTopLeft				= (10, 35, 25, 42)
-UVTop					= (28, 35, 152, 42)
-UVTopRight				= (166, 35, 164, 42)
-UVLeft					= (10, 45, 25, 48)
-UVCenter				= (28, 45, 152, 48)
-UVRight					= (166, 45, 164, 48)
-UVBottomLeft				= (10, 51, 25, 58)
-UVBottom				= (28, 51, 152, 58)
-UVBottomRight				= (166, 51, 164, 58)
-NumColumns				= 1
-RemoveItems				= 0
-RemoveWindow			= 1
+Pos 			= (10, 60)
+Font			= 1
+FontSize		= 16
+Width			= 240
+TextOffset		= (8, 4)
+TextColor		= <255.0, 255.0, 255.0>
+Frame			= "Interface\hud\hud.dtx"
+Hollow			= 0
+Inscribe		= 1
+UVTopLeft		= (10, 35, 25, 42)
+UVTop			= (28, 35, 152, 42)
+UVTopRight		= (166, 35, 164, 42)
+UVLeft			= (10, 45, 25, 48)
+UVCenter		= (28, 45, 152, 48)
+UVRight			= (166, 45, 164, 48)
+UVBottomLeft	= (10, 51, 25, 58)
+UVBottom		= (28, 51, 152, 58)
+UVBottomRight	= (166, 51, 164, 58)
+NumColumns		= 1
+RemoveItems		= 0
+RemoveWindow	= 1
 
 /* ArchiveBin */
 [DecisionWindow2]
-Pos 					= (10,60)
-Font					= 1
-FontSize				= 16
-Width					= 460
-TextOffset				= (8,4)
-TextColor				= <255.0, 255.0, 255.0>
-Frame					= "interface\menu\sprtex\frame_solid.dtx"
-NumColumns				= 5
-RemoveItems				= 1
-RemoveWindow			= 0
+Pos 			= (10, 60)
+Font			= 1
+FontSize		= 16
+Width			= 460
+TextOffset		= (8, 4)
+TextColor		= <255.0, 255.0, 255.0>
+Frame			= "interface\menu\sprtex\frame_solid.dtx"
+NumColumns		= 5
+RemoveItems		= 1
+RemoveWindow	= 0
 
 /* Commerce */
 [DecisionWindow3]
-Pos 					= (10,60)
-Font					= 1
-FontSize				= 16
-Width					= 460
-TextOffset				= (8,4)
-TextColor				= <255.0, 255.0, 255.0>
-Frame					= "interface\menu\sprtex\frame_solid.dtx"
-NumColumns				= 5
-RemoveItems				= 0
-RemoveWindow			= 1
+Pos 			= (10, 60)
+Font			= 1
+FontSize		= 16
+Width			= 460
+TextOffset		= (8, 4)
+TextColor		= <255.0, 255.0, 255.0>
+Frame			= "interface\menu\sprtex\frame_solid.dtx"
+NumColumns		= 5
+RemoveItems		= 0
+RemoveWindow	= 1
 
 /* CoreDump */
 [DecisionWindow4]
-Pos 					= (10,60)
-Font					= 1
-FontSize				= 16
-Width					= 460
-TextOffset				= (8,4)
-TextColor				= <255.0, 255.0, 255.0>
-Frame					= "interface\menu\sprtex\frame_solid.dtx"
-NumColumns				= 5
-RemoveItems				= 1
-RemoveWindow			= 0
+Pos 			= (10, 60)
+Font			= 1
+FontSize		= 16
+Width			= 460
+TextOffset		= (8, 4)
+TextColor		= <255.0, 255.0, 255.0>
+Frame			= "interface\menu\sprtex\frame_solid.dtx"
+NumColumns		= 5
+RemoveItems		= 1
+RemoveWindow    = 0
 
 
 /************************************************************************
 **
 **	                   Screen Transition Declarations
+**
+**  TODO rephrase most of this description if needed.
 **
 **	A Transition will override the FX associated with a single menu screen.
 **	So when a screen gains focus, it will first inquire of the
@@ -5340,15 +5352,17 @@ RemoveWindow			= 0
 **	*The FX being called must first be defined in the FX Layout area of this
 **	file.
 **
-**	(*)()Transition0(*)()
-**	TransitionFrom			= "ScreenSingle"
-**	TransitionTo			= "ScreenMain"
-**	IntroFX0				= "Menu_Main_Intro"
-**	ShortIntroFX0			= "Menu_Main_Introsh"
-**	LoopFX0 				= "Menu_Main_Loop"
-**	IntroFX1				= "AuxiliaryFX1"
-**
-**/
+**  TransitionFrom (String),
+**  TransitionTo (String)
+**      - The name of the screen layout either to transition from or to.
+**      A TransitionFrom is not required, but a TransitionTo must always
+**      be defined.
+**  IntroFX# (String),
+**  ShortIntroFX# (String),
+**  LoopFX# (String)
+**      - The name of each FX to use for its respective function, as
+**      detailed above.
+*/
 
 /*  ---[0: Any Menu ---> Main Menu]---  */
 [Transition0]
