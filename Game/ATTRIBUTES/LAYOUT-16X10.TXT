@@ -40,8 +40,6 @@
 **  I'll be doing a second pass from a clean copy. Being thorough is
 **  important, after all.
 **  TODO Leave fonts alone for now. Testing can be done later.
-**  TODO Great job, moron, you somehow misaligned the ingame chat menu.
-**  Gotta figure out why that happened
 **  TODO A random graphical glitch was introduced where the Ball
 **  Launcher may randomly fail to "wrap around" the player's arm. This
 **  effect is inconsistent and not influenced by anything specifically,
