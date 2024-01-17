@@ -3796,7 +3796,6 @@ PopupFrame			= "interface\menu\sprtex\frame_interlace.dtx"
 **	MaxMessages (int)
 **		How many messages may appear on screen at one time.
 */
-
 [Miscellaneous]
 DialogFrame 			= "interface\menu\sprtex\frame_solid.dtx"
 DialogFontFace			= 1
@@ -3841,6 +3840,15 @@ IOCameraFOVY			= 60.0
 TimerSize				= 24
 TimerPos				= (300, 92)
 
+
+/************************************************************************
+**
+**                            Dialog Box Layout
+**
+**  The DialogBox definition definitely does something.
+**  TODO obviously re-test these values. Also why was this not in its
+**  own section beforehand?
+*/
 [DialogBox]
 DialogFrame 	= "interface\menu\sprtex\frame_solid.dtx"
 DialogFontNum	= 1
@@ -3857,6 +3865,7 @@ TextDisabled	= <0.0, 75.0, 238.0>
 EditSelected	= <255.0, 255.0, 255.0>
 EditNormal		= <255.0, 113.0, 113.0> // SecurityProtocol
 EditDisabled	= <0.0, 75.0, 238.0>
+
 
 /************************************************************************
 **
@@ -5027,7 +5036,8 @@ layer			= 40
 **  in menus. Because pretty much all menus are *technically* rendered
 **  as 3D spaces (except for ones that appear as pop-ups, obviously),
 **  any 3D models that render inside that menu will need a light to
-**  display as they normally would ingame.
+**  display as they normally would ingame. The only major exceptions are
+**  loading screens, which consist entirely of 2D elements.
 **
 **  Pretty much all menus in TRON 2.0 use the first definition Light0 as
 **  the light. It's not known at the moment what Light1 and Light2 are
@@ -5060,6 +5070,7 @@ Name			= "test"
 Pos 			= <100.0,-100.0,-100.0>
 Color			= <255.0,255.0,255.0>
 Radius			= 8000.0
+
 
 /************************************************************************
 **
@@ -5303,6 +5314,7 @@ FXName	= "MENU_KA_logo"
 Pos 	= <35.5,24.7,25.0>
 Loop	= 1
 
+
 /************************************************************************
 **
 **	                       Decision Window Layout
@@ -5431,36 +5443,41 @@ RemoveWindow    = 0
 **
 **	                   Screen Transition Declarations
 **
-**  TODO rephrase most of this description where needed, & documentation.
+**  The Transition definitions assign values that manage transitions
+**  between menu screens. All transitions take precedence over default
+**  menu screen FX values, so if a screen has a transition defined here,
+**  any FX values it has are ignored in favor of these.
 **
-**	A Transition will override the FX associated with a single menu screen.
-**	So when a screen gains focus, it will first inquire of the
-**	TransitionFXMgr if it has a special set of FX for the intro. If there
-**	is one, then BaseScreen will use that one.	If not, then BaseScreen
-**	will use the Intro/ShortIntro/LoopFX combo (if any) for that screen.
+**  When a transition occurs, the IntroFX/ShortIntroFX is played first,
+**  followed by the LoopFX. If there is no IntroFX/ShortIntroFX, then
+**  the LoopFX will begin immediately.
 **
-**	In a similar vein, if a Transition has a "From" field but no "To" field,
-**	then this transition will always be used when leaving the "From" screen.
-**	If a Transition has a "To" field but no "From field, then it will be the
-**	equivilant to the IntroFX baked into that particular screen.  The rules
-**	of precedence will be that Transitions will always override something
-**	baked into a  screen's layout, and a Transition with both a "From" and a
-**	"To" field will always have precedence over a Transitions with just one
-**	of these two fields.
+**  Although ShortIntroFX values are considered alternatives to IntroFX
+**  for menus that are viewed more frequently, it appears that in TRON
+**  2.0 this is entirely redundant, since pretty much every transition
+**  that has both of these values usually make them run the exact same
+**  FX.
+**  TODO Verify this
 **
-**	Notes:
-**	*LoopFX will be played after the IntroFX with the corresponding number
-**	has ended.	For example when IntroFX1 finishes LoopFX1 should launch if
-**	indeed there actually was one.
-**	*If there are any duplicate Transitions only the first one will be used.
-**	*The FX being called must first be defined in the FX Layout area of this
-**	file.
+**  All of these values are Strings that need the names of the screens &
+**  FX to use. Both must have been defined in their respective sections
+**  of this file beforehand - the "Screen Layout" section for screens,
+**  and the "Interface FX Layout" section for FX. 
+**
+**  Any duplicate Transition definitions are ignored, in favor of using
+**  the FIRST defined one and not the last.
 **
 **  TransitionFrom (String),
 **  TransitionTo (String)
 **      - The name of the screen layout either to transition from or to.
-**      A TransitionFrom is not required, but a TransitionTo must always
-**      be defined.
+**      Every transition must define at least one of these two values.
+**      - Transitions that have both values defined have the highest
+**      precedence for the transition between those two menus.
+**      - Transitions that have only a "From" value become the default
+**      transition when leaving that menu.
+**      - Transitions that have only a "To" value become the default
+**      transitions when entering that menu, effectively replacing any
+**      IntroFX that the menu may have had prior.
 **  IntroFX# (String),
 **  ShortIntroFX# (String),
 **  LoopFX# (String)
