@@ -44,8 +44,9 @@
 **  Launcher may randomly fail to "wrap around" the player's arm. This
 **  effect is inconsistent and not influenced by anything specifically,
 **  yet.
-**  TODO Whoops, the active subroutine icons stretch off to the right
-**  now..
+**  TODO Determine if any more reordering would be beneficial before
+**  creating the table of contents.
+**  TODO (for second pass) Group more values if possible.
 */
 
 
@@ -252,6 +253,11 @@ Light0		= "Main0"
 **      bring that menu up. Oops.
 **  Light# (String)
 **      - The string ID of a Light to use for the menu.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  ScaleName# (String)
+**      - The string ID of a Scale to use for the menu. Previously
+**      deprecated by Monolith.
 */
 [ScreenSingle]
 PageRect		= (450, 170, 25, -5)
@@ -260,6 +266,11 @@ ListFontSize    = 18
 DiffRect		= (120, 130, 356, 250)
 CustomRect		= (24, 107, 440, 417)
 Light0			= "Main0"
+//ScaleName0	= ""
+//ScaleName1	= "HelpTextBoxSpr1"
+//ScaleName2	= "HelpTextBoxSpr2"
+//ScaleName3	= "mainoperativetext"
+//ScaleName4	= "mainnolftext"
 
 /*  -----[Load Game Menu]-----
 **  Applies to both the [Single Player -> Load Game] menu as well as the
@@ -513,6 +524,8 @@ Light0				    = "Main0"
 **      - Unknown function.
 **  SelectRect (Rectangle)
 **      - Unknown function.
+**  LightCycleBackgroundTextureName (Path)
+**      - This value had been deprecated already by Monolith.
 **  LightCycleBackgroundPos (Point)
 **      - Unused. This set the origin position of the Light Cycle
 **      background image that later became deprecated.
@@ -522,25 +535,26 @@ Light0				    = "Main0"
 **      deprecated.
 */
 [ScreenLightCyclePlayerConfig]
-FontSize			        = 18
-//AddPos				    = (54, 148)
-//AvailRect			        = (200, 158, 350, 385)
-//CommandPos			    = (200, 188)
-//SelectRect			    = (445, 158, 595, 385)
-TabBodyRect			        = (40, 160, 615, 400)
-Character			        = "LightCycleBase"
-LabelPos					= (60, 130)
-//LightCycleBackgroundPos	= (60, 195)
-//LightCycleBackgroundRect	= (0, 0, 250, 155)
-BarWidth					= 200
-StatsPos				    = (400, 130)
-TypeLeftArrowPos		    = (50, 290)
-TypeTextPos				    = (70, 290)
-TypeRightArrowPos		    = (300, 290)
-ShadeLeftArrowPos		    = (50, 310)
-ShadeTextPos			    = (70, 310)
-ShadeRightArrowPos		    = (300, 310)
-Light0				        = "Main0"
+FontSize			                = 18
+//AddPos				            = (54, 148)
+//AvailRect			                = (200, 158, 350, 385)
+//CommandPos			            = (200, 188)
+//SelectRect			            = (445, 158, 595, 385)
+TabBodyRect			                = (40, 160, 615, 400)
+Character			                = "LightCycleBase"
+LabelPos					        = (60, 130)
+//LightCycleBackgroundTextureName   = "interface\portraits\ping_default.dtx"
+//LightCycleBackgroundPos	        = (60, 195)
+//LightCycleBackgroundRect	        = (0, 0, 250, 155)
+BarWidth					        = 200
+StatsPos				            = (400, 130)
+TypeLeftArrowPos		            = (50, 290)
+TypeTextPos				            = (70, 290)
+TypeRightArrowPos		            = (300, 290)
+ShadeLeftArrowPos		            = (50, 310)
+ShadeTextPos			            = (70, 310)
+ShadeRightArrowPos		            = (300, 310)
+Light0				                = "Main0"
 
 /*  -----[Single Player -> Light Cycles -> Custom Play Tab]-----
 **  AvailRect (Rectangle)
@@ -645,6 +659,8 @@ Light0				= "Main0"
 **      - The string ID of a Light to use for the menu.
 **
 **  ---[SAFELY DEPRECATED VALUES]---
+**  MouseFX (String)
+**      - Debating whether any MouseFX are used at all...
 **  Delay (Float)
 **      - Unknown function. Unused?
 */
@@ -1255,6 +1271,8 @@ Light0		= "Main0"
 **      - The string ID of a Light to use for the menu.
 **
 **  ---[SAFELY DEPRECATED VALUES]---
+**  FontSize (Integer)
+**      - Previously deprecated by Monolith.
 **  TextureRect (Rectangle)
 **      - Unused function.
 **  TextureColumn (Integer)
@@ -1264,6 +1282,7 @@ Light0		= "Main0"
 */
 [ScreenPerformance]
 PageRect		= (54, 95, 556, 245)
+//FontSize		= 16
 ItemSpace		= 5
 ListFontSize	= 18
 ColumnWidth 	= 180
@@ -1354,6 +1373,8 @@ Light0			= "Main0"
 **      - Unused function.
 **  HelpRect (Rectangle)
 **      - Unused function?
+**  Character (String)
+**      - Already deprecated by Monolith.
 */
 [ScreenSubroutines]
 PageRect		    = (0, 0, 200, 200)
@@ -1362,6 +1383,7 @@ ClearPos			= (512, 332)
 //CompilePos	    = (0, 0)
 SysNamePos		    = (60, 2)
 //HelpRect		    = (2000, 1000, 0, 0)
+//Character         = "sub1"
 VersionSize		    = 18
 VersionPos		    = (320, 120)
 OptimizerHitRect    = (288, 208, 352, 272)
@@ -1515,6 +1537,8 @@ Light0			= "Main0"
 **      - The string ID of a Light to use for the menu.
 **
 **  ---[SAFELY DEPRECATED VALUES]---
+**  MouseFX (String)
+**      - Still unsure if any MouseFX are ever used.
 **  Delay (Float)
 **      - Unknown function. Unused?
 */
@@ -1660,6 +1684,10 @@ Light0				= "Main0"
 **
 **  Light# (String)
 **      - The string ID of a Light to use for the menu.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  MouseFX (String)
+**      - Pretty sure they're completely unused by now.
 */
 [ScreenSecurity]
 //MouseFX   = "none"
@@ -1703,11 +1731,13 @@ Light0	    = "Main0"
 **      - Unused function. Deprecated from NOLF briefing screens.
 **  BriefingColor (Vector)
 **      - Unused function. Deprecated from NOLF briefing screens.
+**  PreFX# (String)
+**      - Unused function. Previously deprecated by Monolith.
 */
 [LoadScreenDefault]
-TitlePos		= (40, 50)
 TitleFont		= 1
 TitleSize		= 24
+TitlePos		= (40, 50)
 TitleColor		= <255.0, 255.0, 255.0>
 LevelPos		= (40, 75)
 LevelFont		= 1
@@ -1721,16 +1751,23 @@ ContinuePos		= (40, 415)
 ContinueFont	= 1
 ContinueSize	= 24
 ContinueColor   = <0.0, 0.0, 0.0>
+//PreFX0		= "LOAD_Test"
+//PreIntroFX0	= "LOAD_Test"
 PreLoopFX0		= "LOAD_Test"
 LoadScale0		= "LoadTest"
 LoadScale1		= "loadingBackground_sprite"
 LoadScale2		= "loadingModel"
+//PostScale0    = "LoadTest"
 
 [LoadScreenC01]
 TitleColor		= <0.0, 32.0, 96.0>
 //BriefingColor	= <0.0, 0.0, 0.0>
+//PreFX0		= "LOAD_Test"
+//PreIntroFX0	= "LOAD_Test"
+//PreLoopFX0	= "LOAD_Test"
 LoadScale0		= "LoadTest"
 LoadScale1		= "loadingBit"
+//PostScale0    = "LoadTest"
 
 [LoadScreenM01]
 PreLoopFX0	= "LOAD_Test"
@@ -1742,391 +1779,368 @@ PostScale0	= "LoadingBackground_sprite"
 PostScale1	= "Loading_Mission_M01"
 
 [LoadScreenM02]
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_Mission_M02"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_Mission_M02"
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_Mission_M02"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_Mission_M02"
 
 [LoadScreenM03]
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_Mission_M03"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_Mission_M03"
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_Mission_M03"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_Mission_M03"
 
 [LoadScreenM04]
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_Mission_M04"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_Mission_M04"
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_Mission_M04"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_Mission_M04"
 
 [LoadScreenM05]
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_Mission_M05"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_Mission_M05"
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_Mission_M05"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_Mission_M05"
 
 [LoadScreenM06]
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_Mission_M06"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_Mission_M06"
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_Mission_M06"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_Mission_M06"
 
 [LoadScreenM07]
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_Mission_M07"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_Mission_M07"
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_Mission_M07"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_Mission_M07"
 
 [LoadScreenM08]
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_Mission_M08"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_Mission_M08"
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_Mission_M08"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_Mission_M08"
 
 [LoadScreenM09]
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_Mission_M09"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_Mission_M09"
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_Mission_M09"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_Mission_M09"
 
 [LoadScreenM10]
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_Mission_M10"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_Mission_M10"
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_Mission_M10"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_Mission_M10"
 
 [LoadScreenM11]
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_Mission_M11"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_Mission_M11"
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_Mission_M11"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_Mission_M11"
 
 [map0]
-NameId			= 9699
-LevelNameId		= 9700
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_LC_map0"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_LC_map0"
+NameId		= 9699
+LevelNameId	= 9700
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_LC_map0"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_LC_map0"
 
 [LC_01s01]
-NameId			= 9699
-LevelNameId		= 9704
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_LC_01s01"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_LC_01s01"
-
+NameId		= 9699
+LevelNameId	= 9704
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_LC_01s01"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_LC_01s01"
 
 [LC_01s02]
-NameId			= 9699
-LevelNameId		= 9708
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_LC_01s02"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_LC_01s02"
-
+NameId		= 9699
+LevelNameId	= 9708
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_LC_01s02"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_LC_01s02"
 
 [LC_01s03]
-NameId			= 9699
-LevelNameId		= 9713
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_LC_01s03"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_LC_01s03"
-
+NameId		= 9699
+LevelNameId	= 9713
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_LC_01s03"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_LC_01s03"
 
 [LC_01s04]
-NameId			= 9699
-LevelNameId		= 9702
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_LC_01s04"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_LC_01s04"
-
+NameId		= 9699
+LevelNameId	= 9702
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_LC_01s04"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_LC_01s04"
 
 [LC_02s01]
-NameId			= 9699
-LevelNameId		= 9701
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_LC_02s01"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_LC_02s01"
-
+NameId		= 9699
+LevelNameId	= 9701
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_LC_02s01"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_LC_02s01"
 
 [LC_02s02]
-NameId			= 9699
-LevelNameId		= 9705
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_LC_02s02"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_LC_02s02"
-
+NameId		= 9699
+LevelNameId	= 9705
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_LC_02s02"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_LC_02s02"
 
 [LC_02s03]
-NameId			= 9699
-LevelNameId		= 9716
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_LC_02s03"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_LC_02s03"
-
+NameId		= 9699
+LevelNameId	= 9716
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_LC_02s03"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_LC_02s03"
 
 [LC_02s04]
-NameId			= 9699
-LevelNameId		= 9711
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_LC_02s04"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_LC_02s04"
-
+NameId		= 9699
+LevelNameId	= 9711
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_LC_02s04"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_LC_02s04"
 
 [LC_03s01]
-NameId			= 9699
-LevelNameId		= 9703
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_LC_03s01"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_LC_03s01"
-
+NameId		= 9699
+LevelNameId	= 9703
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_LC_03s01"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_LC_03s01"
 
 [LC_03s02]
-NameId			= 9699
-LevelNameId		= 9709
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_LC_03s02"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_LC_03s02"
-
+NameId		= 9699
+LevelNameId	= 9709
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_LC_03s02"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_LC_03s02"
 
 [LC_03s03]
-NameId			= 9699
-LevelNameId		= 9712
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_LC_03s03"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_LC_03s03"
-
+NameId		= 9699
+LevelNameId	= 9712
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_LC_03s03"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_LC_03s03"
 
 [LC_03s04]
-NameId			= 9699
-LevelNameId		= 9714
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_LC_03s04"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_LC_03s04"
-
+NameId		= 9699
+LevelNameId	= 9714
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_LC_03s04"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_LC_03s04"
 
 [LC_04s01]
-NameId			= 9699
-LevelNameId		= 9706
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_LC_04s01"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_LC_04s01"
-
+NameId		= 9699
+LevelNameId	= 9706
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_LC_04s01"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_LC_04s01"
 
 [LC_04s02]
-NameId			= 9699
-LevelNameId		= 9710
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_LC_04s02"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_LC_04s02"
-
+NameId		= 9699
+LevelNameId	= 9710
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_LC_04s02"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_LC_04s02"
 
 [LC_04s03]
-NameId			= 9699
-LevelNameId		= 9715
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_LC_04s03"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_LC_04s03"
-
+NameId		= 9699
+LevelNameId	= 9715
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_LC_04s03"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_LC_04s03"
 
 [LC_04s04]
-NameId			= 9699
-LevelNameId		= 9707
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_LC_04s04"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_LC_04s04"
-
+NameId		= 9699
+LevelNameId	= 9707
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_LC_04s04"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_LC_04s04"
 
 [DiscArena01]
-LevelNameId		= 2549
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_DiscArena01"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_DiscArena01"
-
+LevelNameId	= 2549
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_DiscArena01"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_DiscArena01"
 
 [DiscArena02]
-LevelNameId		= 2550
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_DiscArena02"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_DiscArena02"
-
+LevelNameId	= 2550
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_DiscArena02"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_DiscArena02"
 
 [DiscArena03]
-LevelNameId		= 2551
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_DiscArena03"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_DiscArena03"
-
+LevelNameId	= 2551
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_DiscArena03"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_DiscArena03"
 
 [DiscArena04]
-LevelNameId		= 2552
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_DiscArena04"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_DiscArena04"
-
+LevelNameId	= 2552
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_DiscArena04"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_DiscArena04"
 
 [DiscArena05]
-LevelNameId		= 2553
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_DiscArena05"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_DiscArena05"
-
+LevelNameId	= 2553
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_DiscArena05"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_DiscArena05"
 
 [LightCycleDefault]
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_Mission_M02"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_Mission_M02"
-
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_Mission_M02"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_Mission_M02"
 
 [MultiplayerLightcycleDefault]
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_DiscArena02"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_DiscArena02"
-
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_DiscArena02"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_DiscArena02"
 
 [DiscArenaDefault]
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_DiscArena01"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_DiscArena01"
-
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_DiscArena01"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_DiscArena01"
 
 [DiscTournamentDefault]
-PreLoopFX0		= "LOAD_Test"
-LoadScale0		= "LoadTest"
-LoadScale1		= "LoadingBackground_sprite"
-LoadScale2		= "Loading_DiscArena01"
-LoadScale3		= "loadingModel"
-PostScale0		= "LoadingBackground_sprite"
-PostScale1		= "Loading_DiscArena01"
+PreLoopFX0	= "LOAD_Test"
+LoadScale0	= "LoadTest"
+LoadScale1	= "LoadingBackground_sprite"
+LoadScale2	= "Loading_DiscArena01"
+LoadScale3	= "loadingModel"
+PostScale0	= "LoadingBackground_sprite"
+PostScale1	= "Loading_DiscArena01"
+
 
 /************************************************************************
 **
@@ -2188,18 +2202,21 @@ PositionLR	= (560,390)
 **      be set to the size indicated in the name of the font file.
 */
 [Fonts]
-Font0			= "Interface\Fonts\TwenCen_20.ffb"
-FontSize0		= 20
-Font1			= "Interface\Fonts\TwenCen_20.ffb"
-FontSize1		= 20
-Font2			= "Interface\Fonts\TwenCen_20.ffb"
-FontSize2		= 20
-Font3			= "Interface\Fonts\TwenCen_20.ffb"
-FontSize3		= 20
-Font4			= "Interface\Fonts\TwenCen_20.ffb"
-FontSize4		= 20
-Font5			= "Interface\Fonts\TwenCen_20_Aliased.ffb" 
-FontSize5		= 10
+Font0		= "Interface\Fonts\TwenCen_20.ffb"
+FontSize0	= 20
+Font1		= "Interface\Fonts\TwenCen_20.ffb"
+FontSize1	= 20
+Font2		= "Interface\Fonts\TwenCen_20.ffb"
+FontSize2	= 20
+Font3		= "Interface\Fonts\TwenCen_20.ffb"
+FontSize3	= 20
+Font4		= "Interface\Fonts\TwenCen_20.ffb"
+FontSize4	= 20
+Font5		= "Interface\Fonts\TwenCen_20_Aliased.ffb" 
+FontSize5	= 10
+//Font6		= "Interface\Fonts\tcm_____.TTF"
+//Font7		= "Interface\Fonts\tcm_____.TTF"
+//Font8		= "Interface\Fonts\tcm_____.TTF"
 
 
 /************************************************************************
@@ -2429,10 +2446,16 @@ ChooserMargin			= (10, 10) // SecurityProtocol
 //ChooserTitleHeight	= 0
 //ChooserIntroTime		= 0.5
 //ChooserOutroTime		= 0.5
+//ChooserColumnWidth	= 48
+//ChooserIconHeight		= 48
+//ChooserTextureScale	= 0.75
+//ChooserPosition		= 120
+//ClassNumber0			= ""
 ClassNumber1			= "Interface\hud\currentweaponTab_1.dtx"
 ClassNumber2			= "Interface\hud\currentweaponTab_2.dtx"
 ClassNumber3			= "Interface\hud\currentweaponTab_3.dtx"
 ClassNumber4			= "Interface\hud\currentweaponTab_4.dtx"
+//ClassNumberHi0		= ""
 ClassNumberHi1			= "Interface\hud\currentweapon_hlTab_1.dtx"
 ClassNumberHi2			= "Interface\hud\currentweapon_hlTab_2.dtx"
 ClassNumberHi3			= "Interface\hud\currentweapon_hlTab_3.dtx"
@@ -2623,19 +2646,6 @@ FOVZoomTriangulate1		= 20.0
 FOVZoomTriangulate2		= 7.0
 FOVZoomTriangulate3		= 3.0
 
-/*  -----[Distance Icon]-----
-**  What's this?
-**
-**  DistanceIconPos (Point)
-**  DistanceIconBlinkSpeed (Float)
-**  DistanceIconAlpha (Float)
-**  DistanceIconFadeOutSpeed (Float)
-*/
-DistanceIconPos			    = (294, 336)
-DistanceIconBlinkSpeed		= 6.0
-DistanceIconAlpha		    = 0.8
-DistanceIconFadeOutSpeed	= 1.0
-
 /*  -----[Light Cycle HUD Elements]-----
 **  The HUD is completely different while using a Light Cycle. Luckily,
 **  this is one of the very few areas where Monolith provided the exact
@@ -2794,9 +2804,76 @@ SpeedometerFrameHeight			= 24
 SpeedometerFrameBackground		= "interface\hud\frame_lightcycle.dtx"
 SpeedometerTexturedFrameName	= "lightcycle_speedometer"
 
+/*  ---[Distance Icon]---
+**  What's this?
+**
+**  DistanceIconPos (Point)
+**  DistanceIconBlinkSpeed (Float)
+**  DistanceIconAlpha (Float)
+**  DistanceIconFadeOutSpeed (Float)
+*/
+DistanceIconPos			    = (294, 336)
+DistanceIconBlinkSpeed		= 6.0
+DistanceIconAlpha		    = 0.8
+DistanceIconFadeOutSpeed	= 1.0
+
+/*  -----["Useless Stuff"]-----
+**  Monolith claims all of these below values are "useless stuff". It's
+**  gonna stay here, but without documentation, and commented out, until
+**  it is confirmed that any of them are used.
+*/
+//DisplayMeterBasePosY	= 54
+//DisplayMeterOffset	= (0,0)
+//DisplayMeterHeight	= 8
+//DisplayMeterScale		= 2.5
+//DisplayMeterTexture	= "Interface\hud\bossbar.dtx"
+//AmmoBasePos 		    = (624,450)
+//AmmoClipOffset		= (-8,8)
+//AmmoClipUnitSize		= (7,12)
+//AmmoBarOffset		    = (0,0)
+//UseAmmoText 		    = 1
+//AmmoTextOffset		= (-72,-16)
+//AmmoTextColor		    = <160.0, 128.0, 32.0>
+//AmmoTextAlpha		    = 0.8
+//AmmoIconOffset		= (-104,-16)
+//AmmoIconSize		    = 24
+//UseHealthBar		    = 1
+//HealthBasePos		    = (16,430)
+//HealthBarOffset 		= (0,34)
+//ArmorBarOffset		= (6,22)
+//UseHealthText		    = 0
+//HealthColor 		    = <192.0, 0.0, 0.0>
+//ArmorColor			= <0.0, 0.0, 192.0>
+//HealthAlpha 		    = 0.8
+//UseHealthIcon		    = 0
+//HealthIconOffset		= (0,-20)
+//ArmorIconOffset 		= (64,-20)
+//HealthIconSize		= 20
+//UseAirIcon			= 1
+//AirBasePos			= (24,400)
+//UseAirText			= 0
+//AirTextOffset		    = (24,-26)
+//UseAirBar			    = 1
+//AirBarOffset		    = (12,0)
+//AirIconOffset		    = (-20,-8)
+//AirColor			    = <0.0, 202.0, 158.0>
+//AirAlpha			    = 0.8
+//AirIconSize 		    = 32
+//ModeTextPos 		    = (80,40)
+//DamageBasePos		    = (0,240)
+//CompassPos		    = (528,16)
+//CompassSize 		    = 96
+//HideIconPos 		    = (288,336)
+//HideIconBlinkSpeed    = 3.0
+//HideIconAlpha		    = 0.6
+//DamageSize			= 32
+
 /*  -----[HUD Layout 1]-----
-**  Was this kept around for anything?
-**  Hold off on documentation
+**  This seems to be the HUD layout used for Light Cycles, though
+**  pending further testing because I'm like 90% sure half of these
+**  values are junk.
+**
+**  
 */
 [HUDLayout1]
 ArmorOffset				                = (-64, -128)
@@ -2870,12 +2947,13 @@ Position		        = (10, 5)
 Font			        = 0
 FontSize		        = 16
 BaseColor		        = <255.0, 90.0, 90.0> // SecurityProtocol
+MinorUpgradeLoops	    = 10
+MinorUpgradeLoopLength	= 0.7
+MajorUpgradeLoops	    = 10
+MajorUpgradeLoopLength	= 1.0
 MajorUpgradeColor	    = <255.0, 255.0, 255.0>
 MinorUpgradeColor	    = <255.0, 255.0, 255.0>
-MajorUpgradeLoops	    = 10
-MinorUpgradeLoops	    = 10
-MajorUpgradeLoopLength	= 1.0
-MinorUpgradeLoopLength	= 0.7
+
 
 /************************************************************************
 **
@@ -3166,7 +3244,8 @@ IconHeight		= 39
 IconOffset		= 44
 
 /*  ---[Progress Bar Settings]---
-**  TODO Unsure how to test these? Where does this show up?
+**  TODO Unsure how to test these? Where does this show up? Small and
+**  Big Bar are commented out entirely, so what does tiny bar do?
 **  
 **  EmptyBarTex (Path),
 **  FullBarTex (Path)
@@ -3212,7 +3291,7 @@ StringYOffset	= -16 // From top of progress bar (negative is down)
 **  The TexturedFrame defitions can be used by practically any HUD
 **  element in order to draw a nicely textured box or frame on screen.
 **  The game obviously uses these to some degree, just not here. Not
-**  in this file, anyway.
+**  in this file, anyway. Not entirely.
 **
 **	TODO what does UV stand for??? again
 **  
@@ -3597,7 +3676,7 @@ DisabledColor		= <180.0, 180.0, 200.0>
 
 /************************************************************************
 **
-**	                         Generic Menu Layout
+**	                        Generic Menu Layout
 **
 **  The GenericMenu definition declares default values that are shared
 **  by all in-game menus, but can be overridden by specific menus.
@@ -3644,7 +3723,8 @@ DisabledColor		= <95.0, 95.0, 95.0>
 **  The custom menu definitions declare values for specific menus that
 **  may override values set under GenericMenu.
 **
-**  There's only one menu here... is it even used?
+**  There's only one menu here... is it even used? I know ScreenPlayer
+**  is for the Player Setup menu but I have NO idea what this is.
 **
 **  Size (Size)
 **      - 
@@ -3782,8 +3862,11 @@ EditDisabled	= <0.0, 75.0, 238.0>
 **
 **	                             MessageQueue
 **
-** The MessageQueue definitions specifies data for various message queues
-** in the game.
+**  The MessageQueue definitions specify data for various message queues
+**  in the game.
+**
+**  Incomplete documentation: these are for chat windows and other text
+**  areas that require message history to be stored, I think.
 **
 **	MessageTime (Float)
 **		How long in seconds that messages are displayed.
@@ -3910,35 +3993,46 @@ BasePos 	= (95, 320)
 
 /************************************************************************
 **
-**	                        Mission Text Layout
+**	                       Mission Text Layout
 **
-** The MissionText definition specifies data for "typing"
-** mission related text (e.g. "Somewhere in Berlin, 9:43 AM")
-** to the screen.
+**  The MissionText definition sets the values that manage the "system
+**  log"-esque typed text in the upper-left quadrant of the screen.
 **
-**	Width (Int)
-**		Specifies how wide the area used for the text should be
-**
-**	NumLines (Int)
-**		Specifies how many of lines of text may be displayed at before
-**		scrolling
+**  Font (Integer),
+**  FontSize (Integer),
+**  TextColor (Vector)
+**      - The font ID, text height, and default color of the mission 
+**      text.
+**      - FontSize is managed by the Killer App Mod.
+**	NumLines (Integer)
+**		- The amount of text lines that can be typed out before playing
+**      the ScrollSound, since mission text doesn't actually scroll.
 **	LetterDelay (Float)
-**		How long (in seconds) to wait after adding each letter
-**	LineDelay	(Float)
-**		How long (in seconds) to wait after finishing each line
-**	LineScrollTime	(Float)
-**		How long (in seconds) to scroll up one line
-**	FadeDelay	(Float)
-**		How long (in seconds) to wait after adding the last line
-**			before starting the fade.
-**	FadeTime	(Float)
-**		How long (in seconds) to fade out the text
-**	Pos 	(Point)
-**		Position (relative to a 640x480 screen) of the text
-**	TypeSound	(String)
-**		Sound file to play (looping) while typing text
-**	ScrollSound (String)
-**		Sound file to play (once) when a line starts scrolling
+**		- The time, in seconds, to wait between each typed letter of the
+**      mission text.
+**	LineDelay (Float)
+**		- The time, in seconds, to wait between each typed line of the
+**      mission text.
+**	LineScrollTime (Float)
+**		- The time, in seconds, to wait between each typed line of the
+**      mission text.
+**	FadeDelay (Float)
+**		- The time, in seconds, to wait before fading completed mission
+**      text scripts.
+**	FadeTime (Float)
+**		- The time, in seconds, reserved to fade out the mission text.
+**	Pos (Point)
+**		- The upper-left origin position of the mission text.
+**	TypeSound (Path)
+**		- The sound effect played while a line is being typed.
+**	ScrollSound (Path)
+**		- The sound effect played when a text line has finished being
+**      typed.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  LineDelay (Float)
+**      - Unused function. Likely due to its functional redundancy to
+**      LineScrollTime, if it was used.
 */
 [MissionText]
 Font			= 0
@@ -3946,7 +4040,7 @@ FontSize		= 12
 TextColor		= <255.0, 155.0, 0.0>
 NumLines		= 1
 LetterDelay 	= 0.015
-LineDelay		= 0.2
+//LineDelay		= 0.2
 LineScrollTime	= 0.25
 FadeDelay		= 3.0
 FadeTime		= 2.0
@@ -3957,7 +4051,7 @@ ScrollSound 	= "interface\snd\enter.wav"
 
 /************************************************************************
 **
-**	                           Subtitle Layout
+**	                          Subtitle Layout
 **
 **  The Subtitle definition sets values pertaining to the subtitles in
 **  the game. (Surprising, huh?)
@@ -4101,12 +4195,12 @@ FrameAlpha	= 0.50
 **  reference at any time. In the case of TRON 2.0, this only concerns
 **  the scopes for the LOL and Triangulate subroutines.
 **
-**  A single-line comment will be placed above each overlay value group
-**  that will identify it. Overlays 0 and 1 define the LOL & Triangulate
-**  scopes, and Overlays 6 through 14 are all derivatives of those first
-**  two. Overlay values 2 through 5 can be safely assumed to be unused
-**  in TRON 2.0, likely left over from NOLF or a different Monolith
-**  game.
+**  A comment will be placed above each overlay value group that will
+**  identify it. Overlays 0 and 1 define the LOL & Triangulate scopes,
+**  and Overlays 6 through 14 are all derivatives of those first two.
+**
+**  Overlay values 2 through 5 can be safely assumed to be unused in
+**  TRON 2.0, likely left over from NOLF or a different Monolith game.
 **
 **	0 = LOL Scope
 **	1 = Triangulate Scope
@@ -4133,12 +4227,15 @@ FrameAlpha	= 0.50
 **  Alpha# (Float)
 */
 [Overlay]
+/*  ---[0: LOL Scope]---  */
 Scale0			= 0.15
 Sprite0			= ""
 
+/*  ---[1: Triangulate Scope]---  */
 Scale1			= 0.25
 Sprite1			= ""
 
+/*  ---[6: LOL Zoom In]---  */
 Scale6			= 0.285
 Model6			= "Interface\hud\screen_sniper.ltb"
 Skin6			= "Interface\hud\screen_sniper.dtx"
@@ -4146,6 +4243,7 @@ Anim6			= "zoomin"
 Renderstyle6	= "RS\Alpha_Additive_wglow.ltb"
 Alpha6			= 0.8
 
+/*  ---[7: LOL Zoom Out]---  */
 Scale7			= 0.285
 Model7			= "Interface\hud\screen_sniper.ltb"
 Skin7			= "Interface\hud\screen_sniper.dtx"
@@ -4153,6 +4251,7 @@ Anim7			= "zoomout"
 Renderstyle7	= "RS\Alpha_Additive_wglow.ltb"
 Alpha7			= 0.8
 
+/*  ---[8: LOL Loop]---  */
 Scale8			= 0.285
 Model8			= "Interface\hud\screen_sniper.ltb"
 Skin8			= "Interface\hud\screen_sniper.dtx"
@@ -4160,6 +4259,7 @@ Anim8			= "loop"
 Renderstyle8	= "RS\Alpha_Additive_wglow.ltb"
 Alpha8			= 0.8
 
+/*  ---[9: Triangulate Zoom In]---  */
 Scale9			= 0.285
 Model9			= "Interface\hud\screen_triangulate.ltb"
 Skin9			= "Interface\hud\screen_triangulate.dtx"
@@ -4167,6 +4267,7 @@ Anim9			= "zoomin"
 Renderstyle9	= "RS\Alpha_Additive_wglow.ltb"
 Alpha9			= 0.8
 
+/*  ---[10: Triangulate Zoom Out]---  */
 Scale10			= 0.285
 Model10			= "Interface\hud\screen_triangulate.ltb"
 Skin10			= "Interface\hud\screen_triangulate.dtx"
@@ -4174,6 +4275,7 @@ Anim10			= "zoomout"
 Renderstyle10	= "RS\Alpha_Additive_wglow.ltb"
 Alpha10 		= 0.8
 
+/*  ---[11: Triangulate Loop]---  */
 Scale11			= 0.285
 Model11			= "Interface\hud\screen_triangulate.ltb"
 Skin11			= "Interface\hud\screen_triangulate.dtx"
@@ -4181,6 +4283,7 @@ Anim11			= "loop"
 Renderstyle11	= "RS\Alpha_Additive_wglow.ltb"
 Alpha11 		= 0.8
 
+/*  ---[12: Corrupt Triangulate Zoom In]---  */
 Scale12			= 0.285
 Model12			= "Interface\hud\screen_triangulate.ltb"
 Skin12			= "Interface\hud\screen_triangulate_corrupt.dtx"
@@ -4188,6 +4291,7 @@ Anim12			= "zoomin"
 Renderstyle12	= "RS\Alpha_Additive_wglow.ltb"
 Alpha12			= 0.8
 
+/*  ---[13: Corrupt Triangulate Zoom Out]--- */
 Scale13			= 0.285
 Model13			= "Interface\hud\screen_triangulate.ltb"
 Skin13			= "Interface\hud\screen_triangulate_corrupt.dtx"
@@ -4195,12 +4299,14 @@ Anim13			= "zoomout"
 Renderstyle13	= "RS\Alpha_Additive_wglow.ltb"
 Alpha13			= 0.8
 
+/*  ---[14: Corrupt Triangulate Loop]---  */
 Scale14			= 0.285
 Model14			= "Interface\hud\screen_triangulate.ltb"
 Skin14			= "Interface\hud\screen_triangulate_corrupt.dtx"
 Anim14			= "loop"
 Renderstyle14	= "RS\Alpha_Additive_wglow.ltb"
 Alpha14			= 0.8
+
 
 /************************************************************************
 **
@@ -5325,7 +5431,7 @@ RemoveWindow    = 0
 **
 **	                   Screen Transition Declarations
 **
-**  TODO rephrase most of this description if needed.
+**  TODO rephrase most of this description where needed, & documentation.
 **
 **	A Transition will override the FX associated with a single menu screen.
 **	So when a screen gains focus, it will first inquire of the
