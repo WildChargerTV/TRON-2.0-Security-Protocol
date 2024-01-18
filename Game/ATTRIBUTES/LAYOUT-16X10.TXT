@@ -59,8 +59,7 @@
 **  will provide the exact names of the sections of this file that can
 **  be slapped into a Find prompt. That should work, right?
 **
-**  1. Basic Screen Layout
-**  2. 
+**  TODO table of contents here
 */
 
 
@@ -2145,7 +2144,7 @@ PostScale1	= "Loading_DiscArena01"
 
 /************************************************************************
 **
-**	                             Credits Layout
+**	                          Credits Layout
 **
 **  The Credits definition sets values pertaining to the game's credits
 **  sequence. This used to be positioned near the bottom of the file,
@@ -2176,56 +2175,6 @@ PositionUL	= (80,90)
 PositionUR	= (560,90)
 PositionLL	= (80,390)
 PositionLR	= (560,390)
-
-
-/************************************************************************
-**
-**	                       Screen Character Layout
-**
-**  The Character element has one purpose: to display a spinning view of
-**  the currently equipped Player & Light Cycle model.
-**
-**  In TRON 2.0, because these elements are used exclusively in player
-**  customization Screens, they need to be able to dynamically change to
-**  show whatever model or skin the player selects. They also need to be
-**  spinning. As a result, in both value sets, pretty much all of these
-**  values (except for the name and position) are just placeholders that
-**  the game will override internally when they are loaded.
-**
-**  Name (String)
-**      - The name of the Character element.
-**  Model (Path String)
-**      - The model to use for the Character element. Must be in .LTB
-**      format.
-**  Skin# (Path String)
-**      - The texture to use for the skin of the Character element. Must
-**      be in .DTX format.
-**  Pos (3D Point)
-**      - The origin position of the Character element.
-**      - Not a placeholder. This can be changed.
-**  Scale (Float)
-**      - The initial scale of the Character element.
-**  Rotation (Float)
-**      - The initial rotation of the Character element, on the X axis.
-*/
-
-/*  ---[0: Multiplayer Player Setup Character]---  */
-[Character0]
-Name		= "MPBase"
-Model		= "chars\models\hero_action.ltb"
-Skin0		= "chars\skins\CateAction.dtx"
-Pos			= <0.0,-1.0,20.0>
-Scale		= 0.15
-Rotation	= 0.0
-
-/*  ---[1: Single Player Light Cycles Character]---  */
-[Character1]
-Name		= "LightCycleBase"
-Model		= "Props\Models\LightCycle.ltb"
-Skin0		= "FX\Tex\specular.dtx"
-Pos			= <-4.0,-1.0,10.0>
-Scale		= 0.075
-Rotation    = 90.0
 
 
 /************************************************************************
@@ -5045,18 +4994,68 @@ Layer			= 40
 
 /************************************************************************
 **
-**	                     Interface Lights Layout
+**	                       Screen Character Layout
+**
+**  The Character element has one purpose: to display a spinning view of
+**  the currently equipped Player & Light Cycle model.
+**
+**  In TRON 2.0, because these elements are used exclusively in player
+**  customization Screens, they need to be able to dynamically change to
+**  show whatever model or skin the player selects. They also need to be
+**  spinning. As a result, in both value sets, pretty much all of these
+**  values (except for the name and position) are just placeholders that
+**  the game will override internally when they are loaded.
+**
+**  Name (String)
+**      - The name of the Character element.
+**  Model (Path String)
+**      - The model to use for the Character element. Must be in .LTB
+**      format.
+**  Skin# (Path String)
+**      - The texture to use for the skin of the Character element. Must
+**      be in .DTX format.
+**  Pos (3D Point)
+**      - The origin position of the Character element.
+**      - Not a placeholder. This can be changed.
+**  Scale (Float)
+**      - The initial scale of the Character element.
+**  Rotation (Float)
+**      - The initial rotation of the Character element, on the X axis.
+*/
+
+/*  ---[0: Multiplayer Player Setup Character]---  */
+[Character0]
+Name		= "MPBase"
+Model		= "chars\models\hero_action.ltb"
+Skin0		= "chars\skins\CateAction.dtx"
+Pos			= <0.0,-1.0,20.0>
+Scale		= 0.15
+Rotation	= 0.0
+
+/*  ---[1: Single Player Light Cycles Character]---  */
+[Character1]
+Name		= "LightCycleBase"
+Model		= "Props\Models\LightCycle.ltb"
+Skin0		= "FX\Tex\specular.dtx"
+Pos			= <-4.0,-1.0,10.0>
+Scale		= 0.075
+Rotation    = 90.0
+
+
+/************************************************************************
+**
+**	                        Screen Lights Layout
 **
 **  The Light definitions assign values that create light objects used
-**  in menus. Because pretty much all menus are *technically* rendered
-**  as 3D spaces (except for ones that appear as pop-ups, obviously),
-**  any 3D models that render inside that menu will need a light to
-**  display as they normally would ingame. The only major exceptions are
-**  loading screens, which consist entirely of 2D elements.
+**  in screens. Because pretty much all screens are technically rendered
+**  as 3D spaces, any 3D models that render inside that screen will need
+**  a light in order to display as they normally would ingame. The only
+**  major exceptions are loading screens, which consist entirely of 2D 
+**  elements.
 **
-**  Pretty much all menus in TRON 2.0 use the first definition Light0 as
-**  the light. It's not known at the moment what Light1 and Light2 are
-**  used for, if they are used at all.
+**  Pretty much all screens in TRON 2.0 use the first definition Light0
+**  as its light. Light1 is used exclusively by the Player Setup screen,
+**  and Light2 is completely unused.
 **
 **  Name (String)
 **      - The programmer-friendly name for the light object.
@@ -5094,10 +5093,10 @@ Radius			= 8000.0
 
 /************************************************************************
 **
-**                           Interface FX Layout
+**                            Screen FX Layout
 **
 **  The FX definitions assign values that create effect objects used in
-**  menus. It's not known where the effects themselves originate when
+**  screens. It's not known where the effects themselves originate when
 **  referenced here (I couldn't find anything in FX.TXT).
 **
 **  Most of these FX are used in menu screen transitions, in the "Screen
@@ -5503,7 +5502,7 @@ RemoveWindow    = 0
 **  All of these values are Strings that need the names of the screens &
 **  FX to use. Both must have been defined in their respective sections
 **  of this file beforehand - the "Screen Layout" section for screens,
-**  and the "Interface FX Layout" section for FX. 
+**  and the "Screen FX Layout" section for FX. 
 **
 **  Any duplicate Transition definitions are ignored, in favor of using
 **  the FIRST defined one and not the last.
