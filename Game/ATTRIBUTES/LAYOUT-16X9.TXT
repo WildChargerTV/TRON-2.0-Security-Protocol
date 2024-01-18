@@ -3291,7 +3291,7 @@ Pos 			= <0.0, 0.0, 0.0>
 LoopAnim		= "liveloop"
 ParentPiece		= "sub_hub"
 ParentSocket		= "skt_opt"
-layer			= 40
+Layer			= 40
 
 [MenuPiece39]
 Name			= "proc_progress"
@@ -3516,7 +3516,7 @@ Pos 			= <0.0, 0.0, 0.0>
 LoopAnim		= "liveloop"
 ParentPiece		= "sub_hub"
 ParentSocket		= "skt_opt"
-layer			= 40
+Layer			= 40
 
 /************************************************************************
 **
