@@ -3,50 +3,61 @@
 **
 **  IMPORTANT: This is the 16:10 version of LAYOUT.TXT.
 **
+**  ---------------------------------------------------------------------
 **  The Layout file, as the name implies, specifies attributes used for
 **  the game's menus, HUD, fonts, and other custom elements. These
 **  attributes include, but are not limited to, screen position,
 **  text/element color, and element scale.
-**
+**  ---------------------------------------------------------------------
 **  This is a big file. So big, in fact, that to have left it in the
 **  state Monolith originally provided it in would have proven way too
-**  confusing. In the interest of overall clarity as well as to ensure
+**  confusing. In the interest of overall clarity, as well as to ensure
 **  the documentation would be for things that mattered, a significant
-**  amount of unnecessary things were outright removed, with testing
-**  performed to ensure the game would still run properly after their
-**  removal.
+**  amount of values I believe to be unnecessary have been commented
+**  out or removed entirely.
+**
+**  All removed values can be found on a per-section basis, under the
+**  name [SAFELY DEPRECATED VALUES]. Keep in mind documentation for
+**  these values is nigh impossible, because all of them have no
+**  observable impact on the game.
 **
 **  For this reason, it's important to know that if using this layout 
-**  file has resulted in anything breaking, that a clean copy is ALWAYS 
-**  available in the "tcdg" folder, inside the game's installation 
-**  directory. So, should you encounter any issues, report them to me on 
+**  file has resulted in anything breaking, a clean copy is ALWAYS
+**  available within the "tcdg" folder inside the game's installation 
+**  directory. Should you encounter any issues, report them to me on
 **  GitHub, and then revert to the clean copy until it's fixed.
-**
+**  ---------------------------------------------------------------------
 **  Also, please note that because of the sheer size of this file, it's
 **  almost impossible to ensure all of the documentation uses consistent
 **  verbage and structure the whole way through. If anything sounds too
 **  confusing, feedback is also welcomed on the GitHub. Just make sure
 **  that the suggestion is specific enough to be feasible to implement.
-**
+**  ---------------------------------------------------------------------
 **  See the Table of Contents to find specific sections of the file more
 **  easily.
+**  ---------------------------------------------------------------------
+**  Values that are managed by the Killer App Mod will be identified as
+**  such in their definitions. I am not responsible for anything that
+**  happens as a result of anyone that isn't me manually changing these
+**  values.
 **
 **  Values that have been modified specifically for TRON 2.0: Security
 **  Protocol will be labeled as such using a single-line comment placed
 **  directly on that value's line.
-**
+**  ---------------------------------------------------------------------
 **  The first pass going through this file broke a few things. Now, I
 **  expected as such, but that doesn't mean it isn't a bit frustrating.
 **  I'll be doing a second pass from a clean copy. Being thorough is
 **  important, after all.
-**  TODO Leave fonts alone for now. Testing can be done later.
+**
+**  TODO Either on the 2nd or 3rd pass actually experiment with fonts.
+**
 **  TODO A random graphical glitch was introduced where the Ball
 **  Launcher may randomly fail to "wrap around" the player's arm. This
 **  effect is inconsistent and not influenced by anything specifically,
-**  yet.
-**  TODO Determine if any more reordering would be beneficial before
-**  creating the table of contents.
-**  TODO (for second pass) Group more values if possible.
+**  yet. (Unsure if this came about as a result of this file or not.)
+**
+**  TODO Group more values if possible. (Saving for Pass 2)
 */
 
 
@@ -59,6 +70,8 @@
 **  will provide the exact names of the sections of this file that can
 **  be slapped into a Find prompt. That should work, right?
 **
+**  TODO Determine if any more reordering would be beneficial before
+**  creating the table of contents. (Saving for Pass 2)
 **  TODO table of contents here
 */
 
@@ -900,12 +913,10 @@ Light0				    = "Main0"
 **  RightPlayerWidth (Integer)
 **      - Unknown function. May handle a second column of player names,
 **      but verifying this is extremely hard. Or score?
-**  LeftInfoWidth (Integer)
-**      - The total width of the column that displays the names of
-**      different server attributes. Does not include text wrapping.
+**  LeftInfoWidth (Integer),
 **  RightInfoWidth (Integer)
-**      - The total width of the column that displays server attributes.
-**      Does not include text wrapping.
+**      - The widths of the two columns responsible for displaying the
+**      server attributes. Does not include text wrapping.
 **  LeftColumnPos (2D Point)
 **      - The upper-left origin position of the left column (displaying
 **      the list of online players).
@@ -978,14 +989,13 @@ Light0				= "Main0"
 **      - The upper-left origin position of the "Custom Configuration"
 **      text displayed above AvailRect.
 **      - This setting is managed by the Killer App Mod.
-**  LaunchPos (2D Point)
-**      - The upper-left origin position of the "Launch" button.
-**      - This setting is managed by the Killer App Mod.
-**  LaunchTex (Path String)
-**      - The texture used for the "Launch" button, when not
-**      highlighted.
+**  LaunchPos (2D Point),
+**  LaunchTex (Path String),
 **  LaunchTexH (Path String)
-**      - The texture used for the "Launch" button, when highlighted.
+**      - These values make up the "Launch" button. LaunchPos sets the
+**      upper-left origin position. LaunchTex and LaunchTexH set the
+**      button's texture when not highlighted/highlighted respectively.
+**      - LaunchPos is managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
@@ -1148,9 +1158,6 @@ Light0		= "Main0"
 **      - The space allocated to display the list of controls that the
 **      player can modify.
 **      - This setting is managed by the Killer App Mod.
-**  ListFontSize (Integer)
-**      - The text height of the text listing the controls that the
-**      player can modify.
 **  ActionWidth (Integer)
 **      - The width of the list column displaying the names of controls
 **      that the player can modify. Includes text wrapping.
@@ -1576,8 +1583,8 @@ Light0			= "Main0"
 **  PlayerColumn (Integer),
 **  GamesWonColumn (Integer),
 **  PingColumn (Integer)
-**      - The widths of all the columns that make up the list inside
-**      TeamRect.
+**      - The widths of all the columns that make up the list of players
+**      currently on a team.
 **      - PlayerColumn & GamesWonColumn are managed by the Killer App
 **      Mod.
 **  SpectatorRect (Rectangle)
@@ -1586,8 +1593,8 @@ Light0			= "Main0"
 **      - This setting is managed by the Killer App Mod.
 **  SpectatorColumn (Integer),
 **  SpectatorPingColumn (Integer)
-**      - The widths of both columns that make up the list inside
-**      SpectatorRect.
+**      - The widths of both the columns that make up the list of
+**      players currently spectating the game.
 **      - SpectatorColumn is managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
@@ -1632,27 +1639,24 @@ Light0				= "Main0"
 **      - The space allocated to display the list of players currently
 **      on a team.
 **      - This setting is managed by the Killer App Mod.
-**  TeamColumn (Integer)
-**      - The total width of the "Team" column (for the team's name).
-**  RoundsWonColumn (Integer)
-**      - The total width of the "Rounds Won" column.
-**      - This setting is managed by the Killer App Mod.
-**  PlayerColumn (Integer)
-**      - The total width of the "Players" column (for player names).
-**      - This setting is managed by the Killer App Mod.
-**  FragsColumn (Integer)
-**      - The total width of the "Derezzes" column.
+**  TeamColumn (Integer),
+**  RoundsWonColumn (Integer),
+**  PlayerColumn (Integer),
+**  FragsColumn (Integer),
 **  PingColumn (Integer)
-**      - The total width of the "Ping" column.
+**      - The widths of all the columns that make up the list of players
+**      currently on a team. (Frags is for the "Derezzes" column.)
+**      - RoundsWonColumn and PlayerColumn are managed by the Killer App
+**      Mod.
 **  SpectatorRect (Rectangle)
 **      - The space allocated to display the list of players currently
 **      spectating the game.
 **      - This setting is managed by the Killer App Mod.
-**  SpectatorColumn (Integer)
-**      - The total width of the "Spectators" column (for player names).
-**      - This setting is managed by the Killer App Mod.
+**  SpectatorColumn (Integer),
 **  SpectatorPingColumn (Integer)
-**      - The total width of the "Ping" column (for spectators).
+**      - The widths of both the columns that make up the list of
+**      players currently spectating the game.
+**      - SpectatorColumn is managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 */
