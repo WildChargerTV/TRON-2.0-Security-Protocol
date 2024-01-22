@@ -1,25 +1,22 @@
 /************************************************************************
 **
-**		           TRON 2.0 Client Sound Attributes File
+**		               ----------[CLIENTSND]----------
 **
-** This file contains attributes for the following:
+**  The Client Sound file does one thing and one thing only: specify the
+**  path to the folder containing the game's voice lines.
 **
-**  Sound Paths
+**  All voice lines in the game must have their name set only to their
+**  associated ID, as well as a .LIP file that translates the voice line
+**  into lip syncing animation instructions. When the game calls the ID 
+**  of a string in CRES.DLL to use for subtitles, it will also call the 
+**  voice line and .LIP file of the same ID in this directory.
 **
+**  TODO is a .LIP absolutely necessary? Or is the game able to ignore
+**  it when missing?
 **
+**  Dialogue (Path String)
+**      - The path to the folder containing the game's voice lines. Must
+**      end with a backslash to note the end of the path.
 */
-
-/************************************************************************
-**
-** Path Sound Attributes
-**
-**  The following specifies paths to id based sounds
-**  
-*/
-
 [Paths]
-
 Dialogue = "Voice\"
-
-
-

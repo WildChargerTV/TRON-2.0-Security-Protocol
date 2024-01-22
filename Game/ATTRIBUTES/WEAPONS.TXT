@@ -1,7 +1,6 @@
 /************************************************************************
 **
-**				   Tron Weapons Attributes file
-** (c) 1998-2001 Monolith Productions, Inc.  All Rights Reserved
+**				               ----------[WEAPONS]----------
 **
 ** This file contains the following weapon related definitions:
 **

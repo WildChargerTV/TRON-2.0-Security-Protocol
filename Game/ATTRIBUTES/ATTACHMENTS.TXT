@@ -1,0 +1,2710 @@
+/************************************************************************
+**
+**                     ----------[ATTACHMENTS]----------
+**
+*/
+
+/*
+**
+**	 Name			the name of the attachable. the name is what will be entered into dedit.
+**	 Type			the type of the attachable. the valid types are:
+**
+**					0 - prop			a static item with no logic, like a hat, or moustache, etc
+**					1 - object			an item with logic, like a searchlight, etc
+**
+**	 Properties	a string with any object properties you wish to override (for example "Chrome 1;Gravity 0")
+**	 
+**	 Class		if the type = 1 (object), the class name
+**
+**	 Model		if the type = 0 (prop), the name of the .ltb file
+**
+**	 Skin0-N		if the type = 0 (prop), the name of the .dtx file
+**					There can be any number of skins: Skin0, Skin1, ..., SkinN
+**
+**	 RenderStyle0-N	if the type = 0 (prop), the name of the .ltb file
+**						There can be any number of render styles: RenderStyle0, RenderStyle1, ..., RenderStyleN
+**
+**	 DeleteOnDeath	1 if the attachment should be deleted when a character dies.
+**						0 if the attachment should be carried over to the body.
+**
+*/
+
+[Attachment0]
+Name						= "EncomHair"
+Type						= 0
+Model						= "Attachments\Models\encomhair.ltb"
+Skin0						= "Attachments\skins\encon_Hair.dtx"
+RenderStyle0				= "Chars\RS\default.ltb"
+DeleteOnDeath				= 0
+
+[Attachment1]
+Name						= "HardHat"
+Type						= 0
+Model						= "Attachments\Models\Hardhat.ltb"
+Skin0						= "Attachments\skins\Hardhat.dtx"
+RenderStyle0				= "Chars\RS\default.ltb"
+DeleteOnDeath				= 0
+DetachWhenShot				= 0
+
+[Attachment2]
+Name						= "GasMask"
+Type						= 0
+Model						= "Attachments\Models\gasmask.ltb"
+Skin0						= "Attachments\skins\gasmask.dtx"
+RenderStyle0				= "Chars\RS\default.ltb"
+DeleteOnDeath				= 0
+
+[Attachment3]
+Name						= "SoftHat"
+Type						= 0
+Model						= "Attachments\Models\softhat.ltb"
+Skin0						= "Attachments\skins\encon_hair.dtx"
+RenderStyle0				= "Chars\RS\default.ltb"
+DeleteOnDeath				= 0
+DetachWhenShot				= 0
+
+[Attachment4]
+Name			 			= "SSLeutMask"
+Type						= 0
+Model						= "Attachments\Models\SSLtMask.ltb"
+Skin0						= "chars\skins\IC_Sheilds.dtx"
+RenderStyle0				= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath				= 0
+
+[Attachment5]
+Name						= "IC_L1_Left_Foot"
+Type						= 1
+Class						= "PowerArmor"
+Properties					= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model						= "Attachments\Models\IC_L_Foot_1.ltb"
+Skin0						= "chars\skins\IC_Sheilds.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0				= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath				= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent					=	1
+DetachWhenShot	= 0
+
+[Attachment6]
+Name						= "IC_L1_Left_LowerArm"
+Type						= 1
+Class						= "PowerArmor"
+Properties					= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model						= "Attachments\Models\IC_L_LArm1.ltb"
+Skin0						= "chars\skins\IC_Sheilds.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0				= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath				= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent					=	1
+DetachWhenShot	= 0
+
+[Attachment7]
+Name						= "IC_L1_Left_LowerLeg"
+Type						= 1
+Class						= "PowerArmor"
+Properties					= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model						= "Attachments\Models\IC_L_LowerLeg_1.ltb"
+Skin0						= "chars\skins\IC_Sheilds.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0				= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath				= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent					=	1
+DetachWhenShot	= 0
+
+[Attachment8]
+Name			= "IC_L1_Left_UpperArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_L_UArm1.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+[Attachment9]
+Name			= "IC_L1_Left_UpperLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_L_UpperLeg_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment10]
+Name			= "IC_L1_Right_Foot"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_R_Foot_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment11]
+Name			= "IC_L1_Right_LowerArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_R_LArm1.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath		= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment12]
+Name			= "IC_L1_Right_LowerLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_R_LowerLeg_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment13]
+Name			= "IC_L1_Right_UpperArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_R_UArm_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath		= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment14]
+Name			= "IC_L1_Right_UpperLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_R_UpperLeg_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment15]
+Name			= "IC_L1_UpperTorso"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_UpperTorso_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment16]
+Name			= "IC_L2_Head"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_Head_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment17]
+Name			= "IC_L2_Left_Shoulder"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_L_Shoulder_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment18]
+Name			= "IC_L2_Right_Shoulder"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_R_Shoulder_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment19]
+Name			= "IC_L2_Torso"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_Torso_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment20]
+Name			= "IC_L1_Left_Hand"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_L_Hand_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment21]
+Name			= "IC_L1_Right_Hand"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_R_Hand_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment22]
+Name			= "IC_L2_Left_LowerArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_L_LowerArm_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment23]
+Name			= "IC_L2_Left_LowerLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_L_LowerLeg_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment24]
+Name			= "IC_L2_Left_UpperArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_L_UpperArm_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment25]
+Name			= "IC_L2_Left_UpperLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_L_UpperLeg_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment26]
+Name			= "IC_L2_Right_UpperArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_R_UpperArm_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment27]
+Name			= "IC_L2_Right_UpperLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_R_UpperLeg_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment28]
+Name			= "IC_L2_Right_LowerArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_R_LowerArm_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment29]
+Name			= "IC_L2_Right_LowerLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_R_LowerLeg_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment30]
+Name			="IC_L2_UpperTorso"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\IC_Upper_Torso_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment31]
+Name			="ShellArmor1"
+Type			= 1
+Class			= "ShellArmor"
+Properties		= "ModelId RiotShieldSkeleton; ModelId IC_Regular; scale 5 5 5; DamagePercentForCommand 50; DamagePercentCommand (msg CAIHuman01 remove)"
+Model			= "chars\models\KernelShield.ltb"
+Skin0			= "chars\skins\Protocol.dtx"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment32]
+Name			= "Mercury_Rod_Left"
+Type			= 0
+Model			= "Attachments\Models\mercuryrodleft.ltb"
+Skin0			= "Attachments\skins\mercury_Rods.dtx"
+RenderStyle0 		= "Chars\RS\Jet_RS.ltb"
+DeleteOnDeath	= 0
+
+[Attachment33]
+Name			= "Mercury_Rod_right"
+Type			= 0
+Model			= "Attachments\Models\mercuryrodright.ltb"
+Skin0			= "Attachments\skins\mercury_Rods.dtx"
+RenderStyle0 		= "Chars\RS\Jet_RS.ltb"
+DeleteOnDeath	= 0
+
+[Attachment34]
+Name			= "LeadTechHair"
+Type			= 0
+Model			= "Attachments\Models\LeadTechHair.ltb"
+Skin0			= "Attachments\skins\encon_Hair.dtx"
+RenderStyle0 		= "Chars\RS\default.ltb"
+DeleteOnDeath	= 0
+
+//Resource Hog Attachments
+
+[Attachment35]
+Name			= "HOG_Goggles"
+Type			= 0
+Model			= "Attachments\Models\HOG_Goggles.ltb"
+Skin0			= "Attachments\skins\hog_attachments.dtx"
+RenderStyle0 		= "Chars\RS\jet_rs.ltb"
+DeleteOnDeath	= 1
+
+[Attachment36]
+Name			= "HOG_LLowerArm1"
+Type			= 0
+Model			= "Attachments\Models\HOG_LLowerArm1.ltb"
+Skin0			= "Attachments\skins\hog_attachments.dtx"
+RenderStyle0 		= "Chars\RS\jet_rs.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= TRUE
+
+[Attachment37]
+Name			= "HOG_LLowerArm2"
+Type			= 0
+Model			= "Attachments\Models\HOG_LLowerArm2.ltb"
+Skin0			= "Attachments\skins\hog_attachments.dtx"
+RenderStyle0 		= "Chars\RS\jet_rs.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= TRUE
+
+[Attachment38]
+Name			= "HOG_LShoulder"
+Type			= 0
+Model			= "Attachments\Models\HOG_LShoulder.ltb"
+Skin0			= "Attachments\skins\hog_attachments.dtx"
+RenderStyle0 		= "Chars\RS\jet_rs.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= TRUE
+
+[Attachment39]
+Name			= "HOG_LUpperArm1"
+Type			= 0
+Model			= "Attachments\Models\HOG_LUpperArm1.ltb"
+Skin0			= "Attachments\skins\hog_attachments.dtx"
+RenderStyle0 		= "Chars\RS\jet_rs.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= TRUE
+
+[Attachment40]
+Name			= "HOG_LUpperArm2"
+Type			= 0
+Model			= "Attachments\Models\HOG_LUpperArm2.ltb"
+Skin0			= "Attachments\skins\hog_attachments.dtx"
+RenderStyle0 		= "Chars\RS\jet_rs.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= TRUE
+
+[Attachment41]
+Name			= "HOG_RLowerArm1"
+Type			= 0
+Model			= "Attachments\Models\HOG_RLowerArm1.ltb"
+Skin0			= "Attachments\skins\hog_attachments.dtx"
+RenderStyle0 		= "Chars\RS\jet_rs.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= TRUE
+
+[Attachment42]
+Name			= "HOG_RLowerArm2"
+Type			= 0
+Model			= "Attachments\Models\HOG_RLowerArm2.ltb"
+Skin0			= "Attachments\skins\hog_attachments.dtx"
+RenderStyle0 		= "Chars\RS\jet_rs.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= TRUE
+
+[Attachment43]
+Name			= "HOG_RShoulder"
+Type			= 0
+Model			= "Attachments\Models\HOG_RShoulder.ltb"
+Skin0			= "Attachments\skins\hog_attachments.dtx"
+RenderStyle0 		= "Chars\RS\jet_rs.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= TRUE
+
+[Attachment44]
+Name			= "HOG_RUpperArm1"
+Type			= 0
+Model			= "Attachments\Models\HOG_RUpperArm1.ltb"
+Skin0			= "Attachments\skins\hog_attachments.dtx"
+RenderStyle0 		= "Chars\RS\jet_rs.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= TRUE
+
+[Attachment45]
+Name			= "HOG_RUpperArm2"
+Type			= 0
+Model			= "Attachments\Models\HOG_RUpperArm2.ltb"
+Skin0			= "Attachments\skins\hog_attachments.dtx"
+RenderStyle0 		= "Chars\RS\jet_rs.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= TRUE
+
+/**********************************************
+** Kernel armor 
+*/
+
+[Attachment46]
+Name			= "Kernel_Shield"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\kernel_shield.ltb"
+Skin0			= "Attachments\skins\kernel_shield.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment47]
+Name			= "Kern_LeftFootShld"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\Kern_LeftFootShield.ltb"
+Skin0			= "Attachments\skins\kernel_shell.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment48]
+Name			= "Kern_LeftLowerArmShld"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 ; FadeTime 5.0 5.0; FadeDelay 0.0 0.0;  "
+Model			= "Attachments\Models\Kern_LeftLowerArmShld.ltb"
+Skin0			= "Attachments\skins\kernel_shell.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment49]
+Name			= "Kern_LeftLowerLegShld"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\Kern_LeftLowerLegShld.ltb"
+Skin0			= "Attachments\skins\kernel_shell.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment50]
+Name			= "Kern_LeftShoulderShld"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\Kern_LeftShoulderShld.ltb"
+Skin0			= "Attachments\skins\kernel_shell.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment51]
+Name			= "Kern_LeftUpperArmShld"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\Kern_LeftUpperArmShld.ltb"
+Skin0			= "Attachments\skins\kernel_shell.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment52]
+Name			= "Kern_LeftUpperLegShld"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\Kern_LeftUpperLegShld.ltb"
+Skin0			= "Attachments\skins\kernel_shell.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment53]
+Name			= "Kern_RightFootShld"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\Kern_RightFootShld.ltb"
+Skin0			= "Attachments\skins\kernel_shell.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath		= 1
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment54]
+Name			= "Kern_RightLowerArmShld"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\Kern_RightLowerArmShld.ltb"
+Skin0			= "Attachments\skins\kernel_shell.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment55]
+Name			= "Kern_RightLowerLegShld"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\Kern_RightLowerLegShld.ltb"
+Skin0			= "Attachments\skins\kernel_shell.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment56]
+Name			= "Kern_RightShoulderShld"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\Kern_RightShoulderShld.ltb"
+Skin0			= "Attachments\skins\kernel_shell.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment57]
+Name			= "Kern_RightUpperArmShld"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\Kern_RightUpperArmShld.ltb"
+Skin0			= "Attachments\skins\kernel_shell.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment58]
+Name			= "Kern_RightUpperLegShld"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\Kern_RightUpperLegShld.ltb"
+Skin0			= "Attachments\skins\kernel_shell.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment59]
+Name			= "Kern_TorsoShield"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\Kern_TorsoShield.ltb"
+Skin0			= "Attachments\skins\kernel_shell.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 1
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment60]
+Name			= "Kern_UpperTorsoShld"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model			= "Attachments\Models\Kern_UpperTorsoShld.ltb"
+Skin0			= "Attachments\skins\kernel_shell.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+/*
+*** IC SHIELD 
+*/
+
+[Attachment61]
+Name			= "IC_RiotShield"
+Type			= 1
+Class			= "ShellArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 ; ModelId RiotShieldSkeleton"
+Model			= "Attachments\Models\RiotShield.ltb"
+Skin0			= "Attachments\skins\IC_RiotShield.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0 	= "Chars\RS\Kernel_Shell.ltb"
+RenderStyle1 	= "Chars\RS\ICShield_RS.ltb"
+DeleteOnDeath	= 1
+DetachWhenShot	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+
+
+[Attachment62]
+Name			= "IC_RiotShield_internet"
+Type			= 1
+Class			= "ShellArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 ; ModelId RiotShieldSkeleton"
+Model			= "Attachments\Models\RiotShield.ltb"
+Skin0			= "Attachments\skins\IC_RiotShield_internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0 		= "Chars\RS\Kernel_Shell.ltb"
+RenderStyle1 		= "Chars\RS\ICShield_RS.ltb"
+DeleteOnDeath	= 1
+DetachWhenShot	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+
+[Attachment63]
+Name				= "IC_LeftRod"
+Type				= 1
+Class				= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model				= "Attachments\Models\IC_LeftRod.ltb"
+Skin0				= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0			= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath			= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment64]
+Name				= "IC_RightRod"
+Type				= 1
+Class				= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20 "
+Model				= "Attachments\Models\IC_RightRod.ltb"
+Skin0				= "chars\skins\IC_Sheilds.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0			= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath			= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment65]
+Name			= "IC_RiotShield_alanspc"
+Type			= 1
+Class			= "ShellArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20 ; ModelId RiotShieldSkeleton"
+Model			= "Attachments\Models\RiotShield.ltb"
+Skin0			= "Attachments\skins\IC_RiotShield_alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0 		= "Chars\RS\Kernel_Shell.ltb"
+RenderStyle1 		= "Chars\RS\ICShield_RS.ltb"
+DeleteOnDeath	= 1
+DetachWhenShot	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+
+
+[Attachment66]
+Name			= "IC_RiotShield_fcon"
+Type			= 1
+Class			= "ShellArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Fcon; HitPoints 20 ; ModelId RiotShieldSkeleton"
+Model			= "Attachments\Models\RiotShield.ltb"
+Skin0			= "Attachments\skins\IC_RiotShield_fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0 		= "Chars\RS\Kernel_Shell.ltb"
+RenderStyle1 		= "Chars\RS\ICShield_RS.ltb"
+DeleteOnDeath	= 1
+DetachWhenShot	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+
+
+/// IC Internet Shields
+
+[Attachment67]
+Name			= "ICInternet_L1_Left_Foot"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet ; HitPoints 20"
+Model			= "Attachments\Models\IC_L_Foot_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment68]
+Name			= "ICInternet_L1_Left_LowerArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_L_LArm1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment69]
+Name			= "ICInternet_L1_Left_LowerLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_L_LowerLeg_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment70]
+Name			= "ICInternet_L1_Left_UpperArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_L_UArm1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment71]
+Name			= "ICInternet_L1_Left_UpperLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_L_UpperLeg_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment72]
+Name			= "ICInternet_L1_Right_Foot"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_R_Foot_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment73]
+Name			= "ICInternet_L1_Right_LowerArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_R_LArm1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment74]
+Name			= "ICInternet_L1_Right_LowerLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_R_LowerLeg_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment75]
+Name			= "ICInternet_L1_Right_UpperArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_R_UArm_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment76]
+Name			= "ICInternet_L1_Right_UpperLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_R_UpperLeg_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment77]
+Name			= "ICInternet_L1_UpperTorso"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_UpperTorso_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment78]
+Name			= "ICInternet_L2_Head"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_Head_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment79]
+Name			= "ICInternet_L2_Left_Shoulder"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_L_Shoulder_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment80]
+Name			= "ICInternet_L2_Right_Shoulder"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_R_Shoulder_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment81]
+Name			= "ICInternet_L2_Torso"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_Torso_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment82]
+Name			= "ICInternet_L1_Left_Hand"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_L_Hand_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment83]
+Name			= "ICInternet_L1_Right_Hand"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_R_Hand_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment84]
+Name			= "ICInternet_L2_Left_LowerArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_L_LowerArm_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment85]
+Name			= "ICInternet_L2_Left_LowerLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_L_LowerLeg_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment86]
+Name			= "ICInternet_L2_Left_UpperArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_L_UpperArm_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+[Attachment87]
+Name			= "ICInternet_L2_Left_UpperLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_L_UpperLeg_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment88]
+Name			= "ICInternet_L2_Right_UpperArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_R_UpperArm_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment89]
+Name			= "ICInternet_L2_Right_UpperLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_R_UpperLeg_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment90]
+Name			= "ICInternet_L2_Right_LowerArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_R_LowerArm_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment91]
+Name			= "ICInternet_L2_Right_LowerLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_R_LowerLeg_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment92]
+Name			="ICInternet_L2_UpperTorso"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model			= "Attachments\Models\IC_Upper_Torso_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment93]
+Name				= "ICInternet_LeftRod"
+Type				= 1
+Class				= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model				= "Attachments\Models\IC_LeftRod.ltb"
+Skin0				= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1				= "tex\Chrome.dtx"
+RenderStyle0			= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath			= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment94]
+Name				= "ICInternet_RightRod"
+Type				= 1
+Class				= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_Internet; HitPoints 20"
+Model				= "Attachments\Models\IC_RightRod.ltb"
+Skin0				= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0			= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath			= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+/// IC Fcon Shields
+
+[Attachment95]
+Name			= "ICFcon_L1_Left_Foot"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon"
+Model			= "Attachments\Models\IC_L_Foot_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment96]
+Name			= "ICFcon_L1_Left_LowerArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_L_LArm1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment97]
+Name			= "ICFcon_L1_Left_LowerLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_L_LowerLeg_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment98]
+Name			= "ICFcon_L1_Left_UpperArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_L_UArm1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment99]
+Name			= "ICFcon_L1_Left_UpperLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_L_UpperLeg_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment100]
+Name			= "ICFcon_L1_Right_Foot"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_R_Foot_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment101]
+Name			= "ICFcon_L1_Right_LowerArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_R_LArm1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment102]
+Name			= "ICFcon_L1_Right_LowerLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_R_LowerLeg_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment103]
+Name			= "ICFcon_L1_Right_UpperArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_R_UArm_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment104]
+Name			= "ICFcon_L1_Right_UpperLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_R_UpperLeg_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment105]
+Name			= "ICFcon_L1_UpperTorso"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_UpperTorso_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment106]
+Name			= "ICFcon_L2_Head"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_Head_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment107]
+Name			= "ICFcon_L2_Left_Shoulder"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_L_Shoulder_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment108]
+Name			= "ICFcon_L2_Right_Shoulder"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_R_Shoulder_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment109]
+Name			= "ICFcon_L2_Torso"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_Torso_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment110]
+Name			= "ICFcon_L1_Left_Hand"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_L_Hand_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment111]
+Name			= "ICFcon_L1_Right_Hand"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_R_Hand_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment112]
+Name			= "ICFcon_L2_Left_LowerArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_L_LowerArm_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment113]
+Name			= "ICFcon_L2_Left_LowerLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_L_LowerLeg_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment114]
+Name			= "ICFcon_L2_Left_UpperArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_L_UpperArm_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment115]
+Name			= "ICFcon_L2_Left_UpperLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_L_UpperLeg_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment116]
+Name			= "ICFcon_L2_Right_UpperArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_R_UpperArm_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment117]
+Name			= "ICFcon_L2_Right_UpperLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_R_UpperLeg_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment118]
+Name			= "ICFcon_L2_Right_LowerArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_R_LowerArm_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment119]
+Name			= "ICFcon_L2_Right_LowerLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_R_LowerLeg_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment120]
+Name			="ICFcon_L2_UpperTorso"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model			= "Attachments\Models\IC_Upper_Torso_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+
+
+[Attachment121]
+Name				= "ICFcon_LeftRod"
+Type				= 1
+Class				= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model				= "Attachments\Models\IC_LeftRod.ltb"
+Skin0				= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1				= "tex\Chrome.dtx"
+RenderStyle0			= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath			= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment122]
+Name				= "ICFcon_RightRod"
+Type				= 1
+Class				= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_fcon; HitPoints 20"
+Model				= "Attachments\Models\IC_RightRod.ltb"
+Skin0				= "chars\skins\IC_Sheilds_Fcon.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0			= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath			= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+/// IC Alanspc Shields
+
+[Attachment123]
+Name			= "ICAlansPC_L1_Left_Foot"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_L_Foot_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment124]
+Name			= "ICAlansPC_L1_Left_LowerArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_L_LArm1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment125]
+Name			= "ICAlansPC_L1_Left_LowerLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_L_LowerLeg_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment126]
+Name			= "ICAlansPC_L1_Left_UpperArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_L_UArm1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment127]
+Name			= "ICAlansPC_L1_Left_UpperLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_L_UpperLeg_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment128]
+Name			= "ICAlansPC_L1_Right_Foot"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_R_Foot_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment129]
+Name			= "ICAlansPC_L1_Right_LowerArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_R_LArm1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment130]
+Name			= "ICAlansPC_L1_Right_LowerLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_R_LowerLeg_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment131]
+Name			= "ICAlansPC_L1_Right_UpperArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_R_UArm_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment132]
+Name			= "ICAlansPC_L1_Right_UpperLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_R_UpperLeg_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment133]
+Name			= "ICAlansPC_L1_UpperTorso"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_UpperTorso_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment134]
+Name			= "ICAlansPC_L2_Head"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_Head_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment135]
+Name			= "ICAlansPC_L2_Left_Shoulder"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_L_Shoulder_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment136]
+Name			= "ICAlansPC_L2_Right_Shoulder"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_R_Shoulder_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment137]
+Name			= "ICAlansPC_L2_Torso"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_Torso_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment138]
+Name			= "ICAlansPC_L1_Left_Hand"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_L_Hand_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment139]
+Name			= "ICAlansPC_L1_Right_Hand"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_R_Hand_1.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment140]
+Name			= "ICAlansPC_L2_Left_LowerArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_L_LowerArm_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment141]
+Name			= "ICAlansPC_L2_Left_LowerLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_L_LowerLeg_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment142]
+Name			= "ICAlansPC_L2_Left_UpperArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_L_UpperArm_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment143]
+Name			= "ICAlansPC_L2_Left_UpperLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_L_UpperLeg_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment144]
+Name			= "ICAlansPC_L2_Right_UpperArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_R_UpperArm_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0		= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment145]
+Name			= "ICAlansPC_L2_Right_UpperLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_R_UpperLeg_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment146]
+Name			= "ICAlansPC_L2_Right_LowerArm"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_R_LowerArm_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment147]
+Name			= "ICAlansPC_L2_Right_LowerLeg"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_R_LowerLeg_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment148]
+Name			="ICAlansPC_L2_UpperTorso"
+Type			= 1
+Class			= "PowerArmor"
+Properties		= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model			= "Attachments\Models\IC_Upper_Torso_2.ltb"
+Skin0			= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment149]
+Name						= "ICAlansPC_LeftRod"
+Type						= 1
+Class						= "PowerArmor"
+Properties					= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model						= "Attachments\Models\IC_LeftRod.ltb"
+Skin0						= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0				= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath				= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent					=	1
+DetachWhenShot	= 0
+
+
+
+[Attachment150]
+Name						= "ICAlansPC_RightRod"
+Type						= 1
+Class						= "PowerArmor"
+Properties					= "OnDestroyFX CHAR_IC_ShieldDerez_AlansPC; HitPoints 20"
+Model						= "Attachments\Models\IC_RightRod.ltb"
+Skin0						= "chars\skins\IC_Sheilds_Alanspc.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0				= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath				= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent					=	1
+DetachWhenShot	= 0
+
+
+[Attachment151]
+Name						= "Launcher_RightGun"
+Type						= 1
+Class						= "PowerArmor"
+Properties					= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20"
+Model						= "Weapons\Disc\Models_hh\Launcher_RightGun.ltb"
+Skin0						= "chars\skins\IC_Sheilds.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0				= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath				= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent					=	1
+DetachWhenShot	= 0
+
+
+[Attachment152]
+Name						= "Launcher_LeftGun"
+Type						= 1
+Class						= "PowerArmor"
+Properties					= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20"
+Model						= "Weapons\Disc\Models_hh\Launcher_LeftGun.ltb"
+Skin0						= "chars\skins\IC_Sheilds.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0				= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath				= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent					=	1
+DetachWhenShot	= 0
+
+
+[Attachment153]
+Name						= "CellPhoneOpen"
+Type						= 0
+Model						= "attachments\models\cellphoneopen.ltb"
+Skin0						= "attachments\skins\cellphone.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0 				= "Chars\RS\Jet_RS.ltb"
+DeleteOnDeath				= 1
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent					=	0
+
+[Attachment154]
+Name						= "CellPhoneClose"
+Type						= 0
+Model						= "attachments\models\cellphone.ltb"
+Skin0						= "attachments\skins\cellphone.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0 				= "Chars\RS\Jet_RS.ltb"
+DeleteOnDeath				= 1
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent					=	0
+
+[Attachment155]
+Name						= "CellPhoneFlip"
+Type						= 0
+Model						= "attachments\models\cellphoneflip.ltb"
+Skin0						= "attachments\skins\cellphone.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0 				= "Chars\RS\Jet_RS.ltb"
+DeleteOnDeath				= 1
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent					=	0
+
+[Attachment156]
+Name						= "DWPrepMask"
+Type						= 0
+Model						= "Attachments\models\DWPrep_Mask.ltb"
+skin0						= "chars\skins\DWprepHead.dtx"
+RenderStyle0				= "Chars\RS\default.ltb"
+HiddenInDEditToAIWeaponList	= 0
+DeleteOnDeath				= 0
+
+[Attachment157]
+Name						= "Tablet"
+Type						= 0
+Model						= "attachments\models\tablet.ltb"
+Skin0						= "attachments\skins\tablet.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0 				= "Chars\RS\Jet_RS.ltb"
+RenderStyle1				= "RS\Alpha_Transparent.ltb"
+DeleteOnDeath				= 1
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent					=	1
+
+
+
+[Attachment158]
+Name						= "SeekerPatchDamage"
+Type						= 1
+Class						= "AttachedExplosion"
+Properties					= "Ammo SeekerPatchDamage; StartOn 1; DamageForever 1"
+DeleteOnDeath				= 1
+Model						= "Weapons\Disc\Models_hh\Launcher_LeftGun.ltb"
+Skin0						= "chars\skins\IC_Sheilds.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0				= "chars\RS\Kernel_Shell.ltb"
+HiddenInDEditToAIWeaponList	= TRUE
+DetachWhenShot	= 0
+
+
+
+[Attachment159]
+Name						= "SeekerMeleeDamage"
+Type						= 1
+Class						= "AttachedExplosion"
+Properties					= "Ammo SeekerMeleeAmmo; StartOn 1; DamageForever 1"
+DeleteOnDeath				= 1
+Model						= "Weapons\Disc\Models_hh\Launcher_LeftGun.ltb"
+Skin0						= "chars\skins\IC_Sheilds.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0				= "chars\RS\Kernel_Shell.ltb"
+HiddenInDEditToAIWeaponList	= TRUE
+DetachWhenShot	= 0
+
+[Attachment160]
+Name			= "ThorneBall"
+Type			= 1
+Class			= "ThorneBall"
+Properties		= "OnDestroyFX CoreDumpRemove_0; ModelId Thorn_Ball_Skeleton"
+Model			= "Weapons\Ball\models_hh\Thorn_Ball.ltb"
+Skin0			= "Attachments\skins\IC_RiotShield.dtx"
+DeleteOnDeath	= 1
+DetachWhenShot	= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent		=	1
+
+[Attachment161]
+Name						= "Mesh_Primitive"
+Type						= 0
+Model						= "Weapons\mesh\models_hh\Mesh_hh.ltb"
+Skin0						= "Weapons\mesh\skins_pv\PV_Blaster_1.dtx"
+Skin1						= "Weapons\mesh\skins_pv\PV_Blaster_2.dtx"
+Skin2						= "Weapons\mesh\skins_pv\PV_Blaster_3.dtx"
+RenderStyle0 				= "Weapons\mesh\rs\PV_Blaster_Base.ltb"
+RenderStyle1				= "Weapons\mesh\rs\PV_Blaster_Add.ltb"
+DeleteOnDeath				= 1
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent					=	1
+DetachWhenShot	= 0
+
+[Attachment162]
+Name						=	"Right_arm_shield"
+Type						=	0
+Model						=	"attachments\models\Right_arm_shield.ltb"
+Skin0						=	"attachments\skins\femaleATTACHpunk.dtx"
+RenderStyle0 				=	"chars\RS\MA3ACompiled_Glow.ltb"
+DeleteOnDeath				=	0
+HiddenInDEditToAIWeaponList	=	FALSE
+Translucent					=	1
+
+[Attachment163]
+Name						=	"Left_arm_shield"
+Type						=	0
+Model						=	"attachments\models\Left_arm_shield.ltb"
+Skin0						=	"attachments\skins\femaleATTACHpunk.dtx"
+RenderStyle0 				=	"chars\RS\MA3ACompiled_Glow.ltb"
+DeleteOnDeath				=	0
+HiddenInDEditToAIWeaponList	=	FALSE
+Translucent					=	1
+
+[Attachment164]
+Name						=	"Face_shield"
+Type						=	0
+Model						=	"attachments\models\Face_shield.ltb"
+Skin0						=	"attachments\skins\femaleATTACHpunk.dtx"
+RenderStyle0 				=	"chars\RS\MA3ACompiled_Glow.ltb"
+DeleteOnDeath				=	0
+HiddenInDEditToAIWeaponList	=	FALSE
+Translucent					=	1
+
+[Attachment165]
+Name						=	"Civ_Helmet_Blue"
+Type						=	0
+Model						=	"attachments\models\Helmet.ltb"
+Skin0						=	"attachments\skins\CivAttachment_Blue.dtx"
+Skin1						=	"tex\chrome.dtx"
+RenderStyle0 				=	"chars\RS\Jet_RS.ltb"
+DeleteOnDeath				=	0
+HiddenInDEditToAIWeaponList	=	FALSE
+Translucent					=	0
+DetachWhenShot				= 0
+
+[Attachment166]
+Name						=	"Civ_Helmet_Red"
+Type						=	0
+Model						=	"attachments\models\Helmet.ltb"
+Skin0						=	"attachments\skins\CivAttachment_Red.dtx"
+Skin1						=	"tex\chrome.dtx"
+RenderStyle0 				=	"chars\RS\Jet_RS.ltb"
+DeleteOnDeath				=	0
+HiddenInDEditToAIWeaponList	=	FALSE
+Translucent					=	0
+DetachWhenShot				= 0
+
+[Attachment167]
+Name						=	"Civ_Helmet_Purple"
+Type						=	0
+Model						=	"attachments\models\Helmet.ltb"
+Skin0						=	"attachments\skins\CivAttachment_Purple.dtx"
+Skin1						=	"tex\chrome.dtx"
+RenderStyle0 				=	"chars\RS\Jet_RS.ltb"
+DeleteOnDeath				=	0
+HiddenInDEditToAIWeaponList	=	FALSE
+Translucent					=	0
+DetachWhenShot				= 0
+
+[Attachment168]
+Name						=	"Civ_Helmet_Orange"
+Type						=	0
+Model						=	"attachments\models\Helmet.ltb"
+Skin0						=	"attachments\skins\CivAttachment_Orange.dtx"
+Skin1						=	"tex\chrome.dtx"
+RenderStyle0 				=	"chars\RS\Jet_RS.ltb"
+DeleteOnDeath				=	0
+HiddenInDEditToAIWeaponList	=	FALSE
+Translucent					=	0
+DetachWhenShot				= 0
+
+[Attachment169]
+Name						=	"Civ_Helmet_Green"
+Type						=	0
+Model						=	"attachments\models\Helmet.ltb"
+Skin0						=	"attachments\skins\CivAttachment_Green.dtx"
+Skin1						=	"tex\chrome.dtx"
+RenderStyle0 				=	"chars\RS\Jet_RS.ltb"
+DeleteOnDeath				=	0
+HiddenInDEditToAIWeaponList	=	FALSE
+Translucent					=	0
+DetachWhenShot				= 0
+
+[Attachment170]
+Name						=	"Civ_Helmet_Blue2"
+Type						=	0
+Model						=	"attachments\models\Helmet.ltb"
+Skin0						=	"attachments\skins\CivAttachment_Blue2.dtx"
+Skin1						=	"tex\chrome.dtx"
+RenderStyle0 				=	"chars\RS\Jet_RS.ltb"
+DeleteOnDeath				=	0
+HiddenInDEditToAIWeaponList	=	FALSE
+Translucent					=	0
+DetachWhenShot				= 0
+
+[Attachment171]
+Name			= "Civ_Glasses"
+Type			= 0
+Model			= "Attachments\Models\Civ_Glasses.ltb"
+Skin0			= "Attachments\skins\CivAttachment.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Ma3aCompiled_Glow.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+
+[Attachment172]
+Name						=	"Civ_Helmet"
+Type						=	0
+Model						=	"attachments\models\Helmet.ltb"
+Skin0						=	"Attachments\skins\CivAttachment.dtx"
+Skin1						=	"tex\chrome.dtx"
+RenderStyle0 				=	"chars\RS\Jet_RS.ltb"
+DeleteOnDeath				=	0
+HiddenInDEditToAIWeaponList	=	FALSE
+Translucent					=	0
+DetachWhenShot				= 0
+
+[Attachment173]
+Name			= "Civ_Glasses_Red"
+Type			= 0
+Model			= "Attachments\Models\Civ_Glasses.ltb"
+Skin0			= "Attachments\skins\CivAttachment_Red.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Ma3aCompiled_Glow.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+DetachWhenShot				= 0
+
+[Attachment174]
+Name			= "Civ_Glasses_Purple"
+Type			= 0
+Model			= "Attachments\Models\Civ_Glasses.ltb"
+Skin0			= "Attachments\skins\CivAttachment_Purple.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Ma3aCompiled_Glow.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+
+[Attachment175]
+Name			= "Civ_Glasses_Orange"
+Type			= 0
+Model			= "Attachments\Models\Civ_Glasses.ltb"
+Skin0			= "Attachments\skins\CivAttachment_Orange.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Ma3aCompiled_Glow.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+
+[Attachment176]
+Name			= "Civ_Glasses_Green"
+Type			= 0
+Model			= "Attachments\Models\Civ_Glasses.ltb"
+Skin0			= "Attachments\skins\CivAttachment_Green.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Ma3aCompiled_Glow.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+
+[Attachment177]
+Name			= "Civ_Glasses_Blue"
+Type			= 0
+Model			= "Attachments\Models\Civ_Glasses.ltb"
+Skin0			= "Attachments\skins\CivAttachment_Blue.dtx"
+Skin1			= "tex\Chrome.dtx"
+RenderStyle0	= "chars\RS\Ma3aCompiled_Glow.ltb"
+DeleteOnDeath	= 0
+HiddenInDEditToAIWeaponList	= FALSE
+Translucent		=	1
+
+[Attachment178]
+Name						=	"DJ_Helmet_Green"
+Type						=	0
+Model						=	"attachments\models\DJ_Helmet.ltb"
+Skin0						=	"attachments\skins\CivAttachment_Green.dtx"
+Skin1						=	"tex\chrome.dtx"
+RenderStyle0 				=	"chars\RS\Jet_RS.ltb"
+DeleteOnDeath				=	0
+HiddenInDEditToAIWeaponList	=	TRUE
+Translucent					=	0
+DetachWhenShot				= 0
+
+[Attachment179]
+Name						=	"Hard_Drive"
+Type						=	0
+Model						=	"attachments\models\HardDrive.ltb"
+Skin0						=	"attachments\skins\drive.dtx"
+RenderStyle0 				=	"chars\RS\Jet_RS.ltb"
+DeleteOnDeath				=	0
+HiddenInDEditToAIWeaponList	=	FALSE
+Translucent					=	0
+
+[Attachment180]
+Name						=	"Jet_Disc"
+Type						=	0
+Model						=	"attachments\models\Jet_Disc.ltb"
+Skin0						=	"chars\skins\Disc.dtx"
+Skin1						=	"tex\chrome.dtx"
+RenderStyle0 				=	"chars\RS\Jet_RS.ltb"
+DeleteOnDeath				=	0
+HiddenInDEditToAIWeaponList	=	FALSE
+Translucent					=	0
+
+[Attachment181]
+Name						= "Launcher_RightGun_Internet"
+Type						= 1
+Class						= "PowerArmor"
+Properties					= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20"
+Model						= "Weapons\Disc\Models_hh\Launcher_RightGun.ltb"
+Skin0						= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0				= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath				= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent					=	1
+DetachWhenShot	= 0
+
+
+[Attachment182]
+Name						= "Launcher_LeftGun_Internet"
+Type						= 1
+Class						= "PowerArmor"
+Properties					= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20"
+Model						= "Weapons\Disc\Models_hh\Launcher_LeftGun.ltb"
+Skin0						= "chars\skins\IC_Sheilds_Internet.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0				= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath				= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent					=	1
+DetachWhenShot	= 0
+
+
+[Attachment183]
+Name						= "Launcher_RightGun_AlansPC"
+Type						= 1
+Class						= "PowerArmor"
+Properties					= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20"
+Model						= "Weapons\Disc\Models_hh\Launcher_RightGun.ltb"
+Skin0						= "chars\skins\IC_Sheilds_AlansPC.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0				= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath				= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent					=	1
+DetachWhenShot	= 0
+
+
+[Attachment184]
+Name						= "Launcher_LeftGun_AlansPC"
+Type						= 1
+Class						= "PowerArmor"
+Properties					= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20"
+Model						= "Weapons\Disc\Models_hh\Launcher_LeftGun.ltb"
+Skin0						= "chars\skins\IC_Sheilds_AlansPC.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0				= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath				= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent					=	1
+DetachWhenShot	= 0
+
+
+[Attachment185]
+Name						= "Launcher_RightGun_FCon"
+Type						= 1
+Class						= "PowerArmor"
+Properties					= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20"
+Model						= "Weapons\Disc\Models_hh\Launcher_RightGun.ltb"
+Skin0						= "chars\skins\IC_Sheilds_FCon.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0				= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath				= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent					=	1
+DetachWhenShot	= 0
+
+
+[Attachment186]
+Name						= "Launcher_LeftGun_FCon"
+Type						= 1
+Class						= "PowerArmor"
+Properties					= "OnDestroyFX CHAR_IC_ShieldDerez ; HitPoints 20"
+Model						= "Weapons\Disc\Models_hh\Launcher_LeftGun.ltb"
+Skin0						= "chars\skins\IC_Sheilds_FCon.dtx"
+Skin1						= "tex\Chrome.dtx"
+RenderStyle0				= "chars\RS\Kernel_Shell.ltb"
+DeleteOnDeath				= 0
+HiddenInDEditToAIWeaponList	= TRUE
+Translucent					=	1
+DetachWhenShot	= 0
+
+
+
+/*************************************************************************
+**
+**	Requirement = Required Attachments
+**
+** Model
+**	-	Model for which the attachment is required
+**
+** Style
+**	-	Style for which the attachment is required
+**		(if attachement is required for all styles, leave this blank)
+**
+** Attachment
+**	-	Name of the required attachment
+**
+** Socket
+**	-	Socket to attach to
+**
+*/
