@@ -1,0 +1,32 @@
+/************************************************************************
+**
+**                    ----------[KEYITEMS]----------
+**
+**  Completely unused. Entirely. You could delete this file and the game
+**  wouldn't know better. Unless DEdit uses this for something or it
+**  becomes possible to use this ingame for other things, just assume
+**  that this file contributes absolutely nothing.
+**
+**  Documentation withheld.
+*/
+
+[KeyItem0]
+Name			= "Briefcase1"
+NameId              = 4000
+DescriptionId		= 4050
+Image               = "Interface\Photos\Weapons\p38.dtx"
+Filename		= "Props\Models\IIBriefcase.ltb"
+Skin			= "Props\Skins\IIBriefcase.dtx"
+Chrome			= 0
+Chromakey		= 1
+
+
+[KeyItem1]
+Name			= "Briefcase2"
+NameId              = 4001
+DescriptionId		= 4051
+Image               = "Interface\Photos\Weapons\ak47.dtx"
+Filename		= "Props\Models\IIBriefcase.ltb"
+Skin			= "Props\Skins\IIBriefcase.dtx"
+Chrome			= 0
+Chromakey		= 1

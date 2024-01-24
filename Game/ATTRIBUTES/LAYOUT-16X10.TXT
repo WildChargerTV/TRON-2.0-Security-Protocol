@@ -2249,8 +2249,8 @@ FontSize5	= 10
 **      - The string ID used to identify the layout configuration.
 **      - DO NOT CHANGE - String ID does NOT reference CRES.DLL and
 **      the actual source is not known.
-**	UseAmmoBar (Integer)
-**      - Boolean value that determines if the ammo display is visible.
+**	UseAmmoBar (Boolean Integer)
+**      - Determines if the ammo display is visible or not.
 **		- 0 hides the ammo bar, 1 shows the ammo bar.
 **      - TRON 2.0 does not use traditional ammo, so this should always
 **      be set to 0.
@@ -2720,9 +2720,8 @@ LivesTextHeight	= 16
 **      icons.
 **  RosterLineOffset (Integer)
 **      - The vertical spacing between roster lines.
-**  RosterEnableIconScaling (Integer)
-**      - Boolean value. Decides whether roster icon scaling is enabled
-**      or not.
+**  RosterEnableIconScaling (Boolean Integer)
+**      - Decides whether roster icon scaling is enabled or not.
 **  RosterIconBaseSizeIfScalingIsEnabled (Dimension)
 **      - The defined minimum width and height of a roster icon. Only
 **      used if RosterEnableIconScaling is set to 1.
@@ -3309,9 +3308,9 @@ StringYOffset	= -16 // From top of progress bar (negative is down)
 **  Name (String),
 **  Texture (Path String)
 **      - The name and texture of the textured frame.
-**  Hollow (Integer)
+**  Hollow (Boolean Integer)
 **      - Untested. Assumed:
-**      - Boolean value. Tells the game if the textured frame is hollow.
+**      - Tells the game if the textured frame is hollow.
 **  Inscribe (Integer)
 **      - Unknown function.
 **  Margins (Integer)
@@ -5116,9 +5115,8 @@ Radius			= 8000.0
 **      - The name of the FX to display.
 **  Pos (3D Point)
 **      - The origin position of the FX object.
-**  Loop (Integer)
-**      - Boolean value. Used to specify if the FX will loop when
-**      displayed.  
+**  Loop (Boolean Integer)
+**      - Specifies whether or not the FX will loop when displayed.
 */
 
 [FX0]
@@ -5375,14 +5373,14 @@ Loop	= 1
 **      - Unknown function.
 **	NumColumns (Integer)
 **		- The number of columns to use for the window.
-**	RemoveItems (Integer)
-**      - Boolean value. Decides whether a row of the window is removed
-**      or not when an option is selected.
+**	RemoveItems (Boolean Integer)
+**      - Decides whether a row of the window is removed or not when an
+**      option is selected.
 **		0 = never change available selections
 **		1 = remove row after selection is made
-**	RemoveWindow (Integer)
-**      - Boolean value. Decides whether the window is closed or not
-**      when an option is selected.
+**	RemoveWindow (Boolean Integer)
+**      - Decides whether the window is closed or not when an option is
+**      selected.
 **		0 = leave window open after selection
 **		1 = remove window after selection
 */
@@ -6640,6 +6638,9 @@ LoopFX3			= "MENU_KA_logo"
 **
 **  Integer (#)
 **      - A whole number value. Ignores decimals.
+**  Boolean Integer (0 or 1)
+**      - A whole number value. Only accepts the values 0 and 1, like a
+**      linear switch.
 **  Float (#)
 **      - A number value. Does not ignore decimals.
 **
@@ -6648,6 +6649,9 @@ LoopFX3			= "MENU_KA_logo"
 **  Path String ("text")
 **      - A string that explicitly defines a directory path to a
 **      specific file.
+**
+**  Boolean (TRUE or FALSE)
+**      - A true or false value. For true or false statements. Yay!
 **
 **
 **  -----[Terminology]-----

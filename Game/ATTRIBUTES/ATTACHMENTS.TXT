@@ -2,31 +2,67 @@
 **
 **                     ----------[ATTACHMENTS]----------
 **
-*/
-
-/*
+**  Attachments are basically anything that needs to be placed on or
+**  around a character model that acts as its own object whilst moving
+**  with the model itself. Hats, glasses, armor, etc. all fall under
+**  this definition. Attachables can be selected for a character in
+**  DEdit primarily.
 **
-**	 Name			the name of the attachable. the name is what will be entered into dedit.
-**	 Type			the type of the attachable. the valid types are:
+**  TODO name & group attachments.
+**  TODO what about that required attachment block at the bottom?
 **
-**					0 - prop			a static item with no logic, like a hat, or moustache, etc
-**					1 - object			an item with logic, like a searchlight, etc
-**
-**	 Properties	a string with any object properties you wish to override (for example "Chrome 1;Gravity 0")
-**	 
-**	 Class		if the type = 1 (object), the class name
-**
-**	 Model		if the type = 0 (prop), the name of the .ltb file
-**
-**	 Skin0-N		if the type = 0 (prop), the name of the .dtx file
-**					There can be any number of skins: Skin0, Skin1, ..., SkinN
-**
-**	 RenderStyle0-N	if the type = 0 (prop), the name of the .ltb file
-**						There can be any number of render styles: RenderStyle0, RenderStyle1, ..., RenderStyleN
-**
-**	 DeleteOnDeath	1 if the attachment should be deleted when a character dies.
-**						0 if the attachment should be carried over to the body.
-**
+**  Name (String)
+**      - The name of the attachable. This is what will show up as a
+**      selectable option in DEdit.
+**  Type (Integer)
+**      - Effectively a boolean value that determines if the attachable
+**      either has logic (an "object") or doen't have logic (a "prop").
+**      0: Prop - A static item with no logic (ex. a hat or a moustache)
+**      1: Object - An item with logic (ex. a searchlight)
+**  Properties (String)
+**      - A string containing the object properties that the game should
+**      override for the attachable.
+**      - As of now this is not well-researched and should be left alone
+**  Class (String)
+**      - The name of the attachable's class. Only applicable if Type is
+**      set to 1.
+**  Model (Path String)
+**      - The model to use for the attachable. Only one model can be set
+**      per attachable. Must be in .LTB format.
+**  Skin# (Path String)
+**      - The skins to use for the attachable. Must be in .DTX format.
+**      - Multiple skins can be assigned, but it's not specified how the
+**      game decides which to use or prioritize.
+**  RenderStyle# (Path String)
+**      - The render styles to use for the attachable. Must be in .LTB
+**      format.
+**      - Multiple render styles can be assigned, but it's not specified
+**      how the game decides which to use or prioritize.
+**  DeleteOnDeath (Boolean Integer)
+**      - Determines whether the attachable should be deleted when a
+**      character dies.
+**      - In TRON 2.0, the death animation is the derez animation by
+**      default, with other animations specified for unique entities
+**      such as a Seeker. The game seems to have its own way of handling
+**      entity deletion when a character is derezzed, although this is
+**      not confirmed.
+**      0: The attachment will be deleted upon death.
+**      1: The attachment will carry over to the dead body.
+**  HiddenInDEditToAIWeaponList (Boolean)
+**      - Determines whether the attachable will appear on the list of
+**      AI weapons in DEdit.
+**      TRUE: The attachment will not appear on the list.
+**      FALSE: The attachment will appear on the list.
+**  Translucent (Boolean Integer)
+**      - Determines whether the attachable will appear translucent when
+**      rendered.
+**      0: The attachment will not be translucent.
+**      1: The attachment will be translucent.
+**  DetachWhenShot (Boolean Integer)
+**      - Determines whether the attachable will fall off of a character
+**      if it is hit by a weapon.
+**      0: The attachment will remain on the character when damaged.
+**      1: The attachment will come off of the character when damaged.
 */
 
 [Attachment0]
