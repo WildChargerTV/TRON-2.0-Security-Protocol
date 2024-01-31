@@ -1,0 +1,66 @@
+/*
+
+  This file is a dumping ground for all variables various Tron specific bosses
+  should use.  Ideally, this would be integrated into the AIButes, but to keep
+  Tron specific information out, I decided to put it here for now.
+
+  Note that there are no templates or structures.  Every field will be documented
+  individually.
+    
+*/
+
+[Thorne]
+
+// Offset location from the node -- possibly not needed.
+XFireOffset = 0.0 
+YFireOffset = 40.0
+ZFireOffset = 0.0
+
+// Chance Thorne will get angry instead of attacking.
+// Type:  		 	  Real
+// Example:		 	  0.1 means 10% of the time Thorne will act angry
+AngerChance = 0.1
+
+// Ammount of health Thornes 
+// Type:   	  		  Integer
+// Example:			  20 means the ball will expire when it takes twenty
+// 					  points of damage.  If 
+BaseBallHealth = 20
+
+// Ammount of time the curruptic dim takes to form/charge. 
+// Type:   	  	   Integer Range 
+// Example:		   [3,5] - The dims will take between 3 and 5 seconds to form
+ChargeTimeRange = [3,5]
+
+// Name of the socket the ball is formed at and thrown from.  
+// Type:   	   		  String
+// Example:			  If  "LeftHand" is specified, then Thorne will play all
+// 					  Dim effects at this attachment.  They will also fire the 
+//					  dim from this node when the ChargeTime expires
+FireSocketName = "ThornSocket"
+
+// Name of the socket where thorn can be shot.
+// Type:   	   		  String
+// Example:			  If  "LeftHand" is specified, then Thorne be shootable
+///						in the LeftHand node enumerated in Thorns skeleton.
+HittableNode = "joint1"
+
+// Animation names to be played in difference states
+// Animation Sets:
+//   Disrupt
+//   Summon
+//   Angry
+//   CreateBall
+//   ChargeBall
+//   ThrowBall
+// As these are lists of animations, each of the above can have 0 to N 
+// elemetents
+Disrupt0 	= "Thn_Interrupt2"
+Summon0 	= "Thn_AttackLeft"
+Summon1 	= "Thn_AttackLeft2"
+Summon2 	= "Thn_AttackRight"
+Summon3 	= "Thn_AttackRight2"
+Angry0 		= "Thn_Interrupt1"
+CreateBall0 = "Thn_BigAttackStart"
+ChargeBall0 = "Thn_BigAttackMiddle"
+ThrowBall0 	= "Thn_BigAttackEnd"

@@ -1,0 +1,384 @@
+/************************************************************************
+**
+**                   ----------[GADGETTARGETS]----------
+**
+**  Unused. Monolith says so. Documentation withheld.
+*/
+
+/************************************************************************
+**
+** G A D G E T  T A R G E T S
+**
+** The GadgetTarget definitions define all of the attributes associated with
+** a particular Gadget Target.  Defining a GadgetTarget in this way allows us to
+** easily make global changes to all the GadgetTargets.
+**
+**
+** All GadgetTarget definitions should contain the following properties:
+**
+**  Name (String)
+**
+**      The user friendly name of the GadgetTarget (what shows up in DEdit). 
+**
+**	Filename (String)
+**
+**		Name of the model file
+**
+**	Skin0-N (String)
+**
+**		Name of the skin file dtx(s).
+**      There can be any number of skins: Skin0, Skin1, ..., SkinN
+** 
+**  RenderStyle0-N (String)
+**
+**		Name of the render style file ltb(s).
+**      There can be any number of render styles: RenderStyle0, RenderStyle1, ..., RenderStyleN
+**
+** DebrisType (String)
+**
+**		What type of debris should this GadgetTarget create when it is destroyed
+**		(NOTE:  This should map directly to the name of a DEBRIS object in the
+**		Attributes\Debris.txt file).
+**	
+**	Scale (Vector)
+**
+**		How the GadgetTarget should be scaled.
+**
+**	ObjectColor (Vector)
+**
+**		The GadgetTarget's color.
+**
+**  HitPoints (Integer)
+**
+**		How many hit points the GadgetTarget has (set to -1 for CanDamage = FALSE)
+**
+**	Solid (Boolean)
+**
+**		Should the GadgetTarget be solid (1=true, 0=false)
+**
+**	Shadow (Boolean)
+**
+**		Should the GadgetTarget cast a shadow (1=true, 0=false)
+**
+**	MoveToFloor (Boolean)
+**
+**		Should the GadgetTarget be moved to the floor (1=true, 0=false)
+**
+**	DetailTexture (Boolean)
+**
+**		Should the GadgetTarget use detail textures (1=true, 0=false)
+**
+**	Chrome (Boolean)
+**
+**		Should the GadgetTarget use chrome (environment mapping) (1=true, 0=false)
+**
+**	Chromakey (Boolean)
+**
+**		Should the GadgetTarget use chromakey (1=true, 0=false)
+**
+**	Additive (Boolean)
+**
+**		Should the GadgetTarget use additive blending (1=true, 0=false)
+**
+**	Multiply (Boolean)
+**
+**		Should the GadgetTarget use multiplicative blending (1=true, 0=false)
+**
+**	Type (Integer)
+**
+**		Specifies what type of GadgetTarget this is?  This detrimines what gadget will interact
+**		with the target, whether or not the GadgetTarget can be shot at (destroyed) and whether
+**		or not the status bar will appear.  The valid types are:
+**				
+**				Type			Gadget		
+**
+**			1 - KeyPad			Code Breaker		
+**			2 - Card Reader		Code Breaker
+**			3 - Coded Text		Code Breaker
+**			4 - ComboLock		Welder - Can Shoot
+**			5 - PadLock			Lock Pick - Can Shoot
+**			6 - Door Knob		Lock Pick
+**			7 - Telephone		Eavesdrop bug
+**			8 - Photographable	Camera
+**	
+**	MinTime	(Float) - Overridable in DEdit
+**
+**		The minimum amount of time it takes to disable the GadgetTarget.  This property is also exposed 
+**		in DEdit so each GadgetTarget can override the defaults.
+**
+**	MaxTime	(Float) - Overridable in DEdit
+**
+**		If this is non zero the time to disable the GadgetTarget is randomized between Min and MaxTime.
+**		This property is also exposed in DEdit so each GadgetTarget can override the defaults.
+**
+**	DisablingSound	(String)
+**
+**		Name of the optional .wav file to loop while the GadgetTarget is being hacked.
+**
+**	DisabledSound	(String)
+**
+**		Name of the optional .wav file to play once as soon as the GadgetTarget is disabled.
+**
+**	SoundRadius	(Float)
+**
+**		Radius that the sounds are heard.
+**
+**	CodeID	(Integer) - Overridable in DEdit
+**
+**		This specifies a code to use when disabling a GadgetTarget. For KeyPap GadgetTarget types this is the 
+**		actual digit code that will gradually display as the KeyPad is being disabled.  For Coded Text GadgetTarget
+**		types this is the ID into CRes.dll of the coded text.
+**
+**  RemoveWhenDisabled	(Boolean)
+**
+**		Should the gadget target be removed once it is disabled.
+*/
+
+///*
+//** GadgetTarget0 - KeyPad
+//*/
+//
+//[GadgetTarget0]
+//
+//Name				= "KeyPad01"
+//FileName			= "Props\Models\GtKeypad.ltb"
+//Skin0				= "Props\Skins\GtKeypad.dtx"
+//RenderStyle0		= "RS\default.ltb"
+//DebrisType			= "Charred chunks"
+//Scale				= <1.0, 1.0, 1.0>
+//ObjectColor			= <255.0, 255.0, 255.0>
+//HitPoints			= -1
+//Solid				= 1
+//Shadow				= 0
+//MoveToFloor			= 0
+//DetailTexture		= 0
+//Chrome				= 0
+//Chromakey			= 0
+//Additive			= 0
+//Multiply			= 0
+//Type				= 1
+//MinTime				= 8.0
+//MaxTime				= 0.0
+//DisablingSound		= "Interface\Snd\objremove.wav"
+//DisabledSound		= "Interface\Snd\objcomplete.wav"
+//SoundRadius			= 400.0
+//CodeID				= 1337
+//RemoveWhenDisabled	= 0
+//
+///*
+//** GadgetTarget1 - CardReader
+//*/
+//
+//[GadgetTarget1]
+//
+//Name				= "CardReader01"
+//FileName			= "Props\Models\GtCardReader.ltb"
+//Skin0				= "Props\Skins\GtCardReader.dtx"
+//RenderStyle0		= ""
+//DebrisType			= "Charred chunks"
+//Scale				= <1.0, 1.0, 1.0>
+//ObjectColor			= <255.0, 255.0, 255.0>
+//HitPoints			= -1
+//Solid				= 1
+//Shadow				= 0
+//MoveToFloor			= 0
+//DetailTexture		= 0
+//Chrome				= 0
+//Chromakey			= 0
+//Additive			= 0
+//Multiply			= 0
+//Type				= 2
+//MinTime				= 10.0
+//MaxTime				= 0.0
+//DisablingSound		= "Interface\Snd\objremove.wav"
+//DisabledSound		= "Interface\Snd\objcomplete.wav"
+//SoundRadius			= 400.0
+//CodeID				= 0
+//RemoveWhenDisabled	= 0
+//
+///*
+//** GadgetTarget2 - Coded Text
+//*/
+//
+//[GadgetTarget2]
+//
+//Name				= "CodedText01"
+//FileName			= "Props\Models\GtCard.ltb"
+//Skin0				= "Props\Skins\GtCard.dtx"
+//RenderStyle0		= ""
+//DebrisType			= "Charred chunks"
+//Scale				= <3.0, 3.0, 3.0>
+//ObjectColor			= <255.0, 255.0, 255.0>
+//HitPoints			= -1
+//Solid				= 0
+//Shadow				= 0
+//MoveToFloor			= 1
+//DetailTexture		= 0
+//Chrome				= 0
+//Chromakey			= 0
+//Additive			= 0
+//Multiply			= 0
+//Type				= 3
+//MinTime				= 8.0
+//MaxTime				= 0.0
+//DisablingSound		= "Interface\Snd\objremove.wav"
+//DisabledSound		= "Interface\Snd\objcomplete.wav"
+//SoundRadius			= 400.0
+//CodeID				= 0
+//RemoveWhenDisabled	= 0
+//
+///*
+//** GadgetTarget3 - ComboLock
+//*/
+//
+//[GadgetTarget3]
+//
+//Name				= "ComboLock01"
+//FileName			= "Props\Models\GtComboLock1.ltb"
+//Skin0				= "Props\Skins\GtComboLock1.dtx"
+//RenderStyle0		= ""
+//DebrisType			= "Lock"
+//Scale				= <1.0, 1.0, 1.0>
+//ObjectColor			= <255.0, 255.0, 255.0>
+//HitPoints			= 100
+//Solid				= 1
+//Shadow				= 0
+//MoveToFloor			= 0
+//DetailTexture		= 0
+//Chrome				= 0
+//Chromakey			= 0
+//Additive			= 0
+//Multiply			= 0
+//Type				= 4
+//MinTime				= 8.0
+//MaxTime				= 0.0
+//DisablingSound		= "Interface\Snd\objremove.wav"
+//DisabledSound		= "Interface\Snd\objcomplete.wav"
+//SoundRadius			= 400.0
+//CodeID				= 0
+//RemoveWhenDisabled	= 1
+//
+///*
+//** GadgetTarget4 - ComboLock
+//*/
+//
+//[GadgetTarget4]
+//
+//Name				= "ComboLock02"
+//FileName			= "Props\Models\GtComboLock2.ltb"
+//Skin0				= "Props\Skins\GtComboLock2.dtx"
+//RenderStyle0		= ""
+//DebrisType			= "Lock"
+//Scale				= <1.0, 1.0, 1.0>
+//ObjectColor			= <255.0, 255.0, 255.0>
+//HitPoints			= 100
+//Solid				= 1
+//Shadow				= 0
+//MoveToFloor			= 0
+//DetailTexture		= 0
+//Chrome				= 0
+//Chromakey			= 0
+//Additive			= 0
+//Multiply			= 0
+//Type				= 4
+//MinTime				= 8.0
+//MaxTime				= 0.0
+//DisablingSound		= "Interface\Snd\objremove.wav"
+//DisabledSound		= "Interface\Snd\objcomplete.wav"
+//SoundRadius			= 400.0
+//CodeID				= 0
+//RemoveWhenDisabled	= 1
+//
+///*
+//** GadgetTarget5 - PadLock
+//*/
+//
+//[GadgetTarget5]
+//
+//Name				= "PadLock01"
+//FileName			= "Props\Models\GtPadLock.ltb"
+//Skin0				= "Props\Skins\GtPadLock.dtx"
+//RenderStyle0		= ""
+//DebrisType			= "Lock"
+//Scale				= <1.0, 1.0, 1.0>
+//ObjectColor			= <255.0, 255.0, 255.0>
+//HitPoints			= 100
+//Solid				= 1
+//Shadow				= 0
+//MoveToFloor			= 0
+//DetailTexture		= 0
+//Chrome				= 0
+//Chromakey			= 0
+//Additive			= 0
+//Multiply			= 0
+//Type				= 5
+//MinTime				= 8.0
+//MaxTime				= 0.0
+//DisablingSound		= "Interface\Snd\objremove.wav"
+//DisabledSound		= "Interface\Snd\objcomplete.wav"
+//SoundRadius			= 400.0
+//CodeID				= 0
+//RemoveWhenDisabled	= 1
+//
+//
+///*
+//** GadgetTarget6 - DoorKnob
+//*/
+//
+//[GadgetTarget6]
+//
+//Name				= "DoorKnob1 Left Bronze"
+//FileName			= "Props\Models\GenDorKnob1L.ltb"
+//Skin0				= "Props\Skins\GenDorKnob1B.dtx"
+//RenderStyle0		= "RS\default.ltb"
+//DebrisType			= "Charred chunks"
+//Scale				= <1.0, 1.0, 1.0>
+//ObjectColor			= <255.0, 255.0, 255.0>
+//HitPoints			= -1
+//Solid				= 1
+//Shadow				= 0
+//MoveToFloor			= 0
+//DetailTexture		= 0
+//Chrome				= 0
+//Chromakey			= 0
+//Additive			= 0
+//Multiply			= 0
+//Type				= 6
+//MinTime				= 8.0
+//MaxTime				= 0.0
+//DisablingSound		= "Interface\Snd\objremove.wav"
+//DisabledSound		= "Interface\Snd\objcomplete.wav"
+//SoundRadius			= 400.0
+//CodeID				= 0 
+//RemoveWhenDisabled	= 0
+//
+///*
+//** GadgetTarget7 - Photo item
+//*/
+//
+//[GadgetTarget7]
+//
+//Name				= "Photographable01"
+//FileName			= "Props\Models\GtCard.ltb"
+//Skin0				= "Props\Skins\GtCard.dtx"
+//RenderStyle0		= ""
+//DebrisType			= "Charred chunks"
+//Scale				= <1.0, 1.0, 1.0>
+//ObjectColor			= <255.0, 255.0, 255.0>
+//HitPoints			= -1
+//Solid				= 1
+//Shadow				= 0
+//MoveToFloor			= 1
+//DetailTexture		= 0
+//Chrome				= 0
+//Chromakey			= 0
+//Additive			= 0
+//Multiply			= 0
+//Type				= 8
+//MinTime				= 0.0
+//MaxTime				= 0.0
+//DisablingSound		= ""
+//DisabledSound		= ""
+//SoundRadius			= 0.0
+//CodeID				= 0
+//RemoveWhenDisabled	= 0

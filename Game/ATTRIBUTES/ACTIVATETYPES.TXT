@@ -7,10 +7,6 @@
 **  associated with objects that the player can directly interact with 
 **  in the game.
 **
-**  The following objects are currently known to use this attribute:
-**  BinaryBit,
-**  TODO what else uses this?
-**
 **  Because some classes in DEdit have static, unchangeable references
 **  to an ActivateType, it is not recommended to modify or remove any of 
 **  the existing entries, and instead add your own to the end of this 

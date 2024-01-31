@@ -2,14 +2,15 @@
 **
 **                               --[AIBUTES]--
 **
-** AIButes are [DESC NEEDED]
+**  AIButes, short for AI Attributes, are effectively the brains that
+**  make up the AI routines in the game. Although the actions themselves
+**  are predetermined and programmed into the game itself, the values in
+**  this file determine the things that can make two different entities
+**  do the same thing slightly differently. This is most commonly used
+**  to create a direct influence on the game's overall difficulty.
 **
-**
-**
-**
-**
-**
-
+**  TODO maybe better way to explain it?
+*/
 
 
 /*
