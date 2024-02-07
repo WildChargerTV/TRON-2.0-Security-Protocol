@@ -1,12 +1,28 @@
-/*
-
-  This file is a dumping ground for all variables various Tron specific bosses
-  should use.  Ideally, this would be integrated into the AIButes, but to keep
-  Tron specific information out, I decided to put it here for now.
-
-  Note that there are no templates or structures.  Every field will be documented
-  individually.
-    
+/************************************************************************
+**
+**                     ----------[BOSSES]----------
+**
+**  Given Monolith's original description of this file, it seems that
+**  this file was, at one point, responsible for storing information for
+**  all of the ingame bosses in TRON 2.0 during development. This data
+**  was later transferred to AIBUTES, meaning whatever was left in this
+**  file - data for a Thorne bossfight - is either completely unused, or
+**  could not be moved in time before release.
+**
+**  Below is Monolith's original description of the file.
+**  ---------------------------------------------------------------------
+**  This file is a dumping ground for all variables various Tron
+**  specific bosses should use. Ideally, this would be integrated into
+**  the AIButes, but to keep Tron specific information out, I decided to
+**  put it here for now.
+**
+**  Note that there are no templates or structures. Every field will be
+**  documented individually.
+**  ---------------------------------------------------------------------
+**  Further documentation has been temporarily withheld until it can be
+**  confirmed that the game still references this file for the Thorne
+**  "fight" in the Progress Bar. Monolith's original documentation has
+**  been left intact.
 */
 
 [Thorne]

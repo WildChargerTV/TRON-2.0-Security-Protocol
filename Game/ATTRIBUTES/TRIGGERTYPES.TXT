@@ -1,0 +1,41 @@
+/************************************************************************
+**
+**                 ----------[TRIGGERTYPES]----------
+**
+**  TriggerTypes are responsible for associating specific map triggers -
+**  ones that the player should be made aware of - with textures that
+**  will appear onscreen to inform the player that they are nearby one
+**  of these triggers.
+**
+**  This file allows for the selection of TriggerTypes in DEdit, but
+**  only appears in the basic Trigger class. The game will then use this
+**  file to associate the TriggerType with the icon texture that it's
+**  supposed to display, and show it when appropriate.
+**
+**  There are only two TriggerTypes defined here, and TRON 2.0 does not
+**  use either of them directly. TransAM is unused, and Exit Trigger is
+**  not used in the context of default Trigger classes; rather, TRON 2.0
+**  opts to use a dedicated ExitTrigger class instead, which might still
+**  use it, but doesn't allow it to be changed.
+**
+**  TODO confirm that's how TriggerType1 is used.
+**
+**  Name (String)
+**	    - The user-friendly name of the TriggerType. This is what will
+**      show up in DEdit.
+**  Icon (Path String)
+**      - The texture that will appear in the HUD when the Trigger's
+**      conditions are met.
+*/
+
+/*  ---[0: TransAM]---
+**  Assuming this is just a NOLF thing?
+*/
+[TriggerType0]
+Name	= "TransAM"
+Icon    = "interface\hud\transam.dtx"
+
+/*  ---[1: Exit Trigger]---  */
+[TriggerType1]
+Name	= "Exit Trigger"
+Icon	= "interface\hud\exit.dtx"

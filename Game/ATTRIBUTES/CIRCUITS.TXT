@@ -1,0 +1,1167 @@
+/*
+
+	CIRCUITS
+
+NameKey				(String)
+	Name used to refer to this circuit for unlocking, etc.
+
+Image				(String)
+	Name of the Image to be displayed on the circuit page
+
+CircuitNameId		(Integer)
+	Id of the circuit to display.
+
+BriefingId		(Integer)
+	Id of the string describing this circuit
+
+StandardCycleRestrictionId	(Integer)
+	Id of string describing which standard cycles are allowed in this circuit
+
+SuperCycleRestrictionId	(Integer)
+	Id of string describing which super cycles are allowed in this circuit
+
+CircuitCompleteId (Integer)
+	Id of string expressing congratulations for the circuit completed.
+
+CircuitCompleteSound (String)
+	Filename of the sound to play upon completion of a circuit.
+
+MapName					(String)
+	Map name for the circuit
+
+InitiallyLocked		(TRUE/FALSE)
+	Does this mission start out locked.
+
+Unlocks0-N		(String)
+	List of contents to be unlocked when this circuit is beat.
+	Valid entries:
+		Powerups (one of these entries):
+			Shield
+			Turbo
+			TrailSpike
+			Missile
+			WallExtender
+			TurboCurse
+			Grab
+			TrailReset
+			ForceUse
+			Powerup
+			Random
+
+InitialLives			(Integer)
+	Lives given to the player to attempt this circuit on starting circuit.
+
+
+Per Wave Settings:
+
+SpeedScalarId0-N			(Integer)
+	Speed for this wave.  Valid values are 0 (Slow), 1 (Normal), 2 (Fast), 3 (Extreme)
+
+TrailLengthId0-N		(Integer)
+	Trail Length for this wave.  Valid values are 0 (Short), 1 (Normal), 2 (Long), 3 (Extreme)
+
+CyclesAllowen0-N		(String)
+	Names of all the light cycles the player is allowed to play in this circuit.
+
+*/
+
+/*
+Current ids for a few of the restrictions:
+
+none	- 9719
+all		- 9720
+blue	- 9721
+yellow	- 9722
+red		- 9723
+green	- 9724
+purple	- 9728
+*/
+
+/*
+
+For reference, here are some cycle restriction ids:
+
+*/
+
+// Tutorial
+
+[Circuit0]
+NameKey					= "Training"
+Image					= "Interface\Circuits\lc_map0.dtx"
+CircuitNameId			= 9700
+BriefingId				= 2550
+SuperCycleRestrictionId		= 9720
+StandardCycleRestrictionId	= 9720
+CircuitCompleteId		= 0
+CircuitCompleteSound	= ""
+InitiallyLock			= FALSE
+Unlocks0				= "Worlds\RetailLightCycle\Zone\Map0.dat"
+MapName					= "Worlds\RetailLightCycle\Zone\Map0.dat"
+InitialLives			= 10
+WaveCount				= 1
+SpeedScalarId0			= 1
+TrailLengthId0			= 1
+CyclesAllowed0			= "LightCycleBlue_1"
+CyclesAllowed1			= "LightCycleBlue_2"
+CyclesAllowed2			= "LightCycleBlue_3"
+CyclesAllowed3			= "LightCycleYellow_1"
+CyclesAllowed4			= "LightCycleYellow_2"
+CyclesAllowed5			= "LightCycleYellow_3"
+CyclesAllowed6			= "LightCycleRed_1"
+CyclesAllowed7			= "LightCycleRed_2"
+CyclesAllowed8			= "LightCycleRed_3"
+CyclesAllowed9			= "LightCycleGreen_1"
+CyclesAllowed10			= "LightCycleGreen_2"
+CyclesAllowed11			= "LightCycleGreen_3"
+CyclesAllowed12			= "LightCyclePurple_1"
+CyclesAllowed13			= "LightCyclePurple_2"
+CyclesAllowed14			= "LightCyclePurple_3"
+CyclesAllowed15			= "SuperCycle_Blue_1"
+CyclesAllowed16			= "SuperCycle_Blue_2"
+CyclesAllowed17			= "SuperCycle_Blue_3"
+CyclesAllowed18			= "SuperCycle_Yellow_1"
+CyclesAllowed19			= "SuperCycle_Yellow_2"
+CyclesAllowed20			= "SuperCycle_Yellow_3"
+CyclesAllowed21			= "SuperCycle_Red_1"
+CyclesAllowed22			= "SuperCycle_Red_2"
+CyclesAllowed23			= "SuperCycle_Red_3"
+CyclesAllowed24			= "SuperCycle_Green_1"
+CyclesAllowed25			= "SuperCycle_Green_2"
+CyclesAllowed26			= "SuperCycle_Green_3"
+CyclesAllowed27			= "SuperCycle_Purple_1"
+CyclesAllowed28			= "SuperCycle_Purple_2"
+CyclesAllowed29			= "SuperCycle_Purple_3"
+CyclesAllowed30     = "LightCycleOrange_1"
+CyclesAllowed31     = "LightCycleOrange_2"
+CyclesAllowed32     = "LightCycleOrange_3"
+CyclesAllowed33     = "SuperCycle_Orange_1"
+CyclesAllowed34     = "SuperCycle_Orange_2"
+CyclesAllowed35     = "SuperCycle_Orange_3"
+CyclesAllowed36     = "LightCycle_CYAN"
+CyclesAllowed37     = "SuperCycle_CYAN"
+CyclesAllowed38     = "LightCycle_White"
+CyclesAllowed39     = "SuperCycle_WHITE"
+CyclesAllowed40     = "LightCycle_Raven"
+CyclesAllowed41     = "SuperCycle_BLACK"
+CyclesAllowed42     = "LightCycle_IronMan"
+CyclesAllowed43     = "SuperCycle_IronMan"
+CyclesAllowed44     = "LightCycle_Copper"
+CyclesAllowed45     = "SuperCycle_Copper"
+CyclesAllowed46     = "LightCycle_Ice"
+CyclesAllowed47     = "SuperCycle_Ice"
+CyclesAllowed48     = "LightCycle_Glass"
+CyclesAllowed49     = "SuperCycle_Glass"
+CyclesAllowed50     = "LightCycle_Prizm"
+CyclesAllowed51     = "SuperCycle_Prizm"
+CyclesAllowed52     = "LightCycle_Chrome"
+CyclesAllowed53     = "SuperCycle_Chrome"
+CyclesAllowed54     = "LightCycle_Gold"
+CyclesAllowed55     = "SuperCycle_Gold"
+CyclesAllowed56     = "LightCycle_Wraith"
+CyclesAllowed57     = "SuperCycle_Wraith"
+CyclesAllowed58     = "LightCycle_HALLOWEEN"
+CyclesAllowed59     = "SuperCycle_HALLOWEEN"
+CyclesAllowed60     = "LightCycle_COLD"
+CyclesAllowed61     = "SuperCycle_COLD"
+CyclesAllowed62     = "LightCycle_HEAT"
+CyclesAllowed63     = "SuperCycle_HEAT"
+CyclesAllowed64     = "LightCycle_BLACKLIGHT"
+CyclesAllowed65     = "SuperCycle_BLACKLIGHT"
+CyclesAllowed66     = "LightCycle_AMBER"
+CyclesAllowed67     = "SuperCycle_AMBER"
+CyclesAllowed68     = "LightCycle_MONOCHROME"
+CyclesAllowed69     = "SuperCycle_MONOCHROME"
+CyclesAllowed70     = "LightCycle_KILLERAPP"
+CyclesAllowed71     = "SuperCycle_KILLERAPP"
+CyclesAllowed72     = "LightCycle_XBOX"
+CyclesAllowed73     = "SuperCycle_XBOX"
+
+
+// Newbie Authentication
+
+[Circuit1]
+NameKey					= "Circuit0"
+Image					= "Interface\Circuits\lc02-01.dtx"
+CircuitNameId			= 9701
+BriefingId				= 2551
+SuperCycleRestrictionId		= 9719
+StandardCycleRestrictionId	= 9721
+CircuitCompleteId		= 20844
+CircuitCompleteSound	= "Voice\20844.wav"
+InitiallyLock			= FALSE
+MapName					= "Worlds\RetailLightCycle\LC_02s01.dat"
+Unlocks0				= "Shield"
+InitialLives			= 8
+WaveCount				= 3
+SpeedScalarId0			= 0
+TrailLengthId0			= 1
+SpeedScalarId1			= 0
+TrailLengthId1			= 1
+SpeedScalarId2			= 0
+TrailLengthId2			= 1
+CyclesAllowed0			= "LightCycleBlue_1"
+CyclesAllowed1			= "LightCycleBlue_2"
+CyclesAllowed2			= "LightCycleBlue_3"
+CyclesAllowed3  	  = "LightCycle_CYAN"
+CyclesAllowed4	    = "LightCycle_Ice"
+CyclesAllowed5    	= "LightCycle_COLD"
+CyclesAllowed6    	= "LightCycle_KILLERAPP"
+
+
+// Bin Zone
+
+[Circuit2]
+NameKey					= "Circuit1"
+Image					= "Interface\Circuits\lc01-04.dtx"
+CircuitNameId			= 9702
+BriefingId				= 2552
+SuperCycleRestrictionId		= 9719
+StandardCycleRestrictionId	= 9720
+CircuitCompleteId		= 20845
+CircuitCompleteSound	= "Voice\20845.wav"
+InitiallyLock			= FALSE
+MapName					= "Worlds\RetailLightCycle\Zone\LC_01s04.dat"
+Unlocks0				= "LC_01s01.dat"
+Unlocks1				= "LC_01s02.dat"
+Unlocks2				= "LC_01s03.dat"
+InitialLives			= 6
+WaveCount				= 3
+SpeedScalarId0			= 0
+TrailLengthId0			= 1
+SpeedScalarId1			= 1
+TrailLengthId1			= 1
+SpeedScalarId2			= 2
+TrailLengthId2			= 1
+CyclesAllowed0			= "LightCycleBlue_1"
+CyclesAllowed1			= "LightCycleBlue_2"
+CyclesAllowed2			= "LightCycleBlue_3"
+CyclesAllowed3			= "LightCycleYellow_1"
+CyclesAllowed4			= "LightCycleYellow_2"
+CyclesAllowed5			= "LightCycleYellow_3"
+CyclesAllowed6			= "LightCycleRed_1"
+CyclesAllowed7			= "LightCycleRed_2"
+CyclesAllowed8			= "LightCycleRed_3"
+CyclesAllowed9			= "LightCycleGreen_1"
+CyclesAllowed10			= "LightCycleGreen_2"
+CyclesAllowed11			= "LightCycleGreen_3"
+CyclesAllowed12			= "LightCyclePurple_1"
+CyclesAllowed13			= "LightCyclePurple_2"
+CyclesAllowed14			= "LightCyclePurple_3"
+CyclesAllowed15     = "LightCycleOrange_1"
+CyclesAllowed16     = "LightCycleOrange_2"
+CyclesAllowed17     = "LightCycleOrange_3"
+CyclesAllowed18     = "LightCycle_CYAN"
+CyclesAllowed19     = "LightCycle_White"
+CyclesAllowed20     = "LightCycle_Raven"
+CyclesAllowed21     = "LightCycle_IronMan"
+CyclesAllowed22     = "LightCycle_Copper"
+CyclesAllowed23     = "LightCycle_Ice"
+CyclesAllowed24     = "LightCycle_Glass"
+CyclesAllowed25     = "LightCycle_Prizm"
+CyclesAllowed26     = "LightCycle_Chrome"
+CyclesAllowed27     = "LightCycle_Gold"
+CyclesAllowed28     = "LightCycle_Wraith"
+CyclesAllowed29     = "LightCycle_HALLOWEEN"
+CyclesAllowed30     = "LightCycle_COLD"
+CyclesAllowed31     = "LightCycle_HEAT"
+CyclesAllowed32     = "LightCycle_BLACKLIGHT"
+CyclesAllowed33     = "LightCycle_AMBER"
+CyclesAllowed34     = "LightCycle_MONOCHROME"
+CyclesAllowed35     = "LightCycle_KILLERAPP"
+CyclesAllowed36     = "LightCycle_XBOX"
+
+
+// Low Level Crunch
+
+[Circuit3]
+NameKey					= "Circuit2"
+Image					= "Interface\Circuits\lc03-01.dtx"
+CircuitNameId			= 9703
+BriefingId				= 2553
+SuperCycleRestrictionId		= 9721
+StandardCycleRestrictionId	= 9721
+CircuitCompleteId		= 20846
+CircuitCompleteSound	= "Voice\20846.wav"
+InitiallyLock			= FALSE
+MapName					= "Worlds\RetailLightCycle\LC_03s01.dat"
+Unlocks0				= "Turbo"
+InitialLives			= 4
+WaveCount				= 2
+SpeedScalarId0			= 1
+TrailLengthId0			= 2
+SpeedScalarId1			= 1
+TrailLengthId1			= 2
+CyclesAllowed0			= "LightCycleBlue_1"
+CyclesAllowed1			= "LightCycleBlue_2"
+CyclesAllowed2			= "LightCycleBlue_3"
+CyclesAllowed3			= "SuperCycle_Blue_1"
+CyclesAllowed4			= "SuperCycle_Blue_2"
+CyclesAllowed5			= "SuperCycle_Blue_3"
+CyclesAllowed6     = "LightCycle_CYAN"
+CyclesAllowed7     = "SuperCycle_CYAN"
+CyclesAllowed8     = "LightCycle_Ice"
+CyclesAllowed9     = "SuperCycle_Ice"
+CyclesAllowed10     = "LightCycle_COLD"
+CyclesAllowed11     = "SuperCycle_COLD"
+CyclesAllowed12     = "LightCycle_KILLERAPP"
+CyclesAllowed13     = "SuperCycle_KILLERAPP"
+
+
+// Conscript's Revenge
+
+[Circuit4]
+NameKey					= "Circuit3"
+Image					= "Interface\Circuits\lc01-01.dtx"
+CircuitNameId			= 9704
+BriefingId				= 2554
+SuperCycleRestrictionId		= 9719
+StandardCycleRestrictionId	= 9720
+CircuitCompleteId		= 20847
+CircuitCompleteSound	= "Voice\20847.wav"
+InitiallyLock			= FALSE
+MapName					= "Worlds\RetailLightCycle\LC_01s01.dat"
+Unlocks0				= "TurboCurse"
+InitialLives			= 6
+WaveCount				= 3
+SpeedScalarId0			= 1
+TrailLengthId0			= 1
+SpeedScalarId1			= 1
+TrailLengthId1			= 1
+SpeedScalarId2			= 1
+TrailLengthId2			= 1
+CyclesAllowed0			= "LightCycleBlue_1"
+CyclesAllowed1			= "LightCycleBlue_2"
+CyclesAllowed2			= "LightCycleBlue_3"
+CyclesAllowed3			= "LightCycleYellow_1"
+CyclesAllowed4			= "LightCycleYellow_2"
+CyclesAllowed5			= "LightCycleYellow_3"
+CyclesAllowed6			= "LightCycleRed_1"
+CyclesAllowed7			= "LightCycleRed_2"
+CyclesAllowed8			= "LightCycleRed_3"
+CyclesAllowed9			= "LightCycleGreen_1"
+CyclesAllowed10			= "LightCycleGreen_2"
+CyclesAllowed11			= "LightCycleGreen_3"
+CyclesAllowed12			= "LightCyclePurple_1"
+CyclesAllowed13			= "LightCyclePurple_2"
+CyclesAllowed14			= "LightCyclePurple_3"
+CyclesAllowed15     = "LightCycleOrange_1"
+CyclesAllowed16     = "LightCycleOrange_2"
+CyclesAllowed17     = "LightCycleOrange_3"
+CyclesAllowed18     = "LightCycle_CYAN"
+CyclesAllowed19     = "LightCycle_White"
+CyclesAllowed20     = "LightCycle_Raven"
+CyclesAllowed21     = "LightCycle_IronMan"
+CyclesAllowed22     = "LightCycle_Copper"
+CyclesAllowed23     = "LightCycle_Ice"
+CyclesAllowed24     = "LightCycle_Glass"
+CyclesAllowed25     = "LightCycle_Prizm"
+CyclesAllowed26     = "LightCycle_Chrome"
+CyclesAllowed27     = "LightCycle_Gold"
+CyclesAllowed28     = "LightCycle_Wraith"
+CyclesAllowed29     = "LightCycle_HALLOWEEN"
+CyclesAllowed30     = "LightCycle_COLD"
+CyclesAllowed31     = "LightCycle_HEAT"
+CyclesAllowed32     = "LightCycle_BLACKLIGHT"
+CyclesAllowed33     = "LightCycle_AMBER"
+CyclesAllowed34     = "LightCycle_MONOCHROME"
+CyclesAllowed35     = "LightCycle_KILLERAPP"
+CyclesAllowed36     = "LightCycle_XBOX"
+
+
+// fCon Zone
+
+[Circuit5]
+NameKey					= "Circuit4"
+Image					= "Interface\Circuits\lc04-04.dtx"
+CircuitNameId			= 9707
+BriefingId				= 2557
+SuperCycleRestrictionId		= 9720
+StandardCycleRestrictionId	= 9720
+CircuitCompleteId		= 20850
+CircuitCompleteSound	= "Voice\20850.wav"
+InitiallyLock			= FALSE
+MapName					= "Worlds\RetailLightCycle\Zone\LC_04s04.dat"
+Unlocks0				= "LC_04s01.dat"
+Unlocks1				= "LC_04s02.dat"
+Unlocks2				= "LC_04s03.dat"
+InitialLives			= 6
+WaveCount				= 3
+SpeedScalarId0			= 1
+TrailLengthId0			= 1
+SpeedScalarId1			= 1
+TrailLengthId1			= 1
+SpeedScalarId2			= 1
+TrailLengthId3			= 1
+CyclesAllowed0			= "LightCycleBlue_1"
+CyclesAllowed1			= "LightCycleBlue_2"
+CyclesAllowed2			= "LightCycleBlue_3"
+CyclesAllowed3			= "LightCycleYellow_1"
+CyclesAllowed4			= "LightCycleYellow_2"
+CyclesAllowed5			= "LightCycleYellow_3"
+CyclesAllowed6			= "LightCycleRed_1"
+CyclesAllowed7			= "LightCycleRed_2"
+CyclesAllowed8			= "LightCycleRed_3"
+CyclesAllowed9			= "LightCycleGreen_1"
+CyclesAllowed10			= "LightCycleGreen_2"
+CyclesAllowed11			= "LightCycleGreen_3"
+CyclesAllowed12			= "LightCyclePurple_1"
+CyclesAllowed13			= "LightCyclePurple_2"
+CyclesAllowed14			= "LightCyclePurple_3"
+CyclesAllowed15			= "SuperCycle_Blue_1"
+CyclesAllowed16			= "SuperCycle_Blue_2"
+CyclesAllowed17			= "SuperCycle_Blue_3"
+CyclesAllowed18			= "SuperCycle_Yellow_1"
+CyclesAllowed19			= "SuperCycle_Yellow_2"
+CyclesAllowed20			= "SuperCycle_Yellow_3"
+CyclesAllowed21			= "SuperCycle_Red_1"
+CyclesAllowed22			= "SuperCycle_Red_2"
+CyclesAllowed23			= "SuperCycle_Red_3"
+CyclesAllowed24			= "SuperCycle_Green_1"
+CyclesAllowed25			= "SuperCycle_Green_2"
+CyclesAllowed26			= "SuperCycle_Green_3"
+CyclesAllowed27			= "SuperCycle_Purple_1"
+CyclesAllowed28			= "SuperCycle_Purple_2"
+CyclesAllowed29			= "SuperCycle_Purple_3"
+CyclesAllowed30     = "LightCycleOrange_1"
+CyclesAllowed31     = "LightCycleOrange_2"
+CyclesAllowed32     = "LightCycleOrange_3"
+CyclesAllowed33     = "SuperCycle_Orange_1"
+CyclesAllowed34     = "SuperCycle_Orange_2"
+CyclesAllowed35     = "SuperCycle_Orange_3"
+CyclesAllowed36     = "LightCycle_CYAN"
+CyclesAllowed37     = "SuperCycle_CYAN"
+CyclesAllowed38     = "LightCycle_White"
+CyclesAllowed39     = "SuperCycle_WHITE"
+CyclesAllowed40     = "LightCycle_Raven"
+CyclesAllowed41     = "SuperCycle_BLACK"
+CyclesAllowed42     = "LightCycle_IronMan"
+CyclesAllowed43     = "SuperCycle_IronMan"
+CyclesAllowed44     = "LightCycle_Copper"
+CyclesAllowed45     = "SuperCycle_Copper"
+CyclesAllowed46     = "LightCycle_Ice"
+CyclesAllowed47     = "SuperCycle_Ice"
+CyclesAllowed48     = "LightCycle_Glass"
+CyclesAllowed49     = "SuperCycle_Glass"
+CyclesAllowed50     = "LightCycle_Prizm"
+CyclesAllowed51     = "SuperCycle_Prizm"
+CyclesAllowed52     = "LightCycle_Chrome"
+CyclesAllowed53     = "SuperCycle_Chrome"
+CyclesAllowed54     = "LightCycle_Gold"
+CyclesAllowed55     = "SuperCycle_Gold"
+CyclesAllowed56     = "LightCycle_Wraith"
+CyclesAllowed57     = "SuperCycle_Wraith"
+CyclesAllowed58     = "LightCycle_HALLOWEEN"
+CyclesAllowed59     = "SuperCycle_HALLOWEEN"
+CyclesAllowed60     = "LightCycle_COLD"
+CyclesAllowed61     = "SuperCycle_COLD"
+CyclesAllowed62     = "LightCycle_HEAT"
+CyclesAllowed63     = "SuperCycle_HEAT"
+CyclesAllowed64     = "LightCycle_BLACKLIGHT"
+CyclesAllowed65     = "SuperCycle_BLACKLIGHT"
+CyclesAllowed66     = "LightCycle_AMBER"
+CyclesAllowed67     = "SuperCycle_AMBER"
+CyclesAllowed68     = "LightCycle_MONOCHROME"
+CyclesAllowed69     = "SuperCycle_MONOCHROME"
+CyclesAllowed70     = "LightCycle_KILLERAPP"
+CyclesAllowed71     = "SuperCycle_KILLERAPP"
+CyclesAllowed72     = "LightCycle_XBOX"
+CyclesAllowed73     = "SuperCycle_XBOX"
+
+
+// Batch Invitational
+
+[Circuit6]
+NameKey					= "Circuit5"
+Image					= "Interface\Circuits\lc02-02.dtx"
+CircuitNameId			= 9705
+BriefingId				= 2555
+SuperCycleRestrictionId		= 9719
+StandardCycleRestrictionId	= 9720
+CircuitCompleteId		= 20848
+CircuitCompleteSound	= "Voice\20848.wav"
+InitiallyLock			= FALSE
+MapName					= "Worlds\RetailLightCycle\LC_02s02.dat"
+Unlocks0				= "WallExtender"
+InitialLives			= 8
+WaveCount				= 3
+SpeedScalarId0			= 0
+TrailLengthId0			= 0
+SpeedScalarId1			= 1
+TrailLengthId1			= 0
+SpeedScalarId2			= 2
+TrailLengthId2			= 0
+SpeedScalarId3			= 3
+TrailLengthId3			= 0
+CyclesAllowed0			= "LightCycleBlue_1"
+CyclesAllowed1			= "LightCycleBlue_2"
+CyclesAllowed2			= "LightCycleBlue_3"
+CyclesAllowed3			= "LightCycleYellow_1"
+CyclesAllowed4			= "LightCycleYellow_2"
+CyclesAllowed5			= "LightCycleYellow_3"
+CyclesAllowed6			= "LightCycleRed_1"
+CyclesAllowed7			= "LightCycleRed_2"
+CyclesAllowed8			= "LightCycleRed_3"
+CyclesAllowed9			= "LightCycleGreen_1"
+CyclesAllowed10			= "LightCycleGreen_2"
+CyclesAllowed11			= "LightCycleGreen_3"
+CyclesAllowed12			= "LightCyclePurple_1"
+CyclesAllowed13			= "LightCyclePurple_2"
+CyclesAllowed14			= "LightCyclePurple_3"
+CyclesAllowed15     = "LightCycleOrange_1"
+CyclesAllowed16     = "LightCycleOrange_2"
+CyclesAllowed17     = "LightCycleOrange_3"
+CyclesAllowed18     = "LightCycle_CYAN"
+CyclesAllowed19     = "LightCycle_White"
+CyclesAllowed20     = "LightCycle_Raven"
+CyclesAllowed21     = "LightCycle_IronMan"
+CyclesAllowed22     = "LightCycle_Copper"
+CyclesAllowed23     = "LightCycle_Ice"
+CyclesAllowed24     = "LightCycle_Glass"
+CyclesAllowed25     = "LightCycle_Prizm"
+CyclesAllowed26     = "LightCycle_Chrome"
+CyclesAllowed27     = "LightCycle_Gold"
+CyclesAllowed28     = "LightCycle_Wraith"
+CyclesAllowed29     = "LightCycle_HALLOWEEN"
+CyclesAllowed30     = "LightCycle_COLD"
+CyclesAllowed31     = "LightCycle_HEAT"
+CyclesAllowed32     = "LightCycle_BLACKLIGHT"
+CyclesAllowed33     = "LightCycle_AMBER"
+CyclesAllowed34     = "LightCycle_MONOCHROME"
+CyclesAllowed35     = "LightCycle_KILLERAPP"
+CyclesAllowed36     = "LightCycle_XBOX"
+
+
+// Bit Rate Grudge
+
+[Circuit7]
+NameKey					= "Circuit6"
+Image					= "Interface\Circuits\lc01-02.dtx"
+CircuitNameId			= 9708
+BriefingId				= 2558
+SuperCycleRestrictionId		= 9719
+StandardCycleRestrictionId	= 9720
+CircuitCompleteId		= 20851
+CircuitCompleteSound	= "Voice\20851.wav"
+InitiallyLock			= FALSE
+MapName					= "Worlds\RetailLightCycle\LC_01s02.dat"
+Unlocks0				= "Grab"
+InitialLives			= 10
+WaveCount				= 5
+SpeedScalarId0			= 1
+TrailLengthId0			= 3
+SpeedScalarId1			= 1
+TrailLengthId1			= 2
+SpeedScalarId2			= 2
+TrailLengthId2			= 1
+SpeedScalarId3			= 2
+TrailLengthId3			= 0
+SpeedScalarId4			= 3
+TrailLengthId4			= 0
+CyclesAllowed0			= "LightCycleBlue_1"
+CyclesAllowed1			= "LightCycleBlue_2"
+CyclesAllowed2			= "LightCycleBlue_3"
+CyclesAllowed3			= "LightCycleYellow_1"
+CyclesAllowed4			= "LightCycleYellow_2"
+CyclesAllowed5			= "LightCycleYellow_3"
+CyclesAllowed6			= "LightCycleRed_1"
+CyclesAllowed7			= "LightCycleRed_2"
+CyclesAllowed8			= "LightCycleRed_3"
+CyclesAllowed9			= "LightCycleGreen_1"
+CyclesAllowed10			= "LightCycleGreen_2"
+CyclesAllowed11			= "LightCycleGreen_3"
+CyclesAllowed12			= "LightCyclePurple_1"
+CyclesAllowed13			= "LightCyclePurple_2"
+CyclesAllowed14			= "LightCyclePurple_3"
+CyclesAllowed15     = "LightCycleOrange_1"
+CyclesAllowed16     = "LightCycleOrange_2"
+CyclesAllowed17     = "LightCycleOrange_3"
+CyclesAllowed18     = "LightCycle_CYAN"
+CyclesAllowed19     = "LightCycle_White"
+CyclesAllowed20     = "LightCycle_Raven"
+CyclesAllowed21     = "LightCycle_IronMan"
+CyclesAllowed22     = "LightCycle_Copper"
+CyclesAllowed23     = "LightCycle_Ice"
+CyclesAllowed24     = "LightCycle_Glass"
+CyclesAllowed25     = "LightCycle_Prizm"
+CyclesAllowed26     = "LightCycle_Chrome"
+CyclesAllowed27     = "LightCycle_Gold"
+CyclesAllowed28     = "LightCycle_Wraith"
+CyclesAllowed29     = "LightCycle_HALLOWEEN"
+CyclesAllowed30     = "LightCycle_COLD"
+CyclesAllowed31     = "LightCycle_HEAT"
+CyclesAllowed32     = "LightCycle_BLACKLIGHT"
+CyclesAllowed33     = "LightCycle_AMBER"
+CyclesAllowed34     = "LightCycle_MONOCHROME"
+CyclesAllowed35     = "LightCycle_KILLERAPP"
+CyclesAllowed36     = "LightCycle_XBOX"
+
+
+// Avatar Alley
+
+[Circuit8]
+NameKey					= "Circuit7"
+Image					= "Interface\Circuits\lc03-02.dtx"
+CircuitNameId			= 9709
+BriefingId				= 2559
+SuperCycleRestrictionId		= 9720
+StandardCycleRestrictionId	= 9720
+CircuitCompleteId		= 20852
+CircuitCompleteSound	= "Voice\20852.wav"
+InitiallyLock			= FALSE
+MapName					= "Worlds\RetailLightCycle\LC_03s02.dat"
+Unlocks0				= "TrailSpike"
+InitialLives			= 2
+WaveCount				= 3
+SpeedScalarId0			= 2
+TrailLengthId0			= 1
+SpeedScalarId1			= 2
+TrailLengthId1			= 1
+SpeedScalarId2			= 2
+TrailLengthId2			= 1
+CyclesAllowed0			= "LightCycleBlue_1"
+CyclesAllowed1			= "LightCycleBlue_2"
+CyclesAllowed2			= "LightCycleBlue_3"
+CyclesAllowed3			= "LightCycleYellow_1"
+CyclesAllowed4			= "LightCycleYellow_2"
+CyclesAllowed5			= "LightCycleYellow_3"
+CyclesAllowed6			= "LightCycleRed_1"
+CyclesAllowed7			= "LightCycleRed_2"
+CyclesAllowed8			= "LightCycleRed_3"
+CyclesAllowed9			= "LightCycleGreen_1"
+CyclesAllowed10			= "LightCycleGreen_2"
+CyclesAllowed11			= "LightCycleGreen_3"
+CyclesAllowed12			= "LightCyclePurple_1"
+CyclesAllowed13			= "LightCyclePurple_2"
+CyclesAllowed14			= "LightCyclePurple_3"
+CyclesAllowed15			= "SuperCycle_Blue_1"
+CyclesAllowed16			= "SuperCycle_Blue_2"
+CyclesAllowed17			= "SuperCycle_Blue_3"
+CyclesAllowed18			= "SuperCycle_Yellow_1"
+CyclesAllowed19			= "SuperCycle_Yellow_2"
+CyclesAllowed20			= "SuperCycle_Yellow_3"
+CyclesAllowed21			= "SuperCycle_Red_1"
+CyclesAllowed22			= "SuperCycle_Red_2"
+CyclesAllowed23			= "SuperCycle_Red_3"
+CyclesAllowed24			= "SuperCycle_Green_1"
+CyclesAllowed25			= "SuperCycle_Green_2"
+CyclesAllowed26			= "SuperCycle_Green_3"
+CyclesAllowed27			= "SuperCycle_Purple_1"
+CyclesAllowed28			= "SuperCycle_Purple_2"
+CyclesAllowed29			= "SuperCycle_Purple_3"
+CyclesAllowed30     = "LightCycleOrange_1"
+CyclesAllowed31     = "LightCycleOrange_2"
+CyclesAllowed32     = "LightCycleOrange_3"
+CyclesAllowed33     = "SuperCycle_Orange_1"
+CyclesAllowed34     = "SuperCycle_Orange_2"
+CyclesAllowed35     = "SuperCycle_Orange_3"
+CyclesAllowed36     = "LightCycle_CYAN"
+CyclesAllowed37     = "SuperCycle_CYAN"
+CyclesAllowed38     = "LightCycle_White"
+CyclesAllowed39     = "SuperCycle_WHITE"
+CyclesAllowed40     = "LightCycle_Raven"
+CyclesAllowed41     = "SuperCycle_BLACK"
+CyclesAllowed42     = "LightCycle_IronMan"
+CyclesAllowed43     = "SuperCycle_IronMan"
+CyclesAllowed44     = "LightCycle_Copper"
+CyclesAllowed45     = "SuperCycle_Copper"
+CyclesAllowed46     = "LightCycle_Ice"
+CyclesAllowed47     = "SuperCycle_Ice"
+CyclesAllowed48     = "LightCycle_Glass"
+CyclesAllowed49     = "SuperCycle_Glass"
+CyclesAllowed50     = "LightCycle_Prizm"
+CyclesAllowed51     = "SuperCycle_Prizm"
+CyclesAllowed52     = "LightCycle_Chrome"
+CyclesAllowed53     = "SuperCycle_Chrome"
+CyclesAllowed54     = "LightCycle_Gold"
+CyclesAllowed55     = "SuperCycle_Gold"
+CyclesAllowed56     = "LightCycle_Wraith"
+CyclesAllowed57     = "SuperCycle_Wraith"
+CyclesAllowed58     = "LightCycle_HALLOWEEN"
+CyclesAllowed59     = "SuperCycle_HALLOWEEN"
+CyclesAllowed60     = "LightCycle_COLD"
+CyclesAllowed61     = "SuperCycle_COLD"
+CyclesAllowed62     = "LightCycle_HEAT"
+CyclesAllowed63     = "SuperCycle_HEAT"
+CyclesAllowed64     = "LightCycle_BLACKLIGHT"
+CyclesAllowed65     = "SuperCycle_BLACKLIGHT"
+CyclesAllowed66     = "LightCycle_AMBER"
+CyclesAllowed67     = "SuperCycle_AMBER"
+CyclesAllowed68     = "LightCycle_MONOCHROME"
+CyclesAllowed69     = "SuperCycle_MONOCHROME"
+CyclesAllowed70     = "LightCycle_KILLERAPP"
+CyclesAllowed71     = "SuperCycle_KILLERAPP"
+CyclesAllowed72     = "LightCycle_XBOX"
+CyclesAllowed73     = "SuperCycle_XBOX"
+
+// Dead Man's Cache
+
+[Circuit9]
+NameKey					= "Circuit8"
+Image					= "Interface\Circuits\lc03-03.dtx"
+CircuitNameId			= 9712
+BriefingId				= 2562
+SuperCycleRestrictionId		= 9722
+StandardCycleRestrictionId	= 9719
+CircuitCompleteId		= 20855
+CircuitCompleteSound	= "Voice\20855.wav"
+InitiallyLock			= FALSE
+MapName					= "Worlds\RetailLightCycle\LC_03s03.dat"
+Unlocks0				= "Missile"
+InitialLives			= 4
+WaveCount				= 2
+SpeedScalarId0			= 2
+TrailLengthId0			= 1
+SpeedScalarId1			= 2
+TrailLengthId1			= 1
+CyclesAllowed0			= "SuperCycle_Yellow_1"
+CyclesAllowed1			= "SuperCycle_Yellow_2"
+CyclesAllowed2			= "SuperCycle_Yellow_3"
+CyclesAllowed3   	  = "LightCycle_Gold"
+CyclesAllowed4    	= "SuperCycle_Gold"
+CyclesAllowed5      = "LightCycle_AMBER"
+CyclesAllowed6      = "SuperCycle_AMBER"
+
+
+// Green Hornets
+
+[Circuit10]
+NameKey					= "Circuit9"
+Image					= "Interface\Circuits\lc04-01.dtx"
+CircuitNameId			= 9706
+BriefingId				= 2556
+SuperCycleRestrictionId		= 9724
+StandardCycleRestrictionId	= 9724
+CircuitCompleteId		= 20849
+CircuitCompleteSound	= "Voice\20849.wav"
+InitiallyLock			= FALSE
+MapName					= "Worlds\RetailLightCycle\LC_04s01.dat"
+Unlocks0				= "ForceUse"
+InitialLives			= 6
+WaveCount				= 3
+SpeedScalarId0			= 1
+TrailLengthId0			= 0
+SpeedScalarId1			= 2
+TrailLengthId1			= 0
+SpeedScalarId2			= 3
+TrailLengthId2			= 0
+CyclesAllowed0			= "LightCycleGreen_1"
+CyclesAllowed1			= "LightCycleGreen_2"
+CyclesAllowed2			= "LightCycleGreen_3"
+CyclesAllowed3			= "SuperCycle_Green_1"
+CyclesAllowed4			= "SuperCycle_Green_2"
+CyclesAllowed5			= "SuperCycle_Green_3"
+CyclesAllowed6     	= "LightCycle_Wraith"
+CyclesAllowed7     	= "SuperCycle_Wraith"
+CyclesAllowed8     	= "LightCycle_XBOX"
+CyclesAllowed9     	= "SuperCycle_XBOX"
+
+
+// Super Cycle Challenge
+
+[Circuit11]
+NameKey					= "Circuit10"
+Image					= "Interface\Circuits\lc01-03.dtx"
+CircuitNameId			= 9713
+BriefingId				= 2563
+SuperCycleRestrictionId		= 9720
+StandardCycleRestrictionId	= 9719
+CircuitCompleteId		= 20856
+CircuitCompleteSound	= "Voice\20856.wav"
+InitiallyLock			= FALSE
+MapName					= "Worlds\RetailLightCycle\LC_01s03.dat"
+InitialLives			= 8
+WaveCount				= 4
+SpeedScalarId0			= 0
+TrailLengthId0			= 1
+SpeedScalarId1			= 1
+TrailLengthId1			= 1
+SpeedScalarId2			= 2
+TrailLengthId2			= 1
+SpeedScalarId3			= 3
+TrailLengthId3			= 1
+CyclesAllowed0			= "SuperCycle_Blue_1"
+CyclesAllowed1			= "SuperCycle_Blue_2"
+CyclesAllowed2			= "SuperCycle_Blue_3"
+CyclesAllowed3			= "SuperCycle_Yellow_1"
+CyclesAllowed4			= "SuperCycle_Yellow_2"
+CyclesAllowed5			= "SuperCycle_Yellow_3"
+CyclesAllowed6			= "SuperCycle_Red_1"
+CyclesAllowed7			= "SuperCycle_Red_2"
+CyclesAllowed8			= "SuperCycle_Red_3"
+CyclesAllowed9			= "SuperCycle_Green_1"
+CyclesAllowed10			= "SuperCycle_Green_2"
+CyclesAllowed11			= "SuperCycle_Green_3"
+CyclesAllowed12			= "SuperCycle_Purple_1"
+CyclesAllowed13			= "SuperCycle_Purple_2"
+CyclesAllowed14			= "SuperCycle_Purple_3"
+CyclesAllowed15     = "SuperCycle_Orange_1"
+CyclesAllowed16     = "SuperCycle_Orange_2"
+CyclesAllowed17     = "SuperCycle_Orange_3"
+CyclesAllowed18     = "SuperCycle_CYAN"
+CyclesAllowed19     = "SuperCycle_WHITE"
+CyclesAllowed20     = "SuperCycle_BLACK"
+CyclesAllowed21     = "SuperCycle_IronMan"
+CyclesAllowed22     = "SuperCycle_Copper"
+CyclesAllowed23     = "SuperCycle_Ice"
+CyclesAllowed24     = "SuperCycle_Glass"
+CyclesAllowed25     = "SuperCycle_Prizm"
+CyclesAllowed26     = "SuperCycle_Chrome"
+CyclesAllowed27     = "SuperCycle_Gold"
+CyclesAllowed28     = "SuperCycle_Wraith"
+CyclesAllowed29     = "SuperCycle_HALLOWEEN"
+CyclesAllowed30     = "SuperCycle_COLD"
+CyclesAllowed31     = "SuperCycle_HEAT"
+CyclesAllowed32     = "SuperCycle_BLACKLIGHT"
+CyclesAllowed33     = "SuperCycle_AMBER"
+CyclesAllowed34     = "SuperCycle_MONOCHROME"
+CyclesAllowed35     = "SuperCycle_KILLERAPP"
+CyclesAllowed36     = "SuperCycle_XBOX"
+
+
+// Old Zone
+
+[Circuit12]
+NameKey					= "Circuit11"
+Image					= "Interface\Circuits\lc02-04.dtx"
+CircuitNameId			= 9711
+BriefingId				= 2561
+SuperCycleRestrictionId		= 9720
+StandardCycleRestrictionId	= 9720
+CircuitCompleteId		= 20854
+CircuitCompleteSound	= "Voice\20854.wav"
+InitiallyLock			= FALSE
+MapName					= "Worlds\RetailLightCycle\Zone\LC_02s04.dat"
+Unlocks0				= "LC_02s01.dat"
+Unlocks1				= "LC_02s02.dat"
+Unlocks2				= "LC_02s03.dat"
+InitialLives			= 6
+WaveCount				= 3
+SpeedScalarId0			= 1
+TrailLengthId0			= 1
+SpeedScalarId1			= 1
+TrailLengthId1			= 1
+SpeedScalarId2			= 1
+TrailLengthId2			= 1
+CyclesAllowed0			= "LightCycleBlue_1"
+CyclesAllowed1			= "LightCycleBlue_2"
+CyclesAllowed2			= "LightCycleBlue_3"
+CyclesAllowed3			= "LightCycleYellow_1"
+CyclesAllowed4			= "LightCycleYellow_2"
+CyclesAllowed5			= "LightCycleYellow_3"
+CyclesAllowed6			= "LightCycleRed_1"
+CyclesAllowed7			= "LightCycleRed_2"
+CyclesAllowed8			= "LightCycleRed_3"
+CyclesAllowed9			= "LightCycleGreen_1"
+CyclesAllowed10			= "LightCycleGreen_2"
+CyclesAllowed11			= "LightCycleGreen_3"
+CyclesAllowed12			= "LightCyclePurple_1"
+CyclesAllowed13			= "LightCyclePurple_2"
+CyclesAllowed14			= "LightCyclePurple_3"
+CyclesAllowed15			= "SuperCycle_Blue_1"
+CyclesAllowed16			= "SuperCycle_Blue_2"
+CyclesAllowed17			= "SuperCycle_Blue_3"
+CyclesAllowed18			= "SuperCycle_Yellow_1"
+CyclesAllowed19			= "SuperCycle_Yellow_2"
+CyclesAllowed20			= "SuperCycle_Yellow_3"
+CyclesAllowed21			= "SuperCycle_Red_1"
+CyclesAllowed22			= "SuperCycle_Red_2"
+CyclesAllowed23			= "SuperCycle_Red_3"
+CyclesAllowed24			= "SuperCycle_Green_1"
+CyclesAllowed25			= "SuperCycle_Green_2"
+CyclesAllowed26			= "SuperCycle_Green_3"
+CyclesAllowed27			= "SuperCycle_Purple_1"
+CyclesAllowed28			= "SuperCycle_Purple_2"
+CyclesAllowed29			= "SuperCycle_Purple_3"
+CyclesAllowed30     = "LightCycleOrange_1"
+CyclesAllowed31     = "LightCycleOrange_2"
+CyclesAllowed32     = "LightCycleOrange_3"
+CyclesAllowed33     = "SuperCycle_Orange_1"
+CyclesAllowed34     = "SuperCycle_Orange_2"
+CyclesAllowed35     = "SuperCycle_Orange_3"
+CyclesAllowed36     = "LightCycle_CYAN"
+CyclesAllowed37     = "SuperCycle_CYAN"
+CyclesAllowed38     = "LightCycle_White"
+CyclesAllowed39     = "SuperCycle_WHITE"
+CyclesAllowed40     = "LightCycle_Raven"
+CyclesAllowed41     = "SuperCycle_BLACK"
+CyclesAllowed42     = "LightCycle_IronMan"
+CyclesAllowed43     = "SuperCycle_IronMan"
+CyclesAllowed44     = "LightCycle_Copper"
+CyclesAllowed45     = "SuperCycle_Copper"
+CyclesAllowed46     = "LightCycle_Ice"
+CyclesAllowed47     = "SuperCycle_Ice"
+CyclesAllowed48     = "LightCycle_Glass"
+CyclesAllowed49     = "SuperCycle_Glass"
+CyclesAllowed50     = "LightCycle_Prizm"
+CyclesAllowed51     = "SuperCycle_Prizm"
+CyclesAllowed52     = "LightCycle_Chrome"
+CyclesAllowed53     = "SuperCycle_Chrome"
+CyclesAllowed54     = "LightCycle_Gold"
+CyclesAllowed55     = "SuperCycle_Gold"
+CyclesAllowed56     = "LightCycle_Wraith"
+CyclesAllowed57     = "SuperCycle_Wraith"
+CyclesAllowed58     = "LightCycle_HALLOWEEN"
+CyclesAllowed59     = "SuperCycle_HALLOWEEN"
+CyclesAllowed60     = "LightCycle_COLD"
+CyclesAllowed61     = "SuperCycle_COLD"
+CyclesAllowed62     = "LightCycle_HEAT"
+CyclesAllowed63     = "SuperCycle_HEAT"
+CyclesAllowed64     = "LightCycle_BLACKLIGHT"
+CyclesAllowed65     = "SuperCycle_BLACKLIGHT"
+CyclesAllowed66     = "LightCycle_AMBER"
+CyclesAllowed67     = "SuperCycle_AMBER"
+CyclesAllowed68     = "LightCycle_MONOCHROME"
+CyclesAllowed69     = "SuperCycle_MONOCHROME"
+CyclesAllowed70     = "LightCycle_KILLERAPP"
+CyclesAllowed71     = "SuperCycle_KILLERAPP"
+CyclesAllowed72     = "LightCycle_XBOX"
+CyclesAllowed73     = "SuperCycle_XBOX"
+
+
+// Purple Warez
+
+[Circuit13]
+NameKey					= "Circuit12"
+Image					= "Interface\Circuits\lc04-03.dtx"
+CircuitNameId			= 9715
+BriefingId				= 2565
+SuperCycleRestrictionId		= 9719
+StandardCycleRestrictionId	= 9728
+CircuitCompleteId		= 20858
+CircuitCompleteSound	= "Voice\20858.wav"
+InitiallyLock			= FALSE
+MapName					= "Worlds\RetailLightCycle\LC_04s03.dat"
+InitialLives			= 4
+WaveCount				= 2
+SpeedScalarId0			= 1
+TrailLengthId0			= 0
+SpeedScalarId1			= 2
+TrailLengthId1			= 0
+CyclesAllowed0			= "LightCyclePurple_1"
+CyclesAllowed1			= "LightCyclePurple_2"
+CyclesAllowed2			= "LightCyclePurple_3"
+CyclesAllowed3	    = "LightCycle_Glass"
+CyclesAllowed4      = "LightCycle_BLACKLIGHT"
+
+
+// City Zone
+
+[Circuit14]
+NameKey					= "Circuit13"
+Image					= "Interface\Circuits\lc03-04.dtx"
+CircuitNameId			= 9714
+BriefingId				= 2564
+SuperCycleRestrictionId		= 9720
+StandardCycleRestrictionId	= 9720
+CircuitCompleteId		= 20857
+CircuitCompleteSound	= "Voice\20857.wav"
+InitiallyLock			= FALSE
+MapName					= "Worlds\RetailLightCycle\Zone\LC_03s04.dat"
+Unlocks0				= "LC_03s01.dat"
+Unlocks1				= "LC_03s02.dat"
+Unlocks2				= "LC_03s03.dat"
+InitialLives			= 6
+WaveCount				= 3
+SpeedScalarId0			= 2
+TrailLengthId0			= 1
+SpeedScalarId1			= 2
+TrailLengthId1			= 1
+SpeedScalarId2			= 2
+TrailLengthId2			= 1
+CyclesAllowed0			= "LightCycleBlue_1"
+CyclesAllowed1			= "LightCycleBlue_2"
+CyclesAllowed2			= "LightCycleBlue_3"
+CyclesAllowed3			= "LightCycleYellow_1"
+CyclesAllowed4			= "LightCycleYellow_2"
+CyclesAllowed5			= "LightCycleYellow_3"
+CyclesAllowed6			= "LightCycleRed_1"
+CyclesAllowed7			= "LightCycleRed_2"
+CyclesAllowed8			= "LightCycleRed_3"
+CyclesAllowed9			= "LightCycleGreen_1"
+CyclesAllowed10			= "LightCycleGreen_2"
+CyclesAllowed11			= "LightCycleGreen_3"
+CyclesAllowed12			= "LightCyclePurple_1"
+CyclesAllowed13			= "LightCyclePurple_2"
+CyclesAllowed14			= "LightCyclePurple_3"
+CyclesAllowed15			= "SuperCycle_Blue_1"
+CyclesAllowed16			= "SuperCycle_Blue_2"
+CyclesAllowed17			= "SuperCycle_Blue_3"
+CyclesAllowed18			= "SuperCycle_Yellow_1"
+CyclesAllowed19			= "SuperCycle_Yellow_2"
+CyclesAllowed20			= "SuperCycle_Yellow_3"
+CyclesAllowed21			= "SuperCycle_Red_1"
+CyclesAllowed22			= "SuperCycle_Red_2"
+CyclesAllowed23			= "SuperCycle_Red_3"
+CyclesAllowed24			= "SuperCycle_Green_1"
+CyclesAllowed25			= "SuperCycle_Green_2"
+CyclesAllowed26			= "SuperCycle_Green_3"
+CyclesAllowed27			= "SuperCycle_Purple_1"
+CyclesAllowed28			= "SuperCycle_Purple_2"
+CyclesAllowed29			= "SuperCycle_Purple_3"
+CyclesAllowed30     = "LightCycleOrange_1"
+CyclesAllowed31     = "LightCycleOrange_2"
+CyclesAllowed32     = "LightCycleOrange_3"
+CyclesAllowed33     = "SuperCycle_Orange_1"
+CyclesAllowed34     = "SuperCycle_Orange_2"
+CyclesAllowed35     = "SuperCycle_Orange_3"
+CyclesAllowed36     = "LightCycle_CYAN"
+CyclesAllowed37     = "SuperCycle_CYAN"
+CyclesAllowed38     = "LightCycle_White"
+CyclesAllowed39     = "SuperCycle_WHITE"
+CyclesAllowed40     = "LightCycle_Raven"
+CyclesAllowed41     = "SuperCycle_BLACK"
+CyclesAllowed42     = "LightCycle_IronMan"
+CyclesAllowed43     = "SuperCycle_IronMan"
+CyclesAllowed44     = "LightCycle_Copper"
+CyclesAllowed45     = "SuperCycle_Copper"
+CyclesAllowed46     = "LightCycle_Ice"
+CyclesAllowed47     = "SuperCycle_Ice"
+CyclesAllowed48     = "LightCycle_Glass"
+CyclesAllowed49     = "SuperCycle_Glass"
+CyclesAllowed50     = "LightCycle_Prizm"
+CyclesAllowed51     = "SuperCycle_Prizm"
+CyclesAllowed52     = "LightCycle_Chrome"
+CyclesAllowed53     = "SuperCycle_Chrome"
+CyclesAllowed54     = "LightCycle_Gold"
+CyclesAllowed55     = "SuperCycle_Gold"
+CyclesAllowed56     = "LightCycle_Wraith"
+CyclesAllowed57     = "SuperCycle_Wraith"
+CyclesAllowed58     = "LightCycle_HALLOWEEN"
+CyclesAllowed59     = "SuperCycle_HALLOWEEN"
+CyclesAllowed60     = "LightCycle_COLD"
+CyclesAllowed61     = "SuperCycle_COLD"
+CyclesAllowed62     = "LightCycle_HEAT"
+CyclesAllowed63     = "SuperCycle_HEAT"
+CyclesAllowed64     = "LightCycle_BLACKLIGHT"
+CyclesAllowed65     = "SuperCycle_BLACKLIGHT"
+CyclesAllowed66     = "LightCycle_AMBER"
+CyclesAllowed67     = "SuperCycle_AMBER"
+CyclesAllowed68     = "LightCycle_MONOCHROME"
+CyclesAllowed69     = "SuperCycle_MONOCHROME"
+CyclesAllowed70     = "LightCycle_KILLERAPP"
+CyclesAllowed71     = "SuperCycle_KILLERAPP"
+CyclesAllowed72     = "LightCycle_XBOX"
+CyclesAllowed73     = "SuperCycle_XBOX"
+
+// Source Code Reveal
+
+[Circuit15]
+NameKey					= "Circuit14"
+Image					= "Interface\Circuits\lc04-02.dtx"
+CircuitNameId			= 9710
+BriefingId				= 2560
+SuperCycleRestrictionId		= 9720
+StandardCycleRestrictionId	= 9719
+CircuitCompleteId		= 20853
+CircuitCompleteSound	= "Voice\20853.wav"
+InitiallyLock			= FALSE
+MapName					= "Worlds\RetailLightCycle\LC_04s02.dat"
+InitialLives			= 8
+WaveCount				= 4
+SpeedScalarId0			= 1
+TrailLengthId0			= 2
+SpeedScalarId1			= 1
+TrailLengthId1			= 2
+SpeedScalarId2			= 2
+TrailLengthId2			= 3
+SpeedScalarId3			= 2
+TrailLengthId3			= 3
+CyclesAllowed0			= "SuperCycle_Blue_1"
+CyclesAllowed1			= "SuperCycle_Blue_2"
+CyclesAllowed2			= "SuperCycle_Blue_3"
+CyclesAllowed3			= "SuperCycle_Yellow_1"
+CyclesAllowed4			= "SuperCycle_Yellow_2"
+CyclesAllowed5			= "SuperCycle_Yellow_3"
+CyclesAllowed6			= "SuperCycle_Red_1"
+CyclesAllowed7			= "SuperCycle_Red_2"
+CyclesAllowed8			= "SuperCycle_Red_3"
+CyclesAllowed9			= "SuperCycle_Green_1"
+CyclesAllowed10			= "SuperCycle_Green_2"
+CyclesAllowed11			= "SuperCycle_Green_3"
+CyclesAllowed12			= "SuperCycle_Purple_1"
+CyclesAllowed13			= "SuperCycle_Purple_2"
+CyclesAllowed14			= "SuperCycle_Purple_3"
+CyclesAllowed15     = "SuperCycle_Orange_1"
+CyclesAllowed16     = "SuperCycle_Orange_2"
+CyclesAllowed17     = "SuperCycle_Orange_3"
+CyclesAllowed18     = "SuperCycle_CYAN"
+CyclesAllowed19     = "SuperCycle_WHITE"
+CyclesAllowed20     = "SuperCycle_BLACK"
+CyclesAllowed21     = "SuperCycle_IronMan"
+CyclesAllowed22     = "SuperCycle_Copper"
+CyclesAllowed23     = "SuperCycle_Ice"
+CyclesAllowed24     = "SuperCycle_Glass"
+CyclesAllowed25     = "SuperCycle_Prizm"
+CyclesAllowed26     = "SuperCycle_Chrome"
+CyclesAllowed27     = "SuperCycle_Gold"
+CyclesAllowed28     = "SuperCycle_Wraith"
+CyclesAllowed29     = "SuperCycle_HALLOWEEN"
+CyclesAllowed30     = "SuperCycle_COLD"
+CyclesAllowed31     = "SuperCycle_HEAT"
+CyclesAllowed32     = "SuperCycle_BLACKLIGHT"
+CyclesAllowed33     = "SuperCycle_AMBER"
+CyclesAllowed34     = "SuperCycle_MONOCHROME"
+CyclesAllowed35     = "SuperCycle_KILLERAPP"
+CyclesAllowed36     = "SuperCycle_XBOX"
+
+// 01100101
+
+[Circuit16]
+NameKey					= "Circuit15"
+Image					= "Interface\Circuits\lc02-03.dtx"
+CircuitNameId			= 9716
+BriefingId				= 2566
+SuperCycleRestrictionId		= 9720
+StandardCycleRestrictionId	= 9719
+CircuitCompleteId		= 20859
+CircuitCompleteSound	= "Voice\20859.wav"
+InitiallyLock			= FALSE
+MapName					= "Worlds\RetailLightCycle\LC_02s03.dat"
+Unlocks0				= "TrailReset"
+InitialLives			= 8
+WaveCount				= 4
+SpeedScalarId0			= 1
+TrailLengthId0			= 1
+SpeedScalarId1			= 2
+TrailLengthId1			= 1
+SpeedScalarId2			= 2
+TrailLengthId2			= 0
+SpeedScalarId3			= 3
+TrailLengthId3			= 0
+CyclesAllowed0			= "SuperCycle_Blue_1"
+CyclesAllowed1			= "SuperCycle_Blue_2"
+CyclesAllowed2			= "SuperCycle_Blue_3"
+CyclesAllowed3			= "SuperCycle_Yellow_1"
+CyclesAllowed4			= "SuperCycle_Yellow_2"
+CyclesAllowed5			= "SuperCycle_Yellow_3"
+CyclesAllowed6			= "SuperCycle_Red_1"
+CyclesAllowed7			= "SuperCycle_Red_2"
+CyclesAllowed8			= "SuperCycle_Red_3"
+CyclesAllowed9			= "SuperCycle_Green_1"
+CyclesAllowed10			= "SuperCycle_Green_2"
+CyclesAllowed11			= "SuperCycle_Green_3"
+CyclesAllowed12			= "SuperCycle_Purple_1"
+CyclesAllowed13			= "SuperCycle_Purple_2"
+CyclesAllowed14			= "SuperCycle_Purple_3"
+CyclesAllowed15     = "SuperCycle_Orange_1"
+CyclesAllowed16     = "SuperCycle_Orange_2"
+CyclesAllowed17     = "SuperCycle_Orange_3"
+CyclesAllowed18     = "SuperCycle_CYAN"
+CyclesAllowed19     = "SuperCycle_WHITE"
+CyclesAllowed20     = "SuperCycle_BLACK"
+CyclesAllowed21     = "SuperCycle_IronMan"
+CyclesAllowed22     = "SuperCycle_Copper"
+CyclesAllowed23     = "SuperCycle_Ice"
+CyclesAllowed24     = "SuperCycle_Glass"
+CyclesAllowed25     = "SuperCycle_Prizm"
+CyclesAllowed26     = "SuperCycle_Chrome"
+CyclesAllowed27     = "SuperCycle_Gold"
+CyclesAllowed28     = "SuperCycle_Wraith"
+CyclesAllowed29     = "SuperCycle_HALLOWEEN"
+CyclesAllowed30     = "SuperCycle_COLD"
+CyclesAllowed31     = "SuperCycle_HEAT"
+CyclesAllowed32     = "SuperCycle_BLACKLIGHT"
+CyclesAllowed33     = "SuperCycle_AMBER"
+CyclesAllowed34     = "SuperCycle_MONOCHROME"
+CyclesAllowed35     = "SuperCycle_KILLERAPP"
+CyclesAllowed36     = "SuperCycle_XBOX"
