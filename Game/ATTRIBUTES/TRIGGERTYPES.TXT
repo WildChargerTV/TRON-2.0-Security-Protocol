@@ -19,6 +19,7 @@
 **  use it, but doesn't allow it to be changed.
 **
 **  TODO confirm that's how TriggerType1 is used.
+**  TODO test creating a new TriggerType. Potential functionality.
 **
 **  Name (String)
 **	    - The user-friendly name of the TriggerType. This is what will

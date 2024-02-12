@@ -2,12 +2,13 @@
 **
 **                   ----------[INTELITEMS]----------
 **
-**  None of the existing references in this file seem to point to any
-**  active element in TRON 2.0. It's extremely likely this file goes
-**  completely unused, especially since the "Intel" prop type isn't
-**  mentioned anywhere.
+**  This file is unused, remaining as one of the many fragments of NOLF
+**  2 development that never got removed before TRON 2.0 was released.
+**  It is not known at this time whether this functionality can be
+**  restored for other potential uses.
 **
-**  Documentation withheld. All original documentation is below.
+**  Documentation updates have been withheld. All original documentation
+**  is available below.
 */
 
 /************************************************************************

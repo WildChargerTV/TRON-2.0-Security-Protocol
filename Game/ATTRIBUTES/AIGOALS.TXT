@@ -2,21 +2,54 @@
 **
 **                     ----------[AIGOALS]----------
 **
+**  AIGoals are responsible for determining goal sets for AI routines.
+**  This is the file that tells the AI what to do, but not how to do it.
+**  
+**  When adding a new NPC to a world in DEdit, its GoalSet property will
+**  refer directly to this file.
+**
+**  This file has three sections: Goal Sets, Goals, and Smart Objects.
 */
 
-/*
- * Goal Sets:
- * Name			       = AIGoal Set name.
- * RequiredBrain0-N    = Name of Brain required by AI to use this goalset.
- *                       If no required brain is listed, anyone can use the goalset.
- * IncludeGoalSet0-N   = Name of goalset to include. Must be the name of a 
- *                       goalset listed earlier in this file.
- * Hidden              = TRUE or FALSE whether goalset appears as a choice in Dedit.
- *                       Default = FALSE
- * Permanent           = TRUE or FALSE whether goals in goalset can ever be removed from an AI.
- *                       Default = FALSE
- * Goal0-N		       = Name of goal [name=value ...]
- */
+/************************************************************************
+**
+**                              Goal Sets
+**
+**  GoalSets determine what Goals an AI will have access to by default.
+**
+**  In general, AI in TRON 2.0 are assigned either the Patrol, Guard, or
+**  Reinforcement GoalSets, on top of their defaults. These GoalSets
+**  share identical combat behavior, but vary in their relaxed and
+**  investigative behaviors. See the AI page for more details in regard
+**  to guidelines for each specific GoalSet.
+**
+**  Name (String)
+**      - The user-friendly name of the GoalSet. This is what will show
+**      up in DEdit.
+**  RequiredBrain# (String)
+**      - The name of a Brain that the AI must have in order to use this
+**      GoalSet.
+**      - See AIButes for a list of Brains.
+**  IncludeGoalSet# (String)
+**      - The name of an additional GoalSet to use alongside the current
+**      one.
+**      - This field will only work if the GoalSet being included has 
+**      already been created earlier in the file. As such, it is highly
+**      recommended that any GoalSet with this field be created at the
+**      bottom of the list.
+**  Hidden (Boolean)
+**      - Determines whether the GoalSet will appear as a selectable
+**      option in DEdit. Default is FALSE.
+**      TRUE: The GoalSet will be selectable in DEdit.
+**      FALSE: The GoalSet will not be selectable in DEdit.
+**  Permanent (Boolean)
+**      - Determines whether any of the Goals inside the GoalSet can be
+**      removed from an AI at any point. Default is FALSE.
+**      TRUE: None of the Goals in the GoalSet can be removed.
+**      FALSE: Any of the Goals in the GoalSet can be removed.
+**  Goal# (String)
+**      - The name of the Goal to apply to the GoalSet.
+*/
 
 [GoalSet0]
 Name = "None"
@@ -559,8 +592,97 @@ Goal5 = "FConMonster"
 Goal6 = "Investigate"
 Goal7 = "AttackFromView"
 
-/*
- * Goal Templates:
+/************************************************************************
+**
+**                                Goals
+**
+**  Goals define all of the specific actions an AI routine can perform. 
+**  These can be assigned individually at any time, but will not become
+**  a persistent AI behavior unless assigned alongside a GoalSet.
+**
+**  Name (String)
+**      - The name of the Goal. This is later referenced as a C++ class
+**      in the game's source code.
+**  GoalID (Integer)
+**      - The function of this field is unknown, and is always set to 0.
+**      - TODO what is this?
+**  Importance (Float)
+**      - Effectively the "priority" of a goal, when it is activated.
+**      - This functions as a traditional priority system. An AI's Goals
+**      each have an assigned Importance value, and when a GoalSet is
+**      assigned, all of the Goals inside it are activated at the same
+**      time. From there, the Goal with the highest Importance value
+**      will be the AI's determined behavior until that Goal is either
+**      deactivated, or superseded by a Goal with a higher Importance.
+**  DecayTime (Float)
+**      - The amount of time, in seconds, that it will take for the AI
+**      to lose interest in persuing this goal, provided it has not
+**      encountered any other events in this time and the goal was not
+**      completed.
+**  FreezeDecay (Boolean)
+**      - Determines whether other Goals can decay while this Goal is
+**      active. Default is FALSE.
+**      TRUE: Other Goals' DecayTime will remain active while this Goal
+**      is being performed.
+**      FALSE: Other Goals' DecayTime will be frozen while this Goal is
+**      being performed.
+**  UpdateRate (Float)
+**      - The amount of time, in seconds, that must pass before the
+**      Goal's value is updated.
+**      - TODO What does this mean?
+**  DeleteWhenDone (Boolean)
+**      - Determines whether the Goal is deleted after it has been
+**      completed. Default is FALSE.
+**      TRUE: This Goal will be removed from the AI's list when
+**      completed.
+**      FALSE: This Goal will remain on the AI's list, even after
+**      completion.
+**  LockedAnimIsInterruptable (Boolean)
+**      - Determines whether other Goals can activate to interrupt this
+**      Goal while a locked animation is playing. Default is TRUE.
+**      TRUE: Other Goals can interrupt this Goal during locked 
+**      animations.
+**      FALSE: Other Goals cannot interrupt this Goal during locked 
+**      animations.
+**  ForceAnimInterrupt (Boolean)
+**      - Determines whether this Goal can activate to interrupt other
+**      Goals while a locked animation is playing. Default is FALSE.
+**      TRUE: This Goal can interrupt other Goals during locked 
+**      animations.
+**      FALSE: This Goal cannot interrupt other Goals during locked
+**      animations.
+**  MakeNeutralEnemy (Boolean)
+**      - Currently unknown function.
+**      - TODO What is this?
+**  DamagePriority (Integer)
+**      - The priority level of the Goal when handling damage.
+**      - When an NPC takes damage in any way, the normal Goal priority
+**      system is paused for a split second, and the AI will instead
+**      activate the highest priority Goal on this "damage taken"
+**      priority system before returning to normal.
+**      - TODO confirm this is what happens.
+**  Frequency ([Float, Float])
+**      - The minimum and maximum amount of time, in seconds, before the
+**      Goal can be activated again after completion or deactivation.
+**      Default is [0.0, 0.0].
+**  Attractor# (String)
+**      - The name(s) of a node that can attract the Goal.
+**      - TODO what is attraction?
+**  AttractorDist (Float)
+**      - The distance, in units, from the AI in which to search for
+**      Attractors, in addition to the node's radius. This value is
+**      multiplied by the Goal's Importance.
+**  SenseTrigger# (String)
+**      - The name(s) of a sense that activates the Goal when present.
+**      - TODO where are Senses defined?
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  ChanceToActivate (Float)
+**      - The percentage chance to activate the Goal when specific
+**      criteria is met.
+**      - This is unused by proxy, as no existing Goal definition uses
+**      this.
+*/
  * Name            = AIGoal Name (Goal is a C++ class in code)
  * Importance      = Base importance of goal when activated. Decays over time.
  * DecayTime       = Amount of time (secs) for AI to lose all interest.
@@ -1274,28 +1396,91 @@ GoalId = 0
 Importance = 1000.00
 DecayTime = 0.0
 UpdateRate = 0.0
+DeleteWhenDone = TRUE
 LockedAnimIsInterruptable = FALSE
 ForceAnimInterrupt = TRUE
-DeleteWhenDone = TRUE
 
-/*
- * SmartObject Templates:
- * Name     = SmartObject Name
- * Flag0-N  = Type of object. Can have any number.
- * Cmd0-N   = Command for flag with matching index.
- *
- * StateDefault0-N = Types active in the Default state.
- * StateDisturbed0-N = Types active in the Disturbed state.
- *
- * AddAnimsLTB0-n = LTB model to add when this smart object is in a level
- *		AddAnimsLTB usage:
- *			"<skeleton #>;<path>"
- *		Skeleton # determines which child model is added based upon the smart object users skeleton
- *			0 = Male General
- *			1 = IC characters
- *			7 = Zlots
- *			8 = DataWaraith
- *			11 = Female General
+
+/************************************************************************
+**
+**                               SmartObjects
+**
+**  SmartObjects are templates that announce an AI Node's purpose to an
+**  AI, and describe the animation set to play while the AI is at that
+**  node. As a general guideline, the AI should play either a single
+**  Action animation, or a looping Idle animation with optional Fidget
+**  animations playing intermittently.
+**
+**  Name (String)
+**      - The user-friendly name of the SmartObject. This is what will
+**      show up in DEdit.
+**  Flag# (String)
+**      - The name(s) of the SmartObject's type. Note that not all types
+**      are used in TRON 2.0, subject to further testing.
+**      -- Alarm: AI can sound an alarm here.
+**      -- Attackable: AI can attack enemies here.
+**      -- Bed: AI can sleep here.
+**      -- Coverable: AI can take cover here.
+**      -- DamageType: Used to play a specific animation when the AI
+**      takes a certain type of damage, like the Rod Primitive stun.
+**      -- Disturbance: AI can investigate a disturbance here.
+**      -- Examinable: AI can look at something on a wall here.
+**      -- LightSwitch: AI can turn on/off a light here.
+**      -- MenacePlace: AI can play a menace animation here. A menace is
+**      an animation used for AI that appear agitated despite being
+**      unaware of an actual threat.
+**      -- PostingPlace: Unused in TRON 2.0.
+**      -- Ride: Unused in TRON 2.0.
+**      -- Smashable: AI can destroy something here.
+**      -- Sniper: AI can shoot someone from here.
+**      -- WorkItem: AI can do generic work here. This is the catch-all
+**      for animations that don't fall into the above categories.
+**  Cmd# (String)
+**      - The command(s) that is passed to an AI when it's using the
+**      SmartObject. All commands after the first are separated from
+**      their arguments by an equals sign, e.g. "LoopTime=[0,0]".
+**      -- HumanUseObject: Generic command with no arguments. Every
+**      SmartObject with a command set needs to have this one used at
+**      the very beginning.
+**      -- Action: An Action animation property from an Animations
+**      Attribute file.
+**      -- Activity: An Awareness animation property from an Animations
+**      Attribute file.
+**      -- Mood: A Mood animation property from an Animations Attribute
+**      file.
+**      -- Pose: A Posture animation property from an Animations
+**      Attribute file.
+**      -- WeaponAction: A WeaponAction animation property from an
+**      Animations Attribute file.
+**      -- LoopTime: The minimum and maximum amount of time, in seconds,
+**      to delay between a looped animation. Time is chosen randomly.
+**      [0, 0] means loop immediately.
+**      -- FidgetFreq: The minimum and maximum amount of time, in 
+**      seconds, to delay between a fidget animation. Time is chosen
+**      randomly.
+**      -- LockNode: A boolean that determines if the AI Node can be
+**      reusable after the SmartObject has been used.
+**      --- TRUE: The AI Node can be reused.
+**      --- FALSE: The AI Node cannot be reused.
+**  AddAnimsLTB# (Path String - "<Skeleton #>;<Path>")
+**      - The additional animation(s) that needs to be loaded in order
+**      for the AI to interact with the SmartObject.
+**      - This Path string must be prefaced with the ID of the Skeleton
+**      that will be using the referenced animation, separated by a
+**      semicolon. Skeleton IDs are as follows:
+**      -- 0: Male Programs
+**      -- 1: All ICP Variants
+**      -- 7: Z-Lots
+**      -- 8: DataWraiths
+**      -- 11: Female Programs
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  StateDefault# (String),
+**  StateDisturbed# (String)
+**      - The active type(s) of the SmartObject when in the Default and
+**      Disturbed states respectively.
+**      - Unused by proxy - no existing SmartObjects use this, so its
+**      functionality is currently unknown.
  */
 
 [SmartObject0]

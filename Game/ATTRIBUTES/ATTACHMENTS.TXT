@@ -1,22 +1,22 @@
 /************************************************************************
 **
-**                     ----------[ATTACHMENTS]----------
+**                    ----------[ATTACHMENTS]----------
 **
-**  Attachments are basically anything that needs to be placed on or
-**  around a character model that acts as its own object whilst moving
-**  with the model itself. Hats, glasses, armor, etc. all fall under
-**  this definition. Attachables can be selected for a character in
-**  DEdit primarily.
+**  Attachments are basically anything that needs to be placed, either
+**  on or around, a character model, that acts as its own object whilst
+**  moving with the model itself. Hats, glasses, armor, etc. all fall 
+**  under this definition. Attachables can be selected for a character
+**  in DEdit.
 **
 **  TODO name & group attachments.
 **  TODO what about that required attachment block at the bottom?
 **
 **  Name (String)
-**      - The name of the attachable. This is what will show up as a
-**      selectable option in DEdit.
-**  Type (Integer)
-**      - Effectively a boolean value that determines if the attachable
-**      either has logic (an "object") or doen't have logic (a "prop").
+**      - The user-friendly name of the attachable. This is what will 
+**      show up in DEdit.
+**  Type (Boolean Integer)
+**      - Determines if the attachable either has logic (an "object") or
+**      doesn't have logic (a "prop").
 **      0: Prop - A static item with no logic (ex. a hat or a moustache)
 **      1: Object - An item with logic (ex. a searchlight)
 **  Properties (String)
@@ -30,18 +30,18 @@
 **      - The model to use for the attachable. Only one model can be set
 **      per attachable. Must be in .LTB format.
 **  Skin# (Path String)
-**      - The skins to use for the attachable. Must be in .DTX format.
-**      - Multiple skins can be assigned, but it's not specified how the
+**      - The skin(s) to use for the attachable. Must be in .DTX format.
+**      - Multiple skins can be assigned, but it's not yet known how the
 **      game decides which to use or prioritize.
 **  RenderStyle# (Path String)
-**      - The render styles to use for the attachable. Must be in .LTB
+**      - The render style(s) to use for the attachable. Must be in .LTB
 **      format.
-**      - Multiple render styles can be assigned, but it's not specified
+**      - Multiple render styles can be assigned, but it's not yet known
 **      how the game decides which to use or prioritize.
 **  DeleteOnDeath (Boolean Integer)
 **      - Determines whether the attachable should be deleted when a
 **      character dies.
-**      - In TRON 2.0, the death animation is the derez animation by
+**      - In TRON 2.0, the "death" animation is the derez animation by
 **      default, with other animations specified for unique entities
 **      such as a Seeker. The game seems to have its own way of handling
 **      entity deletion when a character is derezzed, although this is

@@ -3,11 +3,14 @@
 **                     ----------[BOSSES]----------
 **
 **  Given Monolith's original description of this file, it seems that
-**  this file was, at one point, responsible for storing information for
-**  all of the ingame bosses in TRON 2.0 during development. This data
+**  it was, at one point, responsible for storing information for all of
+**  the ingame bosses in TRON 2.0 during development. Most of this data
 **  was later transferred to AIBUTES, meaning whatever was left in this
-**  file - data for a Thorne bossfight - is either completely unused, or
-**  could not be moved in time before release.
+**  file - which is just data for a Thorne bossfight - is either unused, 
+**  or could not be moved in time before release.
+**
+**  It is not yet known whether the Thorne data here corresponds to the
+**  Thorne bossfight in the Progress Bar.
 **
 **  Below is Monolith's original description of the file.
 **  ---------------------------------------------------------------------

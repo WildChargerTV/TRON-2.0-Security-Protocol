@@ -2,7 +2,13 @@
 **
 **                   ----------[GADGETTARGETS]----------
 **
-**  Unused. Monolith says so. Documentation withheld.
+**  This file is unused, remaining as one of the many fragments of NOLF
+**  2 development that never got removed before TRON 2.0 was released.
+**  Monolith has specifically designated this file as unused, and thus
+**  it is highly unlikely that its functionality can be restored.
+**
+**  Documentation updates have been withheld. All original documentation
+**  is available below.
 */
 
 /************************************************************************

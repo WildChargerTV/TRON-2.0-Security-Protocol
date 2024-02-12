@@ -2,12 +2,13 @@
 **
 **                    ----------[KEYITEMS]----------
 **
-**  Completely unused. Entirely. You could delete this file and the game
-**  wouldn't know better. Unless DEdit uses this for something or it
-**  becomes possible to use this ingame for other things, just assume
-**  that this file contributes absolutely nothing.
+**  This file is unused, remaining as one of the many fragments of NOLF
+**  2 development that never got removed before TRON 2.0 was released.
+**  It is not known at this time whether this functionality can be
+**  restored for other potential uses.
 **
-**  Documentation withheld.
+**  Documentation withheld. No documentation had been provided by
+**  Monolith.
 */
 
 [KeyItem0]
