@@ -1,0 +1,203 @@
+/************************************************************************
+**
+**                      ----------[PINGS]----------
+**
+**  The Pings file sets up all of the necessary elements to display the
+**  HUD element reminding the player of various progression-related
+**  events, such as a character calling them over an I/O Node, or an
+**  info mark telling the player they have received a new objective,
+**  subroutine, help file, or version number upgrade.
+**
+**  This file has two sections: Pings and Characters.
+*/
+
+/************************************************************************
+**  
+**                                 Pings
+**
+**  This is the section that defines individual pings and assigns them
+**  to characters. Generally speaking, the game will just reference the
+**  same ping whenever its invocation is needed. With the exception of
+**  Mercury, no two I/O Node callers overlap one another, and other
+**  ping types use a different, likely hard-coded set of rules.
+**
+**
+**  Name (String)
+**      - The name of the Ping. It's usually recommended to set this to
+**      be the same as the Character field.
+**
+**  Character (String)
+**      - The Character name (defined in the Characters section) that
+**      the Ping will be assigned to.
+**
+**  Trigger (String)
+**      - (Optional) The trigger command to send if the player chooses
+**      to respond to the Ping.
+**      - Note that in most cases this goes unused, and is highly
+**      discouraged.
+**
+**  Cancel (String)
+**      - (Optional) The name of the Ping to remove when this Ping is
+**      activated. Only used in cases where one Ping replaces another.
+**      - Note that in most cases this goes unused, and is highly
+**      discouraged.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  Image (Path String)
+**      - The texture to use for the ping's portrait. This overrides the
+**      default ping frame texture.
+**      - Unused. There's no need to use this when portrait textures are
+**      defined in the Character section.
+*/
+
+/*  ---[0 and 1: Mercury Incoming Call]---  */
+[Ping0]
+Name		= "MercuryHelp1"
+Character	= "Mercury"
+Trigger		= "cinematic merc_235 on"
+
+[Ping1]		
+Name		= "MercuryDying1"
+Character	= "Mercury"
+Trigger		= "cinematic merc_236 on"
+Cancel		= "MercuryHelp1"
+
+/*  ---[2: Ma3a Incoming Call]---  */
+[Ping2]		
+Name		= "Ma3a"
+Character	= "Ma3a"
+
+/*  ---[3: Guest Incoming Call]--- */
+[Ping3]		
+Name		= "Guest"
+Character	= "Guest"
+
+/*  ---[4: Alan Incoming Call]---  */
+[Ping4]		
+Name		= "Alan"
+Character	= "Alan"
+
+/*  ---[5: Byte Incoming Call]---  */
+[Ping5]		
+Name		= "Byte"
+Character	= "Byte"
+
+/*  ---[6: I-No Incoming Call]---  */
+[Ping6]		
+Name		= "I-No"
+Character	= "I-No"
+
+/*  ---[7: New Objective Notification]---  */
+[Ping7]
+Name		= "objectives"
+Character	= "objectives"
+
+/*  ---[8: New Subroutine Notification]---  */
+[Ping8]
+Name		= "subroutines"
+Character	= "subroutines"
+
+/*  ---[9: New Build Points Notification]--- */
+[Ping9]
+Name		= "ratings"
+Character	= "ratings"
+
+/*  ---[10: New Help File Notification]--- */
+[Ping10]
+Name		= "helpfile"
+Character	= "helpfile"
+
+/************************************************************************
+**
+**                               Characters
+**
+**  This is the section that defines all of the specific characters that
+**  can appear in a Ping. This serves as a general term to differentiate
+**  Pings; which means things like the "new objective" and "new help
+**  file" icons count as Characters despite being simple indicators.
+**
+**
+**	Name (String)
+**      - The name of the Character. This is what the Pings reference.
+**
+**	NameID (Integer)
+**      - The ID of a string in CRES.DLL to use for the Character's name
+**      ingame.
+**
+**	Portrait (Path String)
+**		- The texture used for the Character's portrait. This overrides
+**      a Ping's default portrait.
+**
+**	IsCharacter (Boolean Integer)
+**      - Determines whether or not a '<x> has pinged you!' message will
+**      appear onscreen when a Ping with this Character is activated.
+**      -- 0: The message will not appear when the Ping is activated.
+**      -- 1: The message will appear when the Ping is activated.
+*/
+
+/*  ---[0: Mercury]---  */
+[Character0]
+Name		= "Mercury"
+NameID		= 5601
+Portrait	= "interface\portraits\portrait_mercury.dtx"
+IsCharacter	= 1
+
+/*  ---[1: Ma3a]---  */
+[Character1]
+Name		= "Ma3a"
+NameID		= 5602
+Portrait	= "interface\portraits\portrait_ma3a.dtx"
+IsCharacter	= 1
+
+/*  ---[2: I-No]---  */
+[Character2]
+Name		= "I-No"
+NameID		= 5603
+Portrait	= "interface\portraits\portrait_INO.dtx"
+IsCharacter	= 1
+
+/*  ---[3: Guest]---  */
+[Character3]
+Name		= "Guest"
+NameID		= 5604
+Portrait	= "interface\portraits\portrait_guest.dtx"
+IsCharacter	= 1
+
+/*  ---[4: Alan]---  */
+[Character4]
+Name		= "Alan"
+NameID		= 5605
+Portrait	= "interface\portraits\portrait_alan.dtx"
+IsCharacter	= 1
+
+/*  ---[5: Objective Indicator Icon]---  */
+[Character5]
+Name		= "objectives"
+NameID		= 5626
+Portrait	= "interface\portraits\portrait_objectives.dtx"
+IsCharacter	= 0
+StayTime	= 60
+
+/*  ---[6: Subroutine Indicator Icon]---  */
+[Character6]
+Name		= "subroutines"
+NameID		= 5625
+Portrait	= "interface\portraits\portrait_subroutines.dtx"
+IsCharacter	= 0
+StayTime	= 15
+
+/*  ---[7: Version Upgrade Indicator Icon]---  */
+[Character7]
+Name		= "ratings"
+NameID		= 5627
+Portrait	= "interface\portraits\portrait_levelup.dtx"
+IsCharacter	= 0
+StayTime	= 60
+
+/*  ---[8: Help File Indicator Icon]---  */
+[Character8]
+Name		= "helpfile"
+NameID		= 5630
+Portrait	= "interface\portraits\portrait_helpfile.dtx"
+IsCharacter	= 0
+StayTime	= 15

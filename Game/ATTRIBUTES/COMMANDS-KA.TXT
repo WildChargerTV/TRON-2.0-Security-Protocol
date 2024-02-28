@@ -1,49 +1,48 @@
 /************************************************************************
 **
-** C O M M A N D S
+**                    ----------[COMMANDS]----------
 **
-**	NOTES:
-**		If you wish to use a variable in a command in DEdit you MUST
-**		declare the variable as either a global or level specific in
-**		this file first.
+**  The Commands file is meant to store commands that run immediately
+**  when the player starts a campaign or a specific map. Primarily, this
+**  is used solely for variable declaration, because in order to use a
+**  variable in a command in DEdit, that variable needs to be declared
+**  in this file first. A level can have up to 255 variables max. The 
+**  file is split into two sections: one for global commands, and one
+**  for level-specific commands. 
 **
-**		There is a max number of 255 variables per level.
-**				
-** GLOBALS
+**  Global commands are executed once when the player starts a new game 
+**  and enters the first level of the first mission. Because of the
+**  inherent complexity of a global scope, the only commands accepted
+**  in this section are variable declarations. However, said variables
+**  will be accessible in any level, and their value will get saved
+**  across all levels.
+**  
+**  Level commands are executed once every time the player enters a
+**  specific map. Unlike globals, any command is valid to use here;
+**  however, that command will not carry over to any other level.
+**  Additionally, level commands accept a "name" argument before its
+**  command list, though it is not specified what this does.
 **
-** 	This provides a place to declare global commands.  These commands are 
-** 	executed ONCE on a new game when the player enters the first level
-** 	of the first mission.  Currently only variable declarations are valid
-** 	global commands.  Global variables will be accessible in any level 
-**	and their value will get saved across all levels.
 **
-**	Cmd0-N (String)
+**  Name (String)
+**      - The name of a level. This argument can only be declared with
+**      level-specific command sets.
+**      - It is not clear at this time what the game uses this for.
 **
-**		The command you wish to process.
-**
-**		Valid global commands:
-**
-**			INT - declares an Integer variable and sets its value.
-**
-** LEVELS
-**
-**	This provides a place to declare level specific commands.  These commands are
-**	executed every time you enter the level.  Every command is valid as a level
-**	specific command.
-**
-**	Cmd0-N (String)
-**
-**		The command you wish to process on level load.
-**
-*************************************************************************/
+**	Cmd# (String)
+**		- The command to be processed. Each command must be on its own
+**      line; however, it is safe to declare as many of these as needed.
+**      - See [TBD] for a reference list of valid commands.
+*/
 
+/*  ---[Global Commands]---
+**  As a reminder, only variable declarations are valid commands in this
+**  section.
+*/
 [globals]
 
 
-//
-// Levels...
-//
-
+/*  ---[Level Commands]---  */
 [map0]
 name = "M01-01"
 

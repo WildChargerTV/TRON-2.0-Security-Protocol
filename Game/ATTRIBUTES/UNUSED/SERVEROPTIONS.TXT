@@ -1,0 +1,200 @@
+/************************************************************************
+**
+**                  ----------[SERVEROPTIONS]----------
+**
+**  This file is unused, remaining as one of the many fragments of NOLF
+**  2 development that never got removed before TRON 2.0 was released.
+**  The intent of this file appeared to be managing necessary settings
+**  for hosting multiplayer games; however, TRON 2.0 opts to use a
+**  completely different method to modify said settings, rendering this
+**  file useless.
+**
+**  Documentation updates have been withheld. All original documentation
+**  is available below.
+*/
+
+/*****************************************************
+**
+**
+** Control Types:
+**		0 = Toggle
+**		1 = Cycle
+**		2 = Slider
+**		3 = Slider w/ Numeric Display
+**		4 = Special
+**
+** Game Types:
+**		0 = Any
+**		1 = Cooperative Assault Only
+**		2 = Deathmatch Only
+**
+******************************************************/
+
+[Option0]
+Variable	= "NetDMGameEnd"
+NameId		= 700
+HelpId		= 701
+Type		= 1
+GameType	= 2
+StringIds	= "702,703,704,705"
+Default		= 0
+
+[Option1]
+Variable	= "NetCAGameEnd"
+NameId		= 700
+HelpId		= 701
+Type		= 1
+GameType	= 1
+StringIds	= "730,703,731,705"
+Default		= 0
+
+[Option2]
+Variable	= "NetEndFrags"
+NameId		= 706
+HelpId		= 707
+Type		= 3
+GameType	= 2
+Default		= 25
+SliderRange	= (5,50)
+SliderInc	= 5
+
+[Option3]
+Variable	= "NetEndTime"
+NameId		= 708
+HelpId		= 709
+Type		= 3
+GameType	= 0
+Default		= 15
+SliderRange	= (5,60)
+SliderInc	= 5
+
+[Option4]
+Variable	= "NetEndScore"
+NameId		= 728
+HelpId		= 729
+Type		= 3
+GameType	= 1
+Default		= 50
+SliderRange	= (30,200)
+SliderInc	= 10
+
+[Option5]
+Variable	= "NetIntelScore"
+NameId		= 733
+HelpId		= 734
+Type		= 3
+GameType	= 1
+Default		= 20
+SliderRange	= (5,50)
+SliderInc	= 5
+
+[Option6]
+Variable	= "NetFragScore"
+NameId		= 735
+HelpId		= 736
+Type		= 0
+GameType	= 1
+Default		= 1
+StringIds	= "34,33"
+
+[Option7]
+Variable	= "NetMaxPlayers"
+NameId		= 710
+HelpId		= 711
+Type		= 3
+Default		= 16
+GameType	= 0
+SliderRange	= (2,16)
+SliderInc	= 2
+
+[Option8]
+Variable	= "NetRunSpeed"
+ServVariable= "RunSpeed"
+NameId		= 712
+HelpId		= 713
+Type		= 3
+GameType	= 0
+Default		= 100
+SliderRange	= (50,150)
+SliderInc	= 10
+SliderScale = 0.01
+
+[Option9]
+Variable	= "NetRespawnScale"
+ServVariable= "RespawnScale"
+NameId		= 714
+HelpId		= 715
+Type		= 3
+GameType	= 0
+Default		= 100
+SliderRange	= (50,150)
+SliderInc	= 10
+SliderScale = 0.01
+
+[Option10]
+Variable	= "NetFriendlyFire"
+NameId		= 716
+HelpId		= 717
+Type		= 0
+GameType	= 1
+Default		= 0
+StringIds	= "34,33"
+
+[Option11]
+Variable	= "NetDefaultWeapon"
+NameId		= 718
+HelpId		= 719
+GameType	= 0
+Type		= 4
+Default		= 0
+
+[Option12]
+Variable	= "NetWeaponsStay"
+NameId		= 720
+HelpId		= 721
+GameType	= 0
+Type		= 0
+Default		= 0
+StringIds	= "34,33"
+
+[Option13]
+Variable	= "NetHitLocation"
+NameId		= 726
+HelpId		= 727
+GameType	= 0
+Type		= 0
+Default		= 0
+StringIds	= "34,33"
+
+[Option14]
+Variable	= "NetAudioTaunts"
+NameId		= 115
+HelpId		= 116
+GameType	= 0
+Type		= 0
+Default		= 1
+StringIds	= "34,33"
+
+[Option15]
+Variable	= "NetFallDamageScale"
+NameId		= 612
+HelpId		= 613
+Type		= 3
+GameType	= 0
+Default		= 100
+SliderRange	= (0,100)
+SliderInc	= 10
+SliderScale = 0.01
+
+[Option16]
+Variable	= "NetArmorHealthPercent"
+NameId		= 619
+HelpId		= 620
+Type		= 3
+GameType	= 0
+Default		= 0
+SliderRange	= (0,100)
+SliderInc	= 10
+SliderScale = 0.01
+
+

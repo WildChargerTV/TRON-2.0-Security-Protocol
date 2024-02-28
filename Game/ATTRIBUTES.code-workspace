@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "ATTRIBUTES"
+		},
+		{
+			"path": "../../../TRON 2.0/Game/ATTRIBUTES"
 		}
 	],
 	"settings": {}

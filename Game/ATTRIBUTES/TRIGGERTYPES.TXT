@@ -22,9 +22,11 @@
 **  texture's exact positioning on the screen is unfortunately locked
 **  and cannot be manipulated.
 **
+**
 **  Name (String)
 **	    - The user-friendly name of the TriggerType. This is what will
 **      show up in DEdit.
+**
 **  Icon (Path String)
 **      - The texture that will appear in the HUD when the Trigger's
 **      conditions are met.
