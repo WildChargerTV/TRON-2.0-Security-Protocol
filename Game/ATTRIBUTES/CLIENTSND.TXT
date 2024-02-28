@@ -3,7 +3,8 @@
 **		               ----------[CLIENTSND]----------
 **
 **  The Client Sound file does one thing and one thing only: specify the
-**  path to the folder containing the game's voice lines.
+**  path to the folder containing the game's voice lines for use in
+**  Single Player.
 **
 **  All voice lines in the game must have their name set only to their
 **  associated ID, as well as a .LIP file that translates the voice line
@@ -15,8 +16,10 @@
 **  it when missing?
 **
 **  Dialogue (Path String)
-**      - The path to the folder containing the game's voice lines. Must
-**      end with a backslash to note the end of the path.
+**      - The path to the folder containing the game's voice lines, with
+**      the Game folder acting as the root. Must end with a backslash to 
+**      note the end of the path, but does not need one at the beginning
+**      of the path.
 */
 [Paths]
 Dialogue = "Voice\"

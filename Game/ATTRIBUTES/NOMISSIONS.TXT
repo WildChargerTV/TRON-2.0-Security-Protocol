@@ -1,0 +1,14 @@
+/************************************************************************
+**
+**                    ----------[NOMISSIONS]----------
+**
+**  Despite being a file consisting of literally nothing, NoMissions is
+**  still used for the sole purpose of aiming TRON 2.0's Mission manager
+**  away from the Single Player missions when loading Multiplayer maps.
+**  Monolith even went so far as to call this the "Empty Missions" file,
+**  and they'd be correct. It's empty.
+*/
+
+
+// might make this a home for extraneous information regarding this
+// folder... who knows.

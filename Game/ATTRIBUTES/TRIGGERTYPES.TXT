@@ -3,23 +3,24 @@
 **                 ----------[TRIGGERTYPES]----------
 **
 **  TriggerTypes are responsible for associating specific map triggers -
-**  ones that the player should be made aware of - with textures that
-**  will appear onscreen to inform the player that they are nearby one
-**  of these triggers.
+**  ones that the player should be made aware of - with icon textures
+**  that will appear in the HUD to inform the player that they are close
+**  to one of these triggers.
 **
 **  This file allows for the selection of TriggerTypes in DEdit, but
 **  only appears in the basic Trigger class. The game will then use this
 **  file to associate the TriggerType with the icon texture that it's
-**  supposed to display, and show it when appropriate.
+**  supposed to display, and show it when the trigger's HUDLookAtDist
+**  and/or HUDAlwaysOnDist parameters have been satisfied.
 **
-**  There are only two TriggerTypes defined here, and TRON 2.0 does not
-**  use either of them directly. TransAM is unused, and Exit Trigger is
-**  not used in the context of default Trigger classes; rather, TRON 2.0
-**  opts to use a dedicated ExitTrigger class instead, which might still
-**  use it, but doesn't allow it to be changed.
+**  There are only two TriggerTypes defined here, and TRON 2.0 only uses
+**  the second one for exit triggers. TransAM is unused, assumedly a
+**  leftover fragment of NOLF 2.
 **
-**  TODO confirm that's how TriggerType1 is used.
-**  TODO test creating a new TriggerType. Potential functionality.
+**  Adding a new TriggerType is safe and has no effect on the game. It's
+**  recommended to use a 64x64 texture to display on the screen. The
+**  texture's exact positioning on the screen is unfortunately locked
+**  and cannot be manipulated.
 **
 **  Name (String)
 **	    - The user-friendly name of the TriggerType. This is what will
@@ -36,7 +37,17 @@
 Name	= "TransAM"
 Icon    = "interface\hud\transam.dtx"
 
-/*  ---[1: Exit Trigger]---  */
+/*  ---[1: Exit Trigger]---
+**  Technically unused, but only because TRON 2.0 favors the use of its
+**  own ExitTrigger class.
+*/
 [TriggerType1]
 Name	= "Exit Trigger"
 Icon	= "interface\hud\exit.dtx"
+
+/*  ---[2: WOAH NEW THING]---
+**  WOAH. I ADDED SOMETHING. HOLY DAMN.
+*/
+[TriggerType2]
+Name    = "FIRE IN THE HOLE"
+Icon    = "interface\hud\sc_lives_red_1.dtx"

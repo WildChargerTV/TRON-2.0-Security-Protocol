@@ -16,12 +16,10 @@
 **  Name (String)
 **	    - The user-friendly name of the ActivateType. This is what will
 **      show up in DEdit.
-**  StateON (Integer)
-**	    - The string ID from CRES.DLL of the text to display when the 
-**      object is in its ON state.  Use -1 for no text.
+**  StateON (Integer),
 **  StateOFF (Integer)
 **	    - The string ID from CRES.DLL of the text to display when the 
-**      object is in its OFF state.  Use -1 for no text.
+**      object is in its ON and OFF states.  Use -1 for no text.
 */
 
 

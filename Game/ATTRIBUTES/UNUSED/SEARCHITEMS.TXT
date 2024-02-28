@@ -1,0 +1,153 @@
+/************************************************************************
+**
+**                   ----------[SEARCHITEMS]----------
+**
+**  This file is unused, remaining as one of the many fragments of NOLF
+**  2 development that never got removed before TRON 2.0 was released.
+**  It is not known at this time whether this functionality can be
+**  restored for other potential uses.
+**
+**  Documentation updates have been withheld. All original documentation
+**  is available below.
+*/
+
+
+/************************************************************************
+**
+** SearchItem
+**
+** The SearchItem definitions define all of the attributes associated with
+** a particular item that is found while searching. 
+**
+**
+** All SearchItem definitions should contain the following properties:
+**
+**  Name (String)
+**
+**      The user friendly name of the search item 
+**
+**	Icon (String)
+**
+**		Name of the texture to be used as an icon when this item is found.
+**
+**	TextId (Integer)
+**
+**		The text id used for this search item (corresponds to
+**		a string id in CRes.dll).
+**
+**
+*/
+
+[SearchItem0]
+
+Name	= "random1"
+Icon	= "Interface\Photos\Ammo\Bullet_Def.dtx"
+TextId	= 4401
+
+[SearchItem1]
+
+Name	= "random2"
+Icon	= "Interface\Photos\Ammo\Bullet_Def.dtx"
+TextId	= 4402
+
+[SearchItem2]
+
+Name	= "random3"
+Icon	= "Interface\Photos\Ammo\Bullet_Def.dtx"
+TextId	= 4403
+
+[SearchItem3]
+
+Name	= "random4"
+Icon	= "Interface\Photos\Ammo\Bullet_Def.dtx"
+TextId	= 4404
+
+[SearchItem4]
+
+Name	= "random5"
+Icon	= "Interface\Photos\Ammo\Bullet_Def.dtx"
+TextId	= 4405
+
+[SearchItem5]
+
+Name	= "random6"
+Icon	= "Interface\Photos\Ammo\Bullet_Def.dtx"
+TextId	= 4406
+
+[SearchItem6]
+
+Name	= "random7"
+Icon	= "Interface\Photos\Ammo\Bullet_Def.dtx"
+TextId	= 4407
+
+[SearchItem7]
+
+Name	= "random8"
+Icon	= "Interface\Photos\Ammo\Bullet_Def.dtx"
+TextId	= 4408
+
+[SearchItem8]
+
+Name	= "random9"
+Icon	= "Interface\Photos\Ammo\Bullet_Def.dtx"
+TextId	= 4409
+
+[SearchItem9]
+
+Name	= "random10"
+Icon	= "Interface\Photos\Ammo\Bullet_Def.dtx"
+TextId	= 4410
+
+
+
+/************************************************************************
+**
+** SearchSet
+**
+** The SearchSet definitions define all of the attributes associated with
+** a set of items that might be found while searching. 
+**
+**
+** All SearchItem definitions should contain the following properties:
+**
+**  Name (String)
+**
+**      The user friendly name of the search set 
+**
+**  Items (String)
+**
+**		A comma-separated list of SearchItems found in this set
+**
+*/
+
+/*
+** SearchSet0 = "Default"
+**	- this set is used when no other set is specified
+**
+*/
+
+[SearchSet0]
+Name	= "Default"
+Items	= "random1, random2, random3"
+
+
+
+/*
+** this is is just a sample set, overwrite at will
+*/
+[SearchSet1]
+Name	= "Middle"
+Items	= "random4, random5, random6, random7"
+
+
+
+/*
+** this is is just a sample set, overwrite at will
+*/
+[SearchSet2]
+Name	= "High"
+Items	= "random8, random9, random10"
+
+
+
+

@@ -1,20 +1,35 @@
 /************************************************************************
 **
-**                               --[AIBUTES]--
+**                   ----------[AIBUTES]----------
 **
 **  AIButes, short for AI Attributes, are effectively the brains that
-**  make up the AI routines in the game. Although the actions themselves
-**  are predetermined and programmed into the game itself, the values in
-**  this file determine the things that can make two different entities
-**  do the same thing slightly differently. This is most commonly used
-**  to create a direct influence on the game's overall difficulty.
+**  make up the AI routines in the game. This file does not define what
+**  an AI routine *does*; rather, the values in this file determine the 
+**  fields that allow two different entities do the same thing slightly 
+**  differently.
+**
+**  When adding a new NPC to a world in DEdit, its Brain property will
+**  refer directly to this file.
+**
+**  This file has been divided into sections for easier navigation. See
+**  the Table of Contents for the names of each section.
 **
 **  TODO maybe better way to explain it?
 */
 
+/************************************************************************
+**
+**  Table of Contents
+**
+**  TODO this.
+*/
 
-/*
-** Brains
+/************************************************************************
+**
+**                               Brains
+**
+**  Brain definitons are responsible for managing AI behavior depending
+**  on its current state. Every NPC should have one of these.
 **
 ** DodgeVectorCheckTime					- how frequently we check to see if we need to dodge a vector
 ** DodgeVectorCheckChance				- the % chance we will check to see if we need to dodge a vector once this time is up

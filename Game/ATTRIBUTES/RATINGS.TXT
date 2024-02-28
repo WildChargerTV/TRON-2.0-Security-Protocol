@@ -1,0 +1,109 @@
+/************************************************************************
+**
+**                     ----------[RATINGS]----------
+**
+**  The Ratings file defines some of the core parameters with regard to
+**  the five Performance Ratings. It also manages the Transfer Rate
+**  rating's transfer times specifically.
+**
+**  TRON 2.0 Performance Ratings are fairly straightforward. The player 
+**  collects Build Points throughout the campaign, which contributes to
+**  increasing their major version number. Once the player has received
+**  a major version upgrade, they are given a number of Build Points to 
+**  allocate to these five ratings. As a rating improves, so too does
+**  the respective stat being upgraded. Once a rating has received a
+**  maximum point investment, it will enter Surge status, in which the
+**  mechanic receives a significant boost as a reward for reaching that
+**  point. All point allocation is irreversible once the Subroutines
+**  menu is closed, but unallocated points are saved indefinitely for
+**  future allocation at any time.
+**
+**
+**  PointsPerLevel (Integer)
+**      - The amount of points that are awarded to the player whenever
+**      they reach a major version upgrade.
+**
+**  InitialPoints (Integer)
+**      - The amount of points that are given to the player at the start
+**      of a campaign, or when loading into a custom map.
+**      - Because this is a global setting, it is highly discouraged to
+**      change this, and instead use the AddBuildPoints command in DEdit
+**      to provide the player an initial version number greater than 0.
+**
+**  MinValue (Integer),
+**  MaxValue (Integer)
+**      - The minimum/maximum amount of points that can be allocated to
+**      each of the five Performance Ratings. This is a permanently
+**      shared setting that cannot be changed per rating.
+**
+**  InitialValue (Integer)
+**      - The amount of points initially allocated to each of the five
+**      Performance Ratings at the start of a campaign, or when loading
+**      into a custom map. 
+**      - Because this is a global setting, it is highly discouraged to
+**      change this, and instead use the AddBuildPoints command in DEdit
+**      to provide the player an initial version number greater than 0.
+**
+**  <ItemTransfer> (Custom Vector)
+**      - The remaining fields all set transfer times (in seconds) for 
+**      all of the game's item types, including transfers from Archive
+**      Bins and Core Dumps.
+**
+**      - The field's accepted data value is in the syntax of a Vector.
+**      All values are times in seconds. 
+**      -- The first value defines the transfer time when the Transfer 
+**      Rate rating is at the MinValue.
+**      -- The second value is intended to define the transfer time
+**      when the Transfer Rate rating is at the MaxValue. However, this
+**      value is not ever truly reached, because a rating at MaxValue
+**      goes directly to Surge status, and therefore uses the third
+**      value instead.
+**      -- The third value defines the transfer time when the Transfer
+**      Rate rating has reached Surge status.
+**
+**      - The different types of transfers are described as follows:
+**      -- AlphaSubTransfer, BetaSubTransfer, GoldSubTransfer: For
+**      Alpha, Beta, and Gold Subroutines respectively.
+**      -- ProceduralTransfer: For the Disinfect, Defrag, and Port
+**      Procedurals. Fully functional, although no Procedurals are
+**      obtained in this way in the game.
+**      -- PrimitiveTransfer: For the "5" Primitive weapons. The "Hands"
+**      "weapon" counts under this category, but getting it in this way
+**      doesn't actually have any visible effects. The other four work
+**      as intended.
+**      -- PsetTransfer: For the 8 in-game Permissions.
+**      -- EmailTransfer: For Email files.
+**      -- HelpFileTransfer: For Help Files. Fully functional, although
+**      no Help Files are obtained in this way in the game.
+**      -- CustomTransfer: For an arbitrary "item", or an item that does
+**      not apply to any of the above categories, like a Video Archive.
+**      Transferring a Custom item simply executes a custom command, or
+**      does nothing if no command was given.
+**
+**  ---[SAFELY DEPRECATED VALUES]---
+**  LowEnergyRecharge (Unknown),
+**  HighEnergyRecharge (Unknown),
+**  SurgeEnergyRecharge (Unknown),
+**  RechargeRate (Unknown)
+**      - Unused values, deprecated by Monolith.
+*/
+
+[Ratings]
+PointsPerLevel	= 7
+InitialPoints 	= 0
+MinValue	= 0
+MaxValue 	= 20
+InitialValue	= 0
+AlphaSubTransfer= <8.0, 2.0, 1.0>
+BetaSubTransfer	= <12.0, 3.0, 2.0>
+GoldSubTransfer = <16.0, 4.0, 3.0>
+ProceduralTransfer = <8.0, 2.0, 1.0>
+PrimitiveTransfer = <8.0, 2.0, 1.0>
+PsetTransfer	= <8.0, 2.0, 1.0>
+EmailTransfer	= <3.0, 1.0, 0.5>
+HelpFileTransfer= <3.0, 1.0, 0.5>
+CustomTransfer	= <5.0, 2.0, 0.5>
+//LowEnergyRecharge = 0.0f
+//HighEnergyRecharge = 20.0f
+//SurgeEnergyRecharge = 30.0f
+//RechargeRate	= <0.5, 5.0, 10.0>

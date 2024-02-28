@@ -1,0 +1,155 @@
+/************************************************************************
+**
+**                    ----------[COMMANDS]----------
+**
+**  The Commands file 
+**
+**	NOTES:
+**		If you wish to use a variable in a command in DEdit you MUST
+**		declare the variable as either a global or level specific in
+**		this file first.
+**
+**		There is a max number of 255 variables per level.
+**				
+** GLOBALS
+**
+** 	This provides a place to declare global commands.  These commands are 
+** 	executed ONCE on a new game when the player enters the first level
+** 	of the first mission.  Currently only variable declarations are valid
+** 	global commands.  Global variables will be accessible in any level 
+**	and their value will get saved across all levels.
+**
+**	Cmd0-N (String)
+**
+**		The command you wish to process.
+**
+**		Valid global commands:
+**
+**			INT - declares an Integer variable and sets its value.
+**
+** LEVELS
+**
+**	This provides a place to declare level specific commands.  These commands are
+**	executed every time you enter the level.  Every command is valid as a level
+**	specific command.
+**
+**	Cmd0-N (String)
+**
+**		The command you wish to process on level load.
+**
+*/
+
+[globals]
+
+
+//
+// Levels...
+//
+
+[map0]
+name = "M01-01"
+
+[map1]
+name = "M01-02"
+
+[map2]
+name = "M02-01"
+
+[map3]
+name = "M02-02"
+
+[map4]
+name = "M02-03"
+
+[map5]
+name = "M02-04"
+
+[map6]
+name = "M03-01"
+
+[map7]
+name = "M04-01"
+
+[map8]
+name = "M04-02"
+
+[map9]
+name = "M05-01"
+
+[map10]
+name = "M05-02"
+
+[map11]
+name = "M05-03"
+
+[map12]
+name = "M05-04"
+
+[map13]
+name = "M06-01"
+
+[map14]
+name = "M06-02"
+
+[map15]
+name = "M06-03"
+
+[map16]
+name = "M06-04"
+
+[map17]
+name = "M07-01"
+
+[map18]
+name = "M07-02"
+
+[map19]
+name = "M07-03"
+
+[map20]
+name = "M07-04"
+
+[map21]
+name = "M08-01"
+
+[map22]
+name = "M09-01"
+
+[map23]
+name = "M09-02"
+cmd0 = "int inner 0"
+cmd1 = "int middle 0"
+cmd2 = "int outer 0"
+cmd3 = "WHEN (((inner == 1) AND (middle == 1)) AND (outer == 1)) THEN (msg triplelocktrig trigger)"
+
+[map24]
+name = "M09-03"
+
+[map25]
+name = "M10-01"
+
+[map26]
+name = "M10-02"
+
+[map27]
+name = "M10-03"
+
+[map28]
+name = "M10-04"
+
+[map29]
+name = "M10-05"
+
+[map30]
+name = "Variable_Test_Map"
+cmd0 = "int counter 0"
+cmd1 = "WHEN (counter == 4) THEN (msg chud on)"
+
+
+[map31]
+name = "AITest"
+cmd0 = "int EventVar01 0"
+cmd1 = "int EventVar02 0"
+cmd2 = "WHEN (EventVar02 == 11) Then (msg player (fadeIn 2.5))" // player has survived wave #1
+
+
