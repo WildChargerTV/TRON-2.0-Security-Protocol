@@ -2,8 +2,10 @@
 **
 **                     ----------[AIGOALS]----------
 **
-**  AIGoals are responsible for determining goal sets for AI routines.
-**  This is the file that tells the AI what to do, but not how to do it.
+**  The AIGoals file acts as the general control file for AI objectives
+**  ingame. AIGoals themselves are responsible for determining goal sets 
+**  for AI routines. Put simply, this is the file that tells the AI what 
+**  to do, but not how to do it.
 **  
 **  When adding a new NPC to a world in DEdit, its GoalSet property will
 **  refer directly to this file.

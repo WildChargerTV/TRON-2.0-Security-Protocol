@@ -2,6 +2,9 @@
 **
 **                   ----------[ACTIVATETYPES]----------
 **
+**  The ActivateTypes file manages attributes for all of the game's
+**  various Activation Types.
+**
 **  ActivateTypes are options for a property in DEdit that correspond 
 **  to either linear or binary actions in TRON 2.0. The property is 
 **  associated with objects that the player can directly interact with 

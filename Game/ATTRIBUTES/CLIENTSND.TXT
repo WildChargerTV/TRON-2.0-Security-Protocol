@@ -2,9 +2,9 @@
 **
 **		               ----------[CLIENTSND]----------
 **
-**  The Client Sound file does one thing and one thing only: specify the
-**  path to the folder containing the game's voice lines for use in
-**  Single Player.
+**  The ClientSND file (short for Client Sound) does one thing and one 
+**  thing only: specify the path to the folder containing the game's 
+**  voice lines for use in Single Player.
 **
 **  All voice lines in the game must have their name set only to their
 **  associated ID, as well as a .LIP file that translates the voice line

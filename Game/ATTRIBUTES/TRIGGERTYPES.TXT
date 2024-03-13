@@ -2,6 +2,9 @@
 **
 **                 ----------[TRIGGERTYPES]----------
 **
+**  The TriggerTypes file manages attributes for all of the game's
+**  various Trigger Types.
+**
 **  TriggerTypes are responsible for associating specific map triggers -
 **  ones that the player should be made aware of - with icon textures
 **  that will appear in the HUD to inform the player that they are close

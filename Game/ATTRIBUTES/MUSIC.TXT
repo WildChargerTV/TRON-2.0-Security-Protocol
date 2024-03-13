@@ -1,0 +1,264 @@
+/************************************************************************
+**
+**                       ----------[MUSIC]----------
+**
+**  The Music file is responsible for "importing" the music control
+**  files into the game itself, and allow it to set up its dynamic music
+**  system.
+**
+**  In TRON 2.0, the music system is not a simple linear track; rather,
+**  it is a system that uses track segments, which is exactly what the
+**  name implies: it accepts tracks, splits them into segments, and then
+**  uses an internal system to play all of the segments in a sequence
+**  that is set by a dedicated control file. Other attributes, such as
+**  the timings the game will use to properly overlap the segments, are
+**  stored in that specific segment's companion file, which uses the
+**  .SGT format.
+**
+**  The only way to properly add your own music into the game is to
+**  use Microsoft DirectMusic Producer, which is responsible for making
+**  the .SGT files that the control file can read from. A tutorial on
+**  how to do so may appear at a later date, but no guarantees.
+**
+**  This file has two sections: Settings and Tracks.
+**
+**  ---------------------------------------------------------------------
+**  
+**  There are two elements of the dynamic music that are controllable:
+**  moods and events. These concepts are represented in the music's
+**  intensities and motifs respectively.
+**
+**  ---------------------------------------------------------------------
+**
+**  Moods are essentially the game's normal background music, and are
+**  the system responsible for allowing the music to respond to the
+**  current game state.
+**
+**  At any given time, only a single mood will be playing. Any number of
+**  events/motifs can play on top of this mood. There are four moods in
+**  total:
+**      1. None - Silence. In TRON 2.0, this isn't supposed to occur
+**      naturally, however does still happen every so often. The "music"
+**      that plays in this mood is just set up to reference no sound
+**      files at all.
+**      2. Routine - Ambient music. This should be the default state of
+**      music in TRON 2.0. If the mood is set to None, it can easily
+**      return to this state, or a higher one, whenever there is any AI 
+**      activity near the player.
+**      3. Investigative - Moderate intensity music. This plays when a
+**      hostile AI has become aware of the player's presence, but is not
+**      yet engaged in combat.
+**      4. Aggressive - Combat music. This will pretty much always be
+**      playing when an AI is engaged in combat, regardless of whether
+**      it is with the player, or with other AI.
+**
+**  The game determines the current mood by constantly checking these
+**  four states top-down (from Aggressive to None) and seeing if each
+**  specific mood is being stimulated by an AI that is within the
+**  player's visibility. If it can't find any AI, then it will default
+**  to None as the mood. If multiple intensities are assigned to a
+**  single mood, the game will pick one at random when transitioning to
+**  it.
+**
+**  This logic is not set in stone, however. The MinMusicMood DEdit
+**  property can change the default minimum music mood. The two most
+**  notable examples of this are the Transport Station (Vaporware) and
+**  the Main Power Pipeline (Antiquated). A command can also easily
+**  force the music intensity to change to a different mood at any time.
+**
+**  ---------------------------------------------------------------------
+**
+**  Events, as stated before, are additional music cues that can play
+**  on top of the current mood when an AI either dodges, or dies from,
+**  an attack. Although TRON 2.0 does not actually use events, they can
+**  still be set up by adding motifs inside the music control files
+**  themselves. If multiple motifs are assigned to a single event, the
+**  game will pick one at random to play on a per-event basis.
+*/
+
+
+/************************************************************************
+**
+**                                Settings
+**
+**  This section defines specific settings pertaining to the music.
+**  
+**  
+**  DodgeChance (Float),
+**  DieChance (Float)
+**      - The percentage change that the game will play a motif when an
+**      AI dodges or dies from an attack respectively. Any values above
+**      1 will be treated as 1, but it is recommended to keep the value
+**      between 0 and 1.
+**      - This is unused in TRON 2.0, but is still fully functional.
+*/
+[settings]
+DodgeChance = 0.5
+DieChance = 0.5
+
+
+/************************************************************************
+**
+**                                 Tracks
+**
+**  This section defines all of the specific music tracks the game can
+**  use. Because they are strictly based on their name, they do not need
+**  to be defined in a specific order; however, all of the section
+**  headers must be fully lowercase.
+**
+**
+**  None# (Integer),
+**  Routine# (Integer),
+**  Investigate# (Integer),
+**  Aggressive# (Integer)
+**      - The intensity to read from the control file for each of the
+**      four different moods.
+**  
+**  AIDie# (String),
+**  AIDodge# (String)
+**      - (Optional) The name of a motif to play when an event occurs
+**      while this track is currently playing. The name must directly
+**      correspond to the same name as defined in the track's control 
+**      file.
+**      - This is unused in TRON 2.0, but is still fully functional.
+*/
+
+/*  ---[Menu (for all menu screens)]---  */
+[menu]
+// Moods:
+None0 = 1
+Routine0 = 2
+Investigate0 = 2
+Aggressive0 = 2
+// Events: N/A
+
+/*  ---[LabICP (for Chapter 1: Unauthorized User)]---  */
+[labicp]
+// Moods:
+None0 = 1
+Routine0 = 2
+Investigate0 = 13
+Aggressive0 = 31
+// Events: N/A
+
+/*  ---[Bin (for Chapter 2: Vaporware)]---  */
+[bin]
+// Moods:
+None0 = 1
+Routine0 = 2
+Investigate0 = 21
+Aggressive0 = 31
+// Events: N/A
+
+/*  ---[Bradley (for Chapters 3 (Legacy Code) & 4 (System Reboot))]  */
+[bradley]
+// Moods:
+None0 = 1
+Routine0 = 2
+Investigate0 = 9
+Aggressive0 = 14
+// Events: N/A
+
+/*  ---[Ancient (for Chapter 5: Antiquated)]---  */
+[ancient]
+// Moods:
+None0 = 1
+Routine0 = 1
+Investigate0 = 2
+Aggressive0 = 31
+// Events: N/A
+
+/*  ---[Scherzo (TRON Theme) (for Map 5-4: Main Power Pipeline)]---  */
+[scherzo]
+// Moods:
+None0 = 1
+Routine0 = 1
+Investigate0 = 2
+Aggressive0 = 31
+// Events: N/A
+
+/*  ---[City (for Chapter 6: Master User)]---  */
+[city]
+// Moods:
+None0 = 1
+Routine0 = 2
+Investigate0 = 14
+Aggressive0 = 31
+// Events: N/A
+
+
+/*  ---[City61]---
+**  Assuming this is for map 6-1, awaiting confirmation.
+*/
+[city61]
+// Moods:
+None0 = 1
+Routine0 = 1
+Investigate0 = 14
+Aggressive0 = 31
+// Events: N/A
+
+/*  ---[City64]---
+**  Assuming this is for map 6-4, awaiting confirmation.
+*/
+[city64]
+// Moods:
+None0 = 1
+Routine0 = 1
+Investigate0 = 2
+Aggressive0 = 31
+// Events: N/A
+
+/*  ---[Corrupt (for Chapter 7: Alliance)]---  */
+[corrupt]
+// Moods:
+None0 = 1
+Routine0 = 2
+Investigate0 = 12
+Aggressive0 = 21
+// Events: N/A
+
+/*  ---[PDA (for Chapter 8: Handshake)]---  */
+[pda]
+// Moods:
+None0 = 1
+Routine0 = 2
+Investigate0 = 2
+Aggressive0 = 2
+// Events: N/A
+
+/*  ---[FCom (for Chapter 9: Data Base)]---  */
+[fcom]
+// Moods:
+None0 = 1
+Routine0 = 2
+Investigate0 = 4
+Aggressive0 = 6
+// Events: N/A
+
+/*  ---[Cruiser (for Chapter 10: The Root of the Problem)]---  */
+[cruiser]
+// Moods:
+None0 = 1
+Routine0 = 2
+Investigate0 = 17
+Aggressive0 = 31
+// Events: N/A
+
+/*  ---[Realm (for Chapter 11: Incompatible)]---  */
+[realm]
+// Moods:
+None0 = 1
+Routine0 = 1
+Investigate0 = 1
+Aggressive0 = 2
+// Events: N/A
+
+/*  ---[Power (Unused)]---  */
+[power]
+// Moods:
+None0 = 1
+Routine0 = 2
+Investigate0 = 13
+Aggressive0 = 31
+// Events: N/A

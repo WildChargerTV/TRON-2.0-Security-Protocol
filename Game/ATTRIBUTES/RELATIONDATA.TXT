@@ -1,0 +1,542 @@
+/************************************************************************
+**
+**                  ----------[RELATIONDATA]----------
+**
+**  The RelationData file
+
+
+/* 
+** RelationalObject Attributes
+**
+**	The RelationalObject specifies the objects links to other Relation
+**	information.  
+**
+**		Name
+**			The 'Key' used to select a relation set
+** 
+**		RelationSet
+**			Name of the RelationSet this Object uses.  "" if no
+**			RelationSet is to be used.
+** 
+**		RelationData
+**			Name of the RelationData this Object uses.  "" if there
+**			is no RelationData
+** 
+**		Collective: 
+**			Name of the collective, if any.  "" if there is no Collective
+** 
+** 
+*/
+
+[RelationalObject0]
+Name			= "IC_Regular"
+RelationSet		= "Security_Characters"
+RelationData	= "IC_Regular"
+Collective		= ""
+
+[RelationalObject1]
+Name			= "IC_Launcher"
+RelationSet		= "Security_Characters"
+RelationData	= "IC_Launcher"
+Collective		= ""
+
+[RelationalObject2]
+Name			= "IC_Shield"
+RelationSet		= "Security_Characters"
+RelationData	= "IC_Shield"
+Collective		= ""
+
+[RelationalObject3]
+Name			= "Player"
+RelationSet		= "Player"
+RelationData	= "Player"
+Collective		= ""
+
+[RelationalObject4]
+Name			= "ByStander"
+RelationSet		= "ByStander"
+RelationData	= "ByStander"
+Collective		= ""
+
+[RelationalObject5]
+Name			= "DataWraith"
+RelationSet		= "DataWraith"
+RelationData	= "DataWraith"
+Collective		= ""
+
+[RelationalObject6]
+Name			= "Zealot"
+RelationSet		= "Corruption"
+RelationData	= "Zealot"
+Collective		= ""
+
+[RelationalObject7]
+Name			= "Rectorscript"
+RelationSet		= "Corruption"
+RelationData	= "Rectorscript"
+Collective		= ""
+
+[RelationalObject8]
+Name			= "PlayerAlly"
+RelationSet		= "PlayerAlly"
+RelationData	= "PlayerAlly"
+Collective		= ""
+
+[RelationalObject9]
+Name			= "Seeker"
+RelationSet		= "Seeker"
+RelationData	= "Seeker"
+Collective		= ""
+
+[RelationalObject10]
+Name			= "Finder"
+RelationSet		= "Finder"
+RelationData	= "Finder"
+Collective		= ""
+
+[RelationalObject11]
+Name			= "FconMonster"
+RelationSet		= "FconMonster"
+RelationData	= "FconMonster"
+Collective      = ""
+
+[RelationalObject12]
+Name			= "Kernel"
+RelationSet		= "Security_Characters"
+RelationData	= "Kernel"
+Collective      = ""
+
+[RelationalObject13]
+Name			= "ResourceHog"
+RelationSet		= "ResourceHog"
+RelationData	= "ResourceHog"
+Collective      = ""
+
+[RelationalObject14]
+Name			= "LightCyclist"
+RelationSet		= "ByStander"
+RelationData	= "ByStander"
+Collective      = ""
+
+[RelationalObject15]
+Name			= "GoodCharacter"
+RelationSet		= "GoodCharacter"
+RelationData	= "GoodCharacter"
+Collective      = ""
+
+[RelationalObject16]
+Name			= "BadCharacter"
+RelationSet		= "BadCharacter"
+RelationData	= "BadCharacter"
+Collective      = ""
+
+[RelationalObject17]
+Name			= "GameBot"
+RelationSet		= "GameBot"
+RelationData	= "GameBot"
+Collective      = ""
+
+[RelationalObject18]
+Name			= "TronTurret"
+RelationSet		= "TronTurret"
+RelationData	= "TronTurret"
+Collective      = ""
+
+[RelationalObject19]
+Name			= "Neutral"
+RelationSet		= "Neutral"
+RelationData	= "Neutral"
+Collective      = ""
+
+/* 
+** Collectives
+**
+**	Collectives are for 'Collective minded' characters who all think alike in some way.
+**	They should be used ONLY in situations where they are obviously meant
+**	to exist.
+**	
+**	Characters RelationSets subscribe to Collectives as sources of information.
+**	Information which is not in the Collective MAY still be different for these
+**	characters.  Whenever information matching that listed in the Collective is 
+**	uncovered, the Collective learns that information, and it remains until the
+**	Collective releases it.
+**	
+**		Name = Key
+**	
+**	
+*/
+
+[Collective0]
+Name				= "void"
+RelationSet			= ""
+
+[Collective1]
+Name				= "IC_Collective"
+RelationSet			= "IC_Collective"
+
+
+/* 
+** Relation Attributes
+**
+** Name				The 'Key' used to select a relation set
+** RelationTimeout	How long past last stimulus dynamic relations last
+** Relation0-N		List of Relations in format:
+** 
+**		TraitName<space>Relationship<space>Value
+**		
+**		Valid TraitNames:
+**			Name, Class, Alignment
+** 
+**		Valid Alignments:
+**			LIKE, TOLERATE, HATE, UNDETERMINED
+** 
+**		Valid ObjectID: 
+**			String with no spaces
+**
+*/
+
+[RelationSet0]
+Name				= "Unimplemented"
+
+[RelationSet1]
+Name				= "IC_Collective"
+RelationTimeout		= 30.0
+
+[RelationSet2]
+Name				= "Security_Characters"
+RelationTimeout		= 30.0
+Relation0			= "Alignment LIKE Security"
+Relation1			= "Alignment HATE Player"
+Relation2			= "Alignment TOLERATE ByStander"
+Relation3			= "Alignment HATE Corruption"
+Relation4			= "Alignment HATE PlayerAlly"
+Relation5			= "Alignment LIKE Seeker"
+Relation6			= "Alignment HATE FconMonster"
+Relation7			= "Alignment TOLERATE ResourceHog"
+Relation8			= "Alignment HATE AbsoluteGood"
+Relation9			= "Alignment LIKE AbsoluteBad"
+Relation10			= "Alignment TOLERATE Neutral"
+
+[RelationSet3]
+Name				= "Player"
+RelationTimeout		= 30.0
+Relation0			= "Alignment HATE Security"
+Relation1			= "Alignment LIKE Player"
+Relation2			= "Alignment LIKE ByStander"
+Relation3			= "Alignment HATE Corruption"
+Relation4			= "Alignment LIKE PlayerAlly"
+Relation5			= "Alignment HATE Seeker"
+Relation6			= "Alignment HATE FconMonster"
+Relation7			= "Alignment HATE ResourceHog"
+Relation8			= "Alignment LIKE AbsoluteGood"
+Relation9			= "Alignment HATE AbsoluteBad"
+Relation10			= "Alignment TOLERATE Neutral"
+
+[RelationSet4]
+Name				= "Neutral"
+RelationTimeout		= 30.0
+Relation0			= "Alignment TOLERATE Security"
+Relation1			= "Alignment TOLERATE Player"
+Relation2			= "Alignment TOLERATE Neutral"
+Relation3			= "Alignment TOLERATE Corruption"
+Relation4			= "Alignment TOLERATE PlayerAlly"
+Relation5			= "Alignment TOLERATE Seeker"
+Relation6			= "Alignment TOLERATE FconMonster"
+Relation7			= "Alignment TOLERATE ResourceHog"
+Relation8			= "Alignment TOLERATE AbsoluteGood"
+Relation9			= "Alignment TOLERATE AbsoluteBad"
+Relation10			= "Alignment TOLERATE ByStander"
+
+[RelationSet5]
+Name				= "Corruption"
+RelationTimeout		= 30.0
+Relation0			= "Alignment HATE Security"
+Relation1			= "Alignment HATE Player"
+Relation2			= "Alignment TOLERATE Neutral"
+Relation3			= "Alignment LIKE Corruption"
+Relation4			= "Alignment HATE PlayerAlly"
+Relation5			= "Alignment HATE Seeker"
+Relation6			= "Alignment LIKE FconMonster"
+Relation7			= "Alignment HATE ResourceHog"
+Relation8			= "Alignment HATE AbsoluteGood"
+Relation9			= "Alignment LIKE AbsoluteBad"
+Relation10			= "Alignment HATE ByStander"
+
+[RelationSet6]
+Name				= "PlayerAlly"
+RelationTimeout		= 30.0
+Relation0			= "Alignment HATE Security"
+Relation1			= "Alignment LIKE Player"
+Relation2			= "Alignment TOLERATE Neutral"
+Relation3			= "Alignment HATE Corruption"
+Relation4			= "Alignment LIKE PlayerAlly"
+Relation5			= "Alignment HATE Seeker"
+Relation6			= "Alignment HATE FconMonster"
+Relation7			= "Alignment HATE ResourceHog"
+Relation8			= "Alignment LIKE AbsoluteGood"
+Relation9			= "Alignment HATE AbsoluteBad"
+Relation10			= "Alignment LIKE ByStander"
+
+[RelationSet7]
+Name				= "Seeker"
+Relation0			= "Alignment LIKE Security"
+Relation1			= "Alignment HATE Player"
+Relation2			= "Alignment TOLERATE Neutral"
+Relation3			= "Alignment HATE Corruption"
+Relation4			= "Alignment HATE PlayerAlly"
+Relation5			= "Alignment HATE Seeker"
+Relation6			= "Alignment HATE FconMonster"
+Relation7			= "Alignment HATE ResourceHog"
+Relation8			= "Alignment HATE AbsoluteGood"
+Relation9			= "Alignment LIKE AbsoluteBad"
+Relation10			= "Alignment HATE ByStander"
+
+[RelationSet8]
+Name				= "FconMonster"
+Relation0			= "Alignment HATE Security"
+Relation1			= "Alignment HATE Player"
+Relation2			= "Alignment TOLERATE Neutral"
+Relation3			= "Alignment LIKE Corruption"
+Relation4			= "Alignment HATE PlayerAlly"
+Relation5			= "Alignment HATE Seeker"
+Relation6			= "Alignment HATE FconMonster"
+Relation7			= "Alignment HATE ResourceHog"
+Relation8			= "Alignment HATE AbsoluteGood"
+Relation9			= "Alignment LIKE AbsoluteBad"
+Relation10			= "Alignment HATE ByStander"
+
+[RelationSet9]
+Name				= "Finder"
+RelationTimeout		= 30.0
+Relation0			= "Alignment LIKE Security"
+Relation1			= "Alignment HATE Player"
+Relation2			= "Alignment TOLERATE Neutral"
+Relation3			= "Alignment HATE Corruption"
+Relation4			= "Alignment TOLERATE PlayerAlly"
+Relation5			= "Alignment TOLERATE Seeker"
+Relation6			= "Alignment HATE FconMonster"
+Relation7			= "Alignment HATE ResourceHog"
+Relation8			= "Alignment HATE AbsoluteGood"
+Relation9			= "Alignment LIKE AbsoluteBad"
+Relation10			= "Alignment TOLERATE ByStander"
+
+[RelationSet10]
+Name				= "ResourceHog"
+RelationTimeout		= 30.0
+Relation0			= "Alignment LIKE Security"
+Relation1			= "Alignment HATE Player"
+Relation2			= "Alignment TOLERATE Neutral"
+Relation3			= "Alignment TOLERATE Corruption"
+Relation4			= "Alignment HATE PlayerAlly"
+Relation5			= "Alignment TOLERATE Seeker"
+Relation6			= "Alignment TOLERATE FconMonster"
+Relation7			= "Alignment LIKE ResourceHog"
+Relation8			= "Alignment HATE AbsoluteGood"
+Relation9			= "Alignment LIKE AbsoluteBad"
+Relation10			= "Alignment HATE ByStander"
+
+[RelationSet11]
+Name				= "GoodCharacter"
+RelationTimeout		= 30.0
+Relation0			= "Alignment HATE Security"
+Relation1			= "Alignment LIKE Player"
+Relation2			= "Alignment TOLERATE Neutral"
+Relation3			= "Alignment HATE Corruption"
+Relation4			= "Alignment LIKE PlayerAlly"
+Relation5			= "Alignment HATE Seeker"
+Relation6			= "Alignment HATE FconMonster"
+Relation7			= "Alignment HATE ResourceHog"
+Relation8			= "Alignment LIKE AbsoluteGood"
+Relation9			= "Alignment HATE AbsoluteBad"
+Relation10			= "Alignment LIKE ByStander"
+
+[RelationSet12]
+Name				= "BadCharacter"
+RelationTimeout		= 30.0
+Relation0			= "Alignment LIKE Security"
+Relation1			= "Alignment HATE Player"
+Relation2			= "Alignment TOLERATE Neutral"
+Relation3			= "Alignment LIKE Corruption"
+Relation4			= "Alignment HATE PlayerAlly"
+Relation5			= "Alignment LIKE Seeker"
+Relation6			= "Alignment LIKE FconMonster"
+Relation7			= "Alignment LIKE ResourceHog"
+Relation8			= "Alignment HATE AbsoluteGood"
+Relation9			= "Alignment LIKE AbsoluteBad"
+Relation10			= "Alignment HATE ByStander"
+
+
+[RelationSet13]
+Name				= "GameBot"
+RelationTimeout		= 30.0
+Relation0			= "Alignment LIKE Security"
+Relation1			= "Alignment HATE Player"
+Relation2			= "Alignment TOLERATE Neutral"
+Relation3			= "Alignment LIKE Corruption"
+Relation4			= "Alignment LIKE PlayerAlly"
+Relation5			= "Alignment LIKE Seeker"
+Relation6			= "Alignment LIKE FconMonster"
+Relation7			= "Alignment LIKE ResourceHog"
+Relation8			= "Alignment LIKE AbsoluteGood"
+Relation9			= "Alignment LIKE AbsoluteBad"
+Relation10			= "Alignment HATE ByStander"
+
+
+[RelationSet14]
+Name				= "TronTurret"
+RelationTimeout		= 30.0
+Relation0			= "Alignment LIKE Security"
+Relation1			= "Alignment HATE Player"
+Relation2			= "Alignment TOLERATE Neutral"
+Relation3			= "Alignment LIKE Corruption"
+Relation4			= "Alignment LIKE PlayerAlly"
+Relation5			= "Alignment LIKE Seeker"
+Relation6			= "Alignment LIKE FconMonster"
+Relation7			= "Alignment LIKE ResourceHog"
+Relation8			= "Alignment LIKE AbsoluteGood"
+Relation9			= "Alignment LIKE AbsoluteBad"
+Relation10			= "Alignment TOLERATE ByStander"
+
+[RelationSet15]
+Name				= "ByStander"
+RelationTimeout		= 30.0
+Relation0			= "Alignment TOLERATE Security"
+Relation1			= "Alignment TOLERATE Player"
+Relation2			= "Alignment TOLERATE Neutral"
+Relation3			= "Alignment HATE Corruption"
+Relation4			= "Alignment TOLERATE PlayerAlly"
+Relation5			= "Alignment HATE Seeker"
+Relation6			= "Alignment HATE FconMonster"
+Relation7			= "Alignment HATE ResourceHog"
+Relation8			= "Alignment LIKE AbsoluteGood"
+Relation9			= "Alignment HATE AbsoluteBad"
+Relation10			= "Alignment LIKE ByStander"
+
+[RelationSet16]
+Name				= "Datawraith"
+RelationTimeout		= 30.0
+Relation0			= "Alignment LIKE Security"
+Relation1			= "Alignment HATE Player"
+Relation2			= "Alignment TOLERATE ByStander"
+Relation3			= "Alignment HATE Corruption"
+Relation4			= "Alignment HATE PlayerAlly"
+Relation5			= "Alignment LIKE Seeker"
+Relation6			= "Alignment HATE FconMonster"
+Relation7			= "Alignment TOLERATE ResourceHog"
+Relation8			= "Alignment HATE AbsoluteGood"
+Relation9			= "Alignment LIKE AbsoluteBad"
+
+/* 
+** Relation Attributes
+**
+** Name			the 'Key' used to select a relation set
+** Relation0-N	list of Relations in format:
+** 
+**		TraitName<space>Value
+** 
+**		Valid TraitNames:
+**			Name, Class, Alignment
+** 
+**		Valid ObjectID: 
+**			String with no spaces
+** 
+** 
+*/
+
+[RelationData0]
+Name		= "Unimplemented"
+
+[RelationData1]
+Name		= "IC_Regular"
+Data0		= "Class IC_Regular"
+Data1		= "Alignment Security"
+
+[RelationData2]
+Name		= "IC_Shield"
+Data0		= "Class IC_Shield"
+Data1		= "Alignment Security"
+
+[RelationData3]
+Name		= "IC_Launcher"
+Data0		= "Class IC_Launcher"
+Data1		= "Alignment Security"
+
+[RelationData4]
+Name		= "Finder"
+Data0		= "Class Finder"
+Data1		= "Alignment Finder"
+
+[RelationData5]
+Name		= "Player"
+Data0		= "Class Player"
+Data1		= "Alignment Player"
+
+[RelationData6]
+Name		= "ByStander"
+Data0		= "Class ByStander"
+Data1		= "Alignment ByStander"
+
+[RelationData7]
+Name		= "DataWraith"
+Data0		= "Class DataWraith"
+Data1		= "Alignment Security"
+
+[RelationData8]
+Name		= "Zealot"
+Data0		= "Class Zealot"
+Data1		= "Alignment Corruption"
+
+[RelationData9]
+Name		= "Rectorscript"
+Data0		= "Class Rectorscript"
+Data1		= "Alignment Corruption"
+
+[RelationData10]
+Name		= "PlayerAlly"
+Data0		= "Class PlayerAlly"
+Data1		= "Alignment PlayerAlly"
+
+[RelationData11]
+Name		= "Seeker"
+Data0		= "Class Seeker"
+Data1		= "Alignment Seeker"
+
+[RelationData12]
+Name		= "FconMonster"
+Data0		= "Class FconMonster"
+Data1		= "Alignment FconMonster"
+
+[RelationData13]
+Name		= "Kernel"
+Data0		= "Class Kernel"
+Data1		= "Alignment Security"
+
+[RelationData14]
+Name		= "ResourceHog"
+Data0		= "Class ResourceHog"
+Data1		= "Alignment ResourceHog"
+
+[RelationData15]
+Name		= "GoodCharacter"
+Data0		= "Class AbsoluteGood"
+Data1		= "Alignment AbsoluteGood"
+
+[RelationData16]
+Name		= "BadCharacter"
+Data0		= "Class AbsoluteBad"
+Data1		= "Alignment AbsoluteBad"
+
+[RelationData17]
+Name		= "GameBot"
+Data0		= "Class GameBot"
+Data1		= "Alignment GameBot"
+
+[RelationData18]
+Name		= "TronTurret"
+Data0		= "Class TronTurret"
+Data1		= "Alignment TronTurret"
+
+[RelationData19]
+Name		= "Neutral"
+Data0		= "Class Neutral"
+Data1		= "Alignment Neutral"

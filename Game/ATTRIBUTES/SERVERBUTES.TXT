@@ -1,0 +1,271 @@
+/************************************************************************
+**
+**                    ----------[SERVERBUTES]----------
+**
+**  The ServerButes file is responsible for managing attributes for 
+**  server-based entities; however, almost none of it is used, as it is 
+**  still mostly based on NOLF 2's multiplayer infrastructure.
+**
+**  Documentation of this file is currently on hold, awaiting further
+**  multiplayer testing. Original documentation is below.
+*/
+
+/************************************************************************
+**
+** This file contains attributes for the following:
+**
+**  Player,
+**  SecurityCamera
+**  WON
+**  Body
+**  Miscellaneous
+**
+**
+** NOTES:  
+**
+**  1) All time is specified in seconds (unless otherwise noted)
+**  2) The Float type is the same as Real (i.e., 1.0 or 1.5)
+**  3) The valid range of all RGB color properties is between
+**     0 and 255 (e.g., (0, 255, 0) would be green).
+*/
+
+/************************************************************************
+**
+** P L A Y E R  Attributes
+**
+**	DefaultModel (String)
+**
+**		The name of the default player model
+**
+**	DefaultSkin (String)
+**
+**		The name of the default player skin.
+**
+**	DefaultSkin2 (String)
+**
+**		The name of the default player's head skin.
+**
+**	DefaultWeapon (String)
+**
+**		The name of the player's default weapon.  NOTE: the player
+**		will ALWAYS have access to this weapon.
+**
+**	SwatWeapon (String)
+**
+**		The name of the player's fake "Swat Block" weapon.  It is
+**		a short range vector weapon simulating a melee attack
+**		when the player performs a "swat block".
+**
+**	WalkSpeed (Float)
+**
+**		The maximum velocity the player walks at
+**
+**	RunSpeed (Float)
+**
+**		The maximum velocity the player runs at
+**
+**	JumpSpeed (Float)
+**
+**		The velocity given to the player when he jumps
+**
+**	SuperJumpSpeed (Float)
+**
+**		The velocity given to the player when he performs a super-jump
+**		(some items may give the player a velocity somewhere between
+**		the JumpSpeed and SuperJumpSpeed)
+**
+**	LadderSpeed (Integer)
+**
+**		The maximum velocity when the player is climbing a ladder
+**
+**	SwimSpeed (Float)
+**
+**		The maximum velocity when the player is swimming
+**
+**	ZipCordSpeed (Integer)
+**
+**		The velocity given to the player when he is zipcording
+**
+**	ActivateDistance (Integer)	
+**
+**		The farthest distance (in game units) away from the tip of the players
+**		gun that the player can activate an object
+**
+**	MotorcycleModel (String)
+**
+**		The name of the motorcycle model seen in multiplayer
+**
+**	MotorcycleSkin (String)
+**
+**		The name of the motorcycle skin.
+**
+**	MotorcycleSkin2 (String) (OPTIONAL)
+**
+**		The name of an optional second motorcycle skin.
+**
+**	SnowmobileModel (String)
+**
+**		The name of the snowmobile model seen in multiplayer
+**
+**	SnowmobileSkin (String)
+**
+**		The name of the snowmobile skin.
+**
+**	SnowmobileSkin2 (String) (OPTIONAL)
+**
+**		The name of an optional second snowmobile skin.
+**
+**	WalkFootstepVolume (Float)
+**
+**		The volume of the walking footstep sounds
+**
+**	RunFootstepVolume (Float)
+**
+**		The volume of the running footstep sounds
+**
+**	CrouchFootstepVolume (Float)
+**
+**		The volume of the crouch footstep sounds
+**
+**	PlayerDamageDecreasePerPlayer (Float)
+**
+**		TO2 only.  Included here for warning removal.
+**
+**      InventoryChanceToBeCorruptedByInfectedAmmo (float: 0->1)
+**
+**              TRON: percent chance that when hit by corruted ammo
+**              a subroutined will be corrupted.
+*/
+
+[Player]
+
+DefaultModel			= "Chars\Models\jet.ltb"
+DefaultSkin				= "Chars\Skins\Jet_Torso.dtx"
+DefaultSkin2			= "Chars\Skins\Jet_head.dtx"
+DefaultWeapon			= "NoWeapon"
+SwatWeapon				= "SwatMeleeAttack"
+WalkSpeed				= 115
+RunSpeed				= 280
+JumpSpeed				= 700
+SuperJumpSpeed			= 1000
+LadderSpeed				= 200
+SwimSpeed				= 175
+ZipCordSpeed			= 400
+ActivateDistance		= 100
+MotorcycleModel			= "Props\Models\Motorcycle.abc"
+MotorcycleSkin			= "Props\Skins\Motorcycle.dtx"
+MotorcycleSkin2			= ""
+SnowmobileModel			= "Props\Models\Snowmobile.abc"
+SnowmobileSkin			= "Props\Skins\Snowmobile.dtx"
+SnowmobileSkin2			= ""
+WalkFootstepVolume		= 1.0
+RunFootstepVolume		= 1.0
+CrouchFootstepVolume	= 1.0
+AIDamageAdjustEasy				= 0.15
+AIDamageAdjustNormal			= 0.25
+AIDamageAdjustHard				= 0.5
+AIDamageAdjustVeryHard			= 1.0
+AIDamageIncreasePerPlayer		= 0.2
+PlayerDamageDecreasePerPlayer	= 0.2
+InventoryChanceToBeCorruptedByInfectedAmmoEasy		= 0.6
+InventoryChanceToBeCorruptedByInfectedAmmoNormal	= 0.8
+InventoryChanceToBeCorruptedByInfectedAmmoHard		= 0.9
+InventoryChanceToBeCorruptedByInfectedAmmoVeryHard	= 1.0
+
+/************************************************************************
+**
+** S E C U R I T Y  C A M E R A  Attributes
+**
+**	GreenLight (String)
+**
+**		The name of the green light sprite
+**
+**	YellowLight (String)
+**
+**		The name of the yellow light sprite
+**
+**	RedLight (String)
+**
+**		The name of the red light sprite
+**
+**	LightScale (Float)
+**
+**		The scale of the light sprite.
+**
+**	LightTimer (Float)
+**
+**		How long between each red light flash (when focusing the
+**		camera).
+**
+**	EashFocusTime (Float)
+**
+**		The time the camera takes to focus when playing on the
+**		easy difficulty level.
+**
+**	NormalFocusTime (Float)
+**
+**		The time the camera takes to focus when playing on the
+**		normal difficulty level.
+**
+**	HardFocusTime (Float)
+**
+**		The time the camera takes to focus when playing on the
+**		hard difficulty level.
+**
+**	VeryHardFocusTime (Float)
+**
+**		The time the camera takes to focus when playing on the
+**		hardest difficulty level.
+**
+*/
+
+[SecurityCamera]
+
+GreenLight			= "SFX\Flares\CamGreen.spr"
+YellowLight			= "SFX\Flares\CamYellow.spr"
+RedLight			= "SFX\Flares\CamRed.spr"
+LightScale			= 0.075
+LightTimer			= 0.25
+EasyFocusTime		= 2.0
+NormalFocusTime		= 1.5
+HardFocusTime		= 1.0
+VeryHardFocusTime	= 0.5
+
+
+/************************************************************************
+**
+** W O N  Attributes
+**
+**	List of WON servers to use
+**
+*/
+[WON]
+ServerAddr0 = "wontest.west.won.net"
+ServerPort0 = (DWORD)15101
+ServerAddr1 = "wontest.east.won.net"
+ServerPort1 = (DWORD)15101
+ServerAddr2 = "wontest.central.won.net"
+ServerPort2 = (DWORD)15101
+
+/************************************************************************
+**
+** Body Attributes
+**
+*/
+
+[Body]
+StairsFallSpeed = 600.0
+StairsFallStopSpeed = 200.0
+
+
+/************************************************************************
+**
+** Miscellaneous Attributes
+**
+**	SummaryDelay (FLOAT)
+**		- number of seconds to pause on the summary screen following the
+**			completion of a cooperative assault map
+**
+*/
+[Misc]
+SummaryDelay = 10.0f

@@ -2,6 +2,8 @@
 **
 **                    ----------[ATTACHMENTS]----------
 **
+**  The Attachments file acts as the control file for all of the game's
+**  different NPC attachables.
 **  Attachments are basically anything that needs to be placed, either
 **  on or around, a character model, that acts as its own object whilst
 **  moving with the model itself. Hats, glasses, armor, etc. all fall 

@@ -1,0 +1,414 @@
+/************************************************************************
+**
+**                    ----------[DAMAGETYPES]----------
+**
+**	The DamageTypes file manages attributes for all of the game's
+**  various Damage Types. A majority of these are unused from NOLF 2,
+**  with most of TRON 2.0's Damage Types being named after the weapon
+**  that deals them.
+**
+**  TODO Testing is needed to see if the game can survive without unused
+**  Damage Types.
+**  
+**	JarCamera (Boolean Integer)
+**      - Determines whether the Damage Type causes the camera to be
+**      "jarred". Monolith doesn't define what this means, and neither
+**      does Google, so further testing is needed to know what this is.
+**      -- 0: The camera will not be jarred.
+**      -- 1: The camera will be jarred.
+**
+**	Gadget (Boolean Integer)
+**      - Determines whether the Damage Type is a gadget.
+**      - Unused, strictly a NOLF thing. Testing needed to figure out
+**      if the game will crash without this field.
+**      -- 0: The Damage Type is not a gadget.
+**      -- 1: The Damage Type is a gadget.
+**
+**	Accuracy (Boolean Integer)
+**      - Determines whether the Damage Type will "count towards player
+**      accuracy". Once again, testing is needed to understand what that
+**      actually means.
+**		-- 0: The Damage Type will not count.
+**      -- 1: The Damage Type will count.
+**
+**	SlowMovement (Float)
+**      - The amount of time, in seconds, that this Damage Type will
+**      cause the player to temporarily walk slower. Monolith says it's
+**      unrelated to the ForceWalk value, whatever that is. Set to 0.0
+**      for no slowdown time.
+*/
+
+[Unspecified]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+SlowMovement	= 0.0
+
+[Bleeding]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 1
+SlowMovement	= 0.0
+
+[Bullet]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 1
+SlowMovement	= 0.25
+
+[Burn]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 1
+SlowMovement	= 0.0
+
+[Choke]
+JarCamera		= 1
+Gadget			= 0
+Accuracy		= 0
+SlowMovement	= 0.0
+
+[Crush]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+SlowMovement	= 0.0
+
+[Electrocute]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 1
+SlowMovement	= 1.0
+
+[Explode]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+SlowMovement	= 0.0
+
+[Freeze]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+SlowMovement	= 3.0
+
+[Poison]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 1
+SlowMovement	= 1.0
+
+[EndlessFall]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[Sleeping]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[Stun]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 2.0
+
+[Melee]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.25
+
+[CameraDisabler]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[Glue]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[BearTrap]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[Laughing]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[AntiSuperSoldierSerum]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 1
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[CodeDecipherer]
+JarCamera		= 0
+Gadget			= 1
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[Poodle]
+JarCamera		= 0
+Gadget			= 1
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[LockPick]
+JarCamera		= 0
+Gadget			= 1
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[Welder]
+JarCamera		= 0
+Gadget			= 1
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[Lighter]
+JarCamera		= 0
+Gadget			= 1
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[Camera]
+JarCamera		= 0
+Gadget			= 1
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[WorldOnly]
+JarCamera		= 0
+Gadget			= 1
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[InfraRed]
+JarCamera		= 0
+Gadget			= 1
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[DecayPowder]
+JarCamera		= 0
+Gadget			= 1
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[TimeBomb]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[InkReagent]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[EavesDropBug]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[Slippery]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[Sword]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[PRod]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[Corrode]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[EnergyClaw]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[KnuckleSandwich]
+JarCamera		= 1
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[Disc]
+JarCamera		= 1
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[Sequencer]
+JarCamera		= 1
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[Cluster]
+JarCamera		= 1
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[Suffusion]
+JarCamera		= 1
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[LOL]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[Ball]
+JarCamera		= 1
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[BallLauncher]
+JarCamera		= 1
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[DrunkenDims]
+JarCamera		= 1
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[Blaster]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[PranksterBit]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[ClusterShardAmmo]
+JarCamera		= 1
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[EnemyDisc]
+JarCamera		= 1
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[CorrupticDims]
+JarCamera		= 1
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[ClusterAutoBurst]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[RiotShieldAmmo]
+JarCamera		= 1
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[OptimizerExplosion]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[SwatBlockMeleeAttack]
+JarCamera		= 1
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
+
+[FinderWeapon]
+JarCamera		= 0
+Gadget			= 0
+Accuracy		= 0
+ForceWalk		= 0
+SlowMovement	= 0.0
