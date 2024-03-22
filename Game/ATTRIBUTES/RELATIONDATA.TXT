@@ -2,168 +2,264 @@
 **
 **                  ----------[RELATIONDATA]----------
 **
-**  The RelationData file
-
-
-/* 
-** RelationalObject Attributes
+**  The RelationData file mainly serves to set up AI "factions", which
+**  should be applied to all AI in the game. This allows NPCs to know
+**  how to react when encountering both the player and each other. This
+**  process includes creating specific AI categories, which are then
+**  assigned a single set of relations. It's possible to dynamically
+**  modify these relations by assigning them to a Collective, though
+**  this is not used in TRON 2.0.
 **
-**	The RelationalObject specifies the objects links to other Relation
-**	information.  
-**
-**		Name
-**			The 'Key' used to select a relation set
-** 
-**		RelationSet
-**			Name of the RelationSet this Object uses.  "" if no
-**			RelationSet is to be used.
-** 
-**		RelationData
-**			Name of the RelationData this Object uses.  "" if there
-**			is no RelationData
-** 
-**		Collective: 
-**			Name of the collective, if any.  "" if there is no Collective
-** 
-** 
+**  This file has four sections: RelationalObjects, Collectives,
+**  RelationSets, and RelationData. 
 */
 
+
+/************************************************************************
+**
+**                 RelationalObjects (aka "Alignments")
+**
+**	RelationalObjects are responsible for the first step of the process,
+**  which is to create AI categories. Every NPC in TRON 2.0 that isn't
+**  part of a cutscene or doing a scripted action will be required to 
+**  have an assignment to one of these categories in order to properly
+**  exhibit traditional behaviors. Without one, the AI has no way of
+**  receiving a Relation configuration, and will subsequently react to
+**  absolutely nothing.
+**
+**  The primary way to assign these to an AI will be by setting its
+**  Alignment attribute in AIButes to one of these RelationalObjects.
+**  That assigns a default relation data set to the AI, which can then
+**  be overridden as needed by setting the Alignment attribute in the
+**  AttributeOverrides menu in DEdit.
+**
+**  It's important to clarify the use of the word "Alignment" in this
+**  section, because literally every other part of the dev tools (that
+**  we can see) refers to these as Alignments and not RelationalObjects.
+**  Actual alignments are set in the RelationData section.
+**
+**
+**	Name (String)
+**      - The name of the RelationalObject. This is the key that all
+**      of the other tools will use to interface with this file.
+**
+**	RelationSet (String)
+**		- The name of the RelationSet to assign to this RelationObject.
+**      Only one RelationSet can be assigned. Use an empty string ("")
+**      if no RelationSet is to be used.
+** 
+**	RelationData (String)
+**		- The name of the RelationData to assign to this RelationObject.
+**      Only one RelationData can be assigned. Use an empty string ("") 
+**      if there is no RelationData to be used.
+** 
+**	Collective (String)
+**		- (Optional) The name of the Collective to assign to this
+**      RelationObject. Only one Collective can be assigned. Use an
+**      empty string ("") if there is no Collective to be used.
+**      - Although it appears as if Collectives were experimented with
+**      during development, they are effectively unused in the final
+**      Retail release, although potentially still functional.
+*/
+
+/*  ---[0: ICP Regular]---  */
 [RelationalObject0]
 Name			= "IC_Regular"
 RelationSet		= "Security_Characters"
 RelationData	= "IC_Regular"
 Collective		= ""
 
+/*  ---[1: ICP Launcher]---  */
 [RelationalObject1]
 Name			= "IC_Launcher"
 RelationSet		= "Security_Characters"
 RelationData	= "IC_Launcher"
 Collective		= ""
 
+/*  ---[2: ICP Shield]---  */
 [RelationalObject2]
 Name			= "IC_Shield"
 RelationSet		= "Security_Characters"
 RelationData	= "IC_Shield"
 Collective		= ""
 
+/*  ---[3: Player]---
+**  This is hardcoded to be assigned to the Player. DO NOT CHANGE THIS.
+*/
 [RelationalObject3]
 Name			= "Player"
 RelationSet		= "Player"
 RelationData	= "Player"
 Collective		= ""
 
+/*  ---[4: ByStander]---
+**  This should be assigned by default to civilian/innocent programs.
+*/
 [RelationalObject4]
 Name			= "ByStander"
 RelationSet		= "ByStander"
 RelationData	= "ByStander"
 Collective		= ""
 
+/*  ---[5: DataWraith]---  */
 [RelationalObject5]
 Name			= "DataWraith"
 RelationSet		= "DataWraith"
 RelationData	= "DataWraith"
 Collective		= ""
 
+/*  ---[6: Z-Lot]---  */
 [RelationalObject6]
 Name			= "Zealot"
 RelationSet		= "Corruption"
 RelationData	= "Zealot"
 Collective		= ""
 
+/*  ---[7: Rector Script]---  */
 [RelationalObject7]
 Name			= "Rectorscript"
 RelationSet		= "Corruption"
 RelationData	= "Rectorscript"
 Collective		= ""
 
+/*  ---[8: Player Ally]---
+**  It's not known at this time what uses this in Retail.
+**  TODO find out this.
+*/
 [RelationalObject8]
 Name			= "PlayerAlly"
 RelationSet		= "PlayerAlly"
 RelationData	= "PlayerAlly"
 Collective		= ""
 
+/*  ---[9: Seeker]---  */
 [RelationalObject9]
 Name			= "Seeker"
 RelationSet		= "Seeker"
 RelationData	= "Seeker"
 Collective		= ""
 
+/*  ---[10: Finder]---  */
 [RelationalObject10]
 Name			= "Finder"
 RelationSet		= "Finder"
 RelationData	= "Finder"
 Collective		= ""
 
+/*  ---[11: FCon Monster]---  */
 [RelationalObject11]
 Name			= "FconMonster"
 RelationSet		= "FconMonster"
 RelationData	= "FconMonster"
 Collective      = ""
 
+/*  ---[12: Kernel]---  */
 [RelationalObject12]
 Name			= "Kernel"
 RelationSet		= "Security_Characters"
 RelationData	= "Kernel"
 Collective      = ""
 
+/*  ---[13: Resource Hog]---  */
 [RelationalObject13]
 Name			= "ResourceHog"
 RelationSet		= "ResourceHog"
 RelationData	= "ResourceHog"
 Collective      = ""
 
+/*  ---[14: Light Cyclist]---
+**  Effectively the same as ByStander. Does not actually apply to the
+**  AI's Light Cycle behavior (unconfirmed).
+**  TODO confirm this.
+*/
 [RelationalObject14]
 Name			= "LightCyclist"
 RelationSet		= "ByStander"
 RelationData	= "ByStander"
 Collective      = ""
 
+/*  ---[15: Good Character]---
+**  Placeholder "good guy" category. Not recommended for use over other
+**  more specific RelationalObjects.
+**  TODO find out if this is used in Retail.
+*/
 [RelationalObject15]
 Name			= "GoodCharacter"
 RelationSet		= "GoodCharacter"
 RelationData	= "GoodCharacter"
 Collective      = ""
 
+/*  ---[16: Bad Character]---
+**  Placeholder "bad guy" category. Not recommended for use over other
+**  more specific RelationalObjects.
+**  TODO find out if this is used in Retail.
+*/
 [RelationalObject16]
 Name			= "BadCharacter"
 RelationSet		= "BadCharacter"
 RelationData	= "BadCharacter"
 Collective      = ""
 
+/*  ---[17: Game Bot]---
+**  Unused. Its RelationSet and RelationData are valid, but nothing else
+**  is told to like/dislike/hate this.
+**  TODO what is the use case for this?
+*/
 [RelationalObject17]
 Name			= "GameBot"
 RelationSet		= "GameBot"
 RelationData	= "GameBot"
 Collective      = ""
 
+/*  ---[18: Tron Turret]---
+**  Unused. Its RelationSet and RelationData are valid, but nothing else
+**  is told to like/dislike/hate this.
+**  TODO what is the use case for this?
+*/
 [RelationalObject18]
 Name			= "TronTurret"
 RelationSet		= "TronTurret"
 RelationData	= "TronTurret"
 Collective      = ""
 
+/*  ---[19: Neutral]---
+**  Placeholder "true neutral" category. Should not be used for anything
+**  beyond testing purposes.
+**  TODO find out if this is used in Retail.
+*/
 [RelationalObject19]
 Name			= "Neutral"
 RelationSet		= "Neutral"
 RelationData	= "Neutral"
 Collective      = ""
 
-/* 
-** Collectives
+
+/************************************************************************
 **
-**	Collectives are for 'Collective minded' characters who all think alike in some way.
-**	They should be used ONLY in situations where they are obviously meant
-**	to exist.
+**                              Collectives
+**
+**	Collectives are meant for 'Collective-minded' NPCs, who all think
+**  alike in some way. By nature, this means that they should be used
+**  ONLY in situations where they are obviously meant to exist. All
+**  Collectives are assigned to a RelationSet which it will dynamically
+**  change over time.
 **	
-**	Characters RelationSets subscribe to Collectives as sources of information.
-**	Information which is not in the Collective MAY still be different for these
-**	characters.  Whenever information matching that listed in the Collective is 
-**	uncovered, the Collective learns that information, and it remains until the
-**	Collective releases it.
+**	NPCs' RelationSets will subscribe to Collectives as sources of 
+**  information. Information which is not in the Collective may still be
+**  different for these NPCs. Whenever information matching that listed
+**  in the Collective is uncovered, the Collective learns that 
+**  information, and it remains until the Collective releases it.
+**
+**  Collectives are unused in TRON 2.0, as all NPCs in the game are
+**  intended to have static alignments. Use at your own risk.
 **	
-**		Name = Key
-**	
-**	
+**  
+**	Name (String)
+**      - The name of the Collective.
+**
+**  RelationSet (String)
+**      - The name of the RelationSet to assign to the Collective. This
+**	    is where the Collective will store the information it learns.
 */
 
 [Collective0]
@@ -175,33 +271,68 @@ Name				= "IC_Collective"
 RelationSet			= "IC_Collective"
 
 
-/* 
-** Relation Attributes
+/************************************************************************
 **
-** Name				The 'Key' used to select a relation set
-** RelationTimeout	How long past last stimulus dynamic relations last
-** Relation0-N		List of Relations in format:
-** 
-**		TraitName<space>Relationship<space>Value
+**                              RelationSets
+**
+**  RelationSets are where all the pieces actually come together. All of
+**  the values deciding whether an NPC likes, dislikes, or tolerates
+**  other NPCs (or the player) are controlled here.
+**
+**  If a RelationSet is assigned to a Collective, it should contain only
+**  a Name and RelationTimeout. From there, the Collective will store
+**  all Relations it accumulates into that RelationSet over time. It is
+**  not currently known how this data is saved.
+**  TODO ask about this.
+**
+**
+**  Name (String)
+**      - The name of the RelationSet.
+**
+**  RelationTimeout (Float)
+**      - The amount of time, in seconds, that the RelationSet will
+**      remember a dynamic relation change following the last stimulus
+**      that triggered it.
+**      - TODO does this value only apply to Collectives?
+**
+**  Relation# (String)
+**      - A string composed of three arguments that determine how the
+**      Alignments will react to each other. It is recommended to have
+**      a Relation for all active Alignments on every RelationSet in
+**      order to ensure expected behavior, though this is not required.
+**
+**      - All strings are case-sensitive, and must be composed in this
+**      exact format:
+**      "Alignment [Relationship] [AlignmentName]"
+**          - For example:
+**          "Alignment HATE ResourceHog"
 **		
-**		Valid TraitNames:
-**			Name, Class, Alignment
+**		- Valid Relationships: LIKE, TOLERATE, HATE, UNDETERMINED
 ** 
-**		Valid Alignments:
-**			LIKE, TOLERATE, HATE, UNDETERMINED
-** 
-**		Valid ObjectID: 
-**			String with no spaces
-**
+**		- Valid AlignmentNames: Security, Player, ByStander, Corruption,
+**      PlayerAlly, Seeker, FconMonster, ResourceHog, AbsoluteGood,
+**      AbsoluteBad, Neutral
+**          - Modify this list with any Alignments that are added or
+**          removed. Alignments are declared in the RelationData section
+**          of this file.
 */
 
+/*  ---[0: Unimplemented]---
+**  The placeholder to set for any AI routines not yet assigned to any
+**  other RelationSet. Using this is not recommended.
+*/
 [RelationSet0]
 Name				= "Unimplemented"
 
+/*  ---[1: IC Collective]---
+**  The RelationSet assigned to the unused IC_Collective.
+*/
 [RelationSet1]
 Name				= "IC_Collective"
 RelationTimeout		= 30.0
 
+/*  ---[2: Security Characters]---
+**  The RelationSet generally assigned to all ICPs and DataWraiths.
 [RelationSet2]
 Name				= "Security_Characters"
 RelationTimeout		= 30.0
@@ -217,6 +348,9 @@ Relation8			= "Alignment HATE AbsoluteGood"
 Relation9			= "Alignment LIKE AbsoluteBad"
 Relation10			= "Alignment TOLERATE Neutral"
 
+/*  ---[3: Player]---
+**  The RelationSet that is assigned to the player. DO NOT CHANGE THIS.
+*/
 [RelationSet3]
 Name				= "Player"
 RelationTimeout		= 30.0
@@ -232,6 +366,10 @@ Relation8			= "Alignment LIKE AbsoluteGood"
 Relation9			= "Alignment HATE AbsoluteBad"
 Relation10			= "Alignment TOLERATE Neutral"
 
+/*  ---[4: Neutral]---
+**  A true neutral RelationSet in which the AI will tolerate all other
+**  alignments. Should only be used for testing purposes.
+*/
 [RelationSet4]
 Name				= "Neutral"
 RelationTimeout		= 30.0
@@ -247,6 +385,9 @@ Relation8			= "Alignment TOLERATE AbsoluteGood"
 Relation9			= "Alignment TOLERATE AbsoluteBad"
 Relation10			= "Alignment TOLERATE ByStander"
 
+/*  ---[5: Corruption]---
+**  The RelationSet generally assigned to Z-Lots and Rector Scripts.
+*/
 [RelationSet5]
 Name				= "Corruption"
 RelationTimeout		= 30.0
@@ -262,6 +403,9 @@ Relation8			= "Alignment HATE AbsoluteGood"
 Relation9			= "Alignment LIKE AbsoluteBad"
 Relation10			= "Alignment HATE ByStander"
 
+/*  ---[6: Player Ally]---
+**  It is not known at this time where this is used.
+*/
 [RelationSet6]
 Name				= "PlayerAlly"
 RelationTimeout		= 30.0
@@ -277,6 +421,7 @@ Relation8			= "Alignment LIKE AbsoluteGood"
 Relation9			= "Alignment HATE AbsoluteBad"
 Relation10			= "Alignment LIKE ByStander"
 
+/*  ---[7: Seeker]---  */
 [RelationSet7]
 Name				= "Seeker"
 Relation0			= "Alignment LIKE Security"
@@ -291,6 +436,7 @@ Relation8			= "Alignment HATE AbsoluteGood"
 Relation9			= "Alignment LIKE AbsoluteBad"
 Relation10			= "Alignment HATE ByStander"
 
+/*  ---[8: FCon Monster]---  */
 [RelationSet8]
 Name				= "FconMonster"
 Relation0			= "Alignment HATE Security"
@@ -305,6 +451,7 @@ Relation8			= "Alignment HATE AbsoluteGood"
 Relation9			= "Alignment LIKE AbsoluteBad"
 Relation10			= "Alignment HATE ByStander"
 
+/*  ---[9: Finder]---  */
 [RelationSet9]
 Name				= "Finder"
 RelationTimeout		= 30.0
@@ -320,6 +467,7 @@ Relation8			= "Alignment HATE AbsoluteGood"
 Relation9			= "Alignment LIKE AbsoluteBad"
 Relation10			= "Alignment TOLERATE ByStander"
 
+/*  ---[10: Resource Hog]---  */
 [RelationSet10]
 Name				= "ResourceHog"
 RelationTimeout		= 30.0
@@ -335,6 +483,10 @@ Relation8			= "Alignment HATE AbsoluteGood"
 Relation9			= "Alignment LIKE AbsoluteBad"
 Relation10			= "Alignment HATE ByStander"
 
+/*  ---[11: Good Character]---
+**  A true good RelationSet in which the AI will exhibit bias toward the
+**  good alignments. Should only be used for testing purposes.
+*/
 [RelationSet11]
 Name				= "GoodCharacter"
 RelationTimeout		= 30.0
@@ -350,6 +502,10 @@ Relation8			= "Alignment LIKE AbsoluteGood"
 Relation9			= "Alignment HATE AbsoluteBad"
 Relation10			= "Alignment LIKE ByStander"
 
+/*  ---[12: Bad Character]---
+**  A true bad RelationSet in which the AI will exhibit bias toward the
+**  bad alignments. Should only be used for testing purposes.
+*/
 [RelationSet12]
 Name				= "BadCharacter"
 RelationTimeout		= 30.0
@@ -365,7 +521,11 @@ Relation8			= "Alignment HATE AbsoluteGood"
 Relation9			= "Alignment LIKE AbsoluteBad"
 Relation10			= "Alignment HATE ByStander"
 
-
+/*  ---[13: Game Bot]---
+**  Allows the GameBot alignment to react to other alignments, but since
+**  no other alignments react to it, it's safe to assume this is unused.
+**  TODO is it?
+*/
 [RelationSet13]
 Name				= "GameBot"
 RelationTimeout		= 30.0
@@ -381,7 +541,12 @@ Relation8			= "Alignment LIKE AbsoluteGood"
 Relation9			= "Alignment LIKE AbsoluteBad"
 Relation10			= "Alignment HATE ByStander"
 
-
+/*  ---[14: Game Bot]---
+**  Allows the TronTurret alignment to react to other alignments, but
+**  since no other alignments react to it, it's safe to assume this is
+**  unused.
+**  TODO is it?
+*/
 [RelationSet14]
 Name				= "TronTurret"
 RelationTimeout		= 30.0
@@ -397,6 +562,9 @@ Relation8			= "Alignment LIKE AbsoluteGood"
 Relation9			= "Alignment LIKE AbsoluteBad"
 Relation10			= "Alignment TOLERATE ByStander"
 
+/*  ---[15: ByStander]---
+**  The RelationSet generally assigned to all civilian/innocent programs.
+*/
 [RelationSet15]
 Name				= "ByStander"
 RelationTimeout		= 30.0
@@ -412,6 +580,10 @@ Relation8			= "Alignment LIKE AbsoluteGood"
 Relation9			= "Alignment HATE AbsoluteBad"
 Relation10			= "Alignment LIKE ByStander"
 
+/*  ---[16: DataWraith]---
+**  Although seemingly valid, this goes unused, as DataWraiths ended up
+**  getting assigned to the Security alignment in the Retail release.
+*/
 [RelationSet16]
 Name				= "Datawraith"
 RelationTimeout		= 30.0
@@ -426,116 +598,172 @@ Relation7			= "Alignment TOLERATE ResourceHog"
 Relation8			= "Alignment HATE AbsoluteGood"
 Relation9			= "Alignment LIKE AbsoluteBad"
 
-/* 
-** Relation Attributes
+/************************************************************************
 **
-** Name			the 'Key' used to select a relation set
-** Relation0-N	list of Relations in format:
+**                             RelationData
+**
+**  RelationData acts as a self-identification for a RelationalObject,
+**  which sets its Class and Alignment. It is not currently known what
+**  the relevance of the Class assignment is.
+**  TODO what is the Class assignment used for?
+**
+**  
+**  Name (String)
+**      - The name of the RelationData.
+**
+**  Data# (String)
+**      - A string composed of two arguments that allow the RelationData
+**      to set its own Class and Alignment. This field accepts a maximum
+**      of two entries.
+**
+**      - All strings are case-sensitive, and must be composed in this
+**      exact format:
+**      "[TraitName] [ObjectID]"
+**          - For example:
+**          "Class Player"
 ** 
-**		TraitName<space>Value
+**		- Valid TraitNames: Class, Alignment
 ** 
-**		Valid TraitNames:
-**			Name, Class, Alignment
-** 
-**		Valid ObjectID: 
-**			String with no spaces
-** 
-** 
+**		- Valid ObjectIDs: Any string with no spaces.
 */
 
+/*  ---[0: Unimplemented]---
+**  The placeholder to set for any AI routines not yet assigned to any
+**  other RelationData. Using this is not recommended.
+*/
 [RelationData0]
 Name		= "Unimplemented"
 
+/*  ---[1: ICP Regular]---  */
 [RelationData1]
 Name		= "IC_Regular"
 Data0		= "Class IC_Regular"
 Data1		= "Alignment Security"
 
+/*  ---[2: ICP Shield]---  */
 [RelationData2]
 Name		= "IC_Shield"
 Data0		= "Class IC_Shield"
 Data1		= "Alignment Security"
 
+/*  ---[3: ICP Launcher]---  */
 [RelationData3]
 Name		= "IC_Launcher"
 Data0		= "Class IC_Launcher"
 Data1		= "Alignment Security"
 
+/*  ---[4: Finder]---
+**  Although the Finder alignment is declared here, it does not appear
+**  to be utilized in the RelationSets section.
+**  TODO why?
+*/
 [RelationData4]
 Name		= "Finder"
 Data0		= "Class Finder"
 Data1		= "Alignment Finder"
 
+/*  ---[5: Player]---
+**  The RelationData that is assigned to the player. DO NOT CHANGE THIS.
+*/
 [RelationData5]
 Name		= "Player"
 Data0		= "Class Player"
 Data1		= "Alignment Player"
 
+/*  ---[6: ByStander]---
+**  The RelationData generally assigned to all civilian/innocent 
+**  programs.
+*/
 [RelationData6]
 Name		= "ByStander"
 Data0		= "Class ByStander"
 Data1		= "Alignment ByStander"
 
+/*  ---[7: DataWraith]---  */
 [RelationData7]
 Name		= "DataWraith"
 Data0		= "Class DataWraith"
 Data1		= "Alignment Security"
 
+/*  ---[8: Z-Lot]---  */
 [RelationData8]
 Name		= "Zealot"
 Data0		= "Class Zealot"
 Data1		= "Alignment Corruption"
 
+/*  ---[9: Rector Script]---  */
 [RelationData9]
 Name		= "Rectorscript"
 Data0		= "Class Rectorscript"
 Data1		= "Alignment Corruption"
 
+/*  ---[10: Player Ally]---
+**  It is not known at this time where this is used.
+*/
 [RelationData10]
 Name		= "PlayerAlly"
 Data0		= "Class PlayerAlly"
 Data1		= "Alignment PlayerAlly"
 
+/*  ---[11: Seeker]---  */
 [RelationData11]
 Name		= "Seeker"
 Data0		= "Class Seeker"
 Data1		= "Alignment Seeker"
 
+/*  ---[12: FCon Monster]---
 [RelationData12]
 Name		= "FconMonster"
 Data0		= "Class FconMonster"
 Data1		= "Alignment FconMonster"
 
+/*  ---[13: Kernel]---  */
 [RelationData13]
 Name		= "Kernel"
 Data0		= "Class Kernel"
 Data1		= "Alignment Security"
 
+/*  ---[14: Resource Hog]---  */
 [RelationData14]
 Name		= "ResourceHog"
 Data0		= "Class ResourceHog"
 Data1		= "Alignment ResourceHog"
 
+/*  ---[15: Good Character]---
+**  It is not known at this time where this is used.
+*/
 [RelationData15]
 Name		= "GoodCharacter"
 Data0		= "Class AbsoluteGood"
 Data1		= "Alignment AbsoluteGood"
 
+/*  ---[16: Bad Character]---
+**  It is not known at this time where this is used.
+*/
 [RelationData16]
 Name		= "BadCharacter"
 Data0		= "Class AbsoluteBad"
 Data1		= "Alignment AbsoluteBad"
 
+/*  ---[17: Game Bot]---
+**  It is not known at this time where this is used.
+*/
 [RelationData17]
 Name		= "GameBot"
 Data0		= "Class GameBot"
 Data1		= "Alignment GameBot"
 
+/*  ---[18: Tron Turret]---
+**  It is not known at this time where this is used.
+*/
 [RelationData18]
 Name		= "TronTurret"
 Data0		= "Class TronTurret"
 Data1		= "Alignment TronTurret"
 
+/*  ---[19: Neutral]---
+**  It is not known at this time where this is used.
+*/
 [RelationData19]
 Name		= "Neutral"
 Data0		= "Class Neutral"
