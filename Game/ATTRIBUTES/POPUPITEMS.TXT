@@ -1,0 +1,715 @@
+/* -----------Email----- */
+[PopupItem0]
+Frame			= "Interface\Menu\Sprtex\buildnote_bg.dtx"
+Font			= 0
+FontSize		= 10
+Size			= (292,445)
+TextOffset		= (28,10)
+TextWidth		= 239
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Build Notes----- */
+[PopupItem1]
+Frame			= "Interface\Menu\Sprtex\buildnote_bg.dtx"
+Font			= 0
+FontSize		= 13
+Size			= (400,400)
+TextOffset		= (80,90)
+TextWidth		= 240
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Help Files. ----- */
+[PopupItem2]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Talk Icon. ----- */
+[PopupItem3]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Movement. ----- */
+[PopupItem4]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Status Display. ----- */
+[PopupItem5]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Build Points. ----- */
+[PopupItem6]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Build Notes. ----- */
+[PopupItem7]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - I/O Nodes. ----- */
+[PopupItem8]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Permissions. ----- */
+[PopupItem9]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Archive Bins. ----- */
+[PopupItem10]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Binary Bits. ----- */
+[PopupItem11]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - TBD. ----- */
+[PopupItem12]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (19,160)
+ImageSize		= (320,320)
+Font			= 0
+FontSize		= 14
+Size			= (640,640)
+TextOffset		= (347,170)
+TextWidth		= 258
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - DataStreams. ----- */
+[PopupItem13]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Patch Routines. ----- */
+[PopupItem14]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Save Load. ----- */
+[PopupItem15]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Disc. ----- */
+[PopupItem16]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Core Dumps. ----- */
+[PopupItem17]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Infected Subroutines. ----- */
+[PopupItem18]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Subroutines. ----- */
+[PopupItem19]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Installing Subroutines. ----- */
+[PopupItem20]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Optimizer. ----- */
+[PopupItem21]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Optimize Subroutines. ----- */
+[PopupItem22]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Sec Rezzer. ----- */
+[PopupItem23]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - ICP. ----- */
+[PopupItem24]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - M01-02 Exit Port. ----- */
+[PopupItem25]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Lightcycle. ----- */
+[PopupItem26]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Rod. ----- */
+[PopupItem27]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Finders. ----- */
+[PopupItem28]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Encryption Keys. ----- */
+[PopupItem29]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Mooring Apps. ----- */
+[PopupItem30]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Energy Pools. ----- */
+[PopupItem31]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Docking Seals. ----- */
+[PopupItem32]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Archive Stack. ----- */
+[PopupItem33]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Power Router. ----- */
+[PopupItem34]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Recognizer Tug. ----- */
+[PopupItem35]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Comm Bits. ----- */
+[PopupItem36]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Protocol Socket. ----- */
+[PopupItem37]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Lenses. ----- */
+[PopupItem38]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Override Bits. ----- */
+[PopupItem39]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Jumpers. ----- */
+[PopupItem40]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Hogs. ----- */
+[PopupItem41]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Relay Station. ----- */
+[PopupItem42]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Legacy Code Directory. ----- */
+[PopupItem43]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Surge Circuit. ----- */
+[PopupItem44]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Legacy Code. ----- */
+[PopupItem45]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Security Clamp. ----- */
+[PopupItem46]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Controller Tower. ----- */
+[PopupItem47]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - PDA. ----- */
+[PopupItem48]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Fire Wall Exit Port. ----- */
+[PopupItem49]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Modulator Socket. ----- */
+[PopupItem50]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Firewall. ----- */
+[PopupItem51]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Stabilizing Bit. ----- */
+[PopupItem52]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Generator Room. ----- */
+[PopupItem53]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Stabilizer Control. ----- */
+[PopupItem54]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Ball. ----- */
+[PopupItem55]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Performance. ----- */
+[PopupItem56]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Illegal Termination. ----- */
+[PopupItem57]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Data Wraith. ----- */
+[PopupItem58]
+Frame			= "Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (87,142)
+ImageSize		= (249,241)
+Font			= 0
+FontSize		= 10
+Size			= (640,640)
+TextOffset		= (341,155)
+TextWidth		= 184
+TextColor		= <135.0, 181.0, 255.0>
+
+/* -----------Help - Reconfigure Subroutine. ----- */
+[PopupItem59]
+Frame			= "Interface\hud\helpimages\reconfigure_subroutines_bg.dtx"//"Interface\hud\helpimages\help_bg.dtx"
+ImageOffset		= (19,160)
+ImageSize		= (512,64)
+Font			= 0
+FontSize		= 14
+Size			= (512,128)
+TextOffset		= (86,18)
+TextWidth		= 340
+TextColor		= <255.0, 255.0, 255.0>//<135.0, 181.0, 255.0>
