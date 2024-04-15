@@ -1654,20 +1654,18 @@ Light0	    = "Main0"
 **
 **  TitleColor (Vector)
 **      - The color of the current chapter name.
-**  LevelPos (2D Point),
+**  LevelPos (2D Point) (KAMod),
 **  LevelFont (Integer),
 **  LevelSize (Integer),
 **  LevelColor (Vector)
 **      - The upper-left origin position, font ID, text height, and 
 **      color of the current level name, in that order.
-**      - LevelPos is managed by the Killer App Mod.
-**  ContinuePos (2D Point),
+**  ContinuePos (2D Point) (KAMod),
 **  ContinueFont (Integer),
 **  ContinueSize (Integer),
 **  ContinueColor (Vector)
 **      - The upper-left origin position, font ID, text height, and
 **      color of the "press any key to continue" string.
-**      - ContinuePos is managed by the Killer App Mod.
 **  PreLoopFX# (String)
 **      - The string ID of a PreLoopFX to use for the screen.
 **      - TODO define what a PreLoopFX is here.
