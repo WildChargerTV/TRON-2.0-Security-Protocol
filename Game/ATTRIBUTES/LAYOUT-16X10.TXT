@@ -10,41 +10,66 @@
 **  attributes include, but are not limited to, screen position,
 **  text/element color, and element scale.
 **  ---------------------------------------------------------------------
-**  This is a big file. So big, in fact, that to have left it in the
-**  state Monolith originally provided it in would have proven way too
-**  confusing. In the interest of overall clarity, as well as to ensure
-**  the documentation would be for things that mattered, a significant
-**  amount of values I believe to be unnecessary have been commented
-**  out or removed entirely.
+**  This is one of the few files that has been extensively modified by
+**  the Killer App Mod, as part of its ability to provide the game with
+**  widescreen resolution support. As such, it is important to note that
+**  there are three distinct versions of this file that cover the three
+**  major PC display aspect ratios: 4:3, 16:9, and 16:10. 
 **
-**  All removed values can be found on a per-section basis, under the
-**  name [SAFELY DEPRECATED VALUES]. Keep in mind documentation for
-**  these values is nigh impossible, because all of them have no
-**  observable impact on the game.
+**  The downside to this arrangement is that only one of these versions
+**  is ever installed at any one time. TRON 2.0 itself is unable to
+**  adjust this file on-the-fly to adapt to a change in resolution, and
+**  the Killer App Mod (in its current state) does not have the ability
+**  to do this in the game's place. As it stands now, the installer for
+**  the Killer App Mod will ask for your desired aspect ratio, and then
+**  install the Layout file associated with it once.
 **
-**  For this reason, it's important to know that if using this layout 
-**  file has resulted in anything breaking, a clean copy is ALWAYS
-**  available within the "tcdg" folder inside the game's installation 
-**  directory. Should you encounter any issues, report them to me on
-**  GitHub, and then revert to the clean copy until it's fixed.
+**  Until this issue can be addressed in an alternative manner, the
+**  GitHub repository for TRON 2.0: Security Protocol will contain all
+**  three versions of the Layout file, differentiated by having their
+**  respective aspect ratios appended to the end of their filenames
+**  (e.g. "LAYOUT-16X9.TXT").
+**
+**  All values in this file directly managed by the Killer App Mod will
+**  have "(KAMod)" added to their title. Every value that receives this
+**  indicator should be modified with caution, as to avoid any potential
+**  issues with compatibility. Even if multiple similar values are
+**  grouped together, it is only those on lines with the indicator that
+**  are managed, and not the entire group of which that one value is a
+**  part.
+**
+**  All values in this file directly modified further by TRON 2.0:
+**  Security Protocol have received the same treatment, with an "(SP)"
+**  added to their title in the same place. However, this marker will
+**  not be shown on the GitHub wiki page for this file.
 **  ---------------------------------------------------------------------
-**  Also, please note that because of the sheer size of this file, it's
-**  almost impossible to ensure all of the documentation uses consistent
-**  verbage and structure the whole way through. If anything sounds too
-**  confusing, feedback is also welcomed on the GitHub. Just make sure
-**  that the suggestion is specific enough to be feasible to implement.
+**  Although only the fourth largest file of the Attributes folder, the
+**  Layout file is easily the most complex by far. All of TRON 2.0's
+**  2D-rendered onscreen elements, with VERY few exceptions, are covered
+**  here. 
+**
+**  However, Monolith did not treat this file's sheer complexity with
+**  very much respect; the structuring of this file, as it appears in
+**  the Retail release, is a mess that is only vaguely tied together by
+**  category names. Unused values are strewn all over the place, and
+**  very few of them were ever labelled as such. To have documented the
+**  file in this state would have been way too confusing for everyone.
+**  It is to this degree that the file has been restructured, in order
+**  to allow for more cohesion in the documentation. This has been
+**  proven to not have any negative effect on TRON 2.0 itself; as long
+**  as the elements themselves remain in the correct places, the game
+**  does not read them in any particular order.
+**
+**  Additionally, all values that have been confirmed to be unused by
+**  TRON 2.0 have been isolated, and will not appear on the GitHub wiki
+**  page for this file. Within the file itself, these removals can be
+**  found on a per-section basis, under the "[SAFELY DEPRECATED VALUES]"
+**  sub-header.
+**
+**  All of these modifications are subject to further changes as needed.
 **  ---------------------------------------------------------------------
 **  See the Table of Contents to find specific sections of the file more
 **  easily.
-**  ---------------------------------------------------------------------
-**  Values that are managed by the Killer App Mod will be identified as
-**  such in their definitions. I am not responsible for anything that
-**  happens as a result of anyone that isn't me manually changing these
-**  values.
-**
-**  Values that have been modified specifically for TRON 2.0: Security
-**  Protocol will be labeled as such using a single-line comment placed
-**  directly on that value's line.
 **  ---------------------------------------------------------------------
 **  The first pass going through this file broke a few things. Now, I
 **  expected as such, but that doesn't mean it isn't a bit frustrating.
@@ -86,19 +111,16 @@
 **  technically set "default values", none of these values are ever
 **  overridden when a screen uses them.
 **
-**	HelpRect (Rectangle)
+**	HelpRect (Rectangle) (KAMod)
 **      - The space allocated to display the screen's "tooltip" text.
 **      Appears at the lower-middle section of the screen when most
 **      options are hovered.
-**      - This setting is managed by the Killer App Mod.
 **  HelpFont (Integer),
-**  HelpSize (Integer)
+**  HelpSize (Integer) (KAMod)
 **      - The font ID and text height of the screen's "tooltip" text.
-**      - HelpSize is managed by the Killer App Mod.
-**	BackPos (2D Point)
+**	BackPos (2D Point) (KAMod)
 **		- The upper-left origin position of the Quit button in the main
 **      menu.
-**      - This setting is managed by the Killer App Mod.
 **  BackFont (Integer),
 **  BackSize (Integer)
 **      - The font ID and text height of the back button text. Also 
@@ -106,16 +128,15 @@
 **      - TODO re-test this
 **  SliderTex (Path String)
 **      - The texture used for sliders on a screen (e.g. the mouse 
-**      sensitivity option). Notably does not apply to all arrow buttons 
+**      sensitivity option). Notably does NOT apply to all arrow buttons 
 **      that aren't attached to a slider.
 **  ArrowBackTex (Path String),
 **  ArrowBackTexH (Path String)
 **      - The texture used for the back button, when not highlighted and
 **      highlighted respectively.
-**  ArrowBackPos (2D Point)
+**  ArrowBackPos (2D Point) (KAMod)
 **      - The upper-left origin position of the back button. Also
 **      applies to the OK button in the Options screens.
-**      - This setting is managed by the Killer App Mod.
 **	BossRect (Rectangle)
 **		- The space allocated to display the boss health bar.
 **
@@ -174,28 +195,31 @@ BossRect		    = (160, 90, 480, 100)
 **                              Screen Layout
 **
 **  The Screen Layout definitions specify positions, sizes, and various
-**  other attributes of screen components.
-**
-**  The GenericScreen section defines default values which will be used
-**  by all of the screen definitions made after it, unless overridden.
+**  other attributes of screen components. The GenericScreen section
+**  below defines default values which will be used by all of the screen
+**  definitions made after it, unless overridden.
 **
 **  Individual screens also have custom values specified in their
 **  section that are used in addition to the GenericScreen definitions.
 **  These custom values will have their definitions given as they appear
-**  above their section headers.
+**  inside their respective subcategories.
 **
-**	TitlePos (2D Point)
+**  Screens which include tabs, such as the Single Player Light Cycle
+**  Menu, will consist of one subcategory for the parent screen, and
+**  then one additional subcategory per tab (properly labeled as such).
+*/
+
+/*  -----[Defaults]-----
+**	TitlePos (2D Point) (KAMod)
 **	    - The upper-left origin position of the screen's title string.
-**      - This setting is managed by the Killer App Mod.
 **	TitleFont (Integer),
 **	TitleSize (Integer)
 **		- The default font ID and text height of the screen's title 
 **      string.
-**	PageRect (Rectangle)
+**	PageRect (Rectangle) (KAMod)
 **		- The space allocated to act as a general container for the main
 **      contents of the screen. It doesn't seem to restrict a lot of the
-**      elements, but it's impossible to know for certain.
-**      - This setting is managed by the Killer App Mod.
+**      elements directly, but it's impossible to know for certain.
 **	FontFace (Integer),
 **	FontSize (Integer)
 **		- The default font ID and text height of all screen text.
@@ -208,14 +232,14 @@ BossRect		    = (160, 90, 480, 100)
 **      Intensity 1 is silence. Intensity 2 is the menu music. Keeping
 **      this set to 2 is advised.
 **  SelectedColor (Vector),
-**  NonSelectedColor (Vector),
+**  NonSelectedColor (Vector) (SP),
 **  DisabledColor (Vector)
 **      - The default colors used for screen button text, when selected/
 **      highlighted, not selected/highlighted, and unable to be 
 **      selected/highlighted, in that order.
 **  ListFontSize (Integer)
-**      - The default text height used for various lists throughout the
-**      game's screens.
+**      - The default text height used for menu options displayed in an
+**      additional pop-up box, if the screen has one.
 **
 **  ---[SAFELY DEPRECATED VALUES]---
 **  MouseFX (Path?)
@@ -238,10 +262,9 @@ DisabledColor		= <180.0, 180.0, 200.0>
 ListFontSize		= 20
 
 /*  -----[Main Menu]-----
-**  VersionPos (2D Point)
+**  VersionPos (2D Point) (KAMod)
 **      - The upper-middle origin position of the text showing the
 **      game's current version number and custom branch name.
-**      - This setting is managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 */
@@ -253,14 +276,13 @@ VersionPos	= (545,25)
 Light0		= "Main0"
 
 /*  -----[Single Player Menu]-----
-**  DiffRect (Rectangle)
-**      - The space allocated to display the difficulty selector for a
-**      new game.
-**      - This setting is managed by the Killer App Mod.
+**  DiffRect (Rectangle) (KAMod)
+**      - The space allocated to display the difficulty selector pop-up
+**      box (appears when New Game is selected).
 **  CustomRect (Rectangle)
 **      - The space allocated to display unknown contents.
-**      - What is this used for? Listing custom maps? I forgot how to
-**      bring that list up. Oops.
+**      - TODO What is this used for? Listing custom maps? I forgot how
+**      to bring that list up. Oops.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
@@ -291,6 +313,7 @@ Light0			= "Main0"
 **  Indent (Integer)
 **      - Determines the indent of the bounding box listing saves from
 **      the left side of PageRect(?).
+**      - TODO further verification.
 **  NameWidth (Integer),
 **  TimeWidth (Integer)
 **      - The total widths of the columns listing save file names and
@@ -308,11 +331,10 @@ NameWidth		= 300
 TimeWidth		= 125
 Light0			= "Main0"
 
-/*  -----[Single Player -> Light Cycles Menu]-----
-**  TabRect (Rectangle)
+/*  -----[Single Player → Light Cycles Menu]-----
+**  TabRect (Rectangle) (KAMod)
 **      - The space allocated to display the tabs utilized by this 
 **      screen. The space is divided evenly amongst each of the tabs.
-**      - This setting is managed by the Killer App Mod.
 **  BodyRect (Rectangle)
 **      - The default space allocated to display the main body box for
 **      the tabs utilized by this screen.
@@ -323,37 +345,31 @@ Light0			= "Main0"
 **      tab. Notably does not affect the text in that column; seems to
 **      only be here to force the column holding the controls away from
 **      the text.
-**  CommandPos (2D Point)
+**  CommandPos (2D Point) (KAMod)
 **      - The upper-left origin position of the commands to Create New,
 **      Rename, and Delete new custom configuration presets. Displayed
 **      beneath AvailRect.
-**      - This setting is managed by the Killer App Mod.
-**  AvailRect (Rectangle)
+**  AvailRect (Rectangle) (KAMod)
 **      - The space allocated to display the box listing player-defined
 **      custom configuration presets. Appears in the middle-right area
 **      of the screen when the "Custom Play" and "Custom Settings" tabs
 **      are being displayed.
-**      - This setting is managed by the Killer App Mod.
-**  ConfigTitlePos (2D Point)
+**  ConfigTitlePos (2D Point) (KAMod)
 **      - The upper-left origin position of the "Custom Configuration"
 **      text displayed above AvailRect.
-**      - This setting is managed by the Killer App Mod.
-**  NamePos (2D Point)
+**  NamePos (2D Point) (KAMod)
 **      - The upper-left origin position of the Player Name text.
-**      - This setting is managed by the Killer App Mod.
-**  NameColumn (Integer)
+**  NameColumn (Integer) (KAMod)
 **      - The total width of the Player Name string. Includes text
 **      wrapping.
-**      - This setting is managed by the Killer App Mod.
 **  NameWidth (Integer)
 **      - The width of the current Player Name and Light Cycle model.
 **      Does not include text wrapping.
 **      - This excludes the "Player Name:" and "Current Light Cycle:"
-**      text and only applies to the labels directly following them.
-**  CycleNamePos (2D Point)
+**      labels, and only applies to the values directly following them.
+**  CycleNamePos (2D Point) (KAMod)
 **      - The total width of the Current Light Cycle string. Includes
 **      text wrapping.
-**      - This setting is managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
@@ -392,66 +408,57 @@ NameWidth 			= 330
 CycleNamePos		= (54, 65)
 Light0				= "Main0"
 
-/*  -----[Single Player -> Light Cycles -> Circuit Play Tab]-----
+/*  -----[Single Player → Light Cycles Menu → Circuit Play Tab]-----
 **  AvailRect (Rectangle)
 **      - The space allocated to display the box listing all the Light
 **      Cycle circuit options.
-**  TabBodyRect (Rectangle)
+**  TabBodyRect (Rectangle) (KAMod)
 **      - The space allocated for the entire box underneath the tab.
-**      - This setting is managed by the Killer App Mod.
 **      - So is BodyRect just a required default definition that gets
-**      overridden?
-**  RestrictionPos (2D Point)
+**      overridden? TODO
+**  RestrictionPos (2D Point) (KAMod)
 **      - The upper-left origin position of the "Light Cycles Permitted"
 **      text.
-**      - This setting is managed by the Killer App Mod.
-**  LivesPos (2D Point)
+**  LivesPos (2D Point) (KAMod)
 **      - The upper-left origin position of the "Lives" text, including
 **      the dynamic number of lives following it.
-**      - This setting is managed by the Killer App Mod.
-**  WavesPos (2D Point)
+**  WavesPos (2D Point) (KAMod)
 **      - The upper-left origin position of the "Waves" text, including
 **      the dynamic number of waves following it.
-**      - This setting is managed by the Killer App Mod.
-**  ImagePos (2D Point)
+**  ImagePos (2D Point) (KAMod)
 **      - The upper-left origin position of the selected circuit's
 **      thumbnail image.
-**      - This setting is managed by the Killer App Mod.
-**  ImageRect (Rectangle)
+**  ImageRect (Rectangle) (KAMod)
 **      - The space allocated to display the selected circuit's
 **      thumbnail image.
 **      - Unlike a traditional Rectangle declaration, this one has its
 **      first two values covered by ImagePos, meaning the first two
 **      values of this Rectangle are always 0. The last two values then
 **      determine the cutoff point for the image box.
-**      - This setting is managed by the Killer App Mod.
-**  RegularPos (2D Point)
+**  RegularPos (2D Point) (KAMod)
 **      - The upper-left origin position of the "Light Cycle" text, as
 **      well as the dynamic text beneath it informing the player whether
 **      or not Light Cycles are permitted in the selected Circuit.
 **      - Note that the dynamic text cannot be shifted vertically, only
 **      horizontally.
-**      - This setting is managed by the Killer App Mod.
-**  SuperPos (2D Point)
+**  SuperPos (2D Point) (KAMod)
 **      - The upper-left origin position of the "Super Light Cycle"
 **      text, as well as the dynamic text beneath it informing the
 **      player whether or not Super Light Cycles are permitted in the
 **      selected Circuit.
 **      - Note that the dynamic text cannot be shifted vertically, only
 **      horizontally.
-**      - This setting is managed by the Killer App Mod.
 **  CompletedCircuitColor (Vector),
 **  UncompletedCircuitColor (Vector)
 **      - The text color of a specific listed Circuit name when it has,
 **      or has not, been completed respectively at least once by the
 **      player.
-**  LaunchPos (2D Point),
+**  LaunchPos (2D Point) (KAMod),
 **  LaunchTex (Path String),
 **  LaunchTexH (Path String)
 **      - These values make up the "Play" button. LaunchPos sets the
 **      upper-left origin position. LaunchTex and LaunchTexH set the
 **      button's texture when not highlighted/highlighted respectively.
-**      - LaunchPos is managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
@@ -487,41 +494,36 @@ LaunchTex			    = "interface\menu\sprtex\menubutton_bg.dtx"
 LaunchTexH			    = "interface\menu\sprtex\menubutton_bg_hl.dtx"
 Light0				    = "Main0"
 
-/*  -----[Single Player -> Light Cycles -> Light Cycles Tab]-----
+/*  -----[Single Player → Light Cycles Menu → Light Cycles Tab]-----
 **  The name is redundant. This screen lets the player choose their
 **  Light Cycle model & color.
 **
-**  TabBodyRect (Rectangle)
+**  TabBodyRect (Rectangle) (KAMod)
 **      - The space allocated for the entire box underneath the tab.
-**      - This setting is managed by the Killer App Mod.
 **  Character (String)
 **      - The string ID of the Character definition that will display 
 **      the rotating Light Cycle model for this screen.
 **      - See the "Screen Character Layout" section for more details.
-**  LabelPos (2D Point)
+**  LabelPos (2D Point) (KAMod)
 **      - The upper-left origin position of the "Light Cycle" text, seen
 **      normally to the upper-left of the tab body box.
-**      - This setting is managed by the Killer App Mod.
 **  BarWidth (Integer)
 **      - The total width of the bars used to display Light Cycle stats.
-**  StatsPos (2D Point)
+**  StatsPos (2D Point) (KAMod)
 **      - The upper-left origin position of the entire Light Cycle stats
 **      module, including the bars and the label text.
-**      - This setting is managed by the Killer App Mod.
-**  TypeLeftArrowPos (2D Point),
-**  TypeTextPos (2D Point),
-**  TypeRightArrowPos (2D Point)
+**  TypeLeftArrowPos (2D Point) (KAMod),
+**  TypeTextPos (2D Point) (KAMod),
+**  TypeRightArrowPos (2D Point) (KAMod)
 **      - The upper-left origin positions of the buttons that make up
 **      the setting controlling the currently active Light Cycle type,
 **      with the text sandwiched between the left and right arrows.
-**      - These settings are managed by the Killer App Mod.
-**  ShadeLeftArrowPos (2D Point),
-**  ShadeTextPos (2D Point),
-**  ShadeRightArrowPos (2D Point)
+**  ShadeLeftArrowPos (2D Point) (KAMod),
+**  ShadeTextPos (2D Point) (KAMod),
+**  ShadeRightArrowPos (2D Point) (KAMod)
 **      - The upper-left origin positions of the buttons that make up
 **      the setting controlling the currently active Light Cycle color,
 **      with the text sandwiched between the left and right arrows.
-**      - These settings are managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
@@ -566,29 +568,24 @@ ShadeTextPos			            = (70, 310)
 ShadeRightArrowPos		            = (300, 310)
 Light0				                = "Main0"
 
-/*  -----[Single Player -> Light Cycles -> Custom Play Tab]-----
-**  AvailRect (Rectangle)
+/*  -----[Single Player → Light Cycles Menu → Custom Play Tab]-----
+**  AvailRect (Rectangle) (KAMod)
 **      - The space allocated to display the list of available maps to
 **      add to the custom game.
-**      - This setting is managed by the Killer App Mod.
-**  CommandPos (2D Point)
+**  CommandPos (2D Point) (KAMod)
 **      - The upper-left origin position of the button group holding the
 **      controls to add and remove maps for the custom game.
-**      - This setting is managed by the Killer App Mod.
-**  SelectRect (Rectangle)
+**  SelectRect (Rectangle) (KAMod)
 **      - The space allocated to display the list of maps added to the
 **      custom game.
-**      - This setting is managed by the Killer App Mod.
-**  TabBodyRect (Rectangle)
+**  TabBodyRect (Rectangle) (KAMod)
 **      - The space allocated for the entire box underneath the tab.
-**      - This setting is managed by the Killer App Mod.
-**  LaunchPos (2D Point),
+**  LaunchPos (2D Point) (KAMod),
 **  LaunchTex (Path String),
 **  LaunchTexH (Path String)
 **      - These values make up the "Play" button. LaunchPos sets the
 **      upper-left origin position. LaunchTex and LaunchTexH set the
 **      button's texture when not highlighted/highlighted respectively.
-**      - LaunchPos is managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
@@ -608,19 +605,16 @@ LaunchTex	= "interface\menu\sprtex\menubutton_bg.dtx"
 LaunchTexH	= "interface\menu\sprtex\menubutton_bg_hl.dtx"
 Light0		= "Main0"
 
-/*  -----[Single Player -> Light Cycles -> Custom Settings Tab]-----
-**  CommandPos (2D Point)
+/*  -----[Single Player → Light Cycles Menu → Custom Settings Tab]-----
+**  CommandPos (2D Point) (KAMod)
 **      - The upper-left origin position of the entire list of options.
-**      - This setting is managed by the Killer App Mod.
-**  TabBodyRect (Rectangle)
+**  TabBodyRect (Rectangle) (KAMod)
 **      - The space allocated for the entire box underneath the tab.
-**      - This setting is managed by the Killer App Mod.
-**  BodyRect (Rectangle)
+**  BodyRect (Rectangle) (KAMod)
 **      - The space allocated to display the pop-up box listing all
 **      available Light Cycle powerups. These values are limited to the
 **      bounding box of TabBodyRect and will not visually stretch any
 **      further.
-**      - This setting is managed by the Killer App Mod.
 **  LCPowerupListIndent (2D Point)
 **      - The upper-left origin position of the text listing all
 **      available Light Cycle powerups. These values are limited to the
@@ -649,7 +643,7 @@ Light0				= "Main0"
 
 /*  -----[Light Cycle Victory Screen]-----
 **  This is the screen that shows up when you've beaten all of the Light
-**  Cycle circuits. It displays similarly to a Game Over screen, but
+**  Cycle circuits. It displays similarly to the Game Over screen, but
 **  with different text references.
 **
 **  VictoryId (Integer)
@@ -659,12 +653,11 @@ Light0				= "Main0"
 **      - The space allocated to display the victory message.
 **  VictoryStringSize (Integer)
 **      - The text height of the victory message.
-**  HelpStringPos (2D Point)
-**      - The upper-left origin position of the text telling the player
-**      to use the Escape key to return to the previous screen.
+**  HelpStringPos (2D Point),
 **  HelpStringSize (Integer)
-**      - The text height of the text telling the player to use the
-**      Escape key to return to the previous screen.
+**      - The upper-left origin position and text height of the text
+**      telling the player to use the Escape key to return to the 
+**      previous screen.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
@@ -694,32 +687,29 @@ FontSize	= 24
 ItemSpace   = 1
 Light0		= "Main0"
 
-/*  -----[Multiplayer -> Player Setup Menu]-----
+/*  -----[Multiplayer → Player Setup Menu]-----
 **  Character (String)
 **      - The string ID of the Character definition that will display 
 **      both the rotating Light Cycle model, as well as the rotating
 **      player model, for this screen.
 **      - See the "Screen Character Layout" section for more details.
-**  GameTypePos (2D Point)
+**  GameTypePos (2D Point) (KAMod)
 **      - The upper-left origin position of the Game Type toggle, which
 **      is used to switch between customizing the player's character and
 **      Light Cycle models for multiplayer.
-**      - This setting is managed by the Killer App Mod.
-**  NamePos (2D Point)
+**  NamePos (2D Point) (KAMod)
 **      - The upper-left origin position of the Player Name setting,
 **      which lets the player set their name in multiplayer modes.
-**      - This setting is managed by the Killer App Mod.
 **  NameColumn (Integer)
 **      - The total width of the Player Name string. Includes text
 **      wrapping.
 **  NameWidth (Integer)
 **      - The width of the current Player Name. Does not include text 
 **      wrapping.
-**  BandwidthPos (2D Point)
+**  BandwidthPos (2D Point) (KAMod)
 **      - The upper-left origin position of the Bandwidth toggle, which
 **      is used to switch between different bandwidth types for
 **      multiplayer.
-**      - This setting is managed by the Killer App Mod.
 **  BandwidthColumn (Integer)
 **      - The total width of the Bandwidth string. Includes text
 **      wrapping.
@@ -727,32 +717,31 @@ Light0		= "Main0"
 **      - Unused function. Unlike the Name and Band2 rows, this row does
 **      not rely on a manually-input custom value, making this space 
 **      unnecessary. It's only staying here for consistency.
-**  Band2Pos (2D Point)
+**  Band2Pos (2D Point) (KAMod)
 **      - The upper-left origin position of the Bandwidth (custom)
 **      setting, which lets the player set their own bandwidth value.
-**      - This setting is managed by the Killer App Mod.
+**      - TODO is there official guidance on what a good number would
+**      be for this? If not there should be
 **  Band2Column (Integer)
 **      - The total width of the Bandwidth (custom) string. includes
 **      text wrapping.
 **  Band2Width (Integer)
 **      - The width of the current custom bandwidth value. Does not
 **      include text wrapping.
-**  ModelTextPos (2D Point),
-**  ModelLeftArrowPos (2D Point),
-**  ModelRightArrowPos (2D Point)
+**  ModelTextPos (2D Point) (KAMod),
+**  ModelLeftArrowPos (2D Point) (KAMod),
+**  ModelRightArrowPos (2D Point) (KAMod)
 **      - The upper-left origin positions of the buttons that make up
 **      the setting controlling the currently used player or Light Cycle 
 **      model, with the text sandwiched between the left and right 
 **      arrows.
-**      - These settings are managed by the Killer App Mod.
-**  ColorTextPos (2D Point),
-**  ColorLeftArrowPos (2D Point),
-**  ColorRightArrowPos (2D Point)
+**  ColorTextPos (2D Point) (KAMod),
+**  ColorLeftArrowPos (2D Point) (KAMod),
+**  ColorRightArrowPos (2D Point) (KAMod)
 **      - The upper-left origin positions of the buttons that make up
 **      the setting controlling the active color/skin applied to the 
 **      current player or Light Cycle model, with the text sandwiched 
 **      between the left and right arrows.
-**      - These settings are managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 */
@@ -779,75 +768,70 @@ ColorRightArrowPos	= (440, 345)
 Light0				= "Main0"
 Light1				= "test"
 
-/*  -----[Multiplayer -> Join Internet/LAN Game -> Server List Tab]-----
-**  Counts as both the base screen, as well as the screen for the first 
-**  tab.
+/*  -----[Multiplayer → Join Internet/LAN Game Menu → Server List Tab]-----
+**  Although presented as separate options on the Multiplayer screen,
+**  the game treats the screens for joining internet/LAN games as one,
+**  since their structure is basically identical and only requires a few
+**  elements swapped out depending on which screen the player enters.
 **
-**  TabRect (Rectangle)
+**  It's important to note that this definition counts as both the base 
+**  screen, as well as the screen for the first tab.
+**
+**  TabRect (Rectangle) (KAMod)
 **      - The space allocated to be divided evenly amongst the tabs.
-**      - This setting is managed by the Killer App Mod.
-**  BodyRect (Rectangle)
+**  BodyRect (Rectangle) (KAMod)
 **      - The space allocated to display the main body of the box for
 **      this tab.
-**      - This setting is managed by the Killer App Mod.
-**  DedicatedColumn (Integer),
+**  DedicatedColumn (Integer) (KAMod),
 **  NameColumn (Integer),
 **  PingColumn (Integer),
 **  PlayersColumn (Integer),
 **  TypeColumn (Integer),
 **  MapColumn (Integer)
 **      - These values determine the widths of the columns, but it's not
-**      known exactly HOW these values work, either with each other or 
-**      the greater screen layout.
-**      - DedicatedColumn is managed by the Killer App Mod.
+**      yet known exactly HOW these values work, either with each other
+**      or the greater screen layout.
 **      - TODO understand how the hell these columns work????
-**  TablePos (2D Point)
+**  TablePos (2D Point) (KAMod)
 **      - The upper-left origin position of the box holding the server
 **      listing. Includes column headers.
-**      - This setting is managed by the Killer App Mod.
-**  ListRect (Rectangle)
+**  ListRect (Rectangle) (KAMod)
 **      - The space allocated to display the box holding the server
-**      listing?
+**      listing. Further testing needed.
 **      - TODO why are these values being so finnicky?
-**      - This setting is managed by the Killer App Mod.
-**  PortPos (2D Point)
+**  PortPos (2D Point) (KAMod)
 **      - The upper-left origin position of the "Join Specific IP"
 **      button (Internet) and the Network Port text (LAN).
-**      - This setting is managed by the Killer App Mod.
 **  PortColumnWidth (Integer)
 **      - The total width of the column holding the player's current
 **      network port, with the text justified to the right (LAN).
-**      - Further verification needed. This may also apply to the "Join
-**      Specific IP" button but would have no effect there since there
-**      is no text that comes after that button.
+**      - TODO Further verification needed. This may also apply to the
+**      "Join Specific IP" button but would have no effect there since
+**      there is no text that comes after that button.
 **  IPColumnWidth (Integer)
 **      - The total width of the column holding the "Join Specific IP"
 **      button (Internet). Includes text wrapping.
-**  FilterPos (2D Point),
-**  FilterPingPos (2D Point),
-**  FilterPlayerPos (2D Point),
-**  FilterTypePos (2D Point)
+**  FilterPos (2D Point) (KAMod),
+**  FilterPingPos (2D Point) (KAMod),
+**  FilterPlayerPos (2D Point) (KAMod),
+**  FilterTypePos (2D Point) (KAMod)
 **      - The upper-left origin positions of the various filters. The
 **      first value, FilterPos, just positions the "Filters:" text, and
 **      the remaining values position the filters themselves.
-**      - These settings are managed by the Killer App Mod.
-**  StatusPos (2D Point)
+**  StatusPos (2D Point) (KAMod)
 **      - The upper-left origin position of the Status indicator (both
 **      Internet and LAN).
-**      - This setting is managed by the Killer App Mod.
-**  GameSpyPos (2D Point),
+**  GameSpyPos (2D Point) (KAMod),
 **  GameSpyWidth (Integer)
 **      - The upper-left origin position and total width of the GameSpy
 **      logo. Changing the width scales height accordingly to maintain 
 **      aspect ratio.
-**      - GameSpyPos is managed by the Killer App Mod.
-**  LaunchPos (2D Point),
+**  LaunchPos (2D Point) (KAMod),
 **  LaunchTex (Path String),
 **  LaunchTexH (Path String)
 **      - These values make up the "Join game" button. LaunchPos sets
 **      the upper-left origin position. LaunchTex and LaunchTexH set the
 **      button's texture when not highlighted/highlighted respectively.
-**      - LaunchPos is managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
@@ -905,7 +889,7 @@ LaunchTex			    = "interface\menu\sprtex\menubutton_bg.dtx"
 LaunchTexH			    = "interface\menu\sprtex\menubutton_bg_hl.dtx"
 Light0				    = "Main0"
 
-/*  -----[Multiplayer -> Join Internet/LAN Game -> Server Info Tab]-----
+/*  -----[Multiplayer → Join Internet/LAN Game Menu → Server Info Tab]-----
 **  RefreshPos (2D Point)
 **      - The upper-left origin position of the Refresh button.
 **  LeftPlayerWidth (Integer)
@@ -914,18 +898,17 @@ Light0				    = "Main0"
 **  RightPlayerWidth (Integer)
 **      - Unknown function. May handle a second column of player names,
 **      but verifying this is extremely hard. Or score?
+**      - TODO verify
 **  LeftInfoWidth (Integer),
 **  RightInfoWidth (Integer)
 **      - The widths of the two columns responsible for displaying the
 **      server attributes. Does not include text wrapping.
-**  LeftColumnPos (2D Point)
+**  LeftColumnPos (2D Point) (KAMod)
 **      - The upper-left origin position of the left column (displaying
 **      the list of online players).
-**      - This setting is managed by the Killer App Mod.
-**  RightColumnPos (2D Point)
+**  RightColumnPos (2D Point) (KAMod)
 **      - The upper-left origin position of the right column (displaying
 **      server properties).
-**      - This setting is managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
@@ -953,50 +936,42 @@ LeftColumnPos		= (40, 65)
 RightColumnPos		= (300, 65)
 Light0				= "Main0"
 
-/*  -----[Multiplayer -> Host Menu]-----
-**  TabRect (Rectangle)
+/*  -----[Multiplayer → Host Menu]-----
+**  TabRect (Rectangle) (KAMod)
 **      - The space allocated to be divided evenly amongst the tabs.
-**      - This setting is managed by the Killer App Mod.
 **  TabAlpha (Float)
 **      - The opacity of the background for both the tabs and the box
 **      beneath them.
-**  ConfigurationPos (2D Point)
+**  ConfigurationPos (2D Point) (KAMod)
 **      - The upper-left origin position of the string displaying the
 **      server's current configuration.
-**      - This setting is managed by the Killer App Mod.
-**  GameTypePos (2D Point)
+**  GameTypePos (2D Point) (KAMod)
 **      - The upper-left origin position of the string displaying the
 **      server's current game type.
-**      - This setting is managed by the Killer App Mod.
 **  ColumnWidth (Integer)
 **      - The total width of the column listing the available options
 **      to modify. Includes text wrapping.
-**  BodyRect (Rectangle)
+**  BodyRect (Rectangle) (KAMod)
 **      - The space allocated to display the entire box underneath the
 **      tabs.
-**      - This setting is managed by the Killer App Mod.
-**  CommandPos (2D Point)
+**  CommandPos (2D Point) (KAMod)
 **      - The upper-left origin position of the commands to Create New,
 **      Rename, and Delete new custom configuration presets. Displayed
 **      beneath AvailRect.
-**      - This setting is managed by the Killer App Mod.
-**  AvailRect (Rectangle)
+**  AvailRect (Rectangle) (KAMod)
 **      - The space allocated to display the box listing player-defined
 **      custom configuration presets. Appears in the middle-right area
 **      of the screen when the "Custom Play" and "Custom Settings" tabs
 **      are being displayed.
-**      - This setting is managed by the Killer App Mod.
-**  ConfigTitlePos (2D Point)
+**  ConfigTitlePos (2D Point) (KAMod)
 **      - The upper-left origin position of the "Custom Configuration"
 **      text displayed above AvailRect.
-**      - This setting is managed by the Killer App Mod.
-**  LaunchPos (2D Point),
+**  LaunchPos (2D Point) (KAMod),
 **  LaunchTex (Path String),
 **  LaunchTexH (Path String)
 **      - These values make up the "Launch" button. LaunchPos sets the
 **      upper-left origin position. LaunchTex and LaunchTexH set the
 **      button's texture when not highlighted/highlighted respectively.
-**      - LaunchPos is managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
@@ -1022,11 +997,10 @@ LaunchTex			= "interface\menu\sprtex\menubutton_bg.dtx"
 LaunchTexH			= "interface\menu\sprtex\menubutton_bg_hl.dtx"
 Light0				= "Main0"
 
-/*  -----[Multiplayer -> Host -> Connection Tab]-----
-**  CommandPos (2D Point)
+/*  -----[Multiplayer → Host Menu → Connection Tab]-----
+**  CommandPos (2D Point) (KAMod)
 **      - The upper-left origin position of the entire server options
 **      list.
-**      - This setting is managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 */
@@ -1035,14 +1009,14 @@ FontSize			= 18
 CommandPos			= (235, 88)
 Light0				= "Main0"
 
-/*  -----[Multiplayer -> Host -> Game Tab]-----
-** CommandPos (2D Point)
+/*  -----[Multiplayer → Host Menu → Game Tab]-----
+** CommandPos (2D Point) (KAMod)
 **      - The upper-left origin position of the entire game options
 **      list.
-**      - This setting is managed by the Killer App Mod.
 **  LCPowerupListIndent (2D Point)
-**      - Likely unused function. The Light Cycle Powerup list has its
-**      own coordinates and changing this seems to do nothing.
+**      - Currently unidentified function, likely unused.
+**      - TODO verify. The Light Cycle Powerup list has its own
+**      coordinates and changing this seems to do nothing.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 */
@@ -1052,19 +1026,16 @@ CommandPos			= (235, 88)
 LCPowerupListIndent	= (50, 10)
 Light0				= "Main0"
 
-/*  -----[Multiplayer -> Host -> Maps Tab]-----
-**  AvailRect (Rectangle)
+/*  -----[Multiplayer → Host Menu → Maps Tab]-----
+**  AvailRect (Rectangle) (KAMod)
 **      - The space allocated to display the list of available maps to
 **      add to the server.
-**      - This setting is managed by the Killer App Mod.
-**  CommandPos (2D Point)
+**  CommandPos (2D Point) (KAMod)
 **      - The upper-left origin position of the button group holding the
 **      controls to add and remove maps for the server.
-**      - This setting is managed by the Killer App Mod.
-**  SelectRect (Rectangle)
+**  SelectRect (Rectangle) (KAMod)
 **      - The space allocated to display the list of maps added to the
 **      server.
-**      - This setting is managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
@@ -1089,7 +1060,7 @@ PageRect	= (84, 130, 556, 250)
 ItemSpace	= 1
 Light0		= "Main0"
 
-/*  -----[Options -> Display Menu]-----
+/*  -----[Options → Display Menu]-----
 **  ColumnWidth (Integer)
 **      - The total width of the column used to display the names of the
 **      screen's settings.
@@ -1105,7 +1076,7 @@ ColumnWidth = 200
 SliderWidth	= 240
 Light0		= "Main0"
 
-/*  -----[Options -> Sound Menu]-----
+/*  -----[Options → Sound Menu]-----
 **  ColumnWidth (Integer)
 **      - The total width of the column used to display the names of the
 **      screen's settings.
@@ -1134,7 +1105,7 @@ EAXImageRect	= (0, 0, 96, 48)
 EAXImagePos		= (450, 240)
 Light0			= "Main0"
 
-/*  -----[Options -> Controls Menu]-----
+/*  -----[Options → Controls Menu]-----
 **  ColumnWidth (Integer)
 **      - The total width of the column used to display the names of the
 **      screen's settings.
@@ -1150,26 +1121,24 @@ ColumnWidth = 300
 SliderWidth = 240
 Light0		= "Main0"
 
-/*  -----[Options -> Controls -> Configure Controls Menu]-----
-**  MoveControlPos (2D Point)
+/*  -----[Options → Controls → Configure Controls Menu]-----
+**  MoveControlPos (2D Point) (KAMod)
 **      - The upper-left origin position of the four buttons used to
 **      switch between the control groups.
-**      - This setting is managed by the Killer App Mod.
-**  ListRect (Rectangle)
+**  ListRect (Rectangle) (KAMod)
 **      - The space allocated to display the list of controls that the
 **      player can modify.
-**      - This setting is managed by the Killer App Mod.
 **  ActionWidth (Integer)
 **      - The width of the list column displaying the names of controls
 **      that the player can modify. Includes text wrapping.
 **  EqualsWidth (Integer)
 **      - Probably the width of the space between the control names and
 **      their bindings. Further verification needed.
-**  CommandWidth (Integer)
+**      - TODO verify
+**  CommandWidth (Integer) (KAMod)
 **      - The width of the list column displaying the current bindings
 **      of the controls that the player can modify. Includes text 
 **      wrapping.
-**      - This setting is managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 */
@@ -1184,7 +1153,7 @@ EqualsWidth 	= 10
 CommandWidth	= 133
 Light0			= "Main0"
 
-/*  -----[Options -> Controls -> Mouse Menu]-----
+/*  -----[Options → Controls → Mouse Menu]-----
 **  ColumnWidth (Integer)
 **      - The total width of the column used to display the names of the
 **      screen's settings.
@@ -1200,7 +1169,7 @@ ColumnWidth = 300
 SliderWidth = 240
 Light0		= "Main0"
 
-/*  -----[Options -> Controls -> Keyboard Menu]-----
+/*  -----[Options → Controls → Keyboard Menu]-----
 **  ColumnWidth (Integer)
 **      - The total width of the column used to display the names of the
 **      screen's settings.
@@ -1216,8 +1185,7 @@ ColumnWidth = 300
 SliderWidth = 240
 Light0		= "Main0"
 
-/*  -----[Options -> Controls -> Configure Joystick/Gamepad Menu]-----
-**  
+/*  -----[Options → Controls → Configure Joystick/Gamepad Menu]-----
 **  HeaderFontSize (Integer)
 **      - The text height of the "Axis" and "Action" column header text.
 **  ColumnWidth (Integer)
@@ -1233,7 +1201,7 @@ HeaderFontSize	= 18
 ColumnWidth		= 250
 Light0			= "Main0"
 
-/*  -----[Options -> Game Menu]-----
+/*  -----[Options → Game Menu]-----
 **  ColumnWidth (Integer)
 **      - The total width of the column used to display the names of the
 **      screen's settings.
@@ -1250,28 +1218,25 @@ ColumnWidth = 280
 SliderWidth = 200
 Light0		= "Main0"
 
-/*  -----[Options -> Performance Menu]-----
+/*  -----[Options → Performance Menu]-----
 **  ColumnWidth (Integer)
 **      - The total width of the column used to display the names of the
 **      screen's settings.
 **  SliderWidth (Integer)
 **      - The width of any slider bars in the screen.
-**  DisplayRect (Rectangle)
+**  DisplayRect (Rectangle) (KAMod)
 **      - The space allocated to display the Display options pop-up box.
-**      - This setting is managed by the Killer App Mod.
 **  DisplayColumn (Integer)
 **      - The total width of the column used to display the names of the
 **      settings inside the Display options pop-up box. Does not include
 **      text wrapping, but does not cut off the text either.
-**  SFXRect (Rectangle)
+**  SFXRect (Rectangle) (KAMod)
 **      - The space allocated to display the Special effects options
 **      pop-up box.
-**      - This setting is managed by the Killer App Mod.
-**  SFXColumn (Integer)
+**  SFXColumn (Integer) (KAMod)
 **      - The total width of the column used to display the names of the
 **      settings inside the Special effects options pop-up box. Does not
 **      include text wrapping, but does not cut off the text either.
-**      - This setting is managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
@@ -1304,6 +1269,7 @@ Light0			= "Main0"
 /*  -----[Crosshair Options Menu(?)]-----
 **  Am I blind? I couldn't find this one. Unless it's tucked under the
 **  Display options screen? I'm not going in there to find out.
+**  TODO ask about this
 **  ColumnWidth (Integer)
 **      - The total width of the column used to display the names of the
 **      screen's settings.
@@ -1320,14 +1286,12 @@ SliderWidth = 240
 Light0		= "Main0"
 
 /*  -----[Profile Menu]-----
-**  ProfileNamePos (2D Point)
+**  ProfileNamePos (2D Point) (KAMod)
 **      - The upper-left origin position of the list of screen options.
-**      - This setting is managed by the Killer App Mod.
-**  DialogSize (2D Point)
+**  DialogSize (2D Point) (KAMod)
 **      - Although it functions as a Point, if set to 0, it does not set
 **      the box to the top left of the screen. More understanding is
 **      needed.
-**      - This setting is managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
@@ -1351,23 +1315,21 @@ Light0			= "Main0"
 **  Due to the inherent complexity of the screen, it has been split up
 **  into multiple sections.
 **
-**  ClearPos (2D Point)
-**      - The upper-left origin position of the Clear button at the
+**  ClearPos (2D Point) (KAMod)
+**      - The upper-left origin position of the "Clear" button at the
 **      bottom-right corner of the screen.
-**      - This setting is managed by the Killer App Mod.
-**  SysNamePos (2D Point)
+**  SysNamePos (2D Point) (KAMod)
 **      - The upper-left origin position of the name of the chapter the
 **      player is currently in.
-**      - This setting is managed by the Killer App Mod.
 **  VersionSize (Integer)
 **      - The text height of the text displaying the player's current
 **      version number.
-**  VersionPos (2D Point)
+**  VersionPos (2D Point) (KAMod)
 **      - The upper-middle origin position of the text displaying the
 **      player's current version number.
-**      - This setting is managed by the Killer App Mod.
 **  OptimizerHitRect (Rectangle)
-**      - Unused function.
+**      - Currently unidentified function, potentially unused.
+**      - TODO verify
 **  Piece# (String)
 **      - The string ID of a Piece to use for the screen.
 **  Light# (String)
@@ -1407,19 +1369,17 @@ Light0			    = "Main0"
 **
 **  ToolTipFontSize (Integer)
 **      - The text height of the tooltip text.
-**  ToolTipTogglePos (2D Point)
+**  ToolTipTogglePos (2D Point) (KAMod)
 **      - The upper-left origin position of the setting at the bottom-
 **      right of the screen that lets the player choose whether or not
 **      tooltips should appear.
-**      - This setting is managed by the Killer App Mod.
 **  ToolTipToggleFontSize (Integer)
 **      - The text height of the setting at the bottom-right of the
 **      screen that lets the player choose whether or not tooltips
 **      should appear.
-**  ToolTipTitlePos (2D Point)
+**  ToolTipTitlePos (2D Point) (KAMod)
 **      - The upper-left origin position of the "Show Tooltips:" text at
 **      the bottom-right of the screen.
-**      - This setting is managed by the Killer App Mod.
 **  ToolTipTitleFontSize (Integer)
 **      - The text height of the "Show Tooltips:" text at the bottom-
 **      right of the screen.
@@ -1450,14 +1410,14 @@ ToolTipWidth		    = 200.0
 **  middle section of the screen.
 **
 **  BuildNoteCountColor (Vector)
-**      - Unused function?
+**      - Currently unidentified function, potentially unused.
+**      - TODO verify
 **  BuildNoteCountSize (Integer)
 **      - The text height of the text keeping track of the total amount
 **      of build notes that the player has collected.
-**  BuildNoteCountPos (2D Point)
+**  BuildNoteCountPos (2D Point) (KAMod)
 **      - The upper-middle origin position of the text keeping track of
 **      the total amount of build notes that the player has collected.
-**      - This setting is managed by the Killer App Mod.
 **  BuildNoteCountStringId (Integer)
 **      - The string ID from CRES.DLL to display as the build note
 **      counter.
@@ -1481,13 +1441,13 @@ BuildNoteIconScalar     = 1.0
 
 /*  -----[Subroutines Menu: Arrows]-----
 **  This is fairly self-explanatory, so instead of repeating the same
-**  thing ten times, this'll be simplified. These values allocate the
-**  space used to display the arrows next to the five rows of skills:
-**  Health, Energy, Weapon Efficiency, Transfer Rate, and Processor.
-**  These arrows only appear when the player gets their version number
-**  upgraded, and disappear once all available build notes are spent.
-**  One line declares the left arrow, the next declares the right, and
-**  so on, and so forth.
+**  thing ten times, this'll be simplified. These Rectangle values 
+**  allocate the space used to display the arrows next to the five rows 
+**  of skills: Health, Energy, Weapon Efficiency, Transfer Rate, and 
+**  Processor. These arrows only appear when the player gets their 
+**  version number upgraded, and disappear once all available build 
+**  notes are spent. One line declares the left arrow, the next declares 
+**  the right, and so on, and so forth.
 **
 **  All of these are managed by the Killer App Mod.
 */
@@ -1525,19 +1485,16 @@ NameWidth		= 300
 TimeWidth		= 125
 Light0			= "Main0"
 
-/*  -----[Game Over Menu]-----
-**  FailStringRect (Rectangle)
+/*  -----[Game Over Screen]-----
+**  FailStringRect (Rectangle) (KAMod)
 **      - The space allocated to display the Game Over text.
-**      - This setting is managed by the Killer App Mod.
 **  FailStringSize (Integer)
 **      - The text height of the Game Over text.
-**  HelpStringPos (2D Point)
-**      - The position of the text that tells the player either to
-**      QuickLoad or go to the Load screen.
-**      - This setting is managed by the Killer App Mod.
+**  HelpStringPos (2D Point) (KAMod),
 **  HelpStringSize (Integer)
-**      - The text height of the text that tells the player either to
-**      QuickLoad or go to the Load Screen.
+**      - The origin position and text height of the text that tells the
+**      player either to QuickLoad, or go to the Load screen.
+**      - TODO verify actual point of origin
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
@@ -1556,9 +1513,13 @@ HelpStringPos	= (160, 360)
 HelpStringSize	= 12
 Light0			= "Main0"
 
-/*  -----[Team Select Menu]-----
-**  This is the Team Select window for Disc Arena, Disc Tournament, and
-**  Light Cycles (both Free-For-All and Team).
+/*  -----[Team Select Menu: Default]-----
+**  The Team Select Menu is more of a glorified pop-up box in the
+**  context of TRON 2.0. However, all of the traditional rules still
+**  apply, given that it remains in this section.
+**
+**  This is the Team Select overlay window for Disc Arena, Disc 
+**  Tournament, and Light Cycles (both Free-For-All and Team).
 **
 **  PlayerTextColor (Vector)
 **      - The text color of whichever line is currently displaying the
@@ -1567,36 +1528,29 @@ Light0			= "Main0"
 **  TextColor (Vector)
 **      - The text color of all the other lines that aren't displaying
 **      the player's information.
-**  FrameColor (Vector)
-**      - The background color of the bar at the top of the window
-**      holding the column names.
+**  FrameColor (Vector) (SP),
 **  FrameAlpha (Float)
-**      - The opacity of the bar at the top of the window holding the
-**      column names.
+**      - The background color and opacity of the bar at the top of the 
+**      window holding the column names.
 **  HeaderFontSize (Integer)
 **      - The text height of the column header text.
-**  TeamRect (Rectangle)
+**  TeamRect (Rectangle) (KAMod)
 **      - The space allocated to display the list of players currently
 **      on a team.
-**      - This setting is managed by the Killer App Mod.
 **  TeamColumn (Integer),
 **  MatchesWonColumn (Integer),
-**  PlayerColumn (Integer),
-**  GamesWonColumn (Integer),
+**  PlayerColumn (Integer) (KAMod),
+**  GamesWonColumn (Integer) (KAMod),
 **  PingColumn (Integer)
 **      - The widths of all the columns that make up the list of players
 **      currently on a team.
-**      - PlayerColumn & GamesWonColumn are managed by the Killer App
-**      Mod.
-**  SpectatorRect (Rectangle)
+**  SpectatorRect (Rectangle) (KAMod)
 **      - The space allocated to display the list of players currently
 **      spectating the game.
-**      - This setting is managed by the Killer App Mod.
-**  SpectatorColumn (Integer),
+**  SpectatorColumn (Integer) (KAMod),
 **  SpectatorPingColumn (Integer)
 **      - The widths of both the columns that make up the list of
 **      players currently spectating the game.
-**      - SpectatorColumn is managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 */
@@ -1618,8 +1572,11 @@ SpectatorColumn		= 115
 SpectatorPingColumn	= 25
 Light0				= "Main0"
 
-/*  -----[Team Derez Team Select Menu]-----
-**  This is the Team Select window for specifically Team Derez.
+/*  -----[Team Select Menu: Team Derez]-----
+**  This is the Team Select overlay window for specifically Team Derez.
+**  It's not known why this needed to be a separate screen definition,
+**  but it's fair to assume it's to account for the change in visible
+**  columns used for the player list.
 **
 **  PlayerTextColor (Vector)
 **      - The text color of whichever line is currently displaying the
@@ -1628,36 +1585,29 @@ Light0				= "Main0"
 **  TextColor (Vector)
 **      - The text color of all the other lines that aren't displaying
 **      the player's information.
-**  FrameColor (Vector)
-**      - The background color of the bar at the top of the window
-**      holdingthe column names.
+**  FrameColor (Vector),
 **  FrameAlpha (Float)
-**      - The opacity of the bar at the top of the window holding the
-**      column names.
+**      - The background color and opacity of the bar at the top of the 
+**      window holding the column names.
 **  HeaderFontSize (Integer)
 **      - The text height of the column header text.
-**  TeamRect (Rectangle)
+**  TeamRect (Rectangle) (KAMod)
 **      - The space allocated to display the list of players currently
 **      on a team.
-**      - This setting is managed by the Killer App Mod.
 **  TeamColumn (Integer),
-**  RoundsWonColumn (Integer),
-**  PlayerColumn (Integer),
+**  RoundsWonColumn (Integer) (KAMod),
+**  PlayerColumn (Integer) (KAMod),
 **  FragsColumn (Integer),
 **  PingColumn (Integer)
 **      - The widths of all the columns that make up the list of players
 **      currently on a team. (Frags is for the "Derezzes" column.)
-**      - RoundsWonColumn and PlayerColumn are managed by the Killer App
-**      Mod.
-**  SpectatorRect (Rectangle)
+**  SpectatorRect (Rectangle) (KAMod)
 **      - The space allocated to display the list of players currently
 **      spectating the game.
-**      - This setting is managed by the Killer App Mod.
-**  SpectatorColumn (Integer),
+**  SpectatorColumn (Integer) (KAMod),
 **  SpectatorPingColumn (Integer)
 **      - The widths of both the columns that make up the list of
 **      players currently spectating the game.
-**      - SpectatorColumn is managed by the Killer App Mod.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 */
@@ -1683,6 +1633,7 @@ Light0				= "Main0"
 **  I can't believe they predicted my mod when they made the game.
 **  But seriously, what is this screen? It seems empty. Commenting out
 **  the entire block does not crash the game. Maybe unused?
+**  TODO ask about this
 **
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
@@ -2186,6 +2137,8 @@ PositionLR	= (560,390)
 **
 **	                            Font Layout
 **
+**  The Fonts definition assigns all fonts used in the game.
+**
 **  In TRON 2.0, pretty much all dynamic text in the game uses the same
 **  font. Additionally, the font system used in TRON 2.0 is completely
 **  unique to it, as it goes completely unused in any Lithtech Engine
@@ -2236,14 +2189,20 @@ FontSize5	= 10
 **	                             HUD Layout
 **
 **  The HUDLayout definitions specify positions and sizes for in-game
-**  interface components. The first definition, HudLayout0, demands that
-**  most of the valid arguments be defined. These values are then treated
-**  as defaults for all of the other HUDLayouts. For example, HUDLayout1
-**  does not have a defined BarHeight or TextHeight, and will therefore
-**  use HudLayout0's BarHeight and TextHeight as a fallback.
+**  interface components. 
 **
-**  Definitions for each setting will be provided in their respective
-**  sections.
+**  Although multiple HUD layout definitions are accepted, it seems that
+**  TRON 2.0 only uses the first one, HUDLayout0, and then internally
+**  checks if the player is on a Light Cycle or not to determine which
+**  of the HUD elements should be visible.
+**
+**  The layout has been split into multiple sections, for everyone's
+**  convenience.
+**
+**  -----[General]-----
+**  These are the HUD elements that either apply to the entire HUD,
+**  didn't fall under any of the other categories, or weren't complex
+**  enough to get their own section.
 **
 **	LayoutName (Integer)
 **      - The string ID used to identify the layout configuration.
@@ -2254,31 +2213,25 @@ FontSize5	= 10
 **		- 0 hides the ammo bar, 1 shows the ammo bar.
 **      - TRON 2.0 does not use traditional ammo, so this should always
 **      be set to 0.
-**      
+**  ArmorOffset (2D Point)
+**      - The offset of the armor display from the lower-right corner
+**      of the screen. This is the graphic that tells the player what
+**      pieces of armor they currently have equipped.
+**      - Monolith note: All bitmaps used are specified in
+**      SUBROUTINES.TXT. (What does this have to do with armor?)
+**      - TODO can I remove this note?
 */
 [HUDLayout0]
 LayoutName	    = 385
 UseAmmoBar	    = 0
-
-/*  -----[Armor Indicator]-----
-**  This is the graphic at the bottom-right that tells you what pieces
-**  of armor you're currently wearing.
-**
-**  ArmorOffset (2D Point)
-**      - The offset of the armor display from the lower-right corner
-**      of the screen.
-**      - Monolith note: All bitmaps used are specified in
-**      SUBROUTINES.TXT. (What does this have to do with armor?)
-*/
 ArmorOffset	= (10, 10)
 
 /*  -----[Health & Energy]-----
 **  These are self-explanatory - they control the Health & Energy bars.
 **  Does not include the Permissions ring between them.
 **
-**	BarHeight (Integer)
+**	BarHeight (Integer) (KAMod)
 **		- The total height used for the Health & Energy bars.
-**      - This setting is managed by the Killer App Mod.
 **	HealthBarWidth (Integer),
 **  EnergyBarWidth (Integer)
 **      - The total width used for the Health & Energy bars.
@@ -2354,10 +2307,27 @@ HealthEnergyFontSize 	= 32
 HealthTextOffset		= (60, -15)
 EnergyTextOffset 		= (-60, -15)
 
+/*  -----[Permission Set Indicator]-----
+**  This is the permission ring at the center of the screen. It's unique
+**  in that it's one of the few elastic elements - meaning the width and
+**  height can be different and the entire HUD element is able to scale
+**  accordingly.
+**
+**  PsetOffset (2D Point) (SP)
+**      - The offset of the permission set indicator from the lower-
+**      middle point of the screen.
+**  PsetWidth (Integer) (SP),
+**  PsetHeight (Integer) (SP)
+**      - The width and height of the permission set indicator.
+*/
+PsetOffset	= (0, 0) // SecurityProtocol
+PsetWidth	= 80 // SecurityProtocol
+PsetHeight	= 80 // SecurityProtocol
+
 /*  -----[Weapon Indicator]-----
 **  This is just the small single box at the top-right corner of the
 **  screen that lets the player know what their currently equipped
-**  weapon is.
+**  weapon is. Not to be confused with the Weapon Chooser.
 **
 **  WeaponIndicatorAnimTime (Float)
 **      - Unknown function. It has something to do with the transition
@@ -2385,7 +2355,8 @@ WeaponIndicatorIconOffset	= (-7, -12)
 
 /*  -----[Weapon Chooser]-----
 **  This is the larger graphic that appears when the player wants to
-**  change their currently equipped weapon.
+**  change their currently equipped weapon. Not to be confused with the
+**  Weapon Indicator.
 **
 **  ChooserTex (Path String),
 **  ChooserTexHi (Path String)
@@ -2409,10 +2380,9 @@ WeaponIndicatorIconOffset	= (-7, -12)
 **  ChooserTextSize (Integer)
 **      - The color and text height of the string displaying the name of
 **      the currently highlighted weapon.
-**  ChooserBoxSize (Dimension)
+**  ChooserBoxSize (Dimension) (KAMod)
 **      - The defined width and height of each available weapon box.
 **      Does not affect the texture size, just the box itself.
-**      - This setting is managed by the Killer App Mod.
 **  ChooserSpacing (Dimension)
 **      - The defined width and height of the spacing between each
 **      available weapon box.
@@ -2478,6 +2448,8 @@ ClassNumberHi4			= "Interface\hud\currentweapon_hlTab_4.dtx"
 **  that it references the UPDATE_FLASH texture. It doesn't seem to be
 **  visible anywhere.
 **
+**  TODO used?
+**
 **  ObjectiveOffsetChris (2D Point)
 **      - Chris' silly little objective indicator. Pay it no mind.
 **      - Seriously, don't bother looking at it. Just.. move on.
@@ -2485,7 +2457,8 @@ ClassNumberHi4			= "Interface\hud\currentweapon_hlTab_4.dtx"
 **      - Why are you still reading this? Go modify a different value,
 **      this one's off-limits.
 **  ObjectiveOffset (2D Point)
-**      - The offset of the new objective indicator.
+**      - The offset of the new objective indicator from an unknown
+**      origin.
 */  
 ObjectiveOffsetChris	= (8, -264)
 ObjectiveOffset			= (8, -40)
@@ -2495,13 +2468,14 @@ ObjectiveOffset			= (8, -40)
 **  when certain events happen, like getting new subroutines, getting an
 **  I/O node message, or getting a new objective.
 **
-**  PingIconSize (Dimension)
+**  See the Pings file for more information, as this HUD element ties in
+**  with that file directly.
+**
+**  PingIconSize (Dimension) (KAMod)
 **      - The defined width and height of the ping icon boxes. Does not
 **      affect the texture size, just the boxes themselves.
-**      - This setting is managed by the Killer App Mod.
-**  PingStartPoint (2D Point)
+**  PingStartPoint (2D Point) (KAMod)
 **      - The upper-left origin position of the ping list.
-**      - This setting is managed by the Killer App Mod.
 **  PingSpacing (Dimension)
 **      - The defined width and height of the spacing between ping icon
 **      boxes.
@@ -2524,32 +2498,14 @@ PingSpacing			= 0
 PingBlinkCount		= 4
 //PingBlinkTime		= 0.5
 
-/*  -----[Permission Set Indicator]-----
-**  This is the permission ring at the center of the screen. It's unique
-**  in that it's one of the few elastic elements - meaning the width and
-**  height can be different and the entire HUD element is able to scale
-**  accordingly.
-**
-**  PsetOffset (2D Point)
-**      - The offset of the permission set indicator from the lower-
-**      middle point of the screen.
-**  PsetWidth (Integer),
-**  PsetHeight (Integer)
-**      - The width and height of the permission set indicator.
-*/
-PsetOffset	= (0, 0) // SecurityProtocol
-PsetWidth	= 80 // SecurityProtocol
-PsetHeight	= 80 // SecurityProtocol
-
 /*  -----[Crosshair Text Elements]-----
 **  This isn't about the crosshair itself; rather, it's meant to be for
 **  the stuff around the crosshair. The Activation Text is the yellow
 **  text beneath the crosshair that shows up when something can be
 **  interacted with, and the Info Text is... something.
 **
-**  ActivationTextPos (2D Point)
+**  ActivationTextPos (2D Point) (KAMod)
 **      - The upper-left origin position of the activation text.
-**      - This setting is managed by the Killer App Mod.
 **  ActivationTextSize (Integer)
 **      - The text height of the activation text.
 **  ActivationTextJustify (Integer)
@@ -2567,8 +2523,8 @@ PsetHeight	= 80 // SecurityProtocol
 **      - Is this used?
 **
 **  Info Text is I guess used? What is this?
-**  InfoTextPos (2D Point)
-**      - This setting is managed by the Killer App Mod.
+**  TODO actually what is this
+**  InfoTextPos (2D Point) (KAMod)
 **  InfoTextSize (Integer)
 **  InfoTextWidth (Integer)
 **  InfoTextJustify (Integer)
@@ -2610,7 +2566,9 @@ InfoTextBadAlpha	    = 128
 InfoTextBadColor		= <255.0, 64.0, 64.0>
 
 /*  -----[Data Log]-----
-**  What's this?
+**  This HUD element is currently unidentified, potentially unused.
+**  Subject to further testing.
+**  TODO what's this
 **
 **  DataLogRect (Rectangle)
 **  DataLogFontSize (Integer)
@@ -2623,7 +2581,8 @@ DataLogHeaderFontSize	= 18
 DataLogFrame			= "interface\hud\hud.dtx"
 
 /*  -----[Profiler Subroutine Text]-----
-**  This is the text for the Profiler subroutine.
+**  This is the text for the Profiler subroutine. By default, appears
+**  roughly to the right of the crosshair.
 **
 **  ProfilerPos (2D Point)
 **      - The lower-right origin position of the Profiler text.
@@ -2635,9 +2594,9 @@ ProfilerTextSize	= 16
 
 /*  -----[LOL & Triangulate Subroutine Zoom Values]-----
 **  The exact unit of measurement used for the FOV zoom is unknown, but
-**  the effect is consistent at least. When Triangulate is equipped, the
-**  game moves between the three zoom values for Triangulate. When the
-**  LOL is equipped, the game uses the single zoom value for the LOL.
+**  the effect is consistent. When Triangulate is equipped, the game
+**  moves between the three zoom values for Triangulate. When the LOL is
+**  equipped, the game uses the single zoom value for the LOL.
 **
 **  When BOTH subroutines are equipped, and the player zooms in with the
 **  LOL, it will initially use the LOL zoom value; however, if the
@@ -2663,23 +2622,25 @@ FOVZoomTriangulate3		= 3.0
 **  this is one of the very few areas where Monolith provided the exact
 **  definition for all of these values!
 **
-** ---[Powerups]---
+**  ---[Powerup Indicator]---
+**  This is the element that displays the icon of the powerup currently
+**  available to the player.
+**
 **  PowerupIconPos (2D Point)
 **      - The "true center" origin position of the player's currently
-**      stored powerup.
+**      stored powerup icon.
 **  PowerupIconTexture# (Path String)
 **      - The textures used to display the icon for each powerup.
-**      - The texture names can speak for themselves, but here's the
-**      list anyways:
-**      Powerup 0: Shield Break
-**      Powerup 1: Turbo Boost
-**      Powerup 2: Wall Spike
-**      Powerup 3: Missile
-**      Powerup 4: Wall Extender
-**      Powerup 5: Turbo Curse
-**      Powerup 6: Grab
-**      Powerup 7: Wall Reset
-**      Powerup 8: Force Use
+**      - The textures correspond to the in-game powerups as follows:
+**          - Powerup 0: Shield Break
+**          - Powerup 1: Turbo Boost
+**          - Powerup 2: Wall Spike
+**          - Powerup 3: Missile
+**          - Powerup 4: Wall Extender
+**          - Powerup 5: Turbo Curse
+**          - Powerup 6: Grab
+**          - Powerup 7: Wall Reset
+**          - Powerup 8: Force Use
 */
 PowerupIconPos		= (320, 32)
 PowerupIconTexture0	= "Interface\HUD\LC_pickup_Shield.dtx"
@@ -2710,9 +2671,8 @@ LivesTextHeight	= 16
 **  This is the list showing the remaining competitors in the current
 **  race.
 **
-**  RosterPosition (2D Point)
+**  RosterPosition (2D Point) (KAMod)
 **      - The upper-left origin position of the entire roster list.
-**      - This setting is managed by the Killer App Mod.
 **  RosterTextHeight (Integer)
 **      - The text height of the names on the roster.
 **  RosterTextOffset (Integer)
@@ -2722,10 +2682,9 @@ LivesTextHeight	= 16
 **      - The vertical spacing between roster lines.
 **  RosterEnableIconScaling (Boolean Integer)
 **      - Decides whether roster icon scaling is enabled or not.
-**  RosterIconBaseSizeIfScalingIsEnabled (Dimension)
+**  RosterIconBaseSizeIfScalingIsEnabled (Dimension) (KAMod)
 **      - The defined minimum width and height of a roster icon. Only
 **      used if RosterEnableIconScaling is set to 1.
-**      - This setting is managed by the Killer App Mod.
 */
 RosterPosition					        = (6, 46)
 RosterTextHeight				        = 14
@@ -2735,7 +2694,8 @@ RosterEnableIconScaling			        = 1
 RosterIconBaseSizeIfScalingIsEnabled    = (26, 16)
 
 /*  ---[Intro]---
-**  Not sure what this is?
+**  Currently unidentified, but very likely used.
+**  TODO check this. Clearly used but what is it?
 **
 **  IntroMasterPos (2D Point)
 **      - The upper-middle origin position of the intro frame.
@@ -2751,11 +2711,10 @@ RosterIconBaseSizeIfScalingIsEnabled    = (26, 16)
 **      entry.
 **  IntroEntrySpace (Integer)
 **      - The vertical spacing between entries.
-**  IntroHeaderOffset (Integer),
-**  IntroValueOffset (Integer)
+**  IntroHeaderOffset (Integer) (KAMod),
+**  IntroValueOffset (Integer) (KAMod)
 **      - The offset of the header and value texts from the center of
 **      the screen.
-**      - These settings are managed by the Killer App Mod.
 **  IntroValueTime (Float)
 **      - The amount of time, in seconds, to show the intro screen for.
 **  IntroFrameBackground (Path String)
@@ -2780,6 +2739,9 @@ IntroFrameBackground			= "interface\menu\sprtex\frame_solid.dtx"
 IntroTexturedFrameName			= "lightcycle_start"
 
 /*  ---[Speedometer]---
+**  This is the speedometer that shows the current speed of the Light
+**  Cycle. 
+**
 **  SpeedometerPos (2D Point)
 **      - The upper-left origin position of the speedometer.
 **      - This setting is managed by the Killer App Mod.
@@ -2816,7 +2778,8 @@ SpeedometerFrameBackground		= "interface\hud\frame_lightcycle.dtx"
 SpeedometerTexturedFrameName	= "lightcycle_speedometer"
 
 /*  ---[Distance Icon]---
-**  What's this?
+**  Currently unidentified HUD element, potentially unused.
+**  TODO what is this
 **
 **  DistanceIconPos (2D Point)
 **  DistanceIconBlinkSpeed (Float)
@@ -2829,9 +2792,11 @@ DistanceIconAlpha		    = 0.8
 DistanceIconFadeOutSpeed	= 1.0
 
 /*  -----["Useless Stuff"]-----
-**  Monolith claims all of these below values are "useless stuff". It's
-**  gonna stay here, but without documentation, and commented out, until
-**  it is confirmed that any of them are used.
+**  Monolith claims this entire section is a bunch of "useless stuff".
+**  It's gonna stay here, without documentation, until it is confirmed 
+**  that any of them are used.
+**
+**  This section does not appear on the GitHub wiki page.
 */
 //DisplayMeterBasePosY	= 54
 //DisplayMeterOffset	= (0,0)
@@ -2885,6 +2850,7 @@ DistanceIconFadeOutSpeed	= 1.0
 **  references to the same texture 9 times, I get the idea this isn't 
 **  actually used anymore.
 **  Commenting out the entire section didn't affect the game. Unused?
+**  TODO HUDLayout1 check
 */
 [HUDLayout1]
 ArmorOffset				                = (-64, -128)
@@ -2925,7 +2891,7 @@ DistanceIconAlpha		                = 0
 **  
 **  The VersionNumber definition manages the HUD element displaying the
 **  player's name and  current version number. For the build note count
-**  beneath it, see the next section below.
+**  beneath it, see the Build Note Counter section following this one.
 **
 **  When the player picks up a Build Note, the game will perform either
 **  a major or a minor upgrade. A major upgrade occurs when the first of
@@ -3087,11 +3053,11 @@ FontColor       = <255.0, 255.0, 90.0>
 **
 **	                    Utility Subroutine Chooser
 **
-**  It seems like this is a HUD element, but I can't find any evidence
-**  of it existing anywhere. Commenting out this entire section does
-**  nothing. What is this? Monolith's original notes are below but do
-**  not really help to explain anything.
-**  Documentation unavailable for now.
+**  This is a currently unidentified value set that, based on its name,
+**  is probably a functionality integrated into the Subroutines menu.
+**  Documentation is temporarily unavailable while further clarification
+**  is requested.
+**  TODO What is this?
 **
 **	There are two attributes defined under HudLayout0 :
 **	ChooserTextAlpha
@@ -3218,8 +3184,8 @@ UVBoxBottomRight	    = (100, 177, 115, 188)
 **  right side of the screen. Holding the Tab key also shows the names
 **  of those subroutines.
 **
-**  Or is it? None of these values are doing anything and they seem to
-**  be pulling values from the Weapon Chooser. The text color is
+**  TODO Or is it? None of these values are doing anything and they seem
+**  to be pulling values from the Weapon Chooser. The text color is
 **  representative of this. So... what is this, then?
 **
 **  FrameTex (Path String)
@@ -3256,6 +3222,8 @@ IconOffset		= 44
 /*  ---[Progress Bar Settings]---
 **  TODO Unsure how to test these? Where does this show up? Small and
 **  Big Bar are commented out entirely, so what does tiny bar do?
+**
+**  Is this for identifying/disinfecting subroutines/defragging?
 **  
 **  EmptyBarTex (Path String),
 **  FullBarTex (Path String)
@@ -3598,7 +3566,8 @@ UVBottomRight	= (248, 225, 261, 243)
 **  Most of the values here are for the pause menu, and the ones that
 **  aren't confirmed to be for the pause menu are unconfirmed to be even
 **  used at all. Sure, they're never overridden by anything else. But
-**  that could just be because nothing else uses them at all.
+**  that could just be because nothing else uses them in the first
+**  place.
 **
 **	Position (Integer)
 **      - This is less of a position and more of an offset, since it's
@@ -3694,17 +3663,15 @@ DisabledColor		= <180.0, 180.0, 200.0>
 **  Same deal as the previous definition; pretty much only applies to
 **  the pause menu, and whatever values aren't might not be used at all.
 **  Further clarification may be needed.
+**  TODO further clarification
 **
-**  Size (Dimension)
+**  Size (Dimension) (KAMod)
 **      - Unknown function.
-**      - This setting is managed by the Killer App Mod.
-**  FontSize (Integer)
+**  FontSize (Integer) (KAMod)
 **      - The text height of the buttons on the body of the pause menu.
-**      - This setting is managed by the Killer App Mod.
-**  TitleSize (Integer)
+**  TitleSize (Integer) (KAMod)
 **      - The text height of any title text on the pause menu.
 **      - Potentially unused?
-**      - This setting is managed by the Killer App Mod.
 **  Indent (2D Point)
 **      - The indent, both horizontal and vertical, of the buttons on
 **      the body of the pause menu.
@@ -3762,6 +3729,7 @@ PopupFrame			= "interface\menu\sprtex\frame_interlace.dtx"
 **
 **  The Miscellaneous definition sets values for interface components
 **  not covered under other definitions.
+**  TODO incomplete documentation here.
 **
 **	MessageBoxTexture (Path String)
 **		- The name of the DTX to use for background art on the Message Box.
@@ -3879,7 +3847,7 @@ EditDisabled	= <0.0, 75.0, 238.0>
 
 /************************************************************************
 **
-**	                             MessageQueue
+**	                            Message Queues
 **
 **  The MessageQueue definitions specify data for various message queues
 **  in the game.
@@ -5484,7 +5452,7 @@ RemoveWindow    = 0
 
 /************************************************************************
 **
-**	                   Screen Transition Declarations
+**	                         Screen Transitions
 **
 **  The Transition definitions assign values that manage transitions
 **  between menu screens. All transitions take precedence over default
