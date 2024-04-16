@@ -2204,20 +2204,21 @@ FontSize5	= 10
 **
 **	LayoutName (Integer)
 **      - The string ID used to identify the layout configuration.
-**      - DO NOT CHANGE - String ID does NOT reference CRES.DLL and
+**      - DO NOT CHANGE - The String ID does NOT reference CRES.DLL, and
 **      the actual source is not known.
 **	UseAmmoBar (Boolean Integer)
 **      - Determines if the ammo display is visible or not.
-**		- 0 hides the ammo bar, 1 shows the ammo bar.
 **      - TRON 2.0 does not use traditional ammo, so this should always
 **      be set to 0.
+**      0: The ammo bar is hidden.
+**      1: The ammo bar is visible.
 **  ArmorOffset (2D Point)
 **      - The offset of the armor display from the lower-right corner
 **      of the screen. This is the graphic that tells the player what
 **      pieces of armor they currently have equipped.
 **      - Monolith note: All bitmaps used are specified in
 **      SUBROUTINES.TXT. (What does this have to do with armor?)
-**      - TODO can I remove this note?
+**      - TODO can I remove this note? (LDSO)
 */
 [HUDLayout0]
 LayoutName	    = 385
@@ -2332,6 +2333,7 @@ PsetHeight	= 80 // SecurityProtocol
 **      between seeing all of the weapons to just seeing the currently
 **      equipped one, but changing this value did not really make it
 **      easier to understand.
+**      - TODO further research
 **  WeaponIndicatorOffset (2D Point)
 **      - The offset of the currently equipped weapon indicator from the
 **      (almost) upper-left corner of the screen.
@@ -2360,7 +2362,7 @@ WeaponIndicatorIconOffset	= (-7, -12)
 **  ChooserTexHi (Path String)
 **      - The texture used as the background box for an available
 **      weapon, when not highlighted and highlighted respectively.
-**      - ChooserTexHi is reused for the Weapon Indicator.
+**      - ChooserTexHi is inherited by the Weapon Indicator.
 **  ChooserCorruptTex (Path String),
 **  ChooserCorruptTexHi (Path String)
 **      - The texture used as the background box for an available, but
@@ -2390,6 +2392,7 @@ WeaponIndicatorIconOffset	= (-7, -12)
 **  ChooserMargin (2D Point)
 **      - The (scalable?) offset of the weapon chooser from the upper-
 **      right corner of the screen.
+**      - TODO check scalability
 **  ClassNumber# (Path String),
 **  ClassNumberHi# (Path String)
 **      - These point to the textures used to indicate the numbers of
@@ -2502,26 +2505,29 @@ PingBlinkCount		= 4
 **  text beneath the crosshair that shows up when something can be
 **  interacted with, and the Info Text is... something.
 **
-**  ActivationTextPos (2D Point) (KAMod)
-**      - The upper-left origin position of the activation text.
+**  Research on the Info Text is incomplete, so definitions for values
+**  relating to it are currently unavailable.
+**
+**  ActivationTextPos (2D Point) (KAMod),
 **  ActivationTextSize (Integer)
-**      - The text height of the activation text.
+**      - The upper-left origin position and text height of the
+**      activation text.
 **  ActivationTextJustify (Integer)
 **      - The justification value of the activation text.
+**      - It is not currently known what exactly this means in context.
 **      - TODO figure out what the justification values are and/or mean
-**  ActivationTextAlpha (Float)
-**      - The opacity of the activation text.
+**  ActivationTextAlpha (Float),
 **  ActivationTextColor (Vector)
-**      - The color of the activation text.
-**  ActivationTextDisAlpha (Integer)
-**      - The opacity of the activation text, when disabled.
-**      - Is this used?
+**      - The opacity and text color of enabled activation text.
+**  ActivationTextDisAlpha (Integer?),
 **  ActivationTextDisColor (Vector)
-**      - The color of the activation text, when disabled.
-**      - Is this used?
+**      - The opacity and text color of disabled activation text.
+**      - It is not presently known if this is accessible in-game.
+**      - TODO Is this used? (LDSO)
+**      - TODO why is the alpha value at 255? (LDSO)
 **
 **  Info Text is I guess used? What is this?
-**  TODO actually what is this
+**  TODO actually what is this (LDSO)
 **  InfoTextPos (2D Point) (KAMod)
 **  InfoTextSize (Integer)
 **  InfoTextWidth (Integer)
@@ -2630,15 +2636,15 @@ FOVZoomTriangulate3		= 3.0
 **  PowerupIconTexture# (Path String)
 **      - The textures used to display the icon for each powerup.
 **      - The textures correspond to the in-game powerups as follows:
-**          - Powerup 0: Shield Break
-**          - Powerup 1: Turbo Boost
-**          - Powerup 2: Wall Spike
-**          - Powerup 3: Missile
-**          - Powerup 4: Wall Extender
-**          - Powerup 5: Turbo Curse
-**          - Powerup 6: Grab
-**          - Powerup 7: Wall Reset
-**          - Powerup 8: Force Use
+**      Powerup 0: Shield Break
+**      Powerup 1: Turbo Boost
+**      Powerup 2: Wall Spike
+**      Powerup 3: Missile
+**      Powerup 4: Wall Extender
+**      Powerup 5: Turbo Curse
+**      Powerup 6: Grab
+**      Powerup 7: Wall Reset
+**      Powerup 8: Force Use
 */
 PowerupIconPos		= (320, 32)
 PowerupIconTexture0	= "Interface\HUD\LC_pickup_Shield.dtx"
@@ -2693,7 +2699,7 @@ RosterIconBaseSizeIfScalingIsEnabled    = (26, 16)
 
 /*  ---[Intro]---
 **  Currently unidentified, but very likely used.
-**  TODO check this. Clearly used but what is it?
+**  TODO check this. Clearly used but what is it? (LDSO)
 **
 **  IntroMasterPos (2D Point)
 **      - The upper-middle origin position of the intro frame.
@@ -2716,12 +2722,14 @@ RosterIconBaseSizeIfScalingIsEnabled    = (26, 16)
 **  IntroValueTime (Float)
 **      - The amount of time, in seconds, to show the intro screen for.
 **  IntroFrameBackground (Path String)
-**      - The texture used for the intro frame background.
-**      - Potentially unused.
+**      - The texture used for the intro frame background. Potentially
+**      unused.
+**      - TODO check this
 **   IntroTexturedFrameName (String)
 **      - The name of the TexturedFrame object used for the intro frame.
+**      Potentially unused.
 **      - For more details, see the "Textured Frames Layout" section.
-**      - Potentially unused.
+**      - TODO check this
 */
 IntroMasterPos					= (320, 8)
 IntroVFrameBorder				= 6
@@ -2740,30 +2748,28 @@ IntroTexturedFrameName			= "lightcycle_start"
 **  This is the speedometer that shows the current speed of the Light
 **  Cycle. 
 **
-**  SpeedometerPos (2D Point)
+**  SpeedometerPos (2D Point) (KAMod)
 **      - The upper-left origin position of the speedometer.
-**      - This setting is managed by the Killer App Mod.
 **  SpeedometerFontNum (Integer),
 **  SpeedometerTextHeight (Integer)
 **      - The font ID and text height of the speedometer text.
-**  SpeedometerVBorder (Integer),
-**  SpeedomederHBorder (Integer)
+**  SpeedometerVBorder (Integer) (KAMod),
+**  SpeedomederHBorder (Integer) (KAMod)
 **      - The vertical and horizontal distance between the speedometer
-**      text and frame border. (Text is horizontally offset from the
-**      right side.)
-**      - These settings are managed by the Killer App Mod.
-**  SpeedometerFrameWidth (Integer),
-**  SpeedometerFrameHeight (Integer)
+**      text and frame border. Text is horizontally offset from the
+**      right side.
+**  SpeedometerFrameWidth (Integer) (KAMod),
+**  SpeedometerFrameHeight (Integer) (KAMod)
 **      - The total width and height of the speedometer frame.
-**      - These settings are managed by the Killer App Mod.
 **  SpeedometerFrameBackground (Path String)
 **      - The texture used for the speedometer frame background.
-**      - Potentially unused.
+**      Potentially unused.
+**      - TODO check this
 **  SpeedometerTexturedFrameName (String)
 **      - The name of the TexturedFrame object used for the speedometer
-**      frame.
+**      frame. Potentially unused.
 **      - For more details, see the "Textured Frames Layout" section.
-**      - Potentially unused.
+**      - TODO check this
 */
 SpeedometerPos					= (34, 8)
 SpeedometerFontNum				= 4
@@ -2848,7 +2854,7 @@ DistanceIconFadeOutSpeed	= 1.0
 **  references to the same texture 9 times, I get the idea this isn't 
 **  actually used anymore.
 **  Commenting out the entire section didn't affect the game. Unused?
-**  TODO HUDLayout1 check
+**  TODO HUDLayout1 check (LDSO)
 */
 [HUDLayout1]
 ArmorOffset				                = (-64, -128)
@@ -2898,11 +2904,10 @@ DistanceIconAlpha		                = 0
 **
 **	Position (2D Point)
 **      - The upper-left origin position of the version number.
-**	Font (Integer)
-**		- The font ID of the version number.
+**	Font (Integer),
 **	FontSize (Integer)
-**		The pixel height of the version number.
-**	BaseColor (Vector)
+**		- The font ID and pixel height of the version number.
+**	BaseColor (Vector) (SP)
 **		- The color of the version number text.
 **	MinorUpgradeColor (Vector),
 **	MajorUpgradeColor (Vector)
@@ -2942,10 +2947,9 @@ MinorUpgradeColor	    = <255.0, 255.0, 255.0>
 **  IconTexture (Path String)
 **      - The texture used for the build note icon to the left of the
 **      counter.
-**  TextSize (Integer)
-**      - The pixel height of the build note counter text.
+**  TextSize (Integer),
 **  BaseColor (Vector)
-**      - The color of the build note counter text.
+**      - The pixel height and color of the build note counter text.
 */
 [BuildNoteCount]
 AnchorPos	= (12, 22)
@@ -2979,18 +2983,17 @@ BaseColor	= <255.0, 90.0, 90.0> // SecurityProtocol
 **	Piece1Period (Float)
 **      - The amount of time, in seconds, that Piece1 will take to
 **      perform a single fluctuation.
-**	Piece1Radius (Float)
+**	Piece1Radius (Float) (KAMod)
 **      - The width of the Piece1Tex, which makes up half of the frame.
 **      The game will use this same width value when mirroring the
 **      texture.
-**      - This setting is managed by the Killer App Mod.
 **	Piece2Tex (Path String)
 **      - The texture to use for the second I/O Node HUD Piece.
-**	Piece2MinRadius	(Float),
-**	Piece2MaxRadius (Float)
+**	Piece2MinRadius	(Float) (KAMod),
+**	Piece2MaxRadius (Float) (KAMod)
 **      - The highest and lowest width value that Piece2 will fluctuate
-**      between when performing a flicker.
-**      - These settings are managed by the Killer App Mod.
+**      between when performing a flicker. The game will use these same
+**      width values when mirroring the texture.
 **	Piece2MinInterval (Float),
 **	Piece2MaxInterval (Float)
 **      - The highest and lowest time, in seconds, that Piece2 will wait
@@ -2998,7 +3001,8 @@ BaseColor	= <255.0, 90.0, 90.0> // SecurityProtocol
 **	Piece2MinFlickers (Integer),
 **	Piece2MaxFlicker (Integer)
 **      - The highest and lowest amount of times Piece2 will flicker
-**      between the minimum and maximum radius?
+**      between the minimum and maximum radius.
+**      - TODO revisit, feeling shaky on this one
 **	Piece2FlickerTime (Float)
 **      - The amount of time, in seconds, that Piece2 will take to
 **      perform a single flicker.
@@ -3028,8 +3032,8 @@ Piece2FlickerTime	= 0.04
 **  screen in multiplayer. This is the big yellow text that usually
 **  shows up between rounds or between games.
 **
-**	Position (2D Point),
-**  DiscMPPosition (2D Point)
+**	Position (2D Point) (KAMod),
+**  DiscMPPosition (2D Point) (KAMod)
 **		- The upper-left origin position of the text. For Disc Arena and
 **      Disc Tournament modes, use DiscMPPosition. For all other modes,
 **      use Position.
@@ -3095,18 +3099,17 @@ CursorTexUV			= (117, 45, 254, 70)
 **  ProgressRect (Rectangle)
 **      - The space allocated to display the objective progress window.
 **  HUDOffset (Integer)
-**      - Unknown function.
+**      - Currently unidentified function, potentially unused.
+**      - TODO verify.
 **  TitleFont (Integer),
-**  TitleFontSize (Integer),
+**  TitleFontSize (Integer) (KAMod),
 **  TitleAlpha (Float),
 **  TitleColor (Vector)
 **      - The font ID, pixel height, opacity, and color of both the
 **      "Objective" header and the "Tasks" subheader.
-**      - TitleFontSize is managed by the Killer App Mod.
 **  ObjectiveFont (Integer),
-**  ObjectiveFontSize (Integer)
+**  ObjectiveFontSize (Integer) (KAMod)
 **      - The font ID and pixel height of all objective text.
-**      - ObjectiveFontSize is managed by the Killer App Mod.
 **  ObjectiveAlpha (Float),
 **  ObjectiveColor (Vector)
 **      - The opacity and color of incomplete objective text.
@@ -3117,7 +3120,8 @@ CursorTexUV			= (117, 45, 254, 70)
 **  SecondaryObjectiveColor (Vector)
 **      - The opacity and color of secondary objective text.
 **  ObjectiveSpacing (Integer)
-**      - The designated spacing between objective lines.
+**      - The height of the text spacing between objectives, if multiple
+**      are displayed.
 */
 [ProgressBox]
 ProgressRect			    = (10, 250, 250, 480)
@@ -3138,10 +3142,10 @@ ObjectiveSpacing			= 8
 
 /* ---[UV Box Values]---
 **  There's a lotta stuff to look at here. For now just know it's
-**  responsible for holding all the stuff in the box exactly where it
-**  is.
+**  responsible for holding all the stuff in the boxes exactly where
+**  they are. Awaiting further research.
 **  
-**  TODO what does UV stand for?
+**  TODO what does UV stand for? (LDSO)
 **  TODO documentation for this section... all of this seems to work
 **  with itself but good luck knowing if most of these have a visible
 **  difference
@@ -3184,12 +3188,13 @@ UVBoxBottomRight	    = (100, 177, 115, 188)
 **
 **  TODO Or is it? None of these values are doing anything and they seem
 **  to be pulling values from the Weapon Chooser. The text color is
-**  representative of this. So... what is this, then?
+**  representative of this. So... what is this, then? (LDSO)
 **
 **  FrameTex (Path String)
 **      - The texture used for the frame around each active subroutine.
 **  TopBound (Integer)
-**      - Unknown function.
+**      - Currently unidentified function, potentially unused.
+**      - TODO verify
 **  Font (Integer),
 **  FontSize (Integer),
 **  Alpha (Float),
@@ -3218,23 +3223,24 @@ IconHeight		= 39
 IconOffset		= 44
 
 /*  ---[Progress Bar Settings]---
-**  TODO Unsure how to test these? Where does this show up? Small and
-**  Big Bar are commented out entirely, so what does tiny bar do?
-**
-**  Is this for identifying/disinfecting subroutines/defragging?
+**  This appears to be responsible for the progress bar that is shown
+**  when a subroutine is being identified/disinfected, or when a memory
+**  block is being defragged. Awaiting further testing.
+**  TODO further testing & KAMod verification
 **  
 **  EmptyBarTex (Path String),
 **  FullBarTex (Path String)
-**      - 
+**      - The textures to display for the empty and full segments of the
+**      progress bar, respectively.
 **  PBarXOffset (Integer),
 **  PBarYOffset (Integer)
-**      - 
+**      - The horizontal and vertical offsets of the progress bar.
 **  PBarWidth (Integer),
 **  PBarHeight (Integer)
-**      - 
+**      - The width and height of the progress bar.
 **  StringXOffset (Integer),
 **  StringYOffset (Integer)
-**      - 
+**      - The horizontal and vertical offsets of unidentified text.
 */
 EmptyBarTex		= "interface\hud\procindicator_bg.dtx"
 FullBarTex		= "interface\hud\procindicator_bg_full.dtx"
@@ -3267,20 +3273,20 @@ StringYOffset	= -16 // From top of progress bar (negative is down)
 **  The TexturedFrame defitions can be used by practically any HUD
 **  element in order to draw a nicely textured box or frame on screen.
 **  The game obviously uses these to some degree, just not here. Not
-**  in this file, anyway. Not entirely.
+**  in this file, anyway. Not entirely. Awaiting further testing.
 **
 **	TODO what does UV stand for??? again
+**  TODO where can I test this? (LDSO)
 **  
 **  Name (String),
 **  Texture (Path String)
-**      - The name and texture of the textured frame.
+**      - The name and used texture of the textured frame.
 **  Hollow (Boolean Integer)
 **      - Untested. Assumed:
 **      - Tells the game if the textured frame is hollow.
-**  Inscribe (Integer)
-**      - Unknown function.
+**  Inscribe (Integer),
 **  Margins (Integer)
-**      - Unknown function.
+**      - Untested.
 */
 [TexturedFrame0]
 // includes a black border
@@ -3369,6 +3375,7 @@ Name			= "chooserframe"
 Texture			= "Interface\hud\hud.dtx"
 Hollow			= 1
 Inscribe		= 0
+Margins			= (4, 26, 15, 4)
 UVTopLeft		= (1, 116, 4, 149)
 UVTop			= (7, 116, 99, 149)
 UVTopRight		= (100, 116, 115, 149)
@@ -3378,14 +3385,13 @@ UVRight			= (0, 0, 0, 0)
 UVBottomLeft	= (1, 152, 4, 163)
 UVBottom		= (7, 152, 99, 163)
 UVBottomRight	= (100, 152, 115, 163)
-Margins			= (4, 26, 15, 4)
-
 
 [TexturedFrame6]
 Name			= "chooserbox"
 Texture			= "Interface\hud\hud.dtx"
 Hollow			= 0
 Inscribe		= 1
+Margins			= (13, 5, 15, 11)
 UVTopLeft		= (1, 165, 13, 170)
 UVTop			= (15, 165, 98, 170)
 UVTopRight		= (100, 165, 115, 170)
@@ -3395,7 +3401,6 @@ UVRight			= (100, 172, 115, 175)
 UVBottomLeft	= (1, 177, 13, 188)
 UVBottom		= (15, 177, 98, 188)
 UVBottomRight	= (100, 177, 115, 188)
-Margins			= (13, 5, 15, 11)
 
 [TexturedFrame7]
 Name			= "chooserwarn"
@@ -3472,6 +3477,9 @@ UVBottomLeft	= (1, 55, 9, 63)
 UVBottom		= (10, 55, 28, 63)
 UVBottomRight	= (29, 55, 63, 63)
 
+/*  ---[Unused TexturedFrames]---
+**  It's not known why the below Textured Frames were commented out, but
+**  because it was Monolith's doing, it's safe to say these are unused.
 /*
 [TexturedFrame10]
 Name			= "Basic"
@@ -3566,15 +3574,15 @@ UVBottomRight	= (248, 225, 261, 243)
 **  used at all. Sure, they're never overridden by anything else. But
 **  that could just be because nothing else uses them in the first
 **  place.
+**  TODO can we confirm this? (LDSO)
 **
 **	Position (Integer)
 **      - This is less of a position and more of an offset, since it's
-**      an integer instead of a point. It's the offset of the body of
+**      an integer instead of a 2D point. It's the offset of the body of
 **      the pause menu from the left side of the screen - but scalable, 
 **      unlike most offsets. 
-**  Size (Dimension)
-**      - The defined width and height of the body of the pause menu -
-**      - This setting is managed by the Killer App Mod.
+**  Size (Dimension) (KAMod)
+**      - The defined width and height of the body of the pause menu.
 **  Frame (Path String),
 **  FrameTip (Path String)
 **      - The textures used to display the body of the pause menu. 
@@ -3591,7 +3599,7 @@ UVBottomRight	= (248, 225, 261, 243)
 **      - The font ID and text height of the tab buttons on the pause
 **      menu bar.
 **  BarSpacing (Integer)
-**      - The horizontal spacing between each of the buttons on the
+**      - The horizontal line spacing between each of the buttons on the
 **      pause menu bar. Also applies to the spacing of the first item
 **      from the left side of the bar.
 **  BarSelectColor (Vector)
@@ -3613,18 +3621,18 @@ UVBottomRight	= (248, 225, 261, 243)
 **  UpArrowH (Path String)
 **      - The textures used for the menu's up arrow, when not
 **      highighted and highlighted respectively.
-**      - Potentially unused?
+**      - TODO Potentially unused?
 **  DownArrow (Path String),
 **  DownArrowH (Path String)
 **      - The textures used for the menu's down arrow, when not
 **      highlighted and highlighted respectively.
-**      - Potentially unused?
+**      - TODO Potentially unused?
 **  SelectedColor (Vector),
-**  NonSelectedColor (Vector),
+**  NonSelectedColor (Vector) (SP),
 **  DisabledColor (Vector)
 **      - The text color for not hightlighted, highlighted, and disabled
 **      text respectively.
-**      - Potentially unused?
+**      - TODO Potentially unused?
 */
 [Menu]
 Position			= 320
@@ -3661,16 +3669,18 @@ DisabledColor		= <180.0, 180.0, 200.0>
 **  Same deal as the previous definition; pretty much only applies to
 **  the pause menu, and whatever values aren't might not be used at all.
 **  Further clarification may be needed.
-**  TODO further clarification
+**  TODO further clarification (LDSO)
 **
 **  Size (Dimension) (KAMod)
-**      - Unknown function.
+**      - Currently unidentified function, but definitely used.
+**      - TODO what is this? (LDSO)
 **  FontSize (Integer) (KAMod)
 **      - The text height of the buttons on the body of the pause menu.
 **  TitleSize (Integer) (KAMod)
 **      - The text height of any title text on the pause menu.
-**      - Potentially unused?
-**  Indent (2D Point)
+**      Potentially unused.
+**      - TODO verify
+**  Indent (Dimension)
 **      - The indent, both horizontal and vertical, of the buttons on
 **      the body of the pause menu.
 **  SelectedColor (Vector),
@@ -3695,22 +3705,22 @@ DisabledColor		= <95.0, 95.0, 95.0>
 **
 **	                        Custom Menu Layouts
 **
-**  The custom menu definitions declare values for specific menus that
+**  The custom Menu definitions declare values for specific menus that
 **  may override values set under GenericMenu.
 **
-**  There's only one menu here... is it even used? I know ScreenPlayer
-**  is for the Player Setup menu but I have NO idea what this is.
+**  TODO There's only one menu here... is it even used? I know
+**  ScreenPlayer is for the Player Setup menu but I have NO idea what
+**  this is. (LDSO)
+*/
+
+/*  ---[Unknown menu "MenuPlayer"]---
+**  Currently unidentified.
 **
 **  Size (Dimension)
-**      - 
 **  NameWidth (Integer)
-**      - 
 **  LevelWidth (Integer)
-**      - 
 **  PopupSize (Dimension)
-**      - 
 **  PopupFrame (Path String)
-**      - 
 */
 [MenuPlayer]
 Size				= (280, 240)
@@ -3720,108 +3730,14 @@ PopupSize			= (200, 160)
 PopupFrame			= "interface\menu\sprtex\frame_interlace.dtx"
 
 
-
-/************************************************************************
-**
-**	                        Miscellaneous Layout
-**
-**  The Miscellaneous definition sets values for interface components
-**  not covered under other definitions.
-**  TODO incomplete documentation here.
-**
-**	MessageBoxTexture (Path String)
-**		- The name of the DTX to use for background art on the Message Box.
-**	FailScreenBackground (String)
-**		The name of the pcx to use for background art on the Mission
-**		Failure screen.
-**	FailStringPos (2D Point)
-**		The position of the text string on the Mission Failure screen.
-**		This point is relative to a 640x480 resolution and will be scaled
-**		for other resolutions.
-**	FailScreenDelay (Float)
-**		How long (in seconds) to wait on the Mission Failure screen.
-**	DeathDelay (Float)
-**		How long (in seconds) to wait after player dies before showing the 
-**      Mission Failure screen.
-**	NightVisionModelColor (Vector)
-**		Color to add to models while using night vision <r, g, b>
-**	NightVisionScreenTint (Vector)
-**		Color to tint the screen while using night vision <r, g, b>
-**	WeaponPickupColor (Vector)
-**		Color to tint the screen when a weapon is picked up <r, g, b>
-**	AmmoPickupColor (Vector)
-**		Color to tint the screen when a weapon is picked up <r, g, b>
-**	TintTime (Float)
-**		Duration in seconds of screen tint when weapons or ammo are picked up
-**	HelpFont (String)
-**		Name of the bitmap font to use rollover help.
-**	SmallFontBase (String)
-**		Base name of the bitmap font set used for small text.
-**	MediumFontBase (String)
-**		Base name of the bitmap font set used for medium text.
-**	LargeFontBase (String)
-**		Base name of the bitmap font set used for large text.
-**	TitleFont (String)
-**		Name of the bitmap font to use for screen titles.
-**	MessageTime (Float)
-**		How long in seconds that messages are displayed.
-**		(includes fade out time)
-**	MessageFade (Float)
-**		How long in seconds that messages are it takes for a message to fade.
-**		(included in total message time)
-**	MaxMessages (int)
-**		How many messages may appear on screen at one time.
-*/
-[Miscellaneous]
-DialogFrame 			= "interface\menu\sprtex\frame_solid.dtx"
-DialogFontFace			= 1
-DialogFontSize			= 14
-FailScreenBackground	= "interface\missionfailure.pcx"
-FailStringPos			= (320, 200)
-FailScreenDelay 		= 5.0
-DeathDelay				= 5.0
-NightVisionModelColor	= <32.0, 128.0, 32.0>
-NightVisionScreenTint	= <0.0, 255.0, 0.0>
-InfraredModelColor		= <96.0, 32.0, 0.0>
-InfraredLightScale		= <255.0, 0.0, 0.0>
-MineDetectScreenTint	= <224.0, 224.0, 0.0>
-WeaponPickupColor		= <80.0, 40.0, 128.0>
-AmmoPickupColor 		= <80.0, 40.0, 128.0>
-TintTime				= 2.000000
-HUDChoserHColor 		= <255.0, 255.0, 255.0>
-CrosshairGapMin 		= 5
-CrosshairGapMax 		= 25
-CrosshairBarMin 		= 8
-CrosshairBarMax 		= 32
-PerturbRotationEffect	= 2
-PerturbIncreaseSpeed	= 3
-PerturbDecreaseSpeed	= 1
-PerturbWalkPercent		= 0.33
-MessageTime 			= 9.0
-MessageFade 			= 0.75
-MaxMessages 			= 5
-PopupTextRect			= (20, 80, 620, 340)
-ObjectiveRect			= (80, 40, 560, 300)
-SubtitleTint			= <255.0, 255.0, 128.0>
-HealthTint				= <255.0, 128.0, 128.0>
-ArmorTint				= <128.0, 128.0, 255.0>
-AmmoTint				= <240.0, 240.0, 128.0>
-PopupTint				= <255.0, 255.0, 255.0>
-Team1Color				= <64.0, 64.0, 255.0>
-Team2Color				= <255.0, 64.0, 64.0>
-//IOCameraRect			= (210, 20, 430, 185)
-IOCameraRect			= (263, 102, 378, 275)
-IOCameraFOVX			= 70.0
-IOCameraFOVY			= 60.0
-TimerSize				= 24
-TimerPos				= (300, 92)
-
-
 /************************************************************************
 **
 **                            Dialog Box Layout
 **
-**  The DialogBox definition definitely does something.
+**  The DialogBox definition is currently unidentified. Because all
+**  spoken lines in TRON 2.0 are provided through subtitles by default,
+**  it's not confirmed that these are even used. Awaiting confirmation.
+**  TODO what is this exactly? (LDSO)
 **  TODO obviously re-test these values. Also why was this not in its
 **  own section beforehand?
 */
@@ -3850,8 +3766,9 @@ EditDisabled	= <0.0, 75.0, 238.0>
 **  The MessageQueue definitions specify data for various message queues
 **  in the game.
 **
-**  Incomplete documentation: these are for chat windows and other text
-**  areas that require message history to be stored, I think.
+**  Incomplete documentation: These are for chat windows and other text
+**  areas that require message history to be stored, I think. Chat tests
+**  will be performed at a later date.
 **
 **	MessageTime (Float)
 **		How long in seconds that messages are displayed.
@@ -3984,26 +3901,22 @@ BasePos 	= (95, 320)
 **  log"-esque typed text in the upper-left quadrant of the screen.
 **
 **  Font (Integer),
-**  FontSize (Integer),
+**  FontSize (Integer) (KAMod),
 **  TextColor (Vector)
 **      - The font ID, text height, and default color of the mission 
 **      text.
-**      - FontSize is managed by the Killer App Mod.
 **	NumLines (Integer)
 **		- The amount of text lines that can be typed out before playing
 **      the ScrollSound, since mission text doesn't actually scroll.
 **	LetterDelay (Float)
 **		- The time, in seconds, to wait between each typed letter of the
 **      mission text.
-**	LineDelay (Float)
-**		- The time, in seconds, to wait between each typed line of the
-**      mission text.
 **	LineScrollTime (Float)
 **		- The time, in seconds, to wait between each typed line of the
 **      mission text.
 **	FadeDelay (Float)
-**		- The time, in seconds, to wait before fading completed mission
-**      text scripts.
+**		- The time, in seconds, to wait before fading out completed
+**      mission text scripts.
 **	FadeTime (Float)
 **		- The time, in seconds, reserved to fade out the mission text.
 **	Pos (2D Point)
@@ -4050,7 +3963,7 @@ ScrollSound 	= "interface\snd\enter.wav"
 **      does not appear to care, thankfully.
 **	NumLines (Integer)
 **		- The amount of text lines that the screen can display at once.
-**	LineScrollTime	(Float)
+**	LineScrollTime (Float)
 **		- The amount of time, in seconds, taken to scroll a single line,
 **      for the longer subtitles that require it.
 **	Width (Integer),
@@ -4079,8 +3992,8 @@ TextColor		= <255.0, 255.0, 255.0>
 **                              Scores Layout
 **
 **  The Scores definitions assign values pertaining to score displays in
-**  Multiplayer(?). By default, the window is accessed by holding the
-**  Tab key.
+**  Multiplayer. By default, the window is accessed by holding the Tab
+**  key.
 **
 **  Note that although all of the below definition groups use the same
 **  values, the Scores definition is not considered a list of defaults.
@@ -4088,9 +4001,9 @@ TextColor		= <255.0, 255.0, 255.0>
 **  (yet).
 **
 **  ---------------------------------------------------------------------
-**  Documentation is incomplete until I can drag another poor soul to
-**  sit in a multiplayer server and play disc games so I can actually
-**  get into those lobbies and see the score windows...
+**  Documentation of this section is on hold until I can drag another
+**  poor soul to sit in a multiplayer server and play disc games so I
+**  can actually get into those lobbies and see the score windows...
 **  ---------------------------------------------------------------------
 **
 **  TODO confirm that these never appear in singleplayer
@@ -4179,6 +4092,8 @@ FrameAlpha	= 0.50
 **  The Overlay definition assigns the set of overlays that the game can
 **  reference at any time. In the case of TRON 2.0, this only concerns
 **  the scopes for the LOL and Triangulate subroutines.
+**
+**  Documentation is awaiting further testing.
 **
 **  A comment will be placed above each overlay value group that will
 **  identify it. Overlays 0 and 1 define the LOL & Triangulate scopes,
@@ -4299,12 +4214,13 @@ Alpha14			= 0.8
 **
 **  The MenuPiece definitions assign values that create, as the name
 **  implies, menu pieces, which (assumedly) are neat little packages of
-**  textures/models that make animated menu elements easier to implement
-**  maybe?
+**  textures/models that make animated menu elements easier to
+**  implement.
 **
 **  It's likely most of these have references in the source code, so it
 **  is strongly not recommended to change any existing menu pieces.
 **
+**  TODO tips for a clearer definition? (LDSO)
 **  TODO maybe give these all names? if i figure out what these are
 **
 **	Name (String)
@@ -4325,9 +4241,9 @@ Alpha14			= 0.8
 **      seem to ignore this supposed rule, so...
 **	IntroAnim (String)
 **		- The name of the intro animation that the menu piece will use.
-**		- If there is an intro animation, the code attempts to play that
+**		- If there is an intro animation, the game attempts to play that
 **      animation, and then play the loop animation. If a LoopAnim is
-**      specified, the code will attempt to play that specific animation
+**      specified, the game will attempt to play that specific animation
 **      rather than the animation called "loop".
 **	LoopAnim (String)
 **		- The name of the loop animation that the menu piece will use.
@@ -4342,11 +4258,13 @@ Alpha14			= 0.8
 **	ParentSocket (String)
 **		- The name of the parent socket that the menu piece will attach
 **      itself to. Leave out this value if none exists.
+**      - TODO what's a socket? (LDSO)
 **	Layer (Integer)
 **		- The layer on which this model exists, for rendering order 
-**      purposes (some games also refer to this as the "Z Layer"). Lower
-**		numbers are rendered first and behind whatever numbers come 
-**      after, regardless of actual position in the menu.
+**      purposes (some games also refer to this as the "Z Layer").
+**      Elements with lower numbers are rendered first, and behind 
+**      whichever layers come after, regardless of their actual position 
+**      in the menu.
 */
 
 [MenuPiece0]
@@ -4973,8 +4891,8 @@ Layer			= 40
 **  customization Screens, they need to be able to dynamically change to
 **  show whatever model or skin the player selects. They also need to be
 **  spinning. As a result, in both value sets, pretty much all of these
-**  values (except for the name and position) are just placeholders that
-**  the game will override internally when they are loaded.
+**  values (except for "Name" and "Pos") are just placeholders that the
+**  game will override internally when they are loaded.
 **
 **  Name (String)
 **      - The name of the Character element.
@@ -4986,7 +4904,6 @@ Layer			= 40
 **      be in .DTX format.
 **  Pos (3D Point)
 **      - The origin position of the Character element.
-**      - Not a placeholder. This can be changed.
 **  Scale (Float)
 **      - The initial scale of the Character element.
 **  Rotation (Float)
@@ -5067,13 +4984,13 @@ Radius			= 8000.0
 **
 **  The FX definitions assign values that create effect objects used in
 **  screens. It's not known where the effects themselves originate when
-**  referenced here (I couldn't find anything in FX.TXT).
+**  referenced here.
 **
 **  Most of these FX are used in menu screen transitions, in the "Screen
 **  Transition Declarations" section of this file.
 **
 **  TODO find out where the FX origin files are
-**  TODO maybe give names to each FX
+**  TODO maybe give names to each FX, if possible
 **
 **  Name (String)
 **      - The programmer-friendly name for the FX object.
@@ -5083,6 +5000,8 @@ Radius			= 8000.0
 **      - The origin position of the FX object.
 **  Loop (Boolean Integer)
 **      - Specifies whether or not the FX will loop when displayed.
+**      0: The FX will not loop.
+**      1: The FX will loop indefinitely.
 */
 
 [FX0]
@@ -5318,37 +5237,38 @@ Loop	= 1
 **  Bin items.
 **
 **  TODO does DecisionWindow act as a default for all the numbered
-**  definitions that come after it?
+**  definitions that come after it? (LDSO)
 **
 **	Pos (2D Point)
-**		- The [unknown corner] origin position of the window.
-**  Font (Integer),
-**  FontSize (Integer)
-**      - The font ID and text height of the window text.
+**		- The currently unidentified origin position of the window.
+**      - TODO verify
 **	Width (Integer)
 **      - The total width of the window.
+**  Font (Integer),
+**  FontSize (Integer),
+**  TextColor (Vector)
+**      - The font ID, text height, and color of the window text.
 **	TextOffset (2D Point)
 **		- The offset of the text from the left side of the window.
-**	TextColor (Vector)
-**		- The color of the window text.
 **	Frame (Path String)
 **		- The texture to use for the window frame.
-**  Hollow (Integer)
-**      - Unknown function.
+**  Hollow (Integer),
 **  Inscribe (Integer)
-**      - Unknown function.
+**      - Currently unidentified functions, potentially unused.
+**      - TODO verify
 **	NumColumns (Integer)
 **		- The number of columns to use for the window.
 **	RemoveItems (Boolean Integer)
-**      - Decides whether a row of the window is removed or not when an
-**      option is selected.
-**		0 = never change available selections
-**		1 = remove row after selection is made
+**      - Determines whether a row of the window is removed or not when
+**      an option is selected.
+**		0: All available selections will remain persistent.
+**		1: Selected rows will be removed.
 **	RemoveWindow (Boolean Integer)
-**      - Decides whether the window is closed or not when an option is
-**      selected.
-**		0 = leave window open after selection
-**		1 = remove window after selection
+**      - Determines whether the window is closed or not when an option
+**      is selected. A window will still be closed if all rows are
+**      removed.
+**		0: The window will remain open after a selection is made.
+**		1: The window will be closed after a selection is made.
 */
 [DecisionWindow]
 Pos 		= (400, 60)
@@ -5360,7 +5280,7 @@ TextColor	= <255.0, 255.0, 255.0>
 Frame		= "interface\menu\sprtex\frame_solid.dtx"
 
 /*  ---[0: Unknown Unnamed DecisionWindow]---
-**  What is this?
+**  TODO What is this? (LDSO)
 */
 [DecisionWindow0]
 Pos 			= (10, 60)
@@ -5375,7 +5295,7 @@ RemoveItems		= 0
 RemoveWindow	= 1
 
 /*  ---[1: Unknown Unnamed DecisionWindow]---  */
-**  What is this, and why is it the only one that gets UV values???
+**  TODO What is this, and why does it have UV values? (LDSO)
 */
 [DecisionWindow1]
 Pos 			= (10, 60)
@@ -5417,7 +5337,7 @@ RemoveItems		= 1
 RemoveWindow	= 0
 
 /*  ---[3: Unknown "Commerce" DecisionWindow]---  
-**  What is this?
+**  What is this? (LDSO)
 */
 [DecisionWindow3]
 Pos 			= (10, 60)
@@ -5480,12 +5400,12 @@ RemoveWindow    = 0
 **  TransitionTo (String)
 **      - The name of the screen layout either to transition from or to.
 **      Every transition must define at least one of these two values.
-**      - Transitions that have both values defined have the highest
-**      precedence for the transition between those two menu screens.
+**      Transitions with both of these values defined take the highest
+**      priority for the transition between those two menu screens.
 **      - Transitions that have only a "From" value become the default
 **      transition when leaving that menu screen.
 **      - Transitions that have only a "To" value become the default
-**      transitions when entering that menu screen, basically replacing
+**      transition when entering that menu screen, basically replacing
 **      any IntroFX that the menu screen may have had prior.
 **  IntroFX# (String),
 **  ShortIntroFX# (String),
@@ -6566,6 +6486,108 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+
+
+/************************************************************************
+**
+**	                        Miscellaneous Layout
+**
+**  The Miscellaneous definition sets values for interface components
+**  either not covered under other definitions, or couldn't be properly
+**  implemented in the definition they belong to.
+**
+**  Because it's difficult to pinpoint where each of these individual
+**  values are, documentation here will be completed during a separate
+**  round of testing. Until then, it cannot be confirmed whether or not
+**  any of them are used or not.
+**  TODO incomplete documentation here. Test & KAMod verification.
+**
+**	MessageBoxTexture (Path String)
+**		- The name of the DTX to use for background art on the Message Box.
+**	FailScreenBackground (String)
+**		The name of the pcx to use for background art on the Mission
+**		Failure screen.
+**	FailStringPos (2D Point)
+**		The position of the text string on the Mission Failure screen.
+**		This point is relative to a 640x480 resolution and will be scaled
+**		for other resolutions.
+**	FailScreenDelay (Float)
+**		How long (in seconds) to wait on the Mission Failure screen.
+**	DeathDelay (Float)
+**		How long (in seconds) to wait after player dies before showing the 
+**      Mission Failure screen.
+**	NightVisionModelColor (Vector)
+**		Color to add to models while using night vision <r, g, b>
+**	NightVisionScreenTint (Vector)
+**		Color to tint the screen while using night vision <r, g, b>
+**	WeaponPickupColor (Vector)
+**		Color to tint the screen when a weapon is picked up <r, g, b>
+**	AmmoPickupColor (Vector)
+**		Color to tint the screen when a weapon is picked up <r, g, b>
+**	TintTime (Float)
+**		Duration in seconds of screen tint when weapons or ammo are picked up
+**	HelpFont (String)
+**		Name of the bitmap font to use rollover help.
+**	SmallFontBase (String)
+**		Base name of the bitmap font set used for small text.
+**	MediumFontBase (String)
+**		Base name of the bitmap font set used for medium text.
+**	LargeFontBase (String)
+**		Base name of the bitmap font set used for large text.
+**	TitleFont (String)
+**		Name of the bitmap font to use for screen titles.
+**	MessageTime (Float)
+**		How long in seconds that messages are displayed.
+**		(includes fade out time)
+**	MessageFade (Float)
+**		How long in seconds that messages are it takes for a message to fade.
+**		(included in total message time)
+**	MaxMessages (int)
+**		How many messages may appear on screen at one time.
+*/
+[Miscellaneous]
+DialogFrame 			= "interface\menu\sprtex\frame_solid.dtx"
+DialogFontFace			= 1
+DialogFontSize			= 14
+FailScreenBackground	= "interface\missionfailure.pcx"
+FailStringPos			= (320, 200)
+FailScreenDelay 		= 5.0
+DeathDelay				= 5.0
+NightVisionModelColor	= <32.0, 128.0, 32.0>
+NightVisionScreenTint	= <0.0, 255.0, 0.0>
+InfraredModelColor		= <96.0, 32.0, 0.0>
+InfraredLightScale		= <255.0, 0.0, 0.0>
+MineDetectScreenTint	= <224.0, 224.0, 0.0>
+WeaponPickupColor		= <80.0, 40.0, 128.0>
+AmmoPickupColor 		= <80.0, 40.0, 128.0>
+TintTime				= 2.000000
+HUDChoserHColor 		= <255.0, 255.0, 255.0>
+CrosshairGapMin 		= 5
+CrosshairGapMax 		= 25
+CrosshairBarMin 		= 8
+CrosshairBarMax 		= 32
+PerturbRotationEffect	= 2
+PerturbIncreaseSpeed	= 3
+PerturbDecreaseSpeed	= 1
+PerturbWalkPercent		= 0.33
+MessageTime 			= 9.0
+MessageFade 			= 0.75
+MaxMessages 			= 5
+PopupTextRect			= (20, 80, 620, 340)
+ObjectiveRect			= (80, 40, 560, 300)
+SubtitleTint			= <255.0, 255.0, 128.0>
+HealthTint				= <255.0, 128.0, 128.0>
+ArmorTint				= <128.0, 128.0, 255.0>
+AmmoTint				= <240.0, 240.0, 128.0>
+PopupTint				= <255.0, 255.0, 255.0>
+Team1Color				= <64.0, 64.0, 255.0>
+Team2Color				= <255.0, 64.0, 64.0>
+//IOCameraRect			= (210, 20, 430, 185)
+IOCameraRect			= (263, 102, 378, 275)
+IOCameraFOVX			= 70.0
+IOCameraFOVY			= 60.0
+TimerSize				= 24
+TimerPos				= (300, 92)
 
 
 /************************************************************************
