@@ -89,22 +89,122 @@
 
 /************************************************************************
 **
-**                            Table of Contents
+**                           Table of Contents
 **
 **  This file is over 6,000 lines long! Although it'd be impossible to
 **  add link references to a raw text file, this "Table of Contents"
 **  will provide the exact names of the sections of this file that can
 **  be slapped into a Find prompt. That should work, right?
 **
-**  TODO Determine if any more reordering would be beneficial before
-**  creating the table of contents. (Saving for Pass 2)
-**  TODO table of contents here
+**  Although all of the information on the wiki page is categorized and
+**  ordered in the same way, some headers on the wiki may be classified
+**  under others, where they are not in this file. Headers that might be
+**  unused also do not appear on the wiki page.
+**
+**  1)  Basic Screen Layout
+**  2)  Screen Layout
+**      a) Defaults
+**      b) Main Menu Screen
+**      c) Single Player Screen
+**      d) Load Game Screen
+**      e) Single Player → Light Cycles Screen
+**          i)   Circuit Play Tab
+**          ii)  Light Cycles Tab
+**          iii) Custom Play Tab
+**          iv)  Custom Settings Tab
+**      f) Light Cycle Victory Screen
+**      g) Multiplayer Screen
+**      h) Multiplayer → Player Setup Screen
+**      i) Multiplayer → Join Internet/LAN Game Screen & Server List Tab
+**          i)   Server Info Tab
+**      j) Multiplayer → Host Screen
+**          i)   Connection Tab
+**          ii)  Game Tab
+**          iii) Maps Tab
+**      k) Options Screen
+**      l) Options → Display Screen
+**      m) Options → Sound Screen
+**      n) Options → Controls Screen
+**          i)   Configure Controls Screen
+**          ii)  Mouse Screen
+**          iii) Keyboard Screen
+**          iv)  Configure Joystick/Gamepad Screen
+**      o) Options → Game Screen
+**      p) Options → Performance Screen
+**      q) Crosshair Options Screen(?)
+**      r) Profile Screen
+**      s) Subroutines Screen
+**          i)   General Settings
+**          ii)  Tooltips
+**          iii) Build Notes
+**          iv)  Arrows
+**      t) Save Game Screen
+**      u) Game Over Screen
+**      v) Team Select Screens
+**          i)   Default
+**          ii)  Team Derez
+**      w) Unknown Screen "ScreenSecurity"
+**      x) Loading Screens
+**  3)  Credits Layout
+**  4)  Font Layout
+**  5)  HUD Layout
+**      a) General
+**      b) Health & Energy
+**      c) Permission Set Indicator
+**      d) Weapon Indicator
+**      e) Weapon Chooser
+**      f) New Objective Indicator
+**      g) Pings
+**      h) Crosshair Text Elements 
+**      i) Data Log
+**      j) Profiler Subroutine Text
+**      k) LOL & Triangulate Subroutine Zoom Values
+**      l) Light Cycle HUD Elements
+**          i)   Powerup Indicator
+**          ii)  Lives
+**          iii) Roster
+**          iv)  Intro
+**          v)   Speedometer
+**          vi)  Distance Icon
+**      m) "Useless Stuff"
+**      n) HUD Layout 1
+**  6)  Player Version Number
+**  7)  Build Note Counter
+**  8)  I/O Node HUD Elements
+**  9)  Single String
+**  10) Utility Subroutine Chooser
+**  11) Objective Progress Layout
+**      a) UV Box Values
+**  12) Procedural Indicator
+**      a) Progress Bar Settings
+**  13) Textured Frames Layout
+**  14) Menu Layout
+**  15) Generic Menu Layout
+**  16) Custom Menu Layouts
+**      a) Unknown Menu "MenuPlayer"
+**  17) Dialog Box Layout
+**  18) Message Queues
+**  19) Mission Text Layout
+**  20) Subtitle Layout
+**  21) Scores Layout
+**      a) Scores Window (Unknown Usage)
+**      b) Scores Window for Multiplayer Light Cycle Modes
+**      c) Scores Window for Disc Arena/Disc Tournament
+**  22) Screen Overlays
+**  23) Menu Piece Layout
+**  24) Screen Character Layout
+**  25) Screen Lights Layout
+**  26) Screen FX Layout
+**  27) Decision Window Layout
+**  28) Screen Transitions
+**  29) Miscellaneous Layout
+**  30) Glossary
 */
 
 
 /************************************************************************
 **
-**                           Basic Screen Layout
+**               ----------[Basic Screen Layout]----------
 **
 **  The BasicLayout definition specifies positions, sizes, and various
 **  other attributes for common screen components. Although it doesn't
@@ -119,8 +219,8 @@
 **  HelpSize (Integer) (KAMod)
 **      - The font ID and text height of the screen's "tooltip" text.
 **	BackPos (2D Point) (KAMod)
-**		- The upper-left origin position of the Quit button in the main
-**      menu.
+**		- The upper-left origin position of the Quit button in the Main
+**      Menu.
 **  BackFont (Integer),
 **  BackSize (Integer)
 **      - The font ID and text height of the back button text. Also 
@@ -140,7 +240,7 @@
 **	BossRect (Rectangle)
 **		- The space allocated to display the boss health bar.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  HUDFont (Integer)
 **      - The font ID used in unknown areas.
 **      - What is this???
@@ -192,7 +292,7 @@ BossRect		    = (160, 90, 480, 100)
 
 /************************************************************************
 **
-**                              Screen Layout
+**                   ----------[Screen Layout]----------
 **
 **  The Screen Layout definitions specify positions, sizes, and various
 **  other attributes of screen components. The GenericScreen section
@@ -205,8 +305,8 @@ BossRect		    = (160, 90, 480, 100)
 **  inside their respective subcategories.
 **
 **  Screens which include tabs, such as the Single Player Light Cycle
-**  Menu, will consist of one subcategory for the parent screen, and
-**  then one additional subcategory per tab (properly labeled as such).
+**  Screen, will consist of one category for the parent screen, and
+**  then one additional category per tab (properly labeled as such).
 */
 
 /*  -----[Defaults]-----
@@ -241,7 +341,7 @@ BossRect		    = (160, 90, 480, 100)
 **      - The default text height used for menu options displayed in an
 **      additional pop-up box, if the screen has one.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  MouseFX (Path?)
 **      - The FX used for the cursor?
 **      - This setting does not appear to be used in TRON 2.0.
@@ -261,7 +361,7 @@ DisabledColor		= <180.0, 180.0, 200.0>
 //MouseFX 			= ""
 ListFontSize		= 20
 
-/*  -----[Main Menu]-----
+/*  -----[Main Menu Screen]-----
 **  VersionPos (2D Point) (KAMod)
 **      - The upper-middle origin position of the text showing the
 **      game's current version number and custom branch name.
@@ -275,7 +375,7 @@ ItemSpace	= 1
 VersionPos	= (545,25)
 Light0		= "Main0"
 
-/*  -----[Single Player Menu]-----
+/*  -----[Single Player Screen]-----
 **  DiffRect (Rectangle) (KAMod)
 **      - The space allocated to display the difficulty selector pop-up
 **      box (appears when New Game is selected).
@@ -286,7 +386,7 @@ Light0		= "Main0"
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  ScaleName# (String)
 **      - The string ID of a Scale to use for the menu. Previously
 **      deprecated by Monolith.
@@ -304,8 +404,8 @@ Light0			= "Main0"
 //ScaleName3	= "mainoperativetext"
 //ScaleName4	= "mainnolftext"
 
-/*  -----[Load Game Menu]-----
-**  Applies to both the [Single Player -> Load Game] screen as well as
+/*  -----[Load Game Screen]-----
+**  Applies to both the [Single Player → Load Game] screen as well as
 **  the Load Game screen that appears following a Game Over.
 **
 **  SmallFontSize (Integer)
@@ -331,7 +431,7 @@ NameWidth		= 300
 TimeWidth		= 125
 Light0			= "Main0"
 
-/*  -----[Single Player → Light Cycles Menu]-----
+/*  -----[Single Player → Light Cycles Screen]-----
 **  TabRect (Rectangle) (KAMod)
 **      - The space allocated to display the tabs utilized by this 
 **      screen. The space is divided evenly amongst each of the tabs.
@@ -373,7 +473,7 @@ Light0			= "Main0"
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  ConfigurationPos (2D Point)
 **      - Unknown function.
 **      - What is this? Tried to set it to (0,0) and nothing happened
@@ -408,7 +508,7 @@ NameWidth 			= 330
 CycleNamePos		= (54, 65)
 Light0				= "Main0"
 
-/*  -----[Single Player → Light Cycles Menu → Circuit Play Tab]-----
+/*  ---[Single Player → Light Cycles Screen → Circuit Play Tab]---
 **  AvailRect (Rectangle)
 **      - The space allocated to display the box listing all the Light
 **      Cycle circuit options.
@@ -462,7 +562,7 @@ Light0				= "Main0"
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  AddPos (2D Point)
 **      - Unknown function.
 **  CommandPos (2D Point)
@@ -494,7 +594,7 @@ LaunchTex			    = "interface\menu\sprtex\menubutton_bg.dtx"
 LaunchTexH			    = "interface\menu\sprtex\menubutton_bg_hl.dtx"
 Light0				    = "Main0"
 
-/*  -----[Single Player → Light Cycles Menu → Light Cycles Tab]-----
+/*  ---[Single Player → Light Cycles Screen → Light Cycles Tab]---
 **  The name is redundant. This screen lets the player choose their
 **  Light Cycle model & color.
 **
@@ -527,7 +627,7 @@ Light0				    = "Main0"
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  AddPos (2D Point)
 **      - Unknown function.
 **  AvailRect (Rectangle)
@@ -568,7 +668,7 @@ ShadeTextPos			            = (70, 310)
 ShadeRightArrowPos		            = (300, 310)
 Light0				                = "Main0"
 
-/*  -----[Single Player → Light Cycles Menu → Custom Play Tab]-----
+/*  ---[Single Player → Light Cycles Screen → Custom Play Tab]---
 **  AvailRect (Rectangle) (KAMod)
 **      - The space allocated to display the list of available maps to
 **      add to the custom game.
@@ -589,7 +689,7 @@ Light0				                = "Main0"
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  AddPos (2D Point)
 **      - Unknown function.
 */
@@ -605,7 +705,7 @@ LaunchTex	= "interface\menu\sprtex\menubutton_bg.dtx"
 LaunchTexH	= "interface\menu\sprtex\menubutton_bg_hl.dtx"
 Light0		= "Main0"
 
-/*  -----[Single Player → Light Cycles Menu → Custom Settings Tab]-----
+/*  ---[Single Player → Light Cycles Screen → Custom Settings Tab]---
 **  CommandPos (2D Point) (KAMod)
 **      - The upper-left origin position of the entire list of options.
 **  TabBodyRect (Rectangle) (KAMod)
@@ -622,7 +722,7 @@ Light0		= "Main0"
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  AddPos (2D Point)
 **      - Unknown function.
 **  AvailRect (Rectangle)
@@ -661,7 +761,7 @@ Light0				= "Main0"
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  MouseFX (String)
 **      - Debating whether any MouseFX are used at all...
 **  Delay (Float)
@@ -677,7 +777,7 @@ HelpStringPos		= (160, 360)
 HelpStringSize		= 12
 Light0				= "Main0"
 
-/*  -----[Multiplayer Menu]-----
+/*  -----[Multiplayer Screen]-----
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 */
@@ -687,7 +787,7 @@ FontSize	= 24
 ItemSpace   = 1
 Light0		= "Main0"
 
-/*  -----[Multiplayer → Player Setup Menu]-----
+/*  -----[Multiplayer → Player Setup Screen]-----
 **  Character (String)
 **      - The string ID of the Character definition that will display 
 **      both the rotating Light Cycle model, as well as the rotating
@@ -768,7 +868,7 @@ ColorRightArrowPos	= (440, 345)
 Light0				= "Main0"
 Light1				= "test"
 
-/*  -----[Multiplayer → Join Internet/LAN Game Menu → Server List Tab]-----
+/*  -----[Multiplayer → Join Internet/LAN Game Screen → Server List Tab]-----
 **  Although presented as separate options on the Multiplayer screen,
 **  the game treats the screens for joining internet/LAN games as one,
 **  since their structure is basically identical and only requires a few
@@ -835,7 +935,7 @@ Light1				= "test"
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  TabColor (Vector)
 **      - Unused function?
 **  TabAlpha (Float)
@@ -889,7 +989,7 @@ LaunchTex			    = "interface\menu\sprtex\menubutton_bg.dtx"
 LaunchTexH			    = "interface\menu\sprtex\menubutton_bg_hl.dtx"
 Light0				    = "Main0"
 
-/*  -----[Multiplayer → Join Internet/LAN Game Menu → Server Info Tab]-----
+/*  ---[Multiplayer → Join Internet/LAN Game Screen → Server Info Tab]---
 **  RefreshPos (2D Point)
 **      - The upper-left origin position of the Refresh button.
 **  LeftPlayerWidth (Integer)
@@ -912,7 +1012,7 @@ Light0				    = "Main0"
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  BodyRect (Rectangle)
 **      - Unused function.
 **      - But why?
@@ -936,7 +1036,7 @@ LeftColumnPos		= (40, 65)
 RightColumnPos		= (300, 65)
 Light0				= "Main0"
 
-/*  -----[Multiplayer → Host Menu]-----
+/*  -----[Multiplayer → Host Screen]-----
 **  TabRect (Rectangle) (KAMod)
 **      - The space allocated to be divided evenly amongst the tabs.
 **  TabAlpha (Float)
@@ -975,7 +1075,7 @@ Light0				= "Main0"
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  TabColor (Vector)
 **      - Unused function.
 */
@@ -997,7 +1097,7 @@ LaunchTex			= "interface\menu\sprtex\menubutton_bg.dtx"
 LaunchTexH			= "interface\menu\sprtex\menubutton_bg_hl.dtx"
 Light0				= "Main0"
 
-/*  -----[Multiplayer → Host Menu → Connection Tab]-----
+/*  ---[Multiplayer → Host Screen → Connection Tab]---
 **  CommandPos (2D Point) (KAMod)
 **      - The upper-left origin position of the entire server options
 **      list.
@@ -1009,8 +1109,8 @@ FontSize			= 18
 CommandPos			= (235, 88)
 Light0				= "Main0"
 
-/*  -----[Multiplayer → Host Menu → Game Tab]-----
-** CommandPos (2D Point) (KAMod)
+/*  ---[Multiplayer → Host Screen → Game Tab]---
+**  CommandPos (2D Point) (KAMod)
 **      - The upper-left origin position of the entire game options
 **      list.
 **  LCPowerupListIndent (2D Point)
@@ -1026,7 +1126,7 @@ CommandPos			= (235, 88)
 LCPowerupListIndent	= (50, 10)
 Light0				= "Main0"
 
-/*  -----[Multiplayer → Host Menu → Maps Tab]-----
+/*  ---[Multiplayer → Host Screen → Maps Tab]---
 **  AvailRect (Rectangle) (KAMod)
 **      - The space allocated to display the list of available maps to
 **      add to the server.
@@ -1039,7 +1139,7 @@ Light0				= "Main0"
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  AddPos (2D Point)
 **      - Unused function.
 */
@@ -1051,7 +1151,7 @@ CommandPos	= (365, 158)
 SelectRect	= (465, 108, 615, 353)
 Light0		= "Main0"
 
-/*  -----[Options Menu]-----
+/*  -----[Options Screen]-----
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 */
@@ -1060,7 +1160,7 @@ PageRect	= (84, 130, 556, 250)
 ItemSpace	= 1
 Light0		= "Main0"
 
-/*  -----[Options → Display Menu]-----
+/*  -----[Options → Display Screen]-----
 **  ColumnWidth (Integer)
 **      - The total width of the column used to display the names of the
 **      screen's settings.
@@ -1076,7 +1176,7 @@ ColumnWidth = 200
 SliderWidth	= 240
 Light0		= "Main0"
 
-/*  -----[Options → Sound Menu]-----
+/*  -----[Options → Sound Screen]-----
 **  ColumnWidth (Integer)
 **      - The total width of the column used to display the names of the
 **      screen's settings.
@@ -1105,7 +1205,7 @@ EAXImageRect	= (0, 0, 96, 48)
 EAXImagePos		= (450, 240)
 Light0			= "Main0"
 
-/*  -----[Options → Controls Menu]-----
+/*  -----[Options → Controls Screen]-----
 **  ColumnWidth (Integer)
 **      - The total width of the column used to display the names of the
 **      screen's settings.
@@ -1121,7 +1221,7 @@ ColumnWidth = 300
 SliderWidth = 240
 Light0		= "Main0"
 
-/*  -----[Options → Controls → Configure Controls Menu]-----
+/*  ---[Options → Controls → Configure Controls Screen]---
 **  MoveControlPos (2D Point) (KAMod)
 **      - The upper-left origin position of the four buttons used to
 **      switch between the control groups.
@@ -1153,7 +1253,7 @@ EqualsWidth 	= 10
 CommandWidth	= 133
 Light0			= "Main0"
 
-/*  -----[Options → Controls → Mouse Menu]-----
+/*  ---[Options → Controls → Mouse Screen]---
 **  ColumnWidth (Integer)
 **      - The total width of the column used to display the names of the
 **      screen's settings.
@@ -1169,7 +1269,7 @@ ColumnWidth = 300
 SliderWidth = 240
 Light0		= "Main0"
 
-/*  -----[Options → Controls → Keyboard Menu]-----
+/*  ---[Options → Controls → Keyboard Screen]---
 **  ColumnWidth (Integer)
 **      - The total width of the column used to display the names of the
 **      screen's settings.
@@ -1185,7 +1285,7 @@ ColumnWidth = 300
 SliderWidth = 240
 Light0		= "Main0"
 
-/*  -----[Options → Controls → Configure Joystick/Gamepad Menu]-----
+/*  ---[Options → Controls → Configure Joystick/Gamepad Screen]---
 **  HeaderFontSize (Integer)
 **      - The text height of the "Axis" and "Action" column header text.
 **  ColumnWidth (Integer)
@@ -1201,7 +1301,7 @@ HeaderFontSize	= 18
 ColumnWidth		= 250
 Light0			= "Main0"
 
-/*  -----[Options → Game Menu]-----
+/*  -----[Options → Game Screen]-----
 **  ColumnWidth (Integer)
 **      - The total width of the column used to display the names of the
 **      screen's settings.
@@ -1218,7 +1318,7 @@ ColumnWidth = 280
 SliderWidth = 200
 Light0		= "Main0"
 
-/*  -----[Options → Performance Menu]-----
+/*  -----[Options → Performance Screen]-----
 **  ColumnWidth (Integer)
 **      - The total width of the column used to display the names of the
 **      screen's settings.
@@ -1240,7 +1340,7 @@ Light0		= "Main0"
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  FontSize (Integer)
 **      - Previously deprecated by Monolith.
 **  TextureRect (Rectangle)
@@ -1266,7 +1366,7 @@ SFXColumn		= 136
 //TextureSlider	= 110
 Light0			= "Main0"
 
-/*  -----[Crosshair Options Menu(?)]-----
+/*  -----[Crosshair Options Screen(?)]-----
 **  Am I blind? I couldn't find this one. Unless it's tucked under the
 **  Display options screen? I'm not going in there to find out.
 **  TODO ask about this
@@ -1285,7 +1385,7 @@ ColumnWidth = 240
 SliderWidth = 240
 Light0		= "Main0"
 
-/*  -----[Profile Menu]-----
+/*  -----[Profile Screen]-----
 **  ProfileNamePos (2D Point) (KAMod)
 **      - The upper-left origin position of the list of screen options.
 **  DialogSize (2D Point) (KAMod)
@@ -1295,7 +1395,7 @@ Light0		= "Main0"
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  DialogPos (2D Point)
 **      - Unknown function.
 */
@@ -1306,7 +1406,7 @@ ProfileNamePos	= (14, 130)
 DialogSize		= (300, 248)
 Light0			= "Main0"
 
-/*  -----[Subroutines Menu: General]-----
+/*  -----[Subroutines Screen]-----
 **  Quite a bit of the Subroutines screen (accessed by pressing F1
 **  ingame) has been modified by the Killer App Mod whilst making the
 **  game work in widescreen. Unless you really know what you're doing,
@@ -1314,7 +1414,9 @@ Light0			= "Main0"
 **
 **  Due to the inherent complexity of the screen, it has been split up
 **  into multiple sections.
-**
+*/
+
+/*  ---[General Settings]---
 **  ClearPos (2D Point) (KAMod)
 **      - The upper-left origin position of the "Clear" button at the
 **      bottom-right corner of the screen.
@@ -1335,7 +1437,7 @@ Light0			= "Main0"
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  CompilePos (2D Point)
 **      - Unused function.
 **  HelpRect (Rectangle)
@@ -1361,7 +1463,7 @@ Piece3			    = "sub_hub_bg"
 Piece4			    = "buildpoints_bar_fixed"
 Light0			    = "Main0"
 
-/*  -----[Subroutines Menu: Tooltips]-----
+/*  ---[Tooltips]---
 **  These values concern the tooltip that appears when moving the cursor
 **  over applicable text. It seems that the position of each tooltip is
 **  predefined and not modifiable. These values manage things that apply
@@ -1405,7 +1507,7 @@ ToolTipFrameColor	    = <100.0, 0.0, 0.0> // SecurityProtocol
 ToolTipAlpha		    = 0.85
 ToolTipWidth		    = 200.0
 
-/*  -----[Subroutines Menu: Build Notes]-----
+/*  ---[Build Notes]---
 **  These values concern the build note count that appears at the lower-
 **  middle section of the screen.
 **
@@ -1439,7 +1541,7 @@ BuildNoteIconSpacer	    = 8
 BuildNoteIconTexture    = "interface\hud\buildnote_hudicon_dummy.dtx"
 BuildNoteIconScalar     = 1.0
 
-/*  -----[Subroutines Menu: Arrows]-----
+/*  ---[Arrows]---
 **  This is fairly self-explanatory, so instead of repeating the same
 **  thing ten times, this'll be simplified. These Rectangle values 
 **  allocate the space used to display the arrows next to the five rows 
@@ -1462,7 +1564,7 @@ ArrowRightRect3	= (371, 260, 395, 274)
 ArrowLeftRect4	= (245, 286, 269, 300)
 ArrowRightRect4	= (371, 286, 395, 300)
 
-/*  -----[Save Game Menu]-----
+/*  -----[Save Game Screen]-----
 **  SmallFontSize (Integer)
 **      - The text height of the text listing all available save games.
 **  Indent (Integer)
@@ -1498,7 +1600,7 @@ Light0			= "Main0"
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  MouseFX (String)
 **      - Still unsure if any MouseFX are ever used.
 **  Delay (Float)
@@ -1513,11 +1615,13 @@ HelpStringPos	= (160, 360)
 HelpStringSize	= 12
 Light0			= "Main0"
 
-/*  -----[Team Select Menu: Default]-----
+/*  -----[Team Select Screens]-----
 **  The Team Select Menu is more of a glorified pop-up box in the
 **  context of TRON 2.0. However, all of the traditional rules still
 **  apply, given that it remains in this section.
-**
+*/
+
+/*  ---[Default]---
 **  This is the Team Select overlay window for Disc Arena, Disc 
 **  Tournament, and Light Cycles (both Free-For-All and Team).
 **
@@ -1572,11 +1676,10 @@ SpectatorColumn		= 115
 SpectatorPingColumn	= 25
 Light0				= "Main0"
 
-/*  -----[Team Select Menu: Team Derez]-----
+/*  ---[Team Derez]---
 **  This is the Team Select overlay window for specifically Team Derez.
-**  It's not known why this needed to be a separate screen definition,
-**  but it's fair to assume it's to account for the change in visible
-**  columns used for the player list.
+**  The most notable difference between this and the default Team Select
+**  screen is the difference in the columns shown for the player list.
 **
 **  PlayerTextColor (Vector)
 **      - The text color of whichever line is currently displaying the
@@ -1629,7 +1732,7 @@ SpectatorColumn		= 115
 SpectatorPingColumn	= 25
 Light0				= "Main0"
 
-/*  -----[Unknown Menu "ScreenSecurity"]-----
+/*  -----[Unknown Screen "ScreenSecurity"]-----
 **  I can't believe they predicted my mod when they made the game.
 **  But seriously, what is this screen? It seems empty. Commenting out
 **  the entire block does not crash the game. Maybe unused?
@@ -1638,7 +1741,7 @@ Light0				= "Main0"
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  MouseFX (String)
 **      - Pretty sure they're completely unused by now.
 */
@@ -1676,7 +1779,7 @@ Light0	    = "Main0"
 **      - The string ID of a PostScale to use for the screen.
 **      - TODO define what a PostScale is here.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  BriefingFont (Integer)
 **      - Unused function. Deprecated from NOLF briefing screens.
 **  BriefingSize (Integer)
@@ -2098,7 +2201,7 @@ PostScale1	= "Loading_DiscArena01"
 
 /************************************************************************
 **
-**	                          Credits Layout
+**	                ----------[Credits Layout]----------
 **
 **  The Credits definition sets values pertaining to the game's credits
 **  sequence. This used to be positioned near the bottom of the file,
@@ -2133,7 +2236,7 @@ PositionLR	= (560,390)
 
 /************************************************************************
 **
-**	                            Font Layout
+**	                ----------[Font Layout]----------
 **
 **  The Fonts definition assigns all fonts used in the game.
 **
@@ -2184,7 +2287,7 @@ FontSize5	= 10
 
 /************************************************************************
 **
-**	                             HUD Layout
+**	                  ----------[HUD Layout]----------
 **
 **  The HUDLayout definitions specify positions and sizes for in-game
 **  interface components. 
@@ -2196,8 +2299,9 @@ FontSize5	= 10
 **
 **  The layout has been split into multiple sections, for everyone's
 **  convenience.
-**
-**  -----[General]-----
+*/
+
+/*  -----[General]-----
 **  These are the HUD elements that either apply to the entire HUD,
 **  didn't fall under any of the other categories, or weren't complex
 **  enough to get their own section.
@@ -2270,7 +2374,7 @@ ArmorOffset	= (10, 10)
 **      - The offset of the Health & Energy indicators from the lower-
 **      middle point of the screen.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **	BarScale (Float?)
 **		- The number of pixels per point in the Health and Energy HUD
 **      bars?
@@ -2341,7 +2445,7 @@ PsetHeight	= 80 // SecurityProtocol
 **      - The offset of the currently equipped weapon's icon from the
 **      lower-right corner of the indicator box that contains it.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  WeaponIndicatorBox (Rectangle)
 **      - Unknown function.
 **  WeaponIndicatorTex (Path String)
@@ -2399,7 +2503,7 @@ WeaponIndicatorIconOffset	= (-7, -12)
 **      the available weapon classes (4 in total), when not highlighted
 **      and highlighted respectively.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  ChooserTextAlpha (Float)
 **      - Probably the alpha of the text displaying the name of the
 **      currently highlighted weapon. Changing it did nothing.
@@ -2483,7 +2587,7 @@ ObjectiveOffset			= (8, -40)
 **  PingBlinkCount (Integer)
 **      - The amount of times a ping will blink when it pops up.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  PingFontNum (Integer)
 **      - Unused function. Pings don't use text.
 **  PingFontSize (Integer)
@@ -2537,7 +2641,7 @@ PingBlinkCount		= 4
 **  InfoTextBadAlpha (Integer?)
 **  InfoTextBadColor (Vector)
 **  
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  Deprecated all of the debug text values. It seems to have been a dev
 **  feature removed before the retail release went out, so there's no
 **  reason to keep them around. The values are below, but won't have
@@ -2625,8 +2729,9 @@ FOVZoomTriangulate3		= 3.0
 **  The HUD is completely different while using a Light Cycle. Luckily,
 **  this is one of the very few areas where Monolith provided the exact
 **  definition for all of these values!
-**
-**  ---[Powerup Indicator]---
+*/
+
+/*  ---[Powerup Indicator]---
 **  This is the element that displays the icon of the powerup currently
 **  available to the player.
 **
@@ -2891,7 +2996,7 @@ DistanceIconAlpha		                = 0
 
 /************************************************************************
 **
-**	                        Player Version Number
+**	             ----------[Player Version Number]----------
 **  
 **  The VersionNumber definition manages the HUD element displaying the
 **  player's name and  current version number. For the build note count
@@ -2937,7 +3042,7 @@ MinorUpgradeColor	    = <255.0, 255.0, 255.0>
 
 /************************************************************************
 **
-**	                         Build Note Counter
+**	             ----------[Build Note Counter]----------
 **
 **  The BuildNoteCount definition manages the HUD element displaying the
 **  amount of build notes that the player can get on the current map.
@@ -2960,7 +3065,7 @@ BaseColor	= <255.0, 90.0, 90.0> // SecurityProtocol
 
 /************************************************************************
 **
-**	                        I/O Node HUD Elements
+**	            ----------[I/O Node HUD Elements]----------
 **
 **  The IONodeCam definition manages the HUD elements used for I/O Node
 **  calls. There are two main pieces to it: Piece 1 is for the frame and
@@ -3026,7 +3131,7 @@ Piece2FlickerTime	= 0.04
 
 /************************************************************************
 **
-**	                            Single String
+**	                 ----------[Single String]----------
 **
 **  The SingleString definition prints a persistent announcement to the
 **  screen in multiplayer. This is the big yellow text that usually
@@ -3053,13 +3158,13 @@ FontColor       = <255.0, 255.0, 90.0>
 
 /************************************************************************
 **
-**	                    Utility Subroutine Chooser
+**	          ----------[Utility Subroutine Chooser]----------
 **
 **  This is a currently unidentified value set that, based on its name,
 **  is probably a functionality integrated into the Subroutines menu.
 **  Documentation is temporarily unavailable while further clarification
 **  is requested.
-**  TODO What is this?
+**  TODO What is this? (LDSO)
 **
 **	There are two attributes defined under HudLayout0 :
 **	ChooserTextAlpha
@@ -3085,7 +3190,7 @@ CursorTexUV			= (117, 45, 254, 70)
 
 /************************************************************************
 **
-**	                     Objective Progress Layout
+**	          ----------[Objective Progress Layout]----------
 **
 **  The ProgressBox definition manages the pop-up box accessed by
 **  pressing and holding the Tab key. This box displays all of the
@@ -3140,7 +3245,7 @@ SecondaryObjectiveAlpha 	= 0.75
 SecondaryObjectiveColor 	= <255.0, 255.0, 255.0>
 ObjectiveSpacing			= 8
 
-/* ---[UV Box Values]---
+/* -----[UV Box Values]-----
 **  There's a lotta stuff to look at here. For now just know it's
 **  responsible for holding all the stuff in the boxes exactly where
 **  they are. Awaiting further research.
@@ -3179,7 +3284,7 @@ UVBoxBottomRight	    = (100, 177, 115, 188)
 
 /************************************************************************
 **
-**                      Procedural Indicator
+**              ----------[Procedural Indicator]----------
 **
 **  The ProceduralHUD definition is responsible for listing subroutines
 **  that are active underneath the currently equipped weapon, along the
@@ -3222,7 +3327,7 @@ IconWidth		= 39
 IconHeight		= 39
 IconOffset		= 44
 
-/*  ---[Progress Bar Settings]---
+/*  -----[Progress Bar Settings]-----
 **  This appears to be responsible for the progress bar that is shown
 **  when a subroutine is being identified/disinfected, or when a memory
 **  block is being defragged. Awaiting further testing.
@@ -3268,7 +3373,7 @@ StringYOffset	= -16 // From top of progress bar (negative is down)
 
 /************************************************************************
 **
-**	                      Textured Frames Layout
+**	           ----------[Textured Frames Layout]----------
 **
 **  The TexturedFrame defitions can be used by practically any HUD
 **  element in order to draw a nicely textured box or frame on screen.
@@ -3563,7 +3668,7 @@ UVBottomRight	= (248, 225, 261, 243)
 
 /************************************************************************
 **
-**	                             Menu Layout
+**	                  ----------[Menu Layout]----------
 **
 **  The Menu definition declares default values that are shared by all
 **  in-game menus, and cannot be overridden by specific menus.
@@ -3661,7 +3766,7 @@ DisabledColor		= <180.0, 180.0, 200.0>
 
 /************************************************************************
 **
-**	                        Generic Menu Layout
+**	             ----------[Generic Menu Layout]----------
 **
 **  The GenericMenu definition declares default values that are shared
 **  by all in-game menus, but can be overridden by specific menus.
@@ -3703,7 +3808,7 @@ DisabledColor		= <95.0, 95.0, 95.0>
 
 /************************************************************************
 **
-**	                        Custom Menu Layouts
+**	             ----------[Custom Menu Layouts]----------
 **
 **  The custom Menu definitions declare values for specific menus that
 **  may override values set under GenericMenu.
@@ -3713,7 +3818,7 @@ DisabledColor		= <95.0, 95.0, 95.0>
 **  this is. (LDSO)
 */
 
-/*  ---[Unknown menu "MenuPlayer"]---
+/*  -----[Unknown Menu "MenuPlayer"]-----
 **  Currently unidentified.
 **
 **  Size (Dimension)
@@ -3732,7 +3837,7 @@ PopupFrame			= "interface\menu\sprtex\frame_interlace.dtx"
 
 /************************************************************************
 **
-**                            Dialog Box Layout
+**                ----------[Dialog Box Layout]----------
 **
 **  The DialogBox definition is currently unidentified. Because all
 **  spoken lines in TRON 2.0 are provided through subtitles by default,
@@ -3761,7 +3866,7 @@ EditDisabled	= <0.0, 75.0, 238.0>
 
 /************************************************************************
 **
-**	                            Message Queues
+**	                ----------[Message Queues]----------
 **
 **  The MessageQueue definitions specify data for various message queues
 **  in the game.
@@ -3895,7 +4000,7 @@ BasePos 	= (95, 320)
 
 /************************************************************************
 **
-**	                       Mission Text Layout
+**	             ----------[Mission Text Layout]----------
 **
 **  The MissionText definition sets the values that manage the "system
 **  log"-esque typed text in the upper-left quadrant of the screen.
@@ -3927,7 +4032,7 @@ BasePos 	= (95, 320)
 **		- The sound effect played when a text line has finished being
 **      typed.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
+**  ---<SAFELY DEPRECATED VALUES>---
 **  LineDelay (Float)
 **      - Unused function. Likely due to its functional redundancy to
 **      LineScrollTime, if it was used.
@@ -3949,7 +4054,7 @@ ScrollSound 	= "interface\snd\enter.wav"
 
 /************************************************************************
 **
-**	                          Subtitle Layout
+**	                ----------[Subtitle Layout]----------
 **
 **  The Subtitle definition sets values pertaining to the subtitles in
 **  the game. (Surprising, huh?)
@@ -3989,7 +4094,7 @@ TextColor		= <255.0, 255.0, 255.0>
 
 /************************************************************************
 **
-**                              Scores Layout
+**                  ----------[Scores Layout]----------
 **
 **  The Scores definitions assign values pertaining to score displays in
 **  Multiplayer. By default, the window is accessed by holding the Tab
@@ -4008,8 +4113,9 @@ TextColor		= <255.0, 255.0, 255.0>
 **
 **  TODO confirm that these never appear in singleplayer
 **  TODO what is the Scores group used for??
-**
-**  ---[Scores (Unknown Usage)]---
+*/
+
+/*  ---[Scores (Unknown Usage)]---
 **  Font (Integer),
 **  FontSize (Integer)
 **      - The font ID and text height used for the window text.
@@ -4019,7 +4125,8 @@ TextColor		= <255.0, 255.0, 255.0>
 **      The window's position can only be influenced vertically.
 **  
 */
-/*  ---[Scores Window (unknown usage)]---  */
+
+/*  -----[Scores Window (unknown usage)]-----  */
 [Scores]
 Font			    = 0
 FontSize		    = 14
@@ -4031,7 +4138,7 @@ ElimPlayerTextColor = <128.0, 128.0, 128.0>
 FrameColor		    = <0.0, 64.0, 240.0>
 FrameAlpha		    = 0.50
 
-/*  ---[Scores Window for Multiplayer Light Cycle Modes]---  */
+/*  -----[Scores Window for Multiplayer Light Cycle Modes]-----  */
 [MultiplayerLightCycleScores]
 Font			            = 0
 FontSize		            = 14
@@ -4060,7 +4167,7 @@ BackroundBorderFrameColor   = <73.0, 157.0, 252.0>
 BackroundBorderFrameAlpha   = 1.0
 BackroundBorderFrameSize    = 2
 
-/*  ---[Scores Window for Disc Arena/Disc Tournament]---  */
+/*  -----[Scores Window for Disc Arena/Disc Tournament]-----  */
 [DiscScores]
 Font			            = 0
 FontSize		            = 14
@@ -4087,7 +4194,7 @@ FrameAlpha	= 0.50
 
 /************************************************************************
 **
-**	                          Screen Overlays
+**	               ----------[Screen Overlays]----------
 **
 **  The Overlay definition assigns the set of overlays that the game can
 **  reference at any time. In the case of TRON 2.0, this only concerns
@@ -4127,15 +4234,15 @@ FrameAlpha	= 0.50
 **  Alpha# (Float)
 */
 [Overlay]
-/*  ---[0: LOL Scope]---  */
+/*  -----[0: LOL Scope]-----  */
 Scale0			= 0.15
 Sprite0			= ""
 
-/*  ---[1: Triangulate Scope]---  */
+/*  -----[1: Triangulate Scope]-----  */
 Scale1			= 0.25
 Sprite1			= ""
 
-/*  ---[6: LOL Zoom In]---  */
+/*  -----[6: LOL Zoom In]-----  */
 Scale6			= 0.285
 Model6			= "Interface\hud\screen_sniper.ltb"
 Skin6			= "Interface\hud\screen_sniper.dtx"
@@ -4143,7 +4250,7 @@ Anim6			= "zoomin"
 Renderstyle6	= "RS\Alpha_Additive_wglow.ltb"
 Alpha6			= 0.8
 
-/*  ---[7: LOL Zoom Out]---  */
+/*  -----[7: LOL Zoom Out]-----  */
 Scale7			= 0.285
 Model7			= "Interface\hud\screen_sniper.ltb"
 Skin7			= "Interface\hud\screen_sniper.dtx"
@@ -4151,7 +4258,7 @@ Anim7			= "zoomout"
 Renderstyle7	= "RS\Alpha_Additive_wglow.ltb"
 Alpha7			= 0.8
 
-/*  ---[8: LOL Loop]---  */
+/*  -----[8: LOL Loop]-----  */
 Scale8			= 0.285
 Model8			= "Interface\hud\screen_sniper.ltb"
 Skin8			= "Interface\hud\screen_sniper.dtx"
@@ -4159,7 +4266,7 @@ Anim8			= "loop"
 Renderstyle8	= "RS\Alpha_Additive_wglow.ltb"
 Alpha8			= 0.8
 
-/*  ---[9: Triangulate Zoom In]---  */
+/*  -----[9: Triangulate Zoom In]-----  */
 Scale9			= 0.285
 Model9			= "Interface\hud\screen_triangulate.ltb"
 Skin9			= "Interface\hud\screen_triangulate.dtx"
@@ -4167,7 +4274,7 @@ Anim9			= "zoomin"
 Renderstyle9	= "RS\Alpha_Additive_wglow.ltb"
 Alpha9			= 0.8
 
-/*  ---[10: Triangulate Zoom Out]---  */
+/*  -----[10: Triangulate Zoom Out]-----  */
 Scale10			= 0.285
 Model10			= "Interface\hud\screen_triangulate.ltb"
 Skin10			= "Interface\hud\screen_triangulate.dtx"
@@ -4175,7 +4282,7 @@ Anim10			= "zoomout"
 Renderstyle10	= "RS\Alpha_Additive_wglow.ltb"
 Alpha10 		= 0.8
 
-/*  ---[11: Triangulate Loop]---  */
+/*  -----[11: Triangulate Loop]-----  */
 Scale11			= 0.285
 Model11			= "Interface\hud\screen_triangulate.ltb"
 Skin11			= "Interface\hud\screen_triangulate.dtx"
@@ -4183,7 +4290,7 @@ Anim11			= "loop"
 Renderstyle11	= "RS\Alpha_Additive_wglow.ltb"
 Alpha11 		= 0.8
 
-/*  ---[12: Corrupt Triangulate Zoom In]---  */
+/*  -----[12: Corrupt Triangulate Zoom In]-----  */
 Scale12			= 0.285
 Model12			= "Interface\hud\screen_triangulate.ltb"
 Skin12			= "Interface\hud\screen_triangulate_corrupt.dtx"
@@ -4191,7 +4298,7 @@ Anim12			= "zoomin"
 Renderstyle12	= "RS\Alpha_Additive_wglow.ltb"
 Alpha12			= 0.8
 
-/*  ---[13: Corrupt Triangulate Zoom Out]--- */
+/*  -----[13: Corrupt Triangulate Zoom Out]----- */
 Scale13			= 0.285
 Model13			= "Interface\hud\screen_triangulate.ltb"
 Skin13			= "Interface\hud\screen_triangulate_corrupt.dtx"
@@ -4199,7 +4306,7 @@ Anim13			= "zoomout"
 Renderstyle13	= "RS\Alpha_Additive_wglow.ltb"
 Alpha13			= 0.8
 
-/*  ---[14: Corrupt Triangulate Loop]---  */
+/*  -----[14: Corrupt Triangulate Loop]-----  */
 Scale14			= 0.285
 Model14			= "Interface\hud\screen_triangulate.ltb"
 Skin14			= "Interface\hud\screen_triangulate_corrupt.dtx"
@@ -4210,7 +4317,7 @@ Alpha14			= 0.8
 
 /************************************************************************
 **
-**	                         Menu Piece Layout
+**	             ----------[Menu Piece Layout]----------
 **
 **  The MenuPiece definitions assign values that create, as the name
 **  implies, menu pieces, which (assumedly) are neat little packages of
@@ -4882,7 +4989,7 @@ Layer			= 40
 
 /************************************************************************
 **
-**	                       Screen Character Layout
+**	           ----------[Screen Character Layout]----------
 **
 **  The Character element has one purpose: to display a spinning view of
 **  the currently equipped Player & Light Cycle model.
@@ -4931,7 +5038,7 @@ Rotation    = 90.0
 
 /************************************************************************
 **
-**	                        Screen Lights Layout
+**	            ----------[Screen Lights Layout]----------
 **
 **  The Light definitions assign values that create light objects used
 **  in screens. Because pretty much all screens are technically rendered
@@ -4980,7 +5087,7 @@ Radius			= 8000.0
 
 /************************************************************************
 **
-**                            Screen FX Layout
+**                ----------[Screen FX Layout]----------
 **
 **  The FX definitions assign values that create effect objects used in
 **  screens. It's not known where the effects themselves originate when
@@ -5229,7 +5336,7 @@ Loop	= 1
 
 /************************************************************************
 **
-**	                       Decision Window Layout
+**	            ----------[Decision Window Layout]----------
 **
 **  The DecisionWindow definition assigns values for the window showing
 **  gameplay choices to the player. This is the window that appears at
@@ -5370,7 +5477,7 @@ RemoveWindow    = 0
 
 /************************************************************************
 **
-**	                         Screen Transitions
+**	              ----------[Screen Transitions]----------
 **
 **  The Transition definitions assign values that manage transitions
 **  between menu screens. All transitions take precedence over default
@@ -6490,7 +6597,7 @@ LoopFX3			= "MENU_KA_logo"
 
 /************************************************************************
 **
-**	                        Miscellaneous Layout
+**	            ----------[Miscellaneous Layout]----------
 **
 **  The Miscellaneous definition sets values for interface components
 **  either not covered under other definitions, or couldn't be properly
@@ -6592,7 +6699,7 @@ TimerPos				= (300, 92)
 
 /************************************************************************
 **
-**                                Glossary
+**                     ----------[Glossary]----------
 **
 **  Because this file is so incredibly long and complex, it's completely
 **  understandable to struggle remembering all the unique terms being
