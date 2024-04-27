@@ -63,8 +63,8 @@
 **  Additionally, all values that have been confirmed to be unused by
 **  TRON 2.0 have been isolated, and will not appear on the GitHub wiki
 **  page for this file. Within the file itself, these removals can be
-**  found on a per-section basis, under the "[SAFELY DEPRECATED VALUES]"
-**  sub-header.
+**  found on a per-section basis, under the "<SAFELY DEPRECATED VALUES>"
+**  sub-header. None of these values will have any definitions.
 **
 **  All of these modifications are subject to further changes as needed.
 **  ---------------------------------------------------------------------
@@ -89,7 +89,7 @@
 
 /************************************************************************
 **
-**                           Table of Contents
+**                ----------[Table of Contents]----------
 **
 **  This file is over 6,000 lines long! Although it'd be impossible to
 **  add link references to a raw text file, this "Table of Contents"
@@ -242,31 +242,13 @@
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  HUDFont (Integer)
-**      - The font ID used in unknown areas.
-**      - What is this???
 **	NextPos (2D Point)
-**		- The upper-left origin position of the "next" item.
-**      - This setting is not used in TRON 2.0(?).
 **  MainPos (2D Point)
-**      - The upper-left origin position of the "main" item.
-**      - This setting is not used in TRON 2.0(?).
 **	BackColor (Vector)
-**      - The color used for menu background fills.
-**      - This setting is not used in TRON 2.0.
 **  BackSprite (Path String)
-**      - The sprite used for the menu background.
-**      - This setting is not used in TRON 2.0.
 **  BackSpriteScale (Float)
-**      - The scale of the BackSprite.
-**      - This setting is not used in TRON 2.0.
 **	LoadStringPos (2D Point)
-**		- The upper-middle origin position of the name of the world
-**		displayed on the loading screen.
-**      - LoadingScreenDefault manages this, why is it here?
 **	LoadPhotoPos (2D Point)
-**		- The upper-left origin position of the photo of the world
-**		displayed on the loading screen.
-**      - LoadingScreenDefault manages this, why is it here?
 */
 [BasicLayout]
 HelpRect		    = (194, 442, 500, 470)
@@ -342,9 +324,7 @@ BossRect		    = (160, 90, 480, 100)
 **      additional pop-up box, if the screen has one.
 **
 **  ---<SAFELY DEPRECATED VALUES>---
-**  MouseFX (Path?)
-**      - The FX used for the cursor?
-**      - This setting does not appear to be used in TRON 2.0.
+**  MouseFX (String?)
 */
 [GenericScreen]
 TitlePos			= (24, 8)
@@ -356,7 +336,7 @@ FontSize			= 27
 ItemSpace			= 0
 MusicIntensity		= 2
 SelectedColor		= <255.0, 255.0, 255.0>
-NonSelectedColor	= <255.0, 113.0, 113.0> // SecurityProtocol
+NonSelectedColor	= <255.0, 113.0, 113.0>
 DisabledColor		= <180.0, 180.0, 200.0>
 //MouseFX 			= ""
 ListFontSize		= 20
@@ -388,8 +368,6 @@ Light0		= "Main0"
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  ScaleName# (String)
-**      - The string ID of a Scale to use for the menu. Previously
-**      deprecated by Monolith.
 */
 [ScreenSingle]
 PageRect		= (450, 170, 25, -5)
@@ -397,12 +375,12 @@ ItemSpace		= 1
 ListFontSize    = 18
 DiffRect		= (120, 130, 356, 250)
 CustomRect		= (24, 107, 440, 417)
-Light0			= "Main0"
-//ScaleName0	= ""
+//ScaleName0	= ""//WeaponBackgroundSpr1"
 //ScaleName1	= "HelpTextBoxSpr1"
 //ScaleName2	= "HelpTextBoxSpr2"
 //ScaleName3	= "mainoperativetext"
 //ScaleName4	= "mainnolftext"
+Light0			= "Main0"
 
 /*  -----[Load Game Screen]-----
 **  Applies to both the [Single Player → Load Game] screen as well as
@@ -475,18 +453,9 @@ Light0			= "Main0"
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  ConfigurationPos (2D Point)
-**      - Unknown function.
-**      - What is this? Tried to set it to (0,0) and nothing happened
 **  GameTypePos (2D Point)
-**      - Unknown function.
-**      - Either this is unused or ConfigurationPos is unused. Neither
-**      one seems to do anything.
 **  TabColor (Vector)
-**      - The color used as the tab background?
-**      - Yet another thing that does nothing...
 **  TabAlpha (Float)
-**      - The alpha of the TabColor?
-**      - I feel like I'm missing something.
 */
 [ScreenBaseLightCycle]
 PageRect			= (280, 100, 550, 400)
@@ -548,8 +517,8 @@ Light0				= "Main0"
 **      selected Circuit.
 **      - Note that the dynamic text cannot be shifted vertically, only
 **      horizontally.
-**  CompletedCircuitColor (Vector),
-**  UncompletedCircuitColor (Vector)
+**  CompletedCircuitColor (Vector) (SP),
+**  UncompletedCircuitColor (Vector) (SP)
 **      - The text color of a specific listed Circuit name when it has,
 **      or has not, been completed respectively at least once by the
 **      player.
@@ -564,13 +533,9 @@ Light0				= "Main0"
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  AddPos (2D Point)
-**      - Unknown function.
 **  CommandPos (2D Point)
-**      - Unknown function.
 **  SelectRect (Rectangle)
-**      - Unknown function.
 **  InfoPos (2D Point)
-**      - Unknown function. Unused?
 */
 [ScreenLightCycleCircuit]
 FontSize			    = 18
@@ -587,8 +552,8 @@ ImagePos			    = (260, 210)
 ImageRect			    = (0, 0, 315, 113)
 RegularPos			    = (405, 135)
 SuperPos			    = (495, 135)
-CompletedCircuitColor	= <251.0, 193.0, 193.0> // SecurityProtocol
-UncompletedCircuitColor	= <255.0, 74.0, 74.0> // SecurityProtocol
+CompletedCircuitColor	= <251.0, 193.0, 193.0>
+UncompletedCircuitColor	= <255.0, 74.0, 74.0>
 LaunchPos			    = (500, 365)
 LaunchTex			    = "interface\menu\sprtex\menubutton_bg.dtx"
 LaunchTexH			    = "interface\menu\sprtex\menubutton_bg_hl.dtx"
@@ -629,22 +594,12 @@ Light0				    = "Main0"
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  AddPos (2D Point)
-**      - Unknown function.
 **  AvailRect (Rectangle)
-**      - Unknown function.
 **  CommandPos (2D Point)
-**      - Unknown function.
 **  SelectRect (Rectangle)
-**      - Unknown function.
 **  LightCycleBackgroundTextureName (Path String)
-**      - This value had been deprecated already by Monolith.
 **  LightCycleBackgroundPos (2D Point)
-**      - Unused. This set the origin position of the Light Cycle
-**      background image that later became deprecated.
 **  LightCycleBackgroundRect (Rectangle)
-**      - Unused. This assumedly allocated the bottom and right-side
-**      cutoffs for the Light Cycle background image that later became
-**      deprecated.
 */
 [ScreenLightCyclePlayerConfig]
 FontSize			                = 18
@@ -691,7 +646,6 @@ Light0				                = "Main0"
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  AddPos (2D Point)
-**      - Unknown function.
 */
 [ScreenLightCycleCustomMap]
 FontSize	= 18
@@ -700,7 +654,7 @@ AvailRect	= (60, 148, 230, 313)
 CommandPos	= (225, 188)
 SelectRect	= (320, 148, 490, 313)
 TabBodyRect	= (40, 160, 493, 400)
-LaunchPos	= (500,365)
+LaunchPos	= (500, 365)
 LaunchTex	= "interface\menu\sprtex\menubutton_bg.dtx"
 LaunchTexH	= "interface\menu\sprtex\menubutton_bg_hl.dtx"
 Light0		= "Main0"
@@ -724,17 +678,14 @@ Light0		= "Main0"
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  AddPos (2D Point)
-**      - Unknown function.
 **  AvailRect (Rectangle)
-**      - Unknown function.
 **  SelectRect (Rectangle)
-**      - Unknown function.
 */
 [ScreenLightCycleCustomGame]
 FontSize			= 18
 //AddPos			= (54, 148)
 //AvailRect			= (200, 208, 380, 385)
-CommandPos			= (55,158)
+CommandPos			= (55, 158)
 //SelectRect		= (415, 208, 595, 385)
 TabBodyRect			= (40, 160, 493, 400)
 BodyRect			= (110, 85, 530, 375)
@@ -763,9 +714,7 @@ Light0				= "Main0"
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  MouseFX (String)
-**      - Debating whether any MouseFX are used at all...
 **  Delay (Float)
-**      - Unknown function. Unused?
 */
 [ScreenLightCycleVictory]
 //MouseFX			= ""
@@ -937,21 +886,13 @@ Light1				= "test"
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  TabColor (Vector)
-**      - Unused function?
 **  TabAlpha (Float)
-**      - Unused function?
 **  JoinPos (2D Point)
-**      - Unused function?
 **  LockColumn (Integer)
-**      - Unused function?
 **  PlayerFilterColumn (Integer)
-**      - Unused function?
 **  PingFilterColumn (Integer)
-**      - Unused function?
 **  DedicatedFilterColumn (Integer)
-**      - Unused function?
 **  FilterDedicatedPos (2D Point)
-**      - Unused funcion? (Does this filter exist?)
 */
 [ScreenJoinServerList]
 PageRect			    = (180, 100, 550, 400)
@@ -1014,12 +955,8 @@ Light0				    = "Main0"
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  BodyRect (Rectangle)
-**      - Unused function.
-**      - But why?
 **  TabRect (Rectangle)
-**      - Unused function.
 **  JoinPos (2D Point)
-**      - Unused function.
 */
 [ScreenServerInfo]
 PageRect			= (180, 100, 550, 400)
@@ -1077,7 +1014,6 @@ Light0				= "Main0"
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  TabColor (Vector)
-**      - Unused function.
 */
 [ScreenHost]
 PageRect			= (280, 100, 550, 400)
@@ -1105,9 +1041,9 @@ Light0				= "Main0"
 **      - The string ID of a Light to use for the screen.
 */
 [ScreenHostConnection]
-FontSize			= 18
-CommandPos			= (235, 88)
-Light0				= "Main0"
+FontSize	= 18
+CommandPos	= (235, 88)
+Light0		= "Main0"
 
 /*  ---[Multiplayer → Host Screen → Game Tab]---
 **  CommandPos (2D Point) (KAMod)
@@ -1141,7 +1077,6 @@ Light0				= "Main0"
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  AddPos (2D Point)
-**      - Unused function.
 */
 [ScreenHostMaps]
 FontSize	= 18
@@ -1190,7 +1125,7 @@ Light0		= "Main0"
 **      first two values covered by EAXImagePos, meaning the first two
 **      values of this Rectangle are always 0. The last two values then
 **      determine the cutoff point for the image box.
-**  EAXImagePos (2D Point)
+**  EAXImagePos (2D Point) (KAMod)
 **      - The upper-left origin position of the EAX logo.
 **  Light# (String)
 **      - The string ID of a Light to use for the screen.
@@ -1342,13 +1277,9 @@ Light0		= "Main0"
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  FontSize (Integer)
-**      - Previously deprecated by Monolith.
 **  TextureRect (Rectangle)
-**      - Unused function.
 **  TextureColumn (Integer)
-**      - Unused function.
 **  TextureSlider (Integer)
-**      - Unused function.
 */
 [ScreenPerformance]
 PageRect		= (54, 95, 556, 245)
@@ -1397,7 +1328,6 @@ Light0		= "Main0"
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  DialogPos (2D Point)
-**      - Unknown function.
 */
 [ScreenProfile]
 ItemSpace		= 1
@@ -1439,11 +1369,8 @@ Light0			= "Main0"
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  CompilePos (2D Point)
-**      - Unused function.
 **  HelpRect (Rectangle)
-**      - Unused function?
 **  Character (String)
-**      - Already deprecated by Monolith.
 */
 [ScreenSubroutines]
 PageRect		    = (0, 0, 200, 200)
@@ -1485,11 +1412,11 @@ Light0			    = "Main0"
 **  ToolTipTitleFontSize (Integer)
 **      - The text height of the "Show Tooltips:" text at the bottom-
 **      right of the screen.
-**  ToolTipColor (Vector)
+**  ToolTipColor (Vector) (SP)
 **      - The color of the special highlighted text at the beginning of
 **      the tooltip, confirming the definition that it is currently
 **      displaying.
-**  ToolTipFrameColor (Vector)
+**  ToolTipFrameColor (Vector) (SP)
 **      - The background color used for the tooltip box. (This is NOT
 **      the color of the border.)
 **  ToolTipAlpha (Float)
@@ -1502,8 +1429,8 @@ ToolTipTogglePos		= (436, 374)
 ToolTipToggleFontSize	= 18
 ToolTipTitlePos			= (483, 359)
 ToolTipTitleFontSize	= 18
-ToolTipColor		    = <255.0, 135.0, 135.0> // SecurityProtocol
-ToolTipFrameColor	    = <100.0, 0.0, 0.0> // SecurityProtocol
+ToolTipColor		    = <255.0, 135.0, 135.0>
+ToolTipFrameColor	    = <100.0, 0.0, 0.0>
 ToolTipAlpha		    = 0.85
 ToolTipWidth		    = 200.0
 
@@ -1602,9 +1529,7 @@ Light0			= "Main0"
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  MouseFX (String)
-**      - Still unsure if any MouseFX are ever used.
 **  Delay (Float)
-**      - Unknown function. Unused?
 */
 [ScreenFailure]
 //MouseFX		= ""
@@ -1662,7 +1587,7 @@ Light0			= "Main0"
 ListFontSize	    = 12
 PlayerTextColor	    = <255.0, 255.0, 255.0>
 TextColor		    = <192.0, 192.0, 192.0>
-FrameColor		    = <240.0, 0.0, 0.0> // SecurityProtocol
+FrameColor		    = <240.0, 0.0, 0.0>
 FrameAlpha		    = 0.5
 HeaderFontSize	    = 14
 TeamRect		    = (32, 30, 440, 406)
@@ -1688,7 +1613,7 @@ Light0				= "Main0"
 **  TextColor (Vector)
 **      - The text color of all the other lines that aren't displaying
 **      the player's information.
-**  FrameColor (Vector),
+**  FrameColor (Vector) (SP),
 **  FrameAlpha (Float)
 **      - The background color and opacity of the bar at the top of the 
 **      window holding the column names.
@@ -1718,7 +1643,7 @@ Light0				= "Main0"
 ListFontSize	    = 12
 PlayerTextColor	    = <255.0, 255.0, 255.0>
 TextColor		    = <192.0, 192.0, 192.0>
-FrameColor		    = <0.0, 64.0, 240.0>
+FrameColor		    = <240.0, 0.0, 0.0>
 FrameAlpha		    = 0.5
 HeaderFontSize	    = 14
 TeamRect		    = (20, 64, 440, 440)
@@ -1743,7 +1668,6 @@ Light0				= "Main0"
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  MouseFX (String)
-**      - Pretty sure they're completely unused by now.
 */
 [ScreenSecurity]
 //MouseFX   = "none"
@@ -1757,15 +1681,15 @@ Light0	    = "Main0"
 **
 **  TitleColor (Vector)
 **      - The color of the current chapter name.
-**  LevelPos (2D Point) (KAMod),
 **  LevelFont (Integer),
 **  LevelSize (Integer),
+**  LevelPos (2D Point) (KAMod),
 **  LevelColor (Vector)
 **      - The upper-left origin position, font ID, text height, and 
 **      color of the current level name, in that order.
-**  ContinuePos (2D Point) (KAMod),
 **  ContinueFont (Integer),
 **  ContinueSize (Integer),
+**  ContinuePos (2D Point) (KAMod),
 **  ContinueColor (Vector)
 **      - The upper-left origin position, font ID, text height, and
 **      color of the "press any key to continue" string.
@@ -1781,32 +1705,27 @@ Light0	    = "Main0"
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  BriefingFont (Integer)
-**      - Unused function. Deprecated from NOLF briefing screens.
 **  BriefingSize (Integer)
-**      - Unused function. Deprecated from NOLF briefing screens.
 **  BriefingRect (Rectangle)
-**      - Unused function. Deprecated from NOLF briefing screens.
 **  BriefingColor (Vector)
-**      - Unused function. Deprecated from NOLF briefing screens.
 **  PreFX# (String)
-**      - Unused function. Previously deprecated by Monolith.
 */
 [LoadScreenDefault]
 TitleFont		= 1
 TitleSize		= 24
 TitlePos		= (40, 50)
 TitleColor		= <255.0, 255.0, 255.0>
-LevelPos		= (40, 75)
 LevelFont		= 1
 LevelSize		= 20
+LevelPos		= (40, 75)
 LevelColor		= <255.0, 255.0, 255.0>
 //BriefingFont	= 1
 //BriefingSize	= 16
 //BriefingRect	= (50, 120, 310, 350)
 //BriefingColor	= <255.0, 255.0, 255.0>
-ContinuePos		= (40, 415)
 ContinueFont	= 1
 ContinueSize	= 24
+ContinuePos		= (40, 415)
 ContinueColor   = <0.0, 0.0, 0.0>
 //PreFX0		= "LOAD_Test"
 //PreIntroFX0	= "LOAD_Test"
@@ -2228,10 +2147,10 @@ FadeInTime	= 0.6
 HoldTime	= 3.0
 FadeOutTime = 0.6
 DelayTime	= 0.35
-PositionUL	= (80,90)
-PositionUR	= (560,90)
-PositionLL	= (80,390)
-PositionLR	= (560,390)
+PositionUL	= (80, 90)
+PositionUR	= (560, 90)
+PositionLL	= (80, 390)
+PositionLR	= (560, 390)
 
 
 /************************************************************************
@@ -2280,9 +2199,6 @@ Font4		= "Interface\Fonts\TwenCen_20.ffb"
 FontSize4	= 20
 Font5		= "Interface\Fonts\TwenCen_20_Aliased.ffb" 
 FontSize5	= 10
-//Font6		= "Interface\Fonts\tcm_____.TTF"
-//Font7		= "Interface\Fonts\tcm_____.TTF"
-//Font8		= "Interface\Fonts\tcm_____.TTF"
 
 
 /************************************************************************
@@ -2325,8 +2241,8 @@ FontSize5	= 10
 **      - TODO can I remove this note? (LDSO)
 */
 [HUDLayout0]
-LayoutName	    = 385
-UseAmmoBar	    = 0
+LayoutName	= 385
+UseAmmoBar	= 0
 ArmorOffset	= (10, 10)
 
 /*  -----[Health & Energy]-----
@@ -2376,18 +2292,9 @@ ArmorOffset	= (10, 10)
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **	BarScale (Float?)
-**		- The number of pixels per point in the Health and Energy HUD
-**      bars?
-**      - Changing this value appears to have no effect.
 **  HealthBlinkTime (Integer)
-**      - Unknown function. Health doesn't blink, even when taking
-**      damage...?
 **  HealthBlinkTex (Rectangle)
-**      - Unknown function. Health doesn't blink, even when taking
-**      damage...?
 **  EnergyDeficitTex (Rectangle)
-**      - Unknown function. Was it possible at one point to have
-**      a negative energy level?
 */
 BarHeight				= 14
 //BarScale				= 1
@@ -2423,9 +2330,9 @@ EnergyTextOffset 		= (-60, -15)
 **  PsetHeight (Integer) (SP)
 **      - The width and height of the permission set indicator.
 */
-PsetOffset	= (0, 0) // SecurityProtocol
-PsetWidth	= 80 // SecurityProtocol
-PsetHeight	= 80 // SecurityProtocol
+PsetOffset	= (0, 0)
+PsetWidth	= 80
+PsetHeight	= 80
 
 /*  -----[Weapon Indicator]-----
 **  This is just the small single box at the top-right corner of the
@@ -2447,9 +2354,7 @@ PsetHeight	= 80 // SecurityProtocol
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  WeaponIndicatorBox (Rectangle)
-**      - Unknown function.
 **  WeaponIndicatorTex (Path String)
-**      - Unknown function.
 */
 //WeaponIndicatorBox		= (70, 75, 116, 116)
 //WeaponIndicatorTex		= "interface\hud\hud.dtx"
@@ -2480,7 +2385,7 @@ WeaponIndicatorIconOffset	= (-7, -12)
 **      - The texture used as the background box for an unavailable
 **      weapon, when highlighted. The player isn't able to highlight
 **      weapons they can't use, so this is technically an unused value.
-**  ChooserTextColor (Vector),
+**  ChooserTextColor (Vector) (SP),
 **  ChooserTextSize (Integer)
 **      - The color and text height of the string displaying the name of
 **      the currently highlighted weapon.
@@ -2493,7 +2398,7 @@ WeaponIndicatorIconOffset	= (-7, -12)
 **  ChooserIconOffset (2D Point)
 **      - The offset of an available weapon's icon from the lower-right
 **      corner of the chooser box that contains it.
-**  ChooserMargin (2D Point)
+**  ChooserMargin (2D Point) (SP)
 **      - The (scalable?) offset of the weapon chooser from the upper-
 **      right corner of the screen.
 **      - TODO check scalability
@@ -2505,16 +2410,14 @@ WeaponIndicatorIconOffset	= (-7, -12)
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  ChooserTextAlpha (Float)
-**      - Probably the alpha of the text displaying the name of the
-**      currently highlighted weapon. Changing it did nothing.
 **  ChooserUVTitleBox (Rectangle)
-**      - Unknown function.
 **  ChooserTitleHight (Integer)
-**      - Unknown function. Maybe the chooser box used to have a title?
 **  ChooserIntroTime (Float)
-**      - Unknown function. It seems the fade-in is managed elsewhere.
 **  ChooserOutroTime (Float)
-**      - Unknown function. It seems the fade-out is managed elsewhere.
+**  ChooserColumnWidth (Integer)
+**  ChooserIconHeight (Integer)
+**  ChooserTextureScale (Float)
+**  ChooserPosition (Integer)
 */
 ChooserTex			    = "interface\hud\currentweapon.dtx"
 ChooserTexHi			= "interface\hud\currentweapon_hl.dtx"
@@ -2523,13 +2426,13 @@ ChooserCorruptTexHi		= "interface\hud\currentweapon_corrupt_hl.dtx"
 ChooserEmptyTex			= "interface\hud\currentweapon_empty.dtx"
 ChooserEmptyTexHi		= "interface\hud\currentweapon_empty_hl.dtx"
 //ChooserTextAlpha		= 1.0
-ChooserTextColor		= <255.0, 149.0, 0.0> // SecurityProtocol
+ChooserTextColor		= <255.0, 149.0, 0.0>
 ChooserTextSize			= 24
 //ChooserUVTitleBox		= (117, 18, 254, 43)
 ChooserBoxSize			= (46, 42)
 ChooserSpacing			= (0, 6)
 ChooserIconOffset		= (-7, -12)
-ChooserMargin			= (10, 10) // SecurityProtocol
+ChooserMargin			= (10, 10)
 //ChooserTitleHeight	= 0
 //ChooserIntroTime		= 0.5
 //ChooserOutroTime		= 0.5
@@ -2537,12 +2440,12 @@ ChooserMargin			= (10, 10) // SecurityProtocol
 //ChooserIconHeight		= 48
 //ChooserTextureScale	= 0.75
 //ChooserPosition		= 120
-//ClassNumber0			= ""
+ClassNumber0			= ""
 ClassNumber1			= "Interface\hud\currentweaponTab_1.dtx"
 ClassNumber2			= "Interface\hud\currentweaponTab_2.dtx"
 ClassNumber3			= "Interface\hud\currentweaponTab_3.dtx"
 ClassNumber4			= "Interface\hud\currentweaponTab_4.dtx"
-//ClassNumberHi0		= ""
+ClassNumberHi0		    = ""
 ClassNumberHi1			= "Interface\hud\currentweapon_hlTab_1.dtx"
 ClassNumberHi2			= "Interface\hud\currentweapon_hlTab_2.dtx"
 ClassNumberHi3			= "Interface\hud\currentweapon_hlTab_3.dtx"
@@ -2564,7 +2467,7 @@ ClassNumberHi4			= "Interface\hud\currentweapon_hlTab_4.dtx"
 **  ObjectiveOffset (2D Point)
 **      - The offset of the new objective indicator from an unknown
 **      origin.
-*/  
+*/
 ObjectiveOffsetChris	= (8, -264)
 ObjectiveOffset			= (8, -40)
 
@@ -2589,11 +2492,8 @@ ObjectiveOffset			= (8, -40)
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  PingFontNum (Integer)
-**      - Unused function. Pings don't use text.
 **  PingFontSize (Integer)
-**      - Unused function. Pings don't use text.
 **  PingBlinkTime (Float)
-**      - Unused function. This seems to be managed elsewhere.
 */
 PingIconSize		= (130, 65)
 PingStartPoint		= (6, 105)
@@ -2659,7 +2559,7 @@ ActivationTextAlpha		= 1.0
 ActivationTextColor		= <255.0, 255.0, 0.0>
 ActivationTextDisAlpha  = 255
 ActivationTextDisColor	= <128.0, 128.0, 128.0>
-//DebugTextPos			= (360,100)
+//DebugTextPos			= (360, 100)
 //DebugTextSize			= 12
 //DebugTextJustify		= 0
 //DebugTextAlpha	    = 1.0
@@ -2720,10 +2620,10 @@ ProfilerTextSize	= 16
 **      - The designated FOV zoom values when the player scopes in with
 **      Triangulate. 3 maximum values permitted.
 */
-FOVZoomLOL			    = 30.0
-FOVZoomTriangulate1		= 20.0
-FOVZoomTriangulate2		= 7.0
-FOVZoomTriangulate3		= 3.0
+FOVZoomLOL			= 30.0
+FOVZoomTriangulate1	= 20.0
+FOVZoomTriangulate2	= 7.0
+FOVZoomTriangulate3	= 3.0
 
 /*  -----[Light Cycle HUD Elements]-----
 **  The HUD is completely different while using a Light Cycle. Luckily,
@@ -2836,18 +2736,18 @@ RosterIconBaseSizeIfScalingIsEnabled    = (26, 16)
 **      - For more details, see the "Textured Frames Layout" section.
 **      - TODO check this
 */
-IntroMasterPos					= (320, 8)
-IntroVFrameBorder				= 6
-IntroHFrameBorder				= 10
-IntroTitleHeight				= 22
-IntroEntryHeight				= 16
-IntroTitleSpace					= 6
-IntroEntrySpace					= 6
-IntroHeaderOffset				= -81
-IntroValueOffset				= 49
-IntroValueTime					= 4.0
-IntroFrameBackground			= "interface\menu\sprtex\frame_solid.dtx"
-IntroTexturedFrameName			= "lightcycle_start"
+IntroMasterPos			= (320, 8)
+IntroVFrameBorder		= 6
+IntroHFrameBorder		= 10
+IntroTitleHeight		= 22
+IntroEntryHeight		= 16
+IntroTitleSpace			= 6
+IntroEntrySpace			= 6
+IntroHeaderOffset		= -81
+IntroValueOffset		= 49
+IntroValueTime			= 4.0
+IntroFrameBackground	= "interface\menu\sprtex\frame_solid.dtx"
+IntroTexturedFrameName	= "lightcycle_start"
 
 /*  ---[Speedometer]---
 **  This is the speedometer that shows the current speed of the Light
@@ -2888,9 +2788,9 @@ SpeedometerTexturedFrameName	= "lightcycle_speedometer"
 
 /*  ---[Distance Icon]---
 **  Currently unidentified HUD element, potentially unused.
-**  TODO what is this
+**  TODO what is this (LDSO)
 **
-**  DistanceIconPos (2D Point)
+**  DistanceIconPos (2D Point) (KAMod)
 **  DistanceIconBlinkSpeed (Float)
 **  DistanceIconAlpha (Float)
 **  DistanceIconFadeOutSpeed (Float)
@@ -2908,47 +2808,47 @@ DistanceIconFadeOutSpeed	= 1.0
 **  This section does not appear on the GitHub wiki page.
 */
 //DisplayMeterBasePosY	= 54
-//DisplayMeterOffset	= (0,0)
+//DisplayMeterOffset	= (0, 0)
 //DisplayMeterHeight	= 8
 //DisplayMeterScale		= 2.5
 //DisplayMeterTexture	= "Interface\hud\bossbar.dtx"
-//AmmoBasePos 		    = (624,450)
-//AmmoClipOffset		= (-8,8)
-//AmmoClipUnitSize		= (7,12)
-//AmmoBarOffset		    = (0,0)
+//AmmoBasePos 		    = (624, 450)
+//AmmoClipOffset		= (-8, 8)
+//AmmoClipUnitSize		= (7, 12)
+//AmmoBarOffset		    = (0, 0)
 //UseAmmoText 		    = 1
-//AmmoTextOffset		= (-72,-16)
+//AmmoTextOffset		= (-72, -16)
 //AmmoTextColor		    = <160.0, 128.0, 32.0>
 //AmmoTextAlpha		    = 0.8
-//AmmoIconOffset		= (-104,-16)
+//AmmoIconOffset		= (-104, -16)
 //AmmoIconSize		    = 24
 //UseHealthBar		    = 1
-//HealthBasePos		    = (16,430)
-//HealthBarOffset 		= (0,34)
-//ArmorBarOffset		= (6,22)
+//HealthBasePos		    = (16, 430)
+//HealthBarOffset 		= (0, 34)
+//ArmorBarOffset		= (6, 22)
 //UseHealthText		    = 0
 //HealthColor 		    = <192.0, 0.0, 0.0>
 //ArmorColor			= <0.0, 0.0, 192.0>
 //HealthAlpha 		    = 0.8
 //UseHealthIcon		    = 0
-//HealthIconOffset		= (0,-20)
-//ArmorIconOffset 		= (64,-20)
+//HealthIconOffset		= (0, -20)
+//ArmorIconOffset 		= (64, -20)
 //HealthIconSize		= 20
 //UseAirIcon			= 1
-//AirBasePos			= (24,400)
+//AirBasePos			= (24, 400)
 //UseAirText			= 0
-//AirTextOffset		    = (24,-26)
+//AirTextOffset		    = (24, -26)
 //UseAirBar			    = 1
-//AirBarOffset		    = (12,0)
-//AirIconOffset		    = (-20,-8)
+//AirBarOffset		    = (12, 0)
+//AirIconOffset		    = (-20, -8)
 //AirColor			    = <0.0, 202.0, 158.0>
 //AirAlpha			    = 0.8
 //AirIconSize 		    = 32
-//ModeTextPos 		    = (80,40)
-//DamageBasePos		    = (0,240)
-//CompassPos		    = (528,16)
+//ModeTextPos 		    = (80, 40)
+//DamageBasePos		    = (0, 240)
+//CompassPos		    = (528, 16)
 //CompassSize 		    = 96
-//HideIconPos 		    = (288,336)
+//HideIconPos 		    = (288, 336)
 //HideIconBlinkSpeed    = 3.0
 //HideIconAlpha		    = 0.6
 //DamageSize			= 32
@@ -3031,7 +2931,7 @@ DistanceIconAlpha		                = 0
 Position		        = (10, 5)
 Font			        = 0
 FontSize		        = 16
-BaseColor		        = <255.0, 90.0, 90.0> // SecurityProtocol
+BaseColor		        = <255.0, 90.0, 90.0>
 MinorUpgradeLoops	    = 10
 MinorUpgradeLoopLength	= 0.7
 MajorUpgradeLoops	    = 10
@@ -3053,14 +2953,14 @@ MinorUpgradeColor	    = <255.0, 255.0, 255.0>
 **      - The texture used for the build note icon to the left of the
 **      counter.
 **  TextSize (Integer),
-**  BaseColor (Vector)
+**  BaseColor (Vector) (SP)
 **      - The pixel height and color of the build note counter text.
 */
 [BuildNoteCount]
 AnchorPos	= (12, 22)
 IconTexture = "interface\hud\buildnote_hudicon.dtx"
 TextSize	= 16
-BaseColor	= <255.0, 90.0, 90.0> // SecurityProtocol
+BaseColor	= <255.0, 90.0, 90.0>
 
 
 /************************************************************************
@@ -3229,21 +3129,21 @@ CursorTexUV			= (117, 45, 254, 70)
 **      are displayed.
 */
 [ProgressBox]
-ProgressRect			    = (10, 250, 250, 480)
-HUDOffset				    = 42
-TitleFont				    = 1
-TitleFontSize			    = 28
-TitleAlpha				    = 1.0
-TitleColor				    = <255.0, 255.0, 255.0>
-ObjectiveFont			    = 0
-ObjectiveFontSize		    = 24
-ObjectiveAlpha			    = 0.75
-ObjectiveColor			    = <255.0, 255.0, 255.0>
-CompletedObjectiveAlpha 	= 0.75
-CompletedObjectiveColor 	= <128.0, 128.0, 128.0>
-SecondaryObjectiveAlpha 	= 0.75
-SecondaryObjectiveColor 	= <255.0, 255.0, 255.0>
-ObjectiveSpacing			= 8
+ProgressRect			= (10, 250, 250, 480)
+HUDOffset				= 42
+TitleFont				= 1
+TitleFontSize			= 28
+TitleAlpha				= 1.0
+TitleColor				= <255.0, 255.0, 255.0>
+ObjectiveFont			= 0
+ObjectiveFontSize		= 24
+ObjectiveAlpha			= 0.75
+ObjectiveColor			= <255.0, 255.0, 255.0>
+CompletedObjectiveAlpha = 0.75
+CompletedObjectiveColor = <128.0, 128.0, 128.0>
+SecondaryObjectiveAlpha = 0.75
+SecondaryObjectiveColor = <255.0, 255.0, 255.0>
+ObjectiveSpacing		= 8
 
 /* -----[UV Box Values]-----
 **  There's a lotta stuff to look at here. For now just know it's
@@ -3316,16 +3216,16 @@ UVBoxBottomRight	    = (100, 177, 115, 188)
 **      the screen.
 */
 [ProceduralHUD]
-FrameTex		= "interface\hud\procindicator_frame.dtx"
-TopBound		= 60
-Font			= 0
-FontSize		= 24
-Alpha			= 1.0
-Color			= <165, 233.0, 255.0>
-Spacing			= 40
-IconWidth		= 39
-IconHeight		= 39
-IconOffset		= 44
+FrameTex	= "interface\hud\procindicator_frame.dtx"
+TopBound	= 60
+Font		= 0
+FontSize	= 24
+Alpha		= 1.0
+Color		= <165, 233.0, 255.0>
+Spacing		= 40
+IconWidth	= 39
+IconHeight	= 39
+IconOffset	= 44
 
 /*  -----[Progress Bar Settings]-----
 **  This appears to be responsible for the progress bar that is shown
@@ -3393,8 +3293,12 @@ StringYOffset	= -16 // From top of progress bar (negative is down)
 **  Margins (Integer)
 **      - Untested.
 */
+
+/*  -----[0: Basic]-----
+**  Assumed to be a general-purpose textured frame used as a default.
+**  Includes a black border.
+*/
 [TexturedFrame0]
-// includes a black border
 Name			= "Basic"
 Texture			= "Interface\hud\chooser_box.dtx"
 Hollow			= 0
@@ -3409,8 +3313,10 @@ UVBottomLeft	= (0, 176, 14, 189)
 UVBottom		= (14, 176, 99, 189)
 UVBottomRight	= (99, 176, 116, 189)
 
+/*  -----[1: Data Log Frame]-----
+**  Includes a black border.
+*/
 [TexturedFrame1]
-// includes a black border
 Name			= "datalogframe"
 Texture			= "Interface\hud\hud.dtx"
 Hollow			= 1
@@ -3426,9 +3332,10 @@ UVBottomLeft	= (117, 104, 120, 111)
 UVBottom		= (133, 104, 206, 111)
 UVBottomRight	= (207, 104, 254, 111)
 
-
+/*  -----[2: Data Log Box]-----
+**  Includes a black border.
+*/
 [TexturedFrame2]
-// includes a black border
 Name			= "datalogbox"
 Texture			= "Interface\hud\hud.dtx"
 Hollow			= 0
@@ -3443,8 +3350,10 @@ UVBottomLeft	= (183, 132, 193, 143)
 UVBottom		= (194, 132, 238, 143)
 UVBottomRight	= (239, 132, 254, 143)
 
+/*  -----[3: I/O Node Box]-----
+**  Includes a black border.
+*/
 [TexturedFrame3]
-// includes a black border
 Name			= "ionodebox"
 Texture			= "Interface\hud\ionode.dtx"
 Hollow			= 0
@@ -3459,7 +3368,10 @@ UVBottomLeft	= (0, 74, 195, 255)
 UVBottom		= (195, 74, 202, 255)
 UVBottomRight	= (202, 74, 255, 255)
 
-//--Are we using this ?
+/*  -----[4: Subtitles]-----
+**  Potentially unused.
+**  TODO can we confirm this? (LDSO)
+*/
 [TexturedFrame4]
 Name			= "subtitle"
 Texture			= "Interface\hud\subtitles.dtx"
@@ -3475,6 +3387,7 @@ UVBottomLeft	= (0, 13, 13, 26)
 UVBottom		= (13, 13, 18, 26)
 UVBottomRight	= (18, 13, 31, 31)
 
+/*  -----[5: Chooser Frame]-----  */
 [TexturedFrame5]
 Name			= "chooserframe"
 Texture			= "Interface\hud\hud.dtx"
@@ -3491,6 +3404,7 @@ UVBottomLeft	= (1, 152, 4, 163)
 UVBottom		= (7, 152, 99, 163)
 UVBottomRight	= (100, 152, 115, 163)
 
+/*  -----[6: Chooser Box]-----  */
 [TexturedFrame6]
 Name			= "chooserbox"
 Texture			= "Interface\hud\hud.dtx"
@@ -3507,6 +3421,7 @@ UVBottomLeft	= (1, 177, 13, 188)
 UVBottom		= (15, 177, 98, 188)
 UVBottomRight	= (100, 177, 115, 188)
 
+/*  -----[7: Corrupted Chooser Frame]-----  */
 [TexturedFrame7]
 Name			= "chooserwarn"
 Texture			= "Interface\hud\chooser_frame_warn.dtx"
@@ -3522,6 +3437,7 @@ UVBottomLeft	= (1, 20, 11, 30)
 UVBottom		= (13, 20, 18, 30)
 UVBottomRight	= (20, 20, 30, 30)
 
+/*  -----[8: Corrupted Chooser Box]-----  */
 [TexturedFrame8]
 Name			= "chooserboxwarn"
 Texture			= "Interface\hud\chooser_box_warn.dtx"
@@ -3537,8 +3453,12 @@ UVBottomLeft	= (1, 20, 12, 30)
 UVBottom		= (13, 20, 18, 30)
 UVBottomRight	= (19, 20, 30, 30)
 
+/*  -----[9: Weapon Chooser Frame]-----
+**  Potentially unused.
+**  TODO can we confirm this? (LDSO)
+*/
 [TexturedFrame9]
-Name			= "weaponchooserframe"				//--Are we using this?
+Name			= "weaponchooserframe"
 Texture			= "Interface\hud\weapon_chooser.dtx"
 Hollow			= 0
 Inscribe		= 1
@@ -3552,6 +3472,7 @@ UVBottomLeft	= (0, 60, 9, 63)
 UVBottom		= (9, 60, 119, 63)
 UVBottomRight	= (119, 60, 127, 63)
 
+/*  -----[10: Light Cycle Speedometer]-----  */
 [TexturedFrame10]
 Name			= "lightcycle_speedometer"
 Texture			= "Interface\hud\frame_lightcycle.dtx"
@@ -3567,6 +3488,9 @@ UVBottomLeft	= (1, 54, 42, 63)
 UVBottom		= (43, 54, 53, 63)
 UVBottomRight	= (53, 54, 63, 63)
 
+/*  -----[11: Light Cycle Start]-----
+**  TODO what is this?
+*/
 [TexturedFrame11]
 Name			= "lightcycle_start"
 Texture			= "Interface\hud\frame_lightcycle_start.dtx"
@@ -3582,9 +3506,10 @@ UVBottomLeft	= (1, 55, 9, 63)
 UVBottom		= (10, 55, 28, 63)
 UVBottomRight	= (29, 55, 63, 63)
 
-/*  ---[Unused TexturedFrames]---
+/*  -----[Unused TexturedFrames]-----
 **  It's not known why the below Textured Frames were commented out, but
 **  because it was Monolith's doing, it's safe to say these are unused.
+*/
 /*
 [TexturedFrame10]
 Name			= "Basic"
@@ -3600,7 +3525,6 @@ UVRight			= (166, 45, 166, 50)
 UVBottomLeft	= (10, 51, 27, 60)
 UVBottom		= (28, 51, 154, 60)
 UVBottomRight	= (166, 51, 166, 60)
-
 
 [TexturedFrame11]
 // includes a black border
@@ -3665,6 +3589,7 @@ UVBottomLeft	= (220, 225, 233, 243)
 UVBottom		= (234, 225, 247, 243)
 UVBottomRight	= (248, 225, 261, 243)
 */
+
 
 /************************************************************************
 **
@@ -3761,8 +3686,9 @@ UpArrowH			= "interface\menu\sprtex\arrowup_h.dtx"
 DownArrow			= "interface\menu\sprtex\arrowdn.dtx"
 DownArrowH			= "interface\menu\sprtex\arrowdn_h.dtx"
 SelectedColor		= <255.0, 255.0, 255.0>
-NonSelectedColor	= <255.0, 113.0, 113.0> // SecurityProtocol
+NonSelectedColor	= <255.0, 113.0, 113.0>
 DisabledColor		= <180.0, 180.0, 200.0>
+
 
 /************************************************************************
 **
@@ -3828,11 +3754,11 @@ DisabledColor		= <95.0, 95.0, 95.0>
 **  PopupFrame (Path String)
 */
 [MenuPlayer]
-Size				= (280, 240)
-NameWidth			= 90
-LevelWidth			= 70
-PopupSize			= (200, 160)
-PopupFrame			= "interface\menu\sprtex\frame_interlace.dtx"
+Size		= (280, 240)
+NameWidth	= 90
+LevelWidth	= 70
+PopupSize	= (200, 160)
+PopupFrame	= "interface\menu\sprtex\frame_interlace.dtx"
 
 
 /************************************************************************
@@ -3912,7 +3838,7 @@ TeamChatColor	    = <0.0, 255.0, 255.0>
 CheatColor		    = <255.0, 0.0, 255.0>
 TransColor		    = <0.0, 255.0, 0.0>
 MultiAnnounceColor	= <255.0, 255.0, 90.0>
-BasePos 		    = (24,206)
+BasePos 		    = (24, 206)
 Width			    = 600
 MessageTime 	    = 7.5
 MessageFade 	    = 1.5
@@ -4034,8 +3960,6 @@ BasePos 	= (95, 320)
 **
 **  ---<SAFELY DEPRECATED VALUES>---
 **  LineDelay (Float)
-**      - Unused function. Likely due to its functional redundancy to
-**      LineScrollTime, if it was used.
 */
 [MissionText]
 Font			= 0
@@ -4079,7 +4003,7 @@ ScrollSound 	= "interface\snd\enter.wav"
 **	FullScreenPos (2D Point)
 **      - The width and upper-left origin position of the subtitle text
 **      displayed during gameplay. 
-**/
+*/
 [Subtitle]
 font			= 0
 fontsize		= 16
@@ -4112,21 +4036,11 @@ TextColor		= <255.0, 255.0, 255.0>
 **  ---------------------------------------------------------------------
 **
 **  TODO confirm that these never appear in singleplayer
-**  TODO what is the Scores group used for??
 */
 
-/*  ---[Scores (Unknown Usage)]---
-**  Font (Integer),
-**  FontSize (Integer)
-**      - The font ID and text height used for the window text.
-**  BasePos (2D Point)
-**      - The upper-left origin position of the score window.
-**      - For unknown reasons, the horizontal position is locked in.
-**      The window's position can only be influenced vertically.
-**  
+/*  -----[Scores Window (unknown usage)]-----
+**  TODO what is this? (LDSO)
 */
-
-/*  -----[Scores Window (unknown usage)]-----  */
 [Scores]
 Font			    = 0
 FontSize		    = 14
@@ -4186,7 +4100,7 @@ BackroundBorderFrameSize    = 2
 [DiscMatches]
 Font		= 0
 FontSize	= 14
-BasePos		= (100,150)
+BasePos		= (100, 150)
 TextColor	= <192.0, 192.0, 192.0>
 FrameColor	= <0.0, 64.0, 240.0>
 FrameAlpha	= 0.50
@@ -4201,6 +4115,7 @@ FrameAlpha	= 0.50
 **  the scopes for the LOL and Triangulate subroutines.
 **
 **  Documentation is awaiting further testing.
+**  TODO this
 **
 **  A comment will be placed above each overlay value group that will
 **  identify it. Overlays 0 and 1 define the LOL & Triangulate scopes,
@@ -4235,8 +4150,10 @@ FrameAlpha	= 0.50
 */
 [Overlay]
 /*  -----[0: LOL Scope]-----  */
-Scale0			= 0.15
-Sprite0			= ""
+Scale0		= 0.15
+Sprite0		= ""
+//Model0	= "Interface\hud\Spr\zoomout.ltb"
+//Skin0		= "Interface\hud\Spr\zoomout.dtx"
 
 /*  -----[1: Triangulate Scope]-----  */
 Scale1			= 0.25
@@ -4389,6 +4306,7 @@ Name			= "servername"
 Model			= "Interface\Subroutines\models\servername.ltb"
 Skin0			= "Interface\Subroutines\skins\subroutine_commands.dtx"
 RenderStyle0	= "RS\Menu_Alpha_fullbright_blocker.ltb"
+//Pos 		    = <0.0, 0.0, 321.0>
 ParentPiece		= "sub_hub"
 ParentSocket    = "skt_hub"
 IntroAnim		= "show"
@@ -4403,7 +4321,7 @@ Pos 		    = <0.0, 0.0, 321.0>
 ParentPiece		= "sub_hub"
 ParentSocket	= "skt_hub"
 IntroAnim		= "show"
-Layer			= 10
+Layer			= 10 // this is layer 30 in the 4x3 version? (LDSO)
 
 [MenuPiece3]
 Name			= "browser_top"
@@ -4412,8 +4330,8 @@ Skin0			= "Interface\Subroutines\skins\subroutine_hub.dtx"
 RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
 Pos 		    = <0.0, 0.0, 300.0>
 LoopAnim		= "hid"
-//ParentPiece	= "sub_hub"
-//ParentSocket	= "skt_hub"
+//ParentPiece	= "sub_hub" // not commented in the 4x3 version? (LDSO)
+//ParentSocket	= "skt_hub" // not commented in the 4x3 version? (LDSO)
 Layer			= 10
 
 [MenuPiece4]
@@ -4439,6 +4357,7 @@ Name			= "buildpoints_bar"
 Model			= "Interface\Subroutines\models\buildpoints_bar.ltb"
 Skin0			= "Interface\Subroutines\skins\buildpoints_bar.dtx"
 RenderStyle0	= "RS\Menu_Alpha_fullbright.ltb"
+//Pos 		    = <0.0, 0.0, 320.0>
 LoopAnim		= "loop"
 ParentPiece		= "sub_hub"
 ParentSocket	= "skt_hub"
@@ -4928,7 +4847,6 @@ ParentPiece		= "sub_hub"
 ParentSocket	= "skt_hub"
 Layer			= 35
 
-
 [MenuPiece58]
 Name			= "corruption_lib"
 Model			= "Interface\Subroutines\icons\models\corruption_lib.ltb"
@@ -5017,21 +4935,21 @@ Layer			= 40
 **      - The initial rotation of the Character element, on the X axis.
 */
 
-/*  ---[0: Multiplayer Player Setup Character]---  */
+/*  -----[0: Multiplayer Player Setup Character]-----  */
 [Character0]
 Name		= "MPBase"
 Model		= "chars\models\hero_action.ltb"
 Skin0		= "chars\skins\CateAction.dtx"
-Pos			= <0.0,-1.0,20.0>
+Pos			= <0.0, -1.0, 20.0>
 Scale		= 0.15
 Rotation	= 0.0
 
-/*  ---[1: Single Player Light Cycles Character]---  */
+/*  -----[1: Single Player Light Cycles Character]-----  */
 [Character1]
 Name		= "LightCycleBase"
 Model		= "Props\Models\LightCycle.ltb"
 Skin0		= "FX\Tex\specular.dtx"
-Pos			= <-4.0,-1.0,10.0>
+Pos			= <-4.0, -1.0, 10.0>
 Scale		= 0.075
 Rotation    = 90.0
 
@@ -5061,28 +4979,28 @@ Rotation    = 90.0
 **      - The effective distance of the light from its origin point.
 */
 
-/*  ---[0: The Light Almost Every Screen Uses]---  */
+/*  -----[0: The Light Almost Every Screen Uses]-----  */
 [Light0]
-Name			= "Main0"
-Pos 			= <0.0,0.0,-20.0>
-Color			= <255.0,255.0,255.0>
-Radius			= 8000.0
+Name	= "Main0"
+Pos 	= <0.0, 0.0, -20.0>
+Color	= <255.0, 255.0, 255.0>
+Radius	= 8000.0
 
-/*  ---[1: The Light Only Used By The Multiplayer Player Setup Menu]---
-**  TODO test if removing this light has any impact.
+/*  -----[1: The Light Only Used By The Multiplayer Player Setup Menu]-----
+**  TODO figure out what difference that position change makes
 */
 [Light1]
-Name			= "test"
-Pos 			= <0.0,100.0,-100.0>
-Color			= <255.0,255.0,255.0>
-Radius			= 8000.0
+Name	= "test"
+Pos 	= <0.0, 100.0, -100.0>
+Color	= <255.0, 255.0, 255.0>
+Radius	= 8000.0
 
-/*  ---[2: The Light Used By Absolutely Nothing]---  */
+/*  -----[2: The Light Used By Absolutely Nothing]-----  */
 [Light2]
-Name			= "test"
-Pos 			= <100.0,-100.0,-100.0>
-Color			= <255.0,255.0,255.0>
-Radius			= 8000.0
+Name	= "test"
+Pos 	= <100.0, -100.0, -100.0>
+Color	= <255.0, 255.0, 255.0>
+Radius	= 8000.0
 
 
 /************************************************************************
@@ -5096,7 +5014,8 @@ Radius			= 8000.0
 **  Most of these FX are used in menu screen transitions, in the "Screen
 **  Transition Declarations" section of this file.
 **
-**  TODO find out where the FX origin files are
+**  TODO find out where the FX origin files are? Couldn't find anything
+**  in FX.TXT (LDSO)
 **  TODO maybe give names to each FX, if possible
 **
 **  Name (String)
@@ -5114,199 +5033,199 @@ Radius			= 8000.0
 [FX0]
 Name	= "MainBackground"
 FXName	= "TestBackFX"
-Pos 	= <0.0,0.0,300.0>
+Pos 	= <0.0, 0.0, 300.0>
 Loop	= 1
 
 [FX1]
 Name	= "Burn"
 FXName	= "Test_BurningFX"
-Pos 	= <0.0,-15.0,0.0>
+Pos 	= <0.0, -15.0, 0.0>
 Loop	= 0
 
 [FX2]
 Name	= "MENU_main_intro"
 FXName	= "MENU_main_intro_bar"
-Pos 	= <0.0,1.5,17.3>
+Pos 	= <0.0, 1.5, 17.3>
 Loop	= 0
 
 [FX3]
 Name	= "MENU_main_shortin"
 FXName	= "MENU_main_loop"
-Pos 	= <0.0,1.5,17.3>
+Pos 	= <0.0, 1.5, 17.3>
 Loop	= 1
 
 [FX4]
 Name	= "MENU_main_loop"
 FXName	= "MENU_main_loop"
-Pos 	= <0.0,1.5,17.3>
+Pos 	= <0.0, 1.5, 17.3>
 Loop	= 1
 
 [FX5]
 Name	= "SUBS_subroutine_intro"
 FXName	= "SUBS_subroutine_introa"
-Pos 	= <0.0,0.0,320.0>
+Pos 	= <0.0, 0.0, 320.0>
 Loop	= 0
 
 [FX6]
 Name	= "SUBS_subroutine_loop"
 FXName	= "SUBS_subroutine_loop"
-Pos 	= <0.0,0.0,320.0>
+Pos 	= <0.0, 0.0, 320.0>
 Loop	= 1
 
 [FX7]
 Name	= "MENU_single_intro"
 FXName	= "MENU_single_intro"
-Pos 	= <0.0,1.5,17.3>
+Pos 	= <0.0, 1.5, 17.3>
 Loop	= 0
 
 [FX8]
 Name	= "MENU_single_shortin"
 FXName	= "MENU_single_intro"
-Pos 	= <0.0,1.5,17.3>
+Pos 	= <0.0, 1.5, 17.3>
 Loop	= 0
 
 [FX9]
 Name	= "MENU_single_loop"
 FXName	= "MENU_single_loop"
-Pos 	= <0.0,1.5,17.3>
+Pos 	= <0.0, 1.5, 17.3>
 Loop	= 1
 
 [FX10]
 Name	= "MENU_single_main"
 FXName  = "MENU_single_main"
-Pos 	= <0.0,1.5,17.3>
+Pos 	= <0.0, 1.5, 17.3>
 Loop	= 1
 
 [FX11]
 Name	= "MENU_blankFX_700"
 FXName	= "MENU_blankFX_700"
-Pos 	= <0.0,0.0,20.0>
+Pos 	= <0.0, 0.0, 20.0>
 Loop	= 1
 
 [FX12]
 Name	= "MENU_multi_intro"
 FXName	= "MENU_multi_intro"
-Pos 	= <0.0,0.0,20.0>
+Pos 	= <0.0, 0.0, 20.0>
 Loop	= 1
 
 [FX13]
 Name	= "MENU_multi_loop"
 FXName	= "MENU_multi_loop"
-Pos 	= <0.0,0.0,20.0>
+Pos 	= <0.0, 0.0, 20.0>
 Loop	= 1
 
 [FX14]
 Name	= "MENU_multi_main"
 FXName	= "MENU_multi_main"
-Pos 	= <0.0,1.5,17.3>
+Pos 	= <0.0, 1.5, 17.3>
 Loop	= 1
 
 [FX15]
 Name	= "MENU_bgloop"
 FXName	= "MENU_bgloop"
-Pos 	= <0.0,0.0,25.0>
+Pos 	= <0.0, 0.0, 25.0>
 Loop	= 1
 
 [FX16]
 Name	= "MENU_options_intro"
 FXName	= "MENU_options_intro"
-Pos 	= <0.0,1.5,17.3>
+Pos 	= <0.0, 1.5, 17.3>
 Loop	= 1
 
 [FX17]
 Name	= "MENU_options_loop"
 FXName	= "MENU_options_loop"
-Pos 	= <0.0,1.5,17.3>
+Pos 	= <0.0, 1.5, 17.3>
 Loop	= 1
 
 [FX18]
 Name	= "MENU_options_main"
 FXName	= "MENU_options_main"
-Pos 	= <0.0,1.5,17.3>
+Pos 	= <0.0, 1.5, 17.3>
 Loop	= 1
 
 [FX19]
 Name	= "MENU_profile_intro"
 FXName	= "MENU_profile_intro"
-Pos 	= <0.0,1.5,17.3>
+Pos 	= <0.0, 1.5, 17.3>
 Loop	= 1
 
 [FX20]
 Name	= "MENU_profile_loop"
 FXName	= "MENU_profile_loop"
-Pos 	= <0.0,1.5,17.3>
+Pos 	= <0.0, 1.5, 17.3>
 Loop	= 1
 
 [FX21]
 Name	= "MENU_profile_main"
 FXName	= "MENU_profile_main"
-Pos 	= <0.0,1.5,17.3>
+Pos 	= <0.0, 1.5, 17.3>
 Loop	= 1
 
 [FX22]
 Name	= "SUBS_proc_port_waitintro"
 FXName	= "SUBS_proc_port_waitintro"
-Pos 	= <0.0,0.0,320.0>
+Pos 	= <0.0, 0.0, 320.0>
 Loop	= 0
 
 [FX23]
 Name	= "SUBS_proc_port_workintro"
 FXName	= "SUBS_proc_port_workintro"
-Pos 	= <0.0,0.0,320.0>
+Pos 	= <0.0, 0.0, 320.0>
 Loop	= 0
 
 [FX24]
 Name	= "SUBS_proc_disinfect_waitintro"
 FXName	= "SUBS_proc_disinfect_waitintro"
-Pos 	= <0.0,0.0,320.0>
+Pos 	= <0.0, 0.0, 320.0>
 Loop	= 0
 
 [FX25]
 Name	= "SUBS_proc_disinfect_workintro"
 FXName	= "SUBS_proc_disinfect_workintro"
-Pos 	= <0.0,0.0,320.0>
+Pos 	= <0.0, 0.0, 320.0>
 Loop	= 0
 
 [FX26]
 Name	= "SUBS_proc_defrag_waitintro"
 FXName	= "SUBS_proc_defrag_waitintro"
-Pos 	= <0.0,0.0,320.0>
+Pos 	= <0.0, 0.0, 320.0>
 Loop	= 0
 
 [FX27]
 Name	= "SUBS_proc_defrag_workintro"
 FXName	= "SUBS_proc_defrag_workintro"
-Pos 	= <0.0,0.0,320.0>
+Pos 	= <0.0, 0.0, 320.0>
 Loop	= 0
 
 [FX28]
 Name	= "SUBS_proc_shred_waitintro"
 FXName	= "SUBS_proc_shred_waitintro"
-Pos 	= <0.0,0.0,320.0>
+Pos 	= <0.0, 0.0, 320.0>
 Loop	= 0
 
 [FX29]
 Name	= "SUBS_proc_restore_waitintro"
 FXName	= "SUBS_proc_restore_waitintro"
-Pos     = <0.0,0.0,320.0>
+Pos     = <0.0, 0.0, 320.0>
 Loop	= 0
 
 [FX30]
 Name	= "SUBS_proc_restore_workintro"
 FXName	= "SUBS_proc_restore_workintro"
-Pos 	= <0.0,0.0,320.0>
+Pos 	= <0.0, 0.0, 320.0>
 Loop	= 0
 
 [FX31]
 Name    = "LOAD_Test"
 FXName  = "LOAD_Test"
-Pos     = <0.0,0.0,50.0>
+Pos     = <0.0, 0.0, 50.0>
 Loop    = 1
 
 [FX32]
 Name	= "MENU_tronlogo"
 FXName	= "MENU_TronLogo"
-Pos 	= <18.0,25.7,26.0>
+Pos 	= <18.0, 25.7, 26.0>
 Loop	= 1
 
 [FX33]
@@ -5324,14 +5243,25 @@ Loop	= 0
 [FX35]
 Name	= "MENU_KA_logo_dummy"
 FXName	= "MENU_KA_logo_dummy"
-Pos 	= <35.5,24.7,25.0>
+Pos 	= <35.5, 24.7, 25.0>
 Loop	= 0
 
 [FX36]
 Name	= "MENU_KA_logo"
 FXName	= "MENU_KA_logo"
-Pos 	= <35.5,24.7,25.0>
+Pos 	= <35.5, 24.7, 25.0>
 Loop	= 1
+
+/*  -----[37: 16x9 Mask]-----
+**  Added by the Killer App Mod. Creates black bars at the sides of the
+**  screens. Appears only when the Killer App Mod is installed with a
+**  16x9 resolution.
+*/
+/*[FX37]
+Name	= "MENU_169_mask"
+FXName	= "MENU_169_mask"
+Pos 	= <0.0, 0.0, 323.0>
+Loop	= 1*/
 
 
 /************************************************************************
@@ -5386,7 +5316,7 @@ TextOffset	= (8, 4)
 TextColor	= <255.0, 255.0, 255.0>
 Frame		= "interface\menu\sprtex\frame_solid.dtx"
 
-/*  ---[0: Unknown Unnamed DecisionWindow]---
+/*  -----[0: Unknown Unnamed DecisionWindow]-----
 **  TODO What is this? (LDSO)
 */
 [DecisionWindow0]
@@ -5401,7 +5331,7 @@ NumColumns		= 1
 RemoveItems		= 0
 RemoveWindow	= 1
 
-/*  ---[1: Unknown Unnamed DecisionWindow]---  */
+/*  -----[1: Unknown Unnamed DecisionWindow]-----
 **  TODO What is this, and why does it have UV values? (LDSO)
 */
 [DecisionWindow1]
@@ -5427,7 +5357,7 @@ NumColumns		= 1
 RemoveItems		= 0
 RemoveWindow	= 1
 
-/*  ---[2: Archive Bin Item List]--- 
+/*  -----[2: Archive Bin Item List]----- 
 **  The item list that displays when an Archive Bin contains lootable
 **  permissions or subroutines.
 */
@@ -5443,7 +5373,7 @@ NumColumns		= 5
 RemoveItems		= 1
 RemoveWindow	= 0
 
-/*  ---[3: Unknown "Commerce" DecisionWindow]---  
+/*  -----[3: Unknown "Commerce" DecisionWindow]-----  
 **  What is this? (LDSO)
 */
 [DecisionWindow3]
@@ -5458,7 +5388,7 @@ NumColumns		= 5
 RemoveItems		= 0
 RemoveWindow	= 1
 
-/*  ---[4: Core Dump Item List]---  
+/*  -----[4: Core Dump Item List]-----  
 **  The item list that displays when a derezzed enemy has dropped any
 **  lootable permissions or subroutines.
 */
@@ -5521,7 +5451,7 @@ RemoveWindow    = 0
 **      detailed above.
 */
 
-/*  ---[0: Any Menu ---> Main Menu]---  */
+/*  -----[0: Any Screen ---> Main Menu Screen]-----  */
 [Transition0]
 TransitionTo    = "ScreenMain"
 IntroFX0	    = "MENU_main_intro"
@@ -5534,8 +5464,10 @@ IntroFX3	    = "MENU_KA_logo_dummy"
 LoopFX3	        = "MENU_KA_logo"
 IntroFX4        = "MENU_main_Jet_throw"
 LoopFX4		    = ""
+//IntroFX5		= ""
+//LoopFX5		= "MENU_169_mask"
 
-/*  ---[1 & 2: Main Menu <---> Single Player]---  */
+/*  -----[1 & 2: Main Menu Screen <---> Single Player]-----  */
 [Transition1]
 TransitionFrom	= "ScreenMain"
 TransitionTo	= "ScreenSingle"
@@ -5552,6 +5484,8 @@ IntroFX3		= ""
 LoopFX3		    = "MENU_tronlogo"
 IntroFX4 		= ""
 LoopFX4			= "MENU_KA_logo"
+//IntroFX5		= ""
+//LoopFX5		= "MENU_169_mask"
 
 [Transition2]
 TransitionFrom	= "ScreenSingle"
@@ -5568,8 +5502,10 @@ IntroFX3		= ""
 LoopFX3		    = "MENU_tronlogo"
 IntroFX4		= ""
 LoopFX4			= "MENU_KA_logo"
+//IntroFX5		= ""
+//LoopFX5		= "MENU_169_mask"
 
-/*  ---[3 & 4: Single Player <---> Load Game]---  */
+/*  -----[3 & 4: Single Player <---> Load Game]-----  */
 [Transition3]
 TransitionFrom	= "ScreenSingle"
 TransitionTo	= "ScreenLoad"
@@ -5583,6 +5519,8 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition4]
 TransitionFrom	= "ScreenLoad"
@@ -5597,8 +5535,10 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[5 & 6: Any Menu <---> Save Game]---  */
+/*  -----[5 & 6: Any Screen <---> Save Game]-----  */
 [Transition5]
 TransitionTo	= "ScreenSave"
 IntroFX0		= ""
@@ -5611,6 +5551,8 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition6]
 TransitionFrom	= "ScreenSave"
@@ -5624,8 +5566,10 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[7: Any Menu ---> Subroutines]---  */
+/*  -----[7: Any Screen ---> Subroutines]-----  */
 [Transition7]
 TransitionTo	= "ScreenSubroutines"
 IntroFX0		= "SUBS_subroutine_intro"
@@ -5635,7 +5579,7 @@ IntroFX1		= ""
 ShortIntroFX1	= ""
 LoopFX1 		= "MENU_bgloop"
 
-/*  ---[8: Any Menu ---> Multiplayer]---  */
+/*  -----[8: Any Screen ---> Multiplayer]-----  */
 [Transition8]
 TransitionTo	= "ScreenMulti"
 IntroFX0		= "MENU_blankFX_700"
@@ -5650,8 +5594,10 @@ IntroFX3	    = ""
 LoopFX3			= "MENU_tronlogo"
 IntroFX4		= ""
 LoopFX4			= "MENU_KA_logo"
+//IntroFX5		= ""
+//LoopFX5		= "MENU_169_mask"
 
-/*  ---[9: Multiplayer ---> Main Menu]--- */
+/*  -----[9: Multiplayer ---> Main Menu Screen]----- */
 [Transition9]
 TransitionFrom	= "ScreenMulti"
 TransitionTo	= "ScreenMain"
@@ -5667,8 +5613,10 @@ IntroFX3		= ""
 LoopFX3			= "MENU_tronlogo"
 IntroFX4		= ""
 LoopFX4			= "MENU_KA_logo"
+//IntroFX5		= ""
+//LoopFX5		= "MENU_169_mask"
 
-/*  ---[10 & 11: Any Menu <---> Player Setup]---  */
+/*  -----[10 & 11: Any Screen <---> Player Setup]-----  */
 [Transition10]
 TransitionTo	= "ScreenPlayer"
 IntroFX0		= "MENU_multisub_intro"
@@ -5681,6 +5629,8 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition11]
 TransitionFrom	= "ScreenPlayer"
@@ -5694,8 +5644,10 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[12 & 13: Any Menu <---> Join Internet/LAN Game]---  */
+/*  -----[12 & 13: Any Screen <---> Join Internet/LAN Game]-----  */
 [Transition12]
 TransitionTo	= "ScreenJoinServerList"
 IntroFX0		= "MENU_multisub_intro"
@@ -5708,6 +5660,8 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition13]
 TransitionFrom	= "ScreenJoinServerList"
@@ -5721,8 +5675,10 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[14 & 15: Any Menu <---> Game Over]---  */
+/*  -----[14 & 15: Any Screen <---> Game Over]-----  */
 [Transition14]
 TransitionTo	= "ScreenFailure"
 IntroFX0		= ""
@@ -5735,6 +5691,8 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition15]
 TransitionFrom	= "ScreenFailure"
@@ -5748,8 +5706,10 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[16 & 17: Any Menu <---> Host]---  */
+/*  -----[16 & 17: Any Screen <---> Host]-----  */
 [Transition16]
 TransitionTo	= "ScreenHost"
 IntroFX0		= ""
@@ -5762,6 +5722,8 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition17]
 TransitionFrom	= "ScreenHost"
@@ -5775,8 +5737,10 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[18 & 19: Any Menu <---> Host -> Maps Tab]---
+/*  -----[18 & 19: Any Screen <---> Host → Maps Tab]-----
 **  Interesting that this tab requires its own transition.
 */
 [Transition18]
@@ -5791,6 +5755,8 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition19]
 TransitionFrom	= "ScreenHostMaps"
@@ -5804,8 +5770,10 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[20 & 21: Main Menu <---> Options]---  */
+/*  -----[20 & 21: Main Menu Screen <---> Options]-----  */
 [Transition20]
 TransitionFrom	= "ScreenMain"
 TransitionTo	= "ScreenOptions"
@@ -5821,6 +5789,8 @@ IntroFX3		= ""
 LoopFX3		    = "MENU_tronlogo"
 IntroFX4		= ""
 LoopFX4			= "MENU_KA_logo"
+//IntroFX5		= ""
+//LoopFX5		= "MENU_169_mask"
 
 [Transition21]
 TransitionFrom	= "ScreenOptions"
@@ -5837,8 +5807,10 @@ IntroFX3		= ""
 LoopFX3		    = "MENU_tronlogo"
 IntroFX4		= ""
 LoopFX4			= "MENU_KA_logo"
+//IntroFX5		= ""
+//LoopFX5		= "MENU_169_mask"
 
-/*  ---[22 & 23: Any Menu <---> Display]---  */
+/*  -----[22 & 23: Any Screen <---> Display]-----  */
 [Transition22]
 TransitionTo	= "ScreenDisplay"
 IntroFX0		= ""
@@ -5851,6 +5823,8 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition23]
 TransitionFrom	= "ScreenDisplay"
@@ -5864,8 +5838,10 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[24 & 25: Any Menu <---> Sound]---  */
+/*  -----[24 & 25: Any Screen <---> Sound]-----  */
 [Transition24]
 TransitionTo	= "ScreenAudio"
 IntroFX0		= ""
@@ -5878,6 +5854,8 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition25]
 TransitionFrom	= "ScreenAudio"
@@ -5891,8 +5869,10 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[26 & 27: Any Menu <---> Controls]---  */
+/*  -----[26 & 27: Any Screen <---> Controls]-----  */
 [Transition26]
 TransitionTo	= "ScreenControls"
 IntroFX0		= ""
@@ -5905,6 +5885,8 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition27]
 TransitionFrom	= "ScreenControls"
@@ -5918,8 +5900,10 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[28 & 29: Any Menu <---> Configure Controls]---  */
+/*  -----[28 & 29: Any Screen <---> Configure Controls]-----  */
 [Transition28]
 TransitionTo	= "ScreenConfigure"
 IntroFX0		= ""
@@ -5932,6 +5916,8 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition29]
 TransitionFrom	= "ScreenConfigure"
@@ -5945,8 +5931,10 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[30 & 31: Any Menu <---> Mouse]---  */
+/*  -----[30 & 31: Any Screen <---> Mouse]-----  */
 [Transition30]
 TransitionTo	= "ScreenMouse"
 IntroFX0		= ""
@@ -5959,6 +5947,8 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition31]
 TransitionFrom	= "ScreenMouse"
@@ -5972,8 +5962,10 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[32 & 33: Any Menu <---> Keyboard]---  */
+/*  -----[32 & 33: Any Screen <---> Keyboard]-----  */
 [Transition32]
 TransitionTo	= "ScreenKeyboard"
 IntroFX0		= ""
@@ -5986,6 +5978,8 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition33]
 TransitionFrom	= "ScreenKeyboard"
@@ -5999,8 +5993,10 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[34 & 35: Any Menu <---> Game (Options)]---  */
+/*  -----[34 & 35: Any Screen <---> Game (Options)]-----  */
 [Transition34]
 TransitionTo	= "ScreenGame"
 IntroFX0		= ""
@@ -6013,6 +6009,8 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition35]
 TransitionFrom	= "ScreenGame"
@@ -6026,8 +6024,10 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  --[36 & 37: Any Menu <---> Crosshair]---  */
+/*  -----[36 & 37: Any Screen <---> Crosshair]-----  */
 [Transition36]
 TransitionTo	= "ScreenCrosshair"
 IntroFX0		= ""
@@ -6040,6 +6040,8 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition37]
 TransitionFrom	= "ScreenCrosshair"
@@ -6053,8 +6055,10 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[38 & 39: Any Menu <---> Performance]---  */
+/*  -----[38 & 39: Any Screen <---> Performance]-----  */
 [Transition38]
 TransitionTo	= "ScreenPerformance"
 IntroFX0		= ""
@@ -6067,6 +6071,8 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition39]
 TransitionFrom	= "ScreenPerformance"
@@ -6080,8 +6086,10 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[40 & 41: Main Menu <---> Profile]---  */
+/*  -----[40 & 41: Main Menu Screen <---> Profile]-----  */
 [Transition40]
 TransitionFrom	= "ScreenMain"
 TransitionTo	= "ScreenProfile"
@@ -6097,6 +6105,8 @@ IntroFX3		= ""
 LoopFX3		    = "MENU_tronlogo"
 IntroFX4		= ""
 LoopFX4			= "MENU_KA_logo"
+//IntroFX5		= ""
+//LoopFX5		= "MENU_169_mask"
 
 [Transition41]
 TransitionFrom	= "ScreenProfile"
@@ -6113,8 +6123,10 @@ IntroFX3		= ""
 LoopFX3		    = "MENU_tronlogo"
 IntroFX4		= ""
 LoopFX4			= "MENU_KA_logo"
+//IntroFX5		= ""
+//LoopFX5		= "MENU_169_mask"
 
-/*  ---[42 & 43: Any Menu <---> Host -> Connection Tab]---  */
+/*  -----[42 & 43: Any Screen <---> Host → Connection Tab]-----  */
 [Transition42]
 TransitionTo	= "ScreenHostConnection"
 IntroFX0		= ""
@@ -6127,6 +6139,8 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition43]
 TransitionFrom	= "ScreenHostConnection"
@@ -6140,8 +6154,10 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[44 & 45: Any Menu <---> Join Internet/LAN Game -> Server Info Tab]---  */
+/*  -----[44 & 45: Any Screen <---> Join Internet/LAN Game → Server Info Tab]-----  */
 [Transition44]
 TransitionTo	= "ScreenServerInfo"
 IntroFX0		= ""
@@ -6154,6 +6170,8 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition45]
 TransitionFrom	= "ScreenServerInfo"
@@ -6167,8 +6185,10 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[46 & 47: Any Menu <---> Unknown Menu "ScreenSecurity"]---
+/*  -----[46 & 47: Any Screen <---> Unknown Screen "ScreenSecurity"]-----
 **  The original title seems to imply this menu is accessed via the
 **  Multiplayer menu. But I still cannot find it.
 */
@@ -6184,6 +6204,8 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition47]
 TransitionFrom	= "ScreenSecurity"
@@ -6197,8 +6219,10 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[48 & 49: Any Menu <---> Team Select]--- */
+/*  -----[48 & 49: Any Screen <---> Team Select]-----  */
 [Transition48]
 TransitionTo	= "TeamSelect"
 IntroFX0		= ""
@@ -6211,6 +6235,8 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition49]
 TransitionFrom	= "TeamSelect"
@@ -6224,12 +6250,14 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 /*  From here, you start to see that there are redundant transitions
 **  that had been defined before. It's not explained why these appear
 **  multiple times, but it's still not recommended to remove anything.
-**
-**  ---[50: Any Menu ---> Load Game]---  */
+*/
+/*  -----[50: Any Menu ---> Load Game]-----  */
 [Transition50]
 TransitionTo	= "ScreenLoad"
 IntroFX0		= ""
@@ -6242,8 +6270,10 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[51: Any Menu ---> Options]---  */
+/*  -----[51: Any Menu ---> Options]-----  */
 [Transition51]
 TransitionTo	= "ScreenOptions"
 IntroFX0		= ""
@@ -6257,10 +6287,13 @@ ShortIntroFX2	= ""
 LoopFX2 		= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[52: Any Menu ---> Unused Menu "ScreenTilt"]---
+/*  -----[52: Any Menu ---> Unused Screen "ScreenTilt"]-----
 **  This is the only time ScreenTilt is named. It's definitely an unused
-**  screen definition that persisted down here.
+**  screen definition that persisted down here. Monolith referred to it
+**  as "Network Security".
 */
 [Transition52]
 TransitionTo	= "ScreenTilt"
@@ -6272,8 +6305,10 @@ ShortIntroFX1	= ""
 LoopFX1			= "MENU_KA_logo"
 IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
+//IntroFX3		= ""
+//LoopFX3		= "MENU_169_mask"
 
-/*  ---[53: Any Menu ---> Team Select]---  */
+/*  -----[53: Any Menu ---> Team Select]-----  */
 [Transition53]
 TransitionTo	= "TeamSelect"
 IntroFX0		= ""
@@ -6284,8 +6319,10 @@ ShortIntroFX1	= ""
 LoopFX1			= "MENU_KA_logo"
 IntroFX2	    = ""
 LoopFX2		    = "MENU_tronlogo"
+//IntroFX3		= ""
+//LoopFX3		= "MENU_169_mask"
 
-/*  ---[54: Any Menu <---> Host]---  */
+/*  -----[54: Any Menu <---> Host]-----  */
 [Transition54]
 TransitionTo	= "ScreenHostGame"
 IntroFX0		= ""
@@ -6298,6 +6335,8 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition55]
 TransitionFrom	= "ScreenHostGame"
@@ -6311,10 +6350,11 @@ IntroFX2		= ""
 LoopFX2		    = "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  Redundancies end here for a while.
-**
-**  ---[56 & 57: Single Player <---> Light Cycles -> Circuit Play Tab]---  */
+/*  Redundancies end here for a while. */
+/*  -----[56 & 57: Single Player <---> Light Cycles → Circuit Play Tab]-----  */
 [Transition56]
 TransitionFrom	= "ScreenSingle"
 TransitionTo	= "ScreenLightCycleCircuit"
@@ -6328,6 +6368,8 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition57]
 TransitionFrom	= "ScreenLightCycleCircuit"
@@ -6342,8 +6384,10 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[58 & 59: Light Cycles -> Circuit Play Tab <---> Light Cycles Tab]---  */
+/*  -----[58 & 59: Light Cycles → Circuit Play Tab <---> Light Cycles Tab]-----  */
 [Transition58]
 TransitionFrom	= "ScreenLightCycleCircuit"
 TransitionTo	= "ScreenLightCyclePlayerConfig"
@@ -6357,6 +6401,8 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition59]
 TransitionFrom	= "ScreenLightCyclePlayerConfig"
@@ -6371,8 +6417,10 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[60 & 61: Light Cycles -> Circuit Play Tab <---> Custom Settings Tab]---  */
+/*  -----[60 & 61: Light Cycles → Circuit Play Tab <---> Custom Settings Tab]-----  */
 [Transition60]
 TransitionFrom	= "ScreenLightCycleCircuit"
 TransitionTo	= "ScreenLightCycleCustomGame"
@@ -6386,6 +6434,8 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition61]
 TransitionFrom	= "ScreenLightCycleCustomGame"
@@ -6400,8 +6450,10 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[62 & 63: Light Cycles -> Circuit Play Tab <---> Custom Play Tab]---  */
+/*  -----[62 & 63: Light Cycles → Circuit Play Tab <---> Custom Play Tab]-----  */
 [Transition62]
 TransitionFrom	= "ScreenLightCycleCircuit"
 TransitionTo	= "ScreenLightCycleCustomMap"
@@ -6415,6 +6467,8 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition63]
 TransitionFrom	= "ScreenLightCycleCustomMap"
@@ -6429,8 +6483,10 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[64 & 65: Light Cycles -> Light Cycles Tab <---> Custom Settings Tab]---  */
+/*  -----[64 & 65: Light Cycles → Light Cycles Tab <---> Custom Settings Tab]-----  */
 [Transition64]
 TransitionFrom	= "ScreenLightCyclePlayerConfig"
 TransitionTo	= "ScreenLightCycleCustomGame"
@@ -6444,6 +6500,8 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition65]
 TransitionFrom	= "ScreenLightCycleCustomGame"
@@ -6458,8 +6516,10 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[66 & 67: Light Cycles -> Light Cycles Tab <---> Custom Play Tab]---  */
+/*  -----[66 & 67: Light Cycles → Light Cycles Tab <---> Custom Play Tab]-----  */
 [Transition66]
 TransitionFrom	= "ScreenLightCyclePlayerConfig"
 TransitionTo	= "ScreenLightCycleCustomMap"
@@ -6473,6 +6533,8 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition67]
 TransitionFrom	= "ScreenLightCycleCustomMap"
@@ -6487,8 +6549,10 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[68 & 69: Light Cycles -> Custom Settings Tab <---> Custom Play Tab]---  */
+/*  -----[68 & 69: Light Cycles → Custom Settings Tab <---> Custom Play Tab]-----  */
 [Transition68]
 TransitionFrom	= "ScreenLightCycleCustomGame"
 TransitionTo	= "ScreenLightCycleCustomMap"
@@ -6502,6 +6566,8 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 [Transition69]
 TransitionFrom	= "ScreenLightCycleCustomMap"
@@ -6516,8 +6582,10 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[70: Any Menu ---> All Loading Screens]
+/*  -----[70: Any Screen ---> All Loading Screens]-----  */
 [Transition70]
 TransitionTo	= "LoadScreenDefault"
 IntroFX0	    = "MENU_main_intro"
@@ -6528,9 +6596,11 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[71: Unspecified Menu ---> Light Cycles -> Circuit Play Tab]---  
-**  TransitionFrom is blank - is this used?
+/*  -----[71: Unspecified Screen ---> Light Cycles → Circuit Play Tab]-----  
+**  TransitionFrom is blank - is this used? (LDSO)
 */
 [Transition71]
 TransitionFrom	= ""
@@ -6545,8 +6615,10 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[72: Any Menu ---> Light Cycle Victory Screen]---  */
+/*  -----[72: Any Screen ---> Light Cycle Victory Screen]-----  */
 [Transition72]
 TransitionTo	= "ScreenLightCycleVictory"
 IntroFX0		= ""
@@ -6559,9 +6631,11 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[71: Unspecified Menu ---> Light Cycles -> Custom Settings Tab]---  
-**  TransitionFrom is blank - is this used?
+/*  -----[73: Unspecified Screen ---> Light Cycles → Custom Settings Tab]-----  
+**  TransitionFrom is blank - is this used? (LDSO)
 */
 [Transition73]
 TransitionFrom	= ""
@@ -6576,9 +6650,11 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
-/*  ---[71: Unspecified Menu ---> Light Cycles -> Custom Play Tab]---  
-**  TransitionFrom is blank - is this used?
+/*  -----[74: Unspecified Screen ---> Light Cycles → Custom Play Tab]-----  
+**  TransitionFrom is blank - is this used? (LDSO)
 */
 [Transition74]
 TransitionFrom	= ""
@@ -6593,6 +6669,8 @@ IntroFX2		= ""
 LoopFX2			= "MENU_tronlogo"
 IntroFX3		= ""
 LoopFX3			= "MENU_KA_logo"
+//IntroFX4		= ""
+//LoopFX4		= "MENU_169_mask"
 
 
 /************************************************************************
@@ -6608,65 +6686,91 @@ LoopFX3			= "MENU_KA_logo"
 **  round of testing. Until then, it cannot be confirmed whether or not
 **  any of them are used or not.
 **  TODO incomplete documentation here. Test & KAMod verification.
+**  TODO any insight on which of these are used? I got ObjectiveRect and
+**  IOCameraRect but can't figure out any of the others (LDSO)
+**  
 **
-**	MessageBoxTexture (Path String)
-**		- The name of the DTX to use for background art on the Message Box.
-**	FailScreenBackground (String)
-**		The name of the pcx to use for background art on the Mission
-**		Failure screen.
-**	FailStringPos (2D Point)
-**		The position of the text string on the Mission Failure screen.
-**		This point is relative to a 640x480 resolution and will be scaled
-**		for other resolutions.
-**	FailScreenDelay (Float)
-**		How long (in seconds) to wait on the Mission Failure screen.
-**	DeathDelay (Float)
-**		How long (in seconds) to wait after player dies before showing the 
-**      Mission Failure screen.
-**	NightVisionModelColor (Vector)
-**		Color to add to models while using night vision <r, g, b>
-**	NightVisionScreenTint (Vector)
-**		Color to tint the screen while using night vision <r, g, b>
-**	WeaponPickupColor (Vector)
-**		Color to tint the screen when a weapon is picked up <r, g, b>
-**	AmmoPickupColor (Vector)
-**		Color to tint the screen when a weapon is picked up <r, g, b>
-**	TintTime (Float)
-**		Duration in seconds of screen tint when weapons or ammo are picked up
-**	HelpFont (String)
-**		Name of the bitmap font to use rollover help.
-**	SmallFontBase (String)
-**		Base name of the bitmap font set used for small text.
-**	MediumFontBase (String)
-**		Base name of the bitmap font set used for medium text.
-**	LargeFontBase (String)
-**		Base name of the bitmap font set used for large text.
-**	TitleFont (String)
-**		Name of the bitmap font to use for screen titles.
-**	MessageTime (Float)
-**		How long in seconds that messages are displayed.
-**		(includes fade out time)
-**	MessageFade (Float)
-**		How long in seconds that messages are it takes for a message to fade.
-**		(included in total message time)
-**	MaxMessages (int)
-**		How many messages may appear on screen at one time.
+**  DialogFrame (Path String)
+**      -
+**  DialogFontFace (Integer),
+**  DialogFontSize (Integer)
+**      -
+**  FailStringPos (2D Point)
+**      - 
+**  FailScreenDelay (Float)
+**      -
+**  DeathDelay (Float)
+**      -
+**  TintTime (Float)
+**      -
+**  HUDChooserHColor (Vector)
+**      - 
+**  CrosshairGapMin (Integer),
+**  CrosshairGapMax (Integer)
+**      -
+**  CrosshairBarMin (Integer),
+**  CrosshairBarMax (Integer)
+**      -
+**  PreturbRotationEffect (Integer)
+**      -
+**  PreturbIncreaseSpeed (Integer),
+**  PreturbDecreaseSpeed (Integer)
+**      - 
+**  PreturbWalkPercent (Float)
+**      -
+**  MessageTime (Float)
+**      - 
+**  MessageFade (Float)
+**      -
+**  MaxMessages (Integer)
+**      -
+**  PopupTextRect (Rectangle)
+**      -
+**  ObjectiveRect (Rectangle) (KAMod)
+**      - 
+**  Team1Color (Vector),
+**  Team2Color (Vector)
+**      - 
+**  IOCameraRect (Rectangle) (KAMod)
+**      - 
+**  IOCameraFOVX (Float),
+**  IOCameraFOVY (Float)
+**      - 
+**  TimerSize (Integer)
+**      -
+**  TimerPos (2D Point) (KAMod)
+**      - 
+**
+**  ---<SAFELY DEPRECATED VALUES>---
+**  FailScreenBackground (Path String)
+**  NightVisionModelColor (Vector)
+**  NightVisionScreenTint (Vector)
+**  InfraredModelColor (Vector)
+**  InfraredLightScale (Vector?)
+**  MineDetectScreenTint (Vector)
+**  WeaponPickupColor (Vector)
+**  AmmoPickupColor (Vector)
+**  SubtitleTint (Vector)
+**  HealthTint (Vector)
+**  ArmorTint (Vector)
+**  AmmoTint (Vector)
+**  PopupTint (Vector)
 */
 [Miscellaneous]
 DialogFrame 			= "interface\menu\sprtex\frame_solid.dtx"
 DialogFontFace			= 1
 DialogFontSize			= 14
-FailScreenBackground	= "interface\missionfailure.pcx"
+//FailScreenBackground	= "interface\missionfailure.pcx"
 FailStringPos			= (320, 200)
 FailScreenDelay 		= 5.0
 DeathDelay				= 5.0
-NightVisionModelColor	= <32.0, 128.0, 32.0>
-NightVisionScreenTint	= <0.0, 255.0, 0.0>
-InfraredModelColor		= <96.0, 32.0, 0.0>
-InfraredLightScale		= <255.0, 0.0, 0.0>
-MineDetectScreenTint	= <224.0, 224.0, 0.0>
-WeaponPickupColor		= <80.0, 40.0, 128.0>
-AmmoPickupColor 		= <80.0, 40.0, 128.0>
+//NightVisionModelColor	= <32.0, 128.0, 32.0>
+//NightVisionScreenTint	= <0.0, 255.0, 0.0>
+//InfraredModelColor	= <96.0, 32.0, 0.0>
+//InfraredLightScale	= <255.0, 0.0, 0.0>
+//MineDetectScreenTint	= <224.0, 224.0, 0.0>
+//WeaponPickupColor		= <80.0, 40.0, 128.0>
+//AmmoPickupColor 		= <80.0, 40.0, 128.0>
 TintTime				= 2.000000
 HUDChoserHColor 		= <255.0, 255.0, 255.0>
 CrosshairGapMin 		= 5
@@ -6682,14 +6786,13 @@ MessageFade 			= 0.75
 MaxMessages 			= 5
 PopupTextRect			= (20, 80, 620, 340)
 ObjectiveRect			= (80, 40, 560, 300)
-SubtitleTint			= <255.0, 255.0, 128.0>
-HealthTint				= <255.0, 128.0, 128.0>
-ArmorTint				= <128.0, 128.0, 255.0>
-AmmoTint				= <240.0, 240.0, 128.0>
-PopupTint				= <255.0, 255.0, 255.0>
+//SubtitleTint			= <255.0, 255.0, 128.0>
+//HealthTint			= <255.0, 128.0, 128.0>
+//ArmorTint				= <128.0, 128.0, 255.0>
+//AmmoTint				= <240.0, 240.0, 128.0>
+//PopupTint				= <255.0, 255.0, 255.0>
 Team1Color				= <64.0, 64.0, 255.0>
 Team2Color				= <255.0, 64.0, 64.0>
-//IOCameraRect			= (210, 20, 430, 185)
 IOCameraRect			= (263, 102, 378, 275)
 IOCameraFOVX			= 70.0
 IOCameraFOVY			= 60.0
