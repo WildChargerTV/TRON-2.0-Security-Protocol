@@ -15,35 +15,67 @@
 **  the Table of Contents for the names of each section.
 **
 **  TODO maybe better way to explain it?
+**  TODO is it safe to assume vectors imply hitscan?
 */
 
 /************************************************************************
 **
-**  Table of Contents
+**               ----------[Table of Contents]----------
 **
 **  TODO this.
 */
 
 /************************************************************************
 **
-**                               Brains
+**                    ----------[Brains]----------
 **
 **  Brain definitons are responsible for managing AI behavior depending
-**  on its current state. Every NPC should have one of these.
+**  on its current state. Every NPC will always have one of these.
 **
-** DodgeVectorCheckTime					- how frequently we check to see if we need to dodge a vector
-** DodgeVectorCheckChance				- the % chance we will check to see if we need to dodge a vector once this time is up
-** DodgeVectorDelayTime					- after dodging a vector, the time we must wait before we can check again
-** DodgeVectorShuffleDist               - how much space is needed to shuffle.
-** DodgeVectorRollDist                  - how much space is needed to roll.
-** DodgeVectorShuffleChance             - the % chance the dodge will be a shuffle.
-** DodgeVectorRollChance                - the % chance the dodge will be a roll.
-** DodgeVectorBlockChance               - the % chance the dodge will be a block.
+**  ---<Dodge Values>---
+**  AI in TRON 2.0 is able to Dodge incoming weapon fire in one of three
+**  possible ways:
+**      1: Shuffle - The AI will attempt to sidestep the ordinance.
+**      2: Roll - The AI will attempt to either duck, or perform a dodge
+**      roll, in order to evade the ordinance.
+**      3: Block - The AI will raise its arms to protect itself. A Block
+**      is ineffective if the AI is not holding a Disc, or one of its 
+**      variants.
+**  Depending on whether the AI is responding to vectors (hitscan) or
+**  projectiles, the chance in which it decides to attempt a Dodge can
+**  differ. The chances for which of the three options it will opt for, 
+**  however, cannot.
+**  Dodging can only occur from an Attack state; however, a Dodge check
+**  can be performed immediately upon entering this state. If the odds
+**  are in its favor, it can attempt a Dodge at a moment's notice.
 **
-** DodgeProjectileCheckTime				- how frequently we check to see if we need to dodge a Projectile
-** DodgeProjectileCheckChance			- the % chance we will check to see if we need to dodge a Projectile once this time is up
-** DodgeProjectileDelayTime				- after dodging a projectile, the time we must wait before we can check again
-** 									
+**  DodgeVectorCheckTime (Float)
+**      - The frequency, in seconds, of which an AI can decide to check
+**      and see if it needs to Dodge a vector.
+**  DodgeVectorCheckChance (Float)
+**      - The percentage chance 
+**      - the % chance we will check to see if we need to dodge a vector once this time is up
+**  DodgeVectorDelayTime					- after dodging a vector, the time we must wait before we can check again
+**  DodgeVectorShuffleDist               - how much space is needed to shuffle.
+**  DodgeVectorRollDist                  - how much space is needed to roll.
+**  DodgeVectorShuffleChance             - the % chance the dodge will be a shuffle.
+**  DodgeVectorRollChance                - the % chance the dodge will be a roll.
+**  DodgeVectorBlockChance               - the % chance the dodge will be a block.
+**  DodgeProjectileCheckTime				- how frequently we check to see if we need to dodge a Projectile
+**  DodgeProjectileCheckChance			- the % chance we will check to see if we need to dodge a Projectile once this time is up
+**  DodgeProjectileDelayTime				- after dodging a projectile, the time we must wait before we can check again
+**
+**  ---<Attack Values>---
+** 	The Attack state is an AI's default state while in combat with an
+**  established line of sight towards a valid target. Based on its
+**  current distance from the target, it can choose to perform a ranged,
+**  thrown, or melee attack. Most weapons in TRON 2.0 are considered
+**  ranged, with the Ball Primitive being the only one that the AI will
+**  consider to be a throwable. 
+**  
+**  When entering the Attack state, an AI can also choose, at random, to
+**  attack from a crouching position. Doing so does not incur a delay of
+**  any kind to hinder an AI from attempting a Dodge.
 ** AttackRangedRange					- the min/max distance we must be at to attack with a ranged weapon (e.g. rifle)
 ** AttackThrownRange				    - the min/max distance we must be at to attack with a thrown weapon (e.g. grenade)
 ** AttackMeleeRange						- the min/max distance we must be at to attack with a melee weapon (e.g. sword)
@@ -101,10 +133,16 @@
 **                                        "None" means affected by all damage types.
 */
 
+/*  -----[0: Default Brain]-----
+**  This is the default option DEdit pre-selects when a new NPC is added
+**  to the world. 
+**
+**  DO NOT RENAME THIS ENTRY.
+*/
 [Brain0]
-
 Name								= "Default" // DO NOT REMOVE OR RENAME THIS ENTRY!
-									
+
+/*  ---[Dodge Values]---  */							
 DodgeVectorCheckTime				= 0.25
 DodgeVectorCheckChance				= 1.00
 DodgeVectorDelayTime				= 3.00
