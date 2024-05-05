@@ -10,6 +10,8 @@ Thank you for your interest in **TRON 2.0: Security Protocol**. At present, the 
 
 The version of TRON 2.0: Security Protocol currently available is a cosmetic change that sees an ICP Regular replacing Jet in performing the disc-throwing animation at the main menu. Future updates will build on this as they become available.
 
+Feel free to join the Security Protocol Discord Server to keep up more closely with development: https://discord.gg/7NNeBsE
+
 More information will be available soon. Thank you.
 
 ## Installation & Uninstallation
