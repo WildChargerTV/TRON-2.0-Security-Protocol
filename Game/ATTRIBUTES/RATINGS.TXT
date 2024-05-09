@@ -22,20 +22,17 @@
 **  PointsPerLevel (Integer)
 **      - The amount of points that are awarded to the player whenever
 **      they reach a major version upgrade.
-**
 **  InitialPoints (Integer)
 **      - The amount of points that are given to the player at the start
 **      of a campaign, or when loading into a custom map.
 **      - Because this is a global setting, it is highly discouraged to
 **      change this, and instead use the AddBuildPoints command in DEdit
 **      to provide the player an initial version number greater than 0.
-**
 **  MinValue (Integer),
 **  MaxValue (Integer)
 **      - The minimum/maximum amount of points that can be allocated to
 **      each of the five Performance Ratings. This is a permanently
 **      shared setting that cannot be changed per rating.
-**
 **  InitialValue (Integer)
 **      - The amount of points initially allocated to each of the five
 **      Performance Ratings at the start of a campaign, or when loading
@@ -43,49 +40,45 @@
 **      - Because this is a global setting, it is highly discouraged to
 **      change this, and instead use the AddBuildPoints command in DEdit
 **      to provide the player an initial version number greater than 0.
-**
 **  <ItemTransfer> (Custom Vector)
 **      - The remaining fields all set transfer times (in seconds) for 
 **      all of the game's item types, including transfers from Archive
 **      Bins and Core Dumps.
-**
 **      - The field's accepted data value is in the syntax of a Vector.
 **      All values are times in seconds. 
-**      -- The first value defines the transfer time when the Transfer 
-**      Rate rating is at the MinValue.
-**      -- The second value is intended to define the transfer time
-**      when the Transfer Rate rating is at the MaxValue. However, this
-**      value is not ever truly reached, because a rating at MaxValue
-**      goes directly to Surge status, and therefore uses the third
-**      value instead.
-**      -- The third value defines the transfer time when the Transfer
-**      Rate rating has reached Surge status.
-**
+**          - The first value defines the transfer time when the
+**          Transfer Rate rating is at the MinValue.
+**          - The second value is intended to define the transfer time
+**          when the Transfer Rate rating is at the MaxValue. However,
+**          this value is not ever truly reached, because a rating at
+**          MaxValue goes directly to Surge status, and therefore uses
+**          the third value instead.
+**          - The third value defines the transfer time when the
+**          Transfer Rate rating has reached Surge status.
 **      - The different types of transfers are described as follows:
-**      -- AlphaSubTransfer, BetaSubTransfer, GoldSubTransfer: For
-**      Alpha, Beta, and Gold Subroutines respectively.
-**      -- ProceduralTransfer: For the Disinfect, Defrag, and Port
-**      Procedurals. Fully functional, although no Procedurals are
-**      obtained in this way in the game.
-**      -- PrimitiveTransfer: For the "5" Primitive weapons. The "Hands"
-**      "weapon" counts under this category, but getting it in this way
-**      doesn't actually have any visible effects. The other four work
-**      as intended.
-**      -- PsetTransfer: For the 8 in-game Permissions.
-**      -- EmailTransfer: For Email files.
-**      -- HelpFileTransfer: For Help Files. Fully functional, although
-**      no Help Files are obtained in this way in the game.
-**      -- CustomTransfer: For an arbitrary "item", or an item that does
-**      not apply to any of the above categories, like a Video Archive.
-**      Transferring a Custom item simply executes a custom command, or
-**      does nothing if no command was given.
+**          - AlphaSubTransfer, BetaSubTransfer, GoldSubTransfer: For
+**          Alpha, Beta, and Gold Subroutines respectively.
+**          - ProceduralTransfer: For the Disinfect, Defrag, and Port
+**          Procedurals. Fully functional, although no Procedurals are
+**          obtained in this way in the game.
+**          - PrimitiveTransfer: For the "5" Primitive weapons. The
+**          "Hands" "weapon" counts under this category, but getting it
+**          in this way doesn't actually have any visible effects. The
+**          other four work as intended.
+**          - PsetTransfer: For the 8 in-game Permissions.
+**          - EmailTransfer: For Email files.
+**          - HelpFileTransfer: For Help Files. Fully functional,
+**          although no Help Files are obtained in this way in the game.
+**          - CustomTransfer: For an arbitrary "item", or an item that
+**          does not apply to any of the above categories, like a Video
+**          Archive. Transferring a Custom item simply executes a custom 
+**          command, or does nothing if no command was given.
 **
-**  ---[SAFELY DEPRECATED VALUES]---
-**  LowEnergyRecharge (Unknown),
-**  HighEnergyRecharge (Unknown),
-**  SurgeEnergyRecharge (Unknown),
+**  ---<SAFELY DEPRECATED VALUES>---
+**  LowEnergyRecharge (Unknown)
+**  HighEnergyRecharge (Unknown)
+**  SurgeEnergyRecharge (Unknown)
 **  RechargeRate (Unknown)
-**      - Unused values, deprecated by Monolith.
 */
 
 [Ratings]
