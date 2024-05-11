@@ -50,12 +50,17 @@
 **  are in its favor, it can attempt a Dodge at a moment's notice.
 **
 **  DodgeVectorCheckTime (Float)
-**      - The frequency, in seconds, of which an AI can decide to check
-**      and see if it needs to Dodge a vector.
+**      - Assuming that the DodgeVectorDelayTime is not active, this is
+**      the interval timer that determines how often the AI might check
+**      to see if it needs to Dodge a vector. Measured in seconds.
 **  DodgeVectorCheckChance (Float)
-**      - The percentage chance 
-**      - the % chance we will check to see if we need to dodge a vector once this time is up
-**  DodgeVectorDelayTime					- after dodging a vector, the time we must wait before we can check again
+**      - Whenever the DodgeVectorCheckTime has elapsed, this is the
+**      percentage chance that an AI might check to see if it needs to
+**      Dodge a vector. Accepts values between 0 and 1, inclusive.
+**  DodgeVectorDelayTime (Float)
+**      - After attempting a Dodge, this is the cooldown timer that
+**      determines how long the AI must wait until it can try to Dodge
+**      a vector again.	
 **  DodgeVectorShuffleDist               - how much space is needed to shuffle.
 **  DodgeVectorRollDist                  - how much space is needed to roll.
 **  DodgeVectorShuffleChance             - the % chance the dodge will be a shuffle.
