@@ -8,11 +8,15 @@
 **  fields that allow two different entities do the same thing slightly 
 **  differently.
 **
+**  Please note that due to the relative difficulty to test AI at the
+**  moment, a lot of the currently provided descriptions are based on
+**  partial speculation, and are likely to be inaccurate. Refinements
+**  will be made over time as we learn more.
+**
 **  When adding a new NPC to a world in DEdit, its Brain property will
 **  refer directly to this file.
 **
-**  This file has been divided into sections for easier navigation. See
-**  the Table of Contents for the names of each section.
+**  This file has been divided into sections for easier navigation.
 **
 **  TODO maybe better way to explain it?
 **  TODO is it safe to assume vectors imply hitscan?
@@ -32,7 +36,46 @@
 **  Brain definitons are responsible for managing AI behavior depending
 **  on its current state. Every NPC will always have one of these.
 **
-**  ---<Dodge Values>---
+**  ---<General Settings>---
+**  Name (String)
+**      - The name of the Brain. This is what will show up in DEdit.
+**  MajorAlarmThreshold (Integer),
+**  ImmediateAlarmThreshold (Integer)
+**      - The alarm levels in which the AI must reach before assuming a
+**      higher threat level. 
+**      At the MajorAlarmThreshold, a threat is assumed, and the AI will
+**      enter a search state. 
+**      At the ImmediateAlarmThreshold, the AI has confirmed a threat, 
+**      and will either enter the Attack state, or run to call for
+**      reinforcements.
+**  TauntChance (Float),
+**  TauntDelay (Float)
+**      - The percentage chance that an AI will interrupt its own Attack
+**      state to perform a Taunt, as well as the time, in seconds, to
+**      delay between taunts. Taunting has no interval timer, meaning it
+**      will only perform a Taunt check once per delay time.
+**      - The only AI that is capable of performing a Taunt in TRON 2.0
+**      is the fCon Monster, which will perform a taunt once every 30
+**      seconds. For all other AI, both of these settings should be set
+**  CanLipSync (Boolean)
+**      - Determines whether the AI can lip sync to voice lines, where
+**      lip syncing files are available.
+**      TRUE: The AI will use lip syncing where possible.
+**      FALSE: The AI will not use any lip syncing.
+**  DamageMask (String)
+**      - The name of a DamageMask to assign to the AI. Refer to the
+**      DamageMask section for more details. Setting this to "None"
+**      renders the AI vulnerable to all damage types.
+**      - The only AI that uses a DamageMask in TRON 2.0 is the Rector
+**      Script. For all other AI, this should be set to "None".
+**  OnlyDamagedByPlayer (Boolean)
+**      - Determines whether or not the AI can be harmed by damage not
+**      inflicted by the player.
+**      TRUE: The AI can only be damaged by the player.
+**      FALSE: The AI can be damaged from any source as permitted by its
+**      DamageMask, if any is provided.
+**
+**  ---<Dodge Settings>---
 **  AI in TRON 2.0 is able to Dodge incoming weapon fire in one of three
 **  possible ways:
 **      1: Shuffle - The AI will attempt to sidestep the ordinance.
@@ -58,19 +101,37 @@
 **      percentage chance that an AI might check to see if it needs to
 **      Dodge a vector. Accepts values between 0 and 1, inclusive.
 **  DodgeVectorDelayTime (Float)
-**      - After attempting a Dodge, this is the cooldown timer that
-**      determines how long the AI must wait until it can try to Dodge
-**      a vector again.	
-**  DodgeVectorShuffleDist               - how much space is needed to shuffle.
-**  DodgeVectorRollDist                  - how much space is needed to roll.
-**  DodgeVectorShuffleChance             - the % chance the dodge will be a shuffle.
-**  DodgeVectorRollChance                - the % chance the dodge will be a roll.
-**  DodgeVectorBlockChance               - the % chance the dodge will be a block.
-**  DodgeProjectileCheckTime				- how frequently we check to see if we need to dodge a Projectile
-**  DodgeProjectileCheckChance			- the % chance we will check to see if we need to dodge a Projectile once this time is up
-**  DodgeProjectileDelayTime				- after dodging a projectile, the time we must wait before we can check again
+**      - After attempting to Dodge a vector, this is the cooldown timer
+**      that determines how long the AI must wait until it can try to
+**      Dodge again.	
+**  DodgeVectorShuffleDist (Float),
+**  DodgeVectorRollDist (Float)
+**      - The space needed in order to perform a shuffle or a roll. It
+**      is not yet known if the AI is checking for this space in all
+**      directions, or just the direction in which it will perform the
+**      Dodge.
+**      - TODO update with ingame unit measure eventually
+**  DodgeVectorShuffleChance (Float),
+**  DodgeVectorRollChance (Float),
+**  DodgeVectorBlockChance (Float)
+**      - The percentage change that a Dodge will be a shuffle, roll, or
+**      block, respectively. These three values MUST cumulatively add up
+**      to 1, without exceptions.
+**  DodgeProjectileCheckTime (Float)
+**      - Assuming that the DodgeProjectileDelayTime is not active, this
+**      is the interval timer that determines how often the AI might
+**      check to see if it needs to Dodge a projectile. Measured in
+**      seconds.
+**  DodgeProjectileCheckChance (Float)
+**      - Whenever the DodgeProjectileCheckTime has elapsed, this is the
+**      percentage chance that an AI might check to see if it needs to
+**      Dodge a projectile. Accepts values between 0 and 1, inclusive.
+**  DodgeProjectileDelayTime (Float)
+**      - After attempting to Dodge a projectile, this is the cooldown
+**      timer that determines how long the AI must wait until it can try
+**      to Dodge again.
 **
-**  ---<Attack Values>---
+**  ---<Attack Settings>---
 ** 	The Attack state is an AI's default state while in combat with an
 **  established line of sight towards a valid target. Based on its
 **  current distance from the target, it can choose to perform a ranged,
@@ -81,73 +142,171 @@
 **  When entering the Attack state, an AI can also choose, at random, to
 **  attack from a crouching position. Doing so does not incur a delay of
 **  any kind to hinder an AI from attempting a Dodge.
-** AttackRangedRange					- the min/max distance we must be at to attack with a ranged weapon (e.g. rifle)
-** AttackThrownRange				    - the min/max distance we must be at to attack with a thrown weapon (e.g. grenade)
-** AttackMeleeRange						- the min/max distance we must be at to attack with a melee weapon (e.g. sword)
-** AttackChaseTime						- after we lose sight of our target, how long do we wait before chasing
-** AttackChaseTimeRandom				- an additional random amount of time to the above time
-** AttackPoseCrouchChance				- when we enter the attack state, chance we will crouch and fire
-** AttackGrenadeThrowTime				- how often we'll consider throwing a grenade
-** AttackGrenadeThrowChance				- chance we'll attempt to throw the grenade after this time expires
-** AttackSoundChance					- chance we'll play the attack sound (CombAggr*.wav) when we enter this state
-** AttackSoundTimeMin					- time which must pass since an AI last talked before a sound can be played.
-** AttackWhileMoving					- Can the AI attack while moving?
-** 
-** AttackFromCoverCoverTime				- how long we will stay covered for before uncovering
-** AttackFromCoverCoverTimeRandom		- an additional random amount of time to the above time
-** AttackFromCoverUncoverTime			- how long we will stay uncovered for before covering
-** AttackFromCoverUncoverTimeRandom		- an additional random amount of time to the above time
-** AttackFromCoverReactionTime			- if uncovered and shot at, the delay before we will go back to cover
-** AttackFromCoverMaxRetries			- how many times we will attempt to go for new cover when cover becomes invalidated
-** AttackFromCoverSoundChance			- chance we'll play the attackfromcover sound (CombDef*.wav) when we enter this state
-** AttackWhileMoving					- TRUE or FALSE; can the AI attack while moving?
-** 
-** AttackFromVantageAttackTime			- time we will fire from a vantage node before moving on to the next one
-** AttackFromVantageAttackTimeRandom	- an additional random amount of time to the above time
 **
-** AttackFromViewChaseTime				- how long we will we wait to chase at an attack from view node
-** 										
-** ChaseSoundTime						- time after which we'll play a chase sound
-** ChaseSoundTimeRandom					- an additional random amount of time to the above time
-** ChaseFoundSoundChance				- if we played a chase sound, once we spot the player, % chance we will play the found sound
-** ChaseExtraTime						- extra amount of time we continue running once we're in range and have spotted the player
-** ChaseExtraTimeRandom					- an additional random amount of time to the above time
-** ChaseSearchTime						- how long we will chase, after our last sighting of the player, until we give up and enter the search state
-** ChaseJunctionChance					- chance we will keep track of the player after they pass through a junction
-** 										
-** PatrolSoundTime						- time between chances of playing a patrolling sound
-** PatrolSoundTimeRandom				- an additional random amount of time to the above time
-** PatrolSoundChance					- the chance we'll play a patrol sound after the patrolsoundtime 
+**  AttackRangedRange (Array),
+**  AttackThrownRange (Array),
+**  AttackMeleeRange (Array)
+**      - The minimum and maximum allowed distances between an AI and 
+**      its target in order for it to consider using a ranged, thrown,
+**      or melee attack, respectively.
+**  AttackChaseTime (Float),
+**  AttackChaseTimeRandom (Array)
+**      - When an AI loses sight of a hostile target, this determines
+**      how long the AI will attempt to give chase, using the target's
+**      last known visual position as a reference. The AttackChaseTime
+**      is a guaranteed minimum time that is then extended by a random
+**      amount of time between the minimum and maximum allotted in the
+**      AttackChaseTimeRandom setting. All three values are measured in
+**      seconds.
+**  AttackPoseCrouchChance (Float),
+**  AttackPoseCrouchTime (Float)
+**      - When entering the Attack state, the AI can also choose, at
+**      random, to attack from a crouching position. Doing so does not
+**      incur a delay of any kind to hinder an AI from attempting a
+**      Dodge. The AttackPoseCrouchChance is the chance that the AI will
+**      choose to enter this position, and the AttackPoseCrouchTime 
+**      determines how long, in seconds, the AI will crouch for before
+**      standing up again. 
+**      - To be clear, this check occurs once every time the AI enters
+**      the Attack state, regardless of the reason.
+**  AttackGrenadeThrowTime (Float),
+**  AttackGrenadeThrowChance (Float)
+**      - While in the Attack state, the AI may choose to use a grenade/
+**      throwable. If it chooses to do so, it cannot Dodge or cancel the
+**      action while it's being performed. The AttackGrenadeThrowTime
+**      is the interval timer between checks to use a throwable, in
+**      seconds, and the AttackGrenadeThrowChance is the likelihood that
+**      the AI will use a throwable, per check.
+**      - In TRON 2.0, the only throwable is the Ball Primitive. This
+**      means that the Z-Lot is the only enemy that gets it as standard.
+**      It has not yet been tested whether or not other AIs can use the
+**      Ball Primitive.
+**      - TODO confirm if the Ball is a throwable
+**  AttackSoundChance (Float),
+**  AttackSoundTimeMin (Float)
+**      - When entering the Attack state, the AI may choose, at random,
+**      to play a sound, provided it has been a sufficient amount of
+**      time since the AI last spoke. The AttackSoundChance is the
+**      likelihood that the AI will play a sound when entering the
+**      Attack state, and the AttackSoundTimeMin is the minimum required
+**      amount of time to have elapsed, in seconds, before the AI can
+**      consider playing this sound.
+**      - At present, it is not known what is considered an eligible
+**      Attack sound.
+**      - TODO research Attack sounds
+**  AttackWhileMoving (Boolean)
+**      - This setting determines whether the AI will be permitted to
+**      Attack whilst still moving. In TRON 2.0's case, this usually
+**      applies to ICLaunchers using the Sequencer weapon.
+**      TRUE: The AI can attack while moving.
+**      FALSE: The AI will remain stationary while attacking.
+** 
+**  When an AI is in the Attack state, there are three different sub-
+**  states it can enter: AttackFromCover, AttackFromVantage, and
+**  AttackFromView. However, the AI itself isn't complex enough to seek
+**  out cover, vantage, or view spots on its own. All three sub-states
+**  require their own valid node to be placed in the world, at which
+**  point an AI will consider any of these nodes that are within a valid
+**  search radius based on its current position. The primary difference
+**  is how the AI's behavior is altered when entering these three sub-
+**  states.
 **
-** DistressFacingThreshhold				- dot product (-1=180' to 1=0') at which target must be facing towards us to be considered threatening
-** DistressIncreaseRate					- rate at which distress increases when being threatened
-** DistressDecreaseRate					- rate at which distress decreases when not being threatened
-** DistressLevels						- how many levels of distress to go through before panic
-** DistressTimeMax						- max ammount of time it will take for an AI to go from distress -> undistressed.	
+**  
+**
+**  AttackFromCoverCoverTime (Float),
+**  AttackFromCoverCoverTimeRandom (Array)
+**      - Once the AI has chosen to take cover, these settings will
+**      determine how long it stays there, only interrupted if the cover
+**      becomes invalid. The AttackFromCoverCoverTime is a guaranteed
+**      minimum time that is then extended by a random amount of time
+**      between the minimum and maximum allotted in the
+**      AttackFromCoverCoverTimeRandom setting. All three values are
+**      measured in seconds.
+**  AttackFromCoverUncoverTime (Float),
+**  AttackFromCoverUncoverTimeRandom (Array)
+**      - After a certain amount of time behind cover has elapsed, the
+**      AI will then temporarily leave cover to continue Attacking their
+**      target. The AttackFromCoverUncoverTime is a guaranteed minimum
+**      time that is then extended by a random amount of time between
+**      the minimum and maximum allotted in the 
+**      AttackFromCoverUncoverTime setting. All three values are
+**      measured in seconds.
+**  AttackFromCoverReactionTime (Float)
+**      - Whilst an AI is uncovered, it can choose to return to cover
+**      early if it realizes it is once again under fire. This is the
+**      delay time, in seconds, between when an AI has recognized that
+**      it's getting shot at, and when it chooses to take cover again.
+**  AttackFromCoverMaxRetries (Integer)
+**      - If, for any reason, an AI's cover position becomes invalid, it
+**      can immediately perform another search to find a new cover spot.
+**      This value determines how many successive times it will attempt
+**      to do so before giving up and returning to the default Attack
+**      state. However, if it finds a valid cover spot in the future, it
+**      can choose to take cover again, at which point this counter will
+**      be reset.
+**  AttackFromCoverSoundChance (Float)
+**      - The percentage chance that the AI will play a sound when
+**      entering this sub-state. 
+**      - At present, it is not known what is considered an eligible
+**      AttackFromCover sound.
+**      - TODO research AttackFromCover sounds
+**
+**  AttackFromVantageAttackTime (Float),
+**  AttackFromVantageAttackTimeRandom (Array)
+**      - If an AI has discovered safe vantage points from which it can
+**      Attack a target, it can opt to take them. In this sub-state, the
+**      AI will rotate between different vantage points, only Attacking
+**      from any one position for a certain amount of time before moving
+**      on to the next one. The AttackFromVantageAttackTime is a
+**      guaranteed minimum time that is then extended by a random amount
+**      of time between the minimum and maximum allotted by the
+**      AttackFromVantageAttackTimeRandom setting. All three values are
+**      measured in seconds.
+**
+**  AttackFromViewChaseTime				- how long we will we wait to chase at an attack from view node
+**      - data here
+** 		
+**  ---<Chase Values>---								
+**  ChaseSoundTime						- time after which we'll play a chase sound
+**  ChaseSoundTimeRandom					- an additional random amount of time to the above time
+**  ChaseFoundSoundChance				- if we played a chase sound, once we spot the player, % chance we will play the found sound
+**  ChaseExtraTime						- extra amount of time we continue running once we're in range and have spotted the player
+**  ChaseExtraTimeRandom					- an additional random amount of time to the above time
+**  ChaseSearchTime						- how long we will chase, after our last sighting of the player, until we give up and enter the search state
+**  ChaseJunctionChance					- chance we will keep track of the player after they pass through a junction
+** 										
+**  PatrolSoundTime						- time between chances of playing a patrolling sound
+**  PatrolSoundTimeRandom				- an additional random amount of time to the above time
+**  PatrolSoundChance					- the chance we'll play a patrol sound after the patrolsoundtime 
+**
+**  DistressFacingThreshhold				- dot product (-1=180' to 1=0') at which target must be facing towards us to be considered threatening
+**  DistressIncreaseRate					- rate at which distress increases when being threatened
+**  DistressDecreaseRate					- rate at which distress decreases when not being threatened
+**  DistressLevels						- how many levels of distress to go through before panic
+**  DistressTimeMax						- max ammount of time it will take for an AI to go from distress -> undistressed.	
 **	
-** MajorAlarmThreshold					- how high alarm level must be to start searching (threat assumed)
-** ImmediateAlarmThreshold				- how high alarm level must be to know threat is immediate
-** 
-** TauntDelay							- How long between checks to taunt
-** TauntChance							- Chance the AI should taunt when it is able to
-** 
-** CanLipSync							- Is the AI Able to lipsync?
-** 
-** DamageMask                           - Mask of accepted types of damage. Other types are ignored.
-**                                        Valid choices are listed at the bottom of this file.
-**                                        "None" means affected by all damage types.
 */
 
 /*  -----[0: Default Brain]-----
 **  This is the default option DEdit pre-selects when a new NPC is added
-**  to the world. 
+**  to the world. It's not designed for combat, and is likely to behave
+**  rather erratically, since it wasn't inteded to be used for anything
+**  in TRON 2.0.
 **
-**  DO NOT RENAME THIS ENTRY.
+**  DO NOT REMOVE OR RENAME THIS ENTRY.
 */
 [Brain0]
 Name								= "Default" // DO NOT REMOVE OR RENAME THIS ENTRY!
+MajorAlarmThreshold					= 5
+ImmediateAlarmThreshold				= 10
+TauntDelay							= 0.000000
+TauntChance							= 0.000000
+CanLipSync							= TRUE
+DamageMask							= "None"
+OnlyDamagedByPlayer					= TRUE
 
-/*  ---[Dodge Values]---  */							
+
+/*  ---[Dodge Settings]---  */							
 DodgeVectorCheckTime				= 0.25
 DodgeVectorCheckChance				= 1.00
 DodgeVectorDelayTime				= 3.00
@@ -159,13 +318,15 @@ DodgeVectorBlockChance				= 0.0 //  /
 DodgeProjectileCheckTime			= 0.25
 DodgeProjectileCheckChance			= 1.00
 DodgeProjectileDelayTime			= 3.00
-									
+
+/*  ---[Attack Settings]---  */								
 AttackRangedRange					= [100.0, 5000.0000]
 AttackThrownRange					= [350.0, 1000.000]
 AttackMeleeRange					= [0.0, 100.0]
 AttackChaseTime						= 0.500000
 AttackChaseTimeRandom				= [-0.250000, 0.250000]
 AttackPoseCrouchChance				= 0.01
+AttackPoseCrouchTime				= 5.0
 AttackGrenadeThrowTime				= 2.00
 AttackGrenadeThrowChance			= 0.50
 AttackSoundChance					= 0.25
@@ -184,7 +345,8 @@ AttackFromVantageAttackTime			= 2.000000
 AttackFromVantageAttackTimeRandom	= 2.000000
 
 AttackFromViewChaseTime				= 5.0
-									
+
+/*  ---[Chase Settings]---  */			
 ChaseSoundTime						= 10.0
 ChaseSoundTimeRandom				= [-1.0, 2.0]
 ChaseFoundSoundChance				= 0.25
@@ -193,26 +355,18 @@ ChaseExtraTimeRandom				= [-0.1, 0.1]
 ChaseSearchTime						= 4.0
 ChaseJunctionContinueChance			= 0.5
 
+/*  ---[Patrol Settings]---  */
 PatrolSoundTime						= 8.0
 PatrolSoundTimeRandom				= [-1.0, 2.0]
 PatrolSoundChance					= 0.25
-								
+
+/*  ---[Distress Settings]---  */							
 DistressFacingThreshhold			= 0.95
 DistressIncreaseRate				= 0.5
 DistressDecreaseRate				= 0.2
 DistressLevels						= 4
 DistressTimeMax						= 3.0
 
-MajorAlarmThreshold					= 5
-ImmediateAlarmThreshold				= 10
-
-TauntDelay							= 0.000000
-TauntChance							= 0.000000
-
-CanLipSync							= TRUE
-DamageMask							= "None"
-OnlyDamagedByPlayer					= TRUE
-AttackPoseCrouchTime				= 5.0
 
 [Brain1]
 
