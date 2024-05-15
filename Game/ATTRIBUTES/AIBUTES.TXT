@@ -138,10 +138,6 @@
 **  thrown, or melee attack. Most weapons in TRON 2.0 are considered
 **  ranged, with the Ball Primitive being the only one that the AI will
 **  consider to be a throwable. 
-**  
-**  When entering the Attack state, an AI can also choose, at random, to
-**  attack from a crouching position. Doing so does not incur a delay of
-**  any kind to hinder an AI from attempting a Dodge.
 **
 **  AttackRangedRange (Array),
 **  AttackThrownRange (Array),
@@ -197,7 +193,10 @@
 **  AttackWhileMoving (Boolean)
 **      - This setting determines whether the AI will be permitted to
 **      Attack whilst still moving. In TRON 2.0's case, this usually
-**      applies to ICLaunchers using the Sequencer weapon.
+**      applies to ICLaunchers using the Sequencer weapon. Not to be
+**      mistaken as a mix of the Attack and Chase states, an AI that
+**      chooses to do this will simply path directly toward their
+**      target whilst firing, when this is set to TRUE.
 **      TRUE: The AI can attack while moving.
 **      FALSE: The AI will remain stationary while attacking.
 ** 
@@ -211,7 +210,13 @@
 **  is how the AI's behavior is altered when entering these three sub-
 **  states.
 **
-**  
+**  AttackFromCover, as the name implies, allows the AI to Attack from
+**  what it believes is a cover spot. Valid AttackFromCover nodes are
+**  generally outside the target's line of sight, but allow the AI to
+**  continue Attacking whenever they decide to peek out from that cover
+**  spot. It is also required to be within a specific search radius,
+**  which can be controlled using AIData. If an AI peeks out of cover 
+**  and can't find the target, it'll enter the Chase state.
 **
 **  AttackFromCoverCoverTime (Float),
 **  AttackFromCoverCoverTimeRandom (Array)
@@ -238,10 +243,10 @@
 **      it's getting shot at, and when it chooses to take cover again.
 **  AttackFromCoverMaxRetries (Integer)
 **      - If, for any reason, an AI's cover position becomes invalid, it
-**      can immediately perform another search to find a new cover spot.
+**      can immediately perform another search to find a new cover node.
 **      This value determines how many successive times it will attempt
 **      to do so before giving up and returning to the default Attack
-**      state. However, if it finds a valid cover spot in the future, it
+**      state. However, if it finds a valid cover node in the future, it
 **      can choose to take cover again, at which point this counter will
 **      be reset.
 **  AttackFromCoverSoundChance (Float)
@@ -251,40 +256,119 @@
 **      AttackFromCover sound.
 **      - TODO research AttackFromCover sounds
 **
+**  AttackFromVantage is intended to be reserved for AI that will Attack
+**  a target from a position that is intentionally unreachable by said
+**  target. A good example of this are the DataWraiths that attack you
+**  from fCon's mobile server, while you're trying to release the locks
+**  on the stabilizing bits. When AttackFromVantage is active, the AI
+**  will rotate between a set of nodes in either a random or distance-
+**  based sequential order, before proceeding to attack from those pre-
+**  determined positions until it decides to move on to the next node.
+**
 **  AttackFromVantageAttackTime (Float),
 **  AttackFromVantageAttackTimeRandom (Array)
-**      - If an AI has discovered safe vantage points from which it can
-**      Attack a target, it can opt to take them. In this sub-state, the
-**      AI will rotate between different vantage points, only Attacking
-**      from any one position for a certain amount of time before moving
-**      on to the next one. The AttackFromVantageAttackTime is a
+**      - When an AI has entered the AttackFromVantage sub-state, it
+**      must decide how long it will want to stay at a valid node before
+**      moving on to the next one. The AttackFromVantageAttackTime is a
 **      guaranteed minimum time that is then extended by a random amount
 **      of time between the minimum and maximum allotted by the
-**      AttackFromVantageAttackTimeRandom setting. All three values are
+**      AttackFromVantageAttackTimeRandom setting. Both values are
 **      measured in seconds.
 **
-**  AttackFromViewChaseTime				- how long we will we wait to chase at an attack from view node
-**      - data here
+**  AttackFromView is much more specific than the other two sub-states.
+**  According to Monolith, an AI will attack from one of these nodes if
+**  it has sensed the presence of a player that is inside a valid
+**  AIVolumePlayerInfo that the node would be attached to. More research
+**  is needed to figure out this specific system.
+**
+**  AttackFromViewChaseTime (Float)
+**      - Assuming the player is in a valid volume, this is how long, in
+**      seconds, the AI will wait before moving to an AttackFromView
+**      node after losing sight of the player.
 ** 		
-**  ---<Chase Values>---								
-**  ChaseSoundTime						- time after which we'll play a chase sound
-**  ChaseSoundTimeRandom					- an additional random amount of time to the above time
-**  ChaseFoundSoundChance				- if we played a chase sound, once we spot the player, % chance we will play the found sound
-**  ChaseExtraTime						- extra amount of time we continue running once we're in range and have spotted the player
-**  ChaseExtraTimeRandom					- an additional random amount of time to the above time
-**  ChaseSearchTime						- how long we will chase, after our last sighting of the player, until we give up and enter the search state
-**  ChaseJunctionChance					- chance we will keep track of the player after they pass through a junction
-** 										
+**  ---<Chase Settings>---								
+**  Whether automatically or manually induced, an AI can enter the Chase
+**  state when it has sensed a hostile target nearby by most means. In
+**  this case, valid targets not only include hostile entities, but also
+**  include weapon impact sounds, to which the AI will seek that out if
+**  it can't see the attacker directly. Most of the time, though, once
+**  an AI is in Chase, it probably already knows exactly where the
+**  target is.
+**
+**  ChaseSoundTime (Float),
+**  ChaseSoundTimeRandom (Array)
+**      - When entering the Chase state, the AI will play a sound. From
+**      then, there is a delay that must elapse before the AI can play
+**      another of the same sound. The ChaseSoundTime is a guaranteed
+**      minimum time that is then extended by a random amount of time
+**      between the minimum and maximum allotted by the 
+**      ChaseSoundTimeRandom setting. Both values are measured in 
+**      seconds.
+**  ChaseFoundSoundChance (Float)
+**      - Assuming a ChaseSound has been played, this is the chance that
+**      the AI will play another sound once it has found its target in
+**      visual range.
+**  ChaseExtraTime (Float),
+**  ChaseExtraTimeRandom (Array)
+**      - Once an AI has spotted its target visually, this is the extra
+**      amount of time in which it will attempt to close the gap before
+**      starting to Attack. The ChaseExtraTime is a guaranteed minimum
+**      time that is then extended by a random amount of time between
+**      the minimum and maximum allotted by the ChaseExtraTimeRandom
+**      setting. Both values are measured in seconds.
+**  ChaseSearchTime (Float)
+**      - If an AI that is chasing a target in visual range suddenly
+**      loses sight of said target, this is the amount of time, in
+**      seconds, for which it will continue to Chase the target based on
+**      its last known position, before giving up and entering a Search
+**      state.
+**  ChaseJunctionChance (Float)
+**      - If an AI is chasing a target that has moved through a Junction
+**      volume, this is the percentage chance that the AI will continue
+**      to keep track of, and pursue, that target.
+** 		
+**  ---<Patrol Settings>---
+**  Patrols are a pretty straightforward, but still node-based behavior.
+**  An AI will move between a set of patrol nodes assigned to it. This,
+**  of course, only occurs whilst the AI does not sense any immediate
+**  danger.	
+**				
 **  PatrolSoundTime						- time between chances of playing a patrolling sound
 **  PatrolSoundTimeRandom				- an additional random amount of time to the above time
 **  PatrolSoundChance					- the chance we'll play a patrol sound after the patrolsoundtime 
+**      - When entering the Patrol state, the AI will have a percentage
+**      chance to play a sound, represented by the PatrolSoundChance.
+**      From then, there is a delay that must elapse before the AI can 
+**      play another of the same sound. Regardless of whether the 
+**      PatrolSoundChance check succeeds or not, this delay will reset
+**      itself. The PatrolSoundTime is a guaranteed minimum time that is
+**      then extended by a random amount of time between the minimum and
+**      maximum allotted by the PatrolSoundTimeRandom setting. Both
+**      values are measured in seconds.
 **
-**  DistressFacingThreshhold				- dot product (-1=180' to 1=0') at which target must be facing towards us to be considered threatening
-**  DistressIncreaseRate					- rate at which distress increases when being threatened
-**  DistressDecreaseRate					- rate at which distress decreases when not being threatened
-**  DistressLevels						- how many levels of distress to go through before panic
-**  DistressTimeMax						- max ammount of time it will take for an AI to go from distress -> undistressed.	
-**	
+**  ---<Distress Settings>---
+**  Although Distress exists as a goal, it's hard to describe what it is
+**  in the context of these settings, since it seems to be more of a
+**  tracked data point rather than an actual state. More research will
+**  be needed for this.
+**
+**  DistressFacingThreshhold (Float)
+**      - This is a degree value that ranges from -1 to 1, where -1 is
+**      180 degrees and 1 is 0 degrees. It represents the dot product
+**      at which the target must be facing towards an AI in order to be
+**      considered threatening.
+**  DistressIncreaseRate (Float),
+**  DistressDecreaseRate (Float)
+**      - These represent the rates at which an AI's distress level
+**      increases/decreases, when in threat/not in threat, respectively.
+**  DistressLevels (Integer)
+**      - This is the threshold distress level that an AI must reach
+**      before "panicking".
+**      - TODO research panic mode for AI
+**  DistressTimeMax (Float)
+**      - Assuming the distress level has fallen to an acceptable range,
+**      this is the maximum amount of time the AI will take to return to
+**      an undistressed state from a distressed one.	
 */
 
 /*  -----[0: Default Brain]-----
