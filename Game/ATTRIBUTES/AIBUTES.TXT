@@ -8,6 +8,12 @@
 **  fields that allow two different entities do the same thing slightly 
 **  differently.
 **
+**  As made evident by AIData entries, what we have access to here is
+**  rather limited. Although it is theoretically possible that these
+**  otherwise hidden settings can be adjusted, they are only found in
+**  the source code, and thus a comprehensive list of them is, for the
+**  moment, impossible.
+**
 **  Please note that due to the relative difficulty to test AI at the
 **  moment, a lot of the currently provided descriptions are based on
 **  partial speculation, and are likely to be inaccurate. Refinements
@@ -44,19 +50,22 @@
 **      - The alarm levels in which the AI must reach before assuming a
 **      higher threat level. 
 **      At the MajorAlarmThreshold, a threat is assumed, and the AI will
-**      enter a search state. 
+**      enter a Search state. 
 **      At the ImmediateAlarmThreshold, the AI has confirmed a threat, 
 **      and will either enter the Attack state, or run to call for
 **      reinforcements.
-**  TauntChance (Float),
-**  TauntDelay (Float)
+**  TauntDelay (Float),
+**  TauntChance (Float)
 **      - The percentage chance that an AI will interrupt its own Attack
 **      state to perform a Taunt, as well as the time, in seconds, to
 **      delay between taunts. Taunting has no interval timer, meaning it
 **      will only perform a Taunt check once per delay time.
 **      - The only AI that is capable of performing a Taunt in TRON 2.0
 **      is the fCon Monster, which will perform a taunt once every 30
-**      seconds. For all other AI, both of these settings should be set
+**      seconds. For all other AI, both of these settings should be set.
+**  DoFiringTrails (Boolean)
+**      - Determines whether or not the AI's weapon fire will leave a
+**      particle trail behind. Typically set to TRUE for AI that use
 **  CanLipSync (Boolean)
 **      - Determines whether the AI can lip sync to voice lines, where
 **      lip syncing files are available.
@@ -116,7 +125,7 @@
 **  DodgeVectorBlockChance (Float)
 **      - The percentage change that a Dodge will be a shuffle, roll, or
 **      block, respectively. These three values MUST cumulatively add up
-**      to 1, without exceptions.
+**      to 1.0, without exceptions.
 **  DodgeProjectileCheckTime (Float)
 **      - Assuming that the DodgeProjectileDelayTime is not active, this
 **      is the interval timer that determines how often the AI might
@@ -333,9 +342,9 @@
 **  of course, only occurs whilst the AI does not sense any immediate
 **  danger.	
 **				
-**  PatrolSoundTime						- time between chances of playing a patrolling sound
-**  PatrolSoundTimeRandom				- an additional random amount of time to the above time
-**  PatrolSoundChance					- the chance we'll play a patrol sound after the patrolsoundtime 
+**  PatrolSoundTime (Float),
+**  PatrolSoundTimeRandom (Array),
+**  PatrolSoundChance (Float)
 **      - When entering the Patrol state, the AI will have a percentage
 **      chance to play a sound, represented by the PatrolSoundChance.
 **      From then, there is a delay that must elapse before the AI can 
@@ -369,6 +378,9 @@
 **      - Assuming the distress level has fallen to an acceptable range,
 **      this is the maximum amount of time the AI will take to return to
 **      an undistressed state from a distressed one.	
+**
+**  ---<AIData (Additional Values)>---
+**  
 */
 
 /*  -----[0: Default Brain]-----
@@ -380,7 +392,7 @@
 **  DO NOT REMOVE OR RENAME THIS ENTRY.
 */
 [Brain0]
-Name								= "Default" // DO NOT REMOVE OR RENAME THIS ENTRY!
+Name								= "Default"
 MajorAlarmThreshold					= 5
 ImmediateAlarmThreshold				= 10
 TauntDelay							= 0.000000
