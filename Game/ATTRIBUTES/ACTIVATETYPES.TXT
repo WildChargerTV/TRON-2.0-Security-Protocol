@@ -2,26 +2,26 @@
 **
 **                   ----------[ACTIVATETYPES]----------
 **
-**  The ActivateTypes file manages attributes for all of the game's
+**  The ActivateTypes File manages Attributes for all of the game's
 **  various Activation Types.
 **
-**  ActivateTypes are options for a property in DEdit that correspond 
+**  Activate Types are options for a property in DEdit that correspond 
 **  to either linear or binary actions in TRON 2.0. The property is 
 **  associated with objects that the player can directly interact with 
 **  in the game, such as doors, switches, or binary bits.
 **
 **  Because some classes in DEdit have static, unchangeable references
-**  to an ActivateType, it is not recommended to modify or remove any of 
-**  the existing entries, and instead add your own to the end of the 
-**  list. All ActivateTypes must contain the three properties defined
-**  below, and will malfunction otherwise.
+**  to an Activate Type, it is not recommended to modify or remove any
+**  of the existing Attributes, and instead add your own to the end of
+**  the list. All Activate Types must contain the three Attributes
+**  defined below, and will malfunction otherwise.
 **
 **  Name (String)
-**	    - The user-friendly name of the ActivateType. This is what will
+**	    - The user-friendly name of the Activate Type. This is what will
 **      show up in DEdit.
 **  StateON (Integer),
 **  StateOFF (Integer)
-**	    - The string ID from CRES.DLL of the text to display when the 
+**	    - The String ID from CRES.DLL of the text to display when the 
 **      object is in its ON and OFF states.  Use -1 for no text.
 */
 
