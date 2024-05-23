@@ -2,36 +2,37 @@
 **
 **                  ----------[RELATIONDATA]----------
 **
-**  The RelationData file mainly serves to set up AI "factions", which
-**  should be applied to all AI in the game. This allows NPCs to know
-**  how to react when encountering both the player and each other. This
-**  process includes creating specific AI categories, which are then
-**  assigned a single set of relations. It's possible to dynamically
-**  modify these relations by assigning them to a Collective, though
-**  this is not used in TRON 2.0.
+**  The RelationData File mainly serves to set up AI "factions", which
+**  then gets applied to all of the AI in the game. This allows NPCs to
+**  know how to react when encountering both the player and each other.
+**  This process includes creating specific AI categories, which are
+**  then assigned a single set of relations. Although it is possible to
+**  modify these relations on-the-fly by assigning them to a Collective,
+**  such functionality is unfortunately not used in TRON 2.0.
 **
-**  This file has four sections: RelationalObjects, Collectives,
+**  This File has four sections: RelationalObjects, Collectives,
 **  RelationSets, and RelationData. 
 */
 
 
 /************************************************************************
 **
-**                 RelationalObjects (aka "Alignments")
+**                ----------[RelationalObjects]----------
 **
-**	RelationalObjects are responsible for the first step of the process,
-**  which is to create AI categories. Every NPC in TRON 2.0 that isn't
-**  part of a cutscene or doing a scripted action will be required to 
-**  have an assignment to one of these categories in order to properly
-**  exhibit traditional behaviors. Without one, the AI has no way of
-**  receiving a Relation configuration, and will subsequently react to
-**  absolutely nothing.
+**	RelationalObjects, also known as Alignments, are responsible for the
+**  first step of the process, which is to create AI categories. Every
+**  NPC in TRON 2.0 that isn't part of a cutscene, or doing a scripted
+**  action, will be required to have an assignment to one of these AI
+**  categories in order to properly exhibit traditional behaviors.
+**  Without one, the NPC doesn't have a way of of receiving a Relation
+**  configuration, and will subsequently react to absolutely nothing.
 **
-**  The primary way to assign these to an AI will be by setting its
-**  Alignment attribute in AIButes to one of these RelationalObjects.
-**  That assigns a default relation data set to the AI, which can then
-**  be overridden as needed by setting the Alignment attribute in the
-**  AttributeOverrides menu in DEdit.
+**  The primary way to assign these to an NPC will be by setting its
+**  Alignment Attribute (in the "Attribute Templates" section of the
+**  AIButes file) to one of these RelationalObjects. That assigns a
+**  default relation data set to the AI, which can then be overridden as
+**  needed within DEdit by modifying the Alignment setting in the
+**  AttributeOverrides menu.
 **
 **  It's important to clarify the use of the word "Alignment" in this
 **  section, because literally every other part of the dev tools (that
@@ -41,16 +42,16 @@
 **
 **	Name (String)
 **      - The name of the RelationalObject. This is the key that all
-**      of the other tools will use to interface with this file.
+**      of the other tools will use to interface with this File.
 **
 **	RelationSet (String)
 **		- The name of the RelationSet to assign to this RelationObject.
-**      Only one RelationSet can be assigned. Use an empty string ("")
+**      Only one RelationSet can be assigned. Use an empty String ("")
 **      if no RelationSet is to be used.
 ** 
 **	RelationData (String)
 **		- The name of the RelationData to assign to this RelationObject.
-**      Only one RelationData can be assigned. Use an empty string ("") 
+**      Only one RelationData can be assigned. Use an empty String ("") 
 **      if there is no RelationData to be used.
 ** 
 **	Collective (String)
@@ -236,17 +237,17 @@ Collective      = ""
 
 /************************************************************************
 **
-**                              Collectives
+**                   ----------[Collectives]----------
 **
-**	Collectives are meant for 'Collective-minded' NPCs, who all think
+**	Collectives are meant for 'Collective-minded' AIs, who all think
 **  alike in some way. By nature, this means that they should be used
 **  ONLY in situations where they are obviously meant to exist. All
 **  Collectives are assigned to a RelationSet which it will dynamically
 **  change over time.
 **	
-**	NPCs' RelationSets will subscribe to Collectives as sources of 
+**	An AI's RelationSets will subscribe to Collectives as sources of 
 **  information. Information which is not in the Collective may still be
-**  different for these NPCs. Whenever information matching that listed
+**  different for these AIs. Whenever information matching that listed
 **  in the Collective is uncovered, the Collective learns that 
 **  information, and it remains until the Collective releases it.
 **
@@ -273,7 +274,7 @@ RelationSet			= "IC_Collective"
 
 /************************************************************************
 **
-**                              RelationSets
+**                   ----------[RelationSets]----------
 **
 **  RelationSets are where all the pieces actually come together. All of
 **  the values deciding whether an NPC likes, dislikes, or tolerates
@@ -288,27 +289,22 @@ RelationSet			= "IC_Collective"
 **
 **  Name (String)
 **      - The name of the RelationSet.
-**
 **  RelationTimeout (Float)
 **      - The amount of time, in seconds, that the RelationSet will
 **      remember a dynamic relation change following the last stimulus
 **      that triggered it.
 **      - TODO does this value only apply to Collectives?
-**
 **  Relation# (String)
 **      - A string composed of three arguments that determine how the
 **      Alignments will react to each other. It is recommended to have
 **      a Relation for all active Alignments on every RelationSet in
 **      order to ensure expected behavior, though this is not required.
-**
 **      - All strings are case-sensitive, and must be composed in this
 **      exact format:
 **      "Alignment [Relationship] [AlignmentName]"
 **          - For example:
 **          "Alignment HATE ResourceHog"
-**		
 **		- Valid Relationships: LIKE, TOLERATE, HATE, UNDETERMINED
-** 
 **		- Valid AlignmentNames: Security, Player, ByStander, Corruption,
 **      PlayerAlly, Seeker, FconMonster, ResourceHog, AbsoluteGood,
 **      AbsoluteBad, Neutral
@@ -541,7 +537,7 @@ Relation8			= "Alignment LIKE AbsoluteGood"
 Relation9			= "Alignment LIKE AbsoluteBad"
 Relation10			= "Alignment HATE ByStander"
 
-/*  ---[14: Game Bot]---
+/*  ---[14: Tron Turret]---
 **  Allows the TronTurret alignment to react to other alignments, but
 **  since no other alignments react to it, it's safe to assume this is
 **  unused.
@@ -600,30 +596,29 @@ Relation9			= "Alignment LIKE AbsoluteBad"
 
 /************************************************************************
 **
-**                             RelationData
+**                  ----------[RelationData]----------
 **
 **  RelationData acts as a self-identification for a RelationalObject,
 **  which sets its Class and Alignment. It is not currently known what
 **  the relevance of the Class assignment is.
 **  TODO what is the Class assignment used for?
-**
+**  TODO note for later: it feels more and more like the term "data" is
+**  used to describe attributes that require values to be passed in as
+**  commands rather than just a typical string or other data type. this
+**  requires further investigation
 **  
 **  Name (String)
 **      - The name of the RelationData.
-**
 **  Data# (String)
 **      - A string composed of two arguments that allow the RelationData
 **      to set its own Class and Alignment. This field accepts a maximum
 **      of two entries.
-**
 **      - All strings are case-sensitive, and must be composed in this
 **      exact format:
 **      "[TraitName] [ObjectID]"
 **          - For example:
 **          "Class Player"
-** 
 **		- Valid TraitNames: Class, Alignment
-** 
 **		- Valid ObjectIDs: Any string with no spaces.
 */
 

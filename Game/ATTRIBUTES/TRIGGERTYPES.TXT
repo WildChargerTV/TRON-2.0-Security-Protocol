@@ -2,36 +2,36 @@
 **
 **                 ----------[TRIGGERTYPES]----------
 **
-**  The TriggerTypes file manages attributes for all of the game's
+**  The TriggerTypes File manages attributes for all of the game's
 **  various Trigger Types.
 **
-**  TriggerTypes are responsible for associating specific map triggers -
-**  ones that the player should be made aware of - with icon textures
+**  Trigger Types are responsible for associating specific map triggers
+**  - ones that the player should be made aware of - with icon textures
 **  that will appear in the HUD to inform the player that they are close
 **  to one of these triggers.
 **
-**  This file allows for the selection of TriggerTypes in DEdit, but
-**  only appears in the basic Trigger class. The game will then use this
-**  file to associate the TriggerType with the icon texture that it's
+**  This File allows for the selection of Trigger Types in DEdit, but
+**  only appears in the basic Trigger Class. The game will then use this
+**  file to associate the Trigger Type with the icon texture that it's
 **  supposed to display, and show it when the trigger's HUDLookAtDist
-**  and/or HUDAlwaysOnDist parameters have been satisfied.
+**  and/or HUDAlwaysOnDist Value parameters have been satisfied.
 **
-**  There are only two TriggerTypes defined here, and TRON 2.0 only uses
-**  the second one for exit triggers. TransAM is unused, assumedly a
-**  leftover fragment of NOLF 2.
+**  There are only two Trigger Types defined here, and TRON 2.0 only
+**  uses the second one for exit triggers. TransAM is unused, assumedly
+**  a leftover fragment of NOLF 2.
 **
-**  Adding a new TriggerType is safe and has no effect on the game. It's
-**  recommended to use a 64x64 texture to display on the screen. The
-**  texture's exact positioning on the screen is unfortunately locked
-**  and cannot be manipulated.
+**  Adding a new Trigger Type is safe, and has no effect on the game.
+**  It's recommended to use a 64x64 texture to display on the screen.
+**  The texture's exact positioning on the screen is unfortunately
+**  locked, and cannot be manipulated.
 **
 **
 **  Name (String)
-**	    - The user-friendly name of the TriggerType. This is what will
+**	    - The user-friendly name of the Trigger Type. This is what will
 **      show up in DEdit.
 **
 **  Icon (Path String)
-**      - The texture that will appear in the HUD when the Trigger's
+**      - The texture that will appear in the HUD when the trigger's
 **      conditions are met.
 */
 

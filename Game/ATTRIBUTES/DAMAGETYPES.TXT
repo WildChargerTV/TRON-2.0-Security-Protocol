@@ -2,7 +2,7 @@
 **
 **                    ----------[DAMAGETYPES]----------
 **
-**	The DamageTypes file manages attributes for all of the game's
+**	The DamageTypes File manages Attributes for all of the game's
 **  various Damage Types. A majority of these are unused from NOLF 2,
 **  with most of TRON 2.0's Damage Types being named after the weapon
 **  that deals them.
