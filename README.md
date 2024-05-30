@@ -1,13 +1,35 @@
-***DISCLAIMER:*** Although **TRON 2.0: Security Protocol** can be installed and ran without causing any game instability, it is currently only available as a separate package. This means that certain functionalities that come standard with the TRON 2.0 Killer App Mod will NOT be in place. *Please do not attempt to load any Retail game saves while the mod is active.* I am not responsible for any lost or corrupted saves created or loaded outside of this mod.
+# Dev Branch
+Welcome to the development branch for Security Protocol. Whether you have chosen to clone or fork this repository, you're probably gonna need a short tour.
 
-# TRON 2.0: Security Protocol
+Most of the files here are used for my own purposes. Assuming you're here to help with the documentation effort, you'll most likely be looking in the Attributes Folder, under Game.
 
-A TRON 2.0 mod by WildCharger
+## Directory
 
-## Drive reformat in progress...
+### Backups
+This folder generally holds either clean copies or reversions of different things, just in case my tinkering with the game somehow corrupts it.
 
-Thank you for your interest in **TRON 2.0: Security Protocol**. At present, the mod is being entirely reorganized as a project, and wil be restarted from the ground up. All updates following this one will be considered part of that new project.
+### Custom
+The Custom directory is representative of a "compiled" version of the mod that an end user can install to their machine. This is the folder of content intended to be pushed to the main branch.
 
-The version of TRON 2.0: Security Protocol currently available is a cosmetic change that sees an ICP Regular replacing Jet in performing the disc-throwing animation at the main menu. Future updates will build on this as they become available.
+### Game
+This is a replica of the game's existing directory structure, but only containing files that are affected, either directly or indirectly, by my mod. These are the files that, when the time comes to publish a release version, will be REZ'd and placed in the Custom directory.
 
-More information will be available soon. Thank you.
+### Texture Replacements
+This is the simplest folder, just showing texture export/project/replacement files for textures Security Protocol modifies in TRON 2.0. This is unlikely to require your attention.
+
+## General Advice/Notes to Self
+For myself. You're welcome to follow it too! But I can't guarantee its usefulness.
+
+### File Overrides
+* When inside Custom/SecurityProtocol, all custom files must be REZ'd. No customrez.txt is needed.
+* To test file overrides without neeing to REZ anything, create a separate folder structured in the same way the tcdg folder is, then add REZ commands to the command line arguments of both DEdit and the launcher. The game will use this to create a separate override.
+    * Worlds should *NEVER* be in this override folder. Keep them in the Game folder so DEdit doesn't freak out.
+
+
+### Texture-Related Points
+* When hue shifting one of the game's blue textures, the average shift value is 140 for red, \[???\] for yellow, 160 for orange. Exact hue shifts do not need to be saved as original copies of textures should always be kept.
+* Ensure textures are *NEVER* exported from GIMP with RLE compression. DEdit cannot import these.
+* To preserve original textures in the Game folder, textures should be imported to a dedicated IMPORTS folder, and NOT back to their original directory. Ensure the texture properties mimic that of their original before placing it in the designated spot.
+
+### Other
+* Make sure Profiles are not carried over between Custom branches to prevent save corruption. (Retail saves can be loaded with or without the Killer App Mod, but this can still destabilize the game).
